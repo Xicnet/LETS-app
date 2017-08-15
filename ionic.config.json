@@ -1,6 +1,8 @@
 {
   "name": "LETS_APP",
   "app_id": "257ead4a",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }
