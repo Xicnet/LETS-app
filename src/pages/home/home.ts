@@ -12,6 +12,7 @@ import { MembersPage } from '../../pages/members/members';
 import { ProfilePage } from '../../pages/userProfile/userProfile';
 import { MenuOptionPopover } from './menu-option';
 
+
 interface MenuEntry {
 	title: string;
 	icon: string;
@@ -24,9 +25,11 @@ interface MenuEntry {
 	selector: 'page-home',
 	templateUrl: 'home.html'
 })
+
 export class HomePage implements OnInit {
 	private member: Member;
 	private menu: Array<MenuEntry>;
+	private menus: any;
 	private popover: Popover;
 
 	constructor(public viewCtrl: ViewController,
@@ -38,76 +41,87 @@ export class HomePage implements OnInit {
 		this.authService.userInfo.subscribe(
 			userInfo => {
 				this.member = userInfo;
-				this.menu = [{
-					title: 'Record a Transaction',
-					icon: 'ion-edit',
-					options: [{
-						title: 'as Seller',
-						page: AddTransactionPage,
-						params: {
-							title: 'as Seller',
-							fields: {
-								payee: {
-									default: this.member.name,
-									disabled: true
-								}
+				this.menus = [
+			{
+				header: 'I need something',
+				menu_items: [
+					{
+						title: 'Browse offers',
+						icon: 'ion-pricetag',
+						page: OffersPage,
+					},
+					{
+						title: 'Post my need',
+						icon: 'ion-edit',
+						page: AddWantPage,
+					}
+				 ]
+			},
+			{
+				header: 'I have something to offer',
+				menu_items: [
+					{
+						title: 'Browse needs',
+						page: WantsPage
+					},
+					{
+						title: 'Post my offer',
+						page: AddOfferPage
+					}
+				]
+			 },
+			{
+				header: 'Transactions',
+				menu_items: [
+				{
+					title: 'I bought something',
+					icon: 'cart',
+					page: AddTransactionPage,
+					params: {
+						title: 'As Buyer',
+						fields: {
+							payer: {
+								default: this.member.name,
+								disabled: true
+							}
+						},
+					}
+				},
+				{
+					title: 'I sold something',
+					icon: 'ion-briefcase',
+					page: AddTransactionPage,
+					params: {
+						title: 'As Seller',
+						fields: {
+							payee: {
+								default: this.member.name,
+								disabled: true
 							}
 						}
-					}, {
-						title: 'as Buyer',
-						page: AddTransactionPage,
-						params: {
-							title: 'as Buyer',
-							fields: {
-								payer: {
-									default: this.member.name,
-									disabled: true
-								}
-							}
-						}
-					}]
-				}, {
-					title: 'Trading Records',
+					}
+				},
+				{
+					title: 'Trading History',
 					icon: 'ion-stats-bars',
 					page: OffersPage
-				}, {
-					title: 'Offerings',
-					icon: 'ion-pricetag',
-					options: [{
-						title: 'View',
-						page: OffersPage
-					}, {
-						title: 'Create',
-						page: AddOfferPage
-					}]
-				}, {
-					title: 'Wants',
-					icon: 'ion-pin',
-					options: [{
-						title: 'View',
-						page: WantsPage
-					}, {
-						title: 'Create',
-						page: AddWantPage
-					}]
-					// }, {
-					// 	title: 'Announcements',
-					// 	icon: 'ion-alert',
-					// 	page: OffersPage
-				}, {
-					title: 'Users',
+				},
+			]
+		 },
+		{
+			header: 'Other',
+			menu_items: [
+				{
+					title: 'Browse members',
 					icon: 'ion-person',
 					page: MembersPage
 				}, {
 					title: 'My Account',
 					icon: 'ion-home',
 					page: ProfilePage
-					// }, {
-					// 	title: 'Stats',
-					// 	icon: 'ion-pie-graph',
-					// 	page: OffersPage
-				}];
-			});
+				}]
+			}];
+		});
 	}
 
 	goToPage(menuEntry) {

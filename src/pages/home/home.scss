@@ -20,6 +20,21 @@ page-home {
 			}
 		}
 	}
+	ion-list.list.home-nav {
+		margin: 0;
+
+		ion-list-header {
+			font-size: 15px;
+			height: 25px;
+			min-height: 25px;
+			margin: 8px 0 0 0;
+		}
+		ion-item.item {
+			font-size: 18px;
+			height: 32px;
+			min-height: 32px;
+		}
+	}
 }
 ion-list.list.home-header {
 	padding-top: 10px;

@@ -15,13 +15,23 @@
       <p>{{ member && member.mail }}</p>
     </ion-item>
   </ion-list>
-  <ion-list>
-    <ion-item *ngFor="let menuEntry of menu" (click)="goToPage(menuEntry);showOptions(menuEntry, $event)">
-      <i [class]="menuEntry.icon" item-left></i> {{ menuEntry.title }}
+
+<ion-list class="home-nav">
+	<ng-container *ngFor="let menu of menus">
+
+		<ion-list-header *ngIf="menu.header">{{ menu.header }}</ion-list-header>
+
+		<ion-item *ngFor="let menuEntry of menu.menu_items" (click)="goToPage(menuEntry);showOptions(menuEntry, $event)">
+      <i [class]="menuEntry.icon" item-left></i>
+			{{ menuEntry.title }}
       <i class="ion-arrow-down-b" *ngIf="menuEntry.options && menuEntry.options.length" item-right></i>
     </ion-item>
-    <ion-item (click)="doLogout()">
-      <i class="ion-log-out" item-left></i> Log Out
-    </ion-item>
-  </ion-list>
+
+  </ng-container>
+
+	<ion-item (click)="doLogout()">
+		<i class="ion-log-out" item-left></i> Log Out
+	</ion-item>
+</ion-list>
+
 </ion-content>
