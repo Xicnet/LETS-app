@@ -8,6 +8,7 @@ import { AddOfferPage } from '../../pages/addOffer/addOffer';
 import { WantsPage } from '../../pages/wants/wants';
 import { AddWantPage } from '../../pages/addWant/addWant';
 import { AddTransactionPage } from '../../pages/addTransaction/addTransaction';
+import { TransactionsPage } from '../../pages/transactions/transactions';
 import { MembersPage } from '../../pages/members/members';
 import { ProfilePage } from '../../pages/userProfile/userProfile';
 import { MenuOptionPopover } from './menu-option';
@@ -104,7 +105,7 @@ export class HomePage implements OnInit {
 				{
 					title: 'Trading History',
 					icon: 'ion-stats-bars',
-					page: OffersPage
+					page: TransactionsPage
 				},
 			]
 		 },

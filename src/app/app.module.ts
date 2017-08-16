@@ -21,6 +21,7 @@ import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { MenuOptionPopover } from '../pages/home/menu-option';
 import { AddTransactionPage } from '../pages/addTransaction/addTransaction';
+import { TransactionsPage } from '../pages/transactions/transactions';
 import { OffersPage } from '../pages/offers/offers';
 import { OfferDetailPage } from '../pages/offerDetail/offerDetail';
 import { AddOfferPage } from '../pages/addOffer/addOffer';
@@ -43,6 +44,7 @@ import { ProfilePage } from '../pages/userProfile/userProfile';
     HomePage,
     MenuOptionPopover,
     AddTransactionPage,
+		TransactionsPage,
     OffersPage,
     OfferDetailPage,
     AddOfferPage,
@@ -78,6 +80,7 @@ import { ProfilePage } from '../pages/userProfile/userProfile';
     MoreActionsBuilderComponent,
     FiltersBuilderComponent,
     AddTransactionPage,
+		TransactionsPage,
     OffersPage,
     OfferDetailPage,
     AddOfferPage,
@@ -90,7 +93,7 @@ import { ProfilePage } from '../pages/userProfile/userProfile';
     MemberDetailPage,
     ProfilePage
   ],
-  providers: [ 
+  providers: [
     AppSettings,
     AuthService,
     ConfigService,

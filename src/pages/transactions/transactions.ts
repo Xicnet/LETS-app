@@ -7,10 +7,10 @@ import { Transaction } from '../../domain/Transaction';
 import { AddTransactionPage } from '../addTransaction/addTransaction';
 
 @Component({
-	selector: 'page-home',
-	templateUrl: 'home.html'
+	selector: 'page-transactions',
+	templateUrl: 'transactions.html'
 })
-export class HomePage implements OnInit {
+export class TransactionsPage implements OnInit {
 	private username: string;
 	private canPost = false;
 	private success = false;
