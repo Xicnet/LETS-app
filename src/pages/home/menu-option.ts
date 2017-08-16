@@ -6,6 +6,7 @@ import * as $ from 'jquery';
 	selector: 'popover-menu-option',
 	templateUrl: 'menu-option.html'
 })
+
 export class MenuOptionPopover implements OnInit {
 	private options: Array<{ title: string, page?: any }>;
 

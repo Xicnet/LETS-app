@@ -52,6 +52,7 @@ export class AuthService {
 	}
 
 	private requestUserInfo(username, rememberMe): Observable<Member> {
+		//console.log(this.isAuthenticated());
 		return this.httpBasicAuth
 			.getWithAuth(`${this.settings.URL.members}?fragment=${username}&depth=1`)
 			.map(response => {

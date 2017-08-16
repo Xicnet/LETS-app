@@ -44,6 +44,7 @@ export class HttpBasicAuth {
 
 	setAuthorizationToken(username, password, rememberMe) {
 		this.authorizationToken = `Basic ${btoa(`${username}:${password}`)}`;
+		//console.log(this.authorizationToken)
 		this.storeToken(this.authorizationToken, rememberMe);
 	}
 
@@ -67,6 +68,7 @@ export class HttpBasicAuth {
 	getWithAuth(url) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
+		//console.log(headers);
 		return this.get(url, headers);
 	}
 
@@ -147,6 +149,7 @@ export class HttpBasicAuth {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
 		this.createAcceptHeader(headers);
+		//console.log(headers);
 		return this.http.options(url, {
 			headers: headers
 		}).map(this.extractData)
