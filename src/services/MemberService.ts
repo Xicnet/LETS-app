@@ -35,6 +35,8 @@ export class MemberService {
 	}
 
 	patch(member: Member): Observable<any> {
+		// console.log('patching member');
+		// console.log(member);
 		return this.httpBasicAuth.patchWithAuth(`${this.settings.URL.members}/${member.id}`, member);
 	}
 

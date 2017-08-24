@@ -83,7 +83,8 @@ export class ProfilePage implements OnInit {
 					content: 'Please wait...'
 				});
 				this.loader.present();
-				this.memberService.post(this.member).subscribe(
+				this.member.id = this.user.id;
+				this.memberService.patch(this.member).subscribe(
 					response => {
 						this.loader.dismiss();
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
