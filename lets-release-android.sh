@@ -1,5 +1,3 @@
-ionic cordova build browser
-
 ionic cordova build --release android
 
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore lets-release-key.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk M_LETS
