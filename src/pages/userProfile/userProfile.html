@@ -3,6 +3,7 @@
     <ion-title>My Account</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content>
 	<ion-list class="home-header">
     <ion-item>
@@ -21,8 +22,11 @@
 			<p [innerHTML]="user && user.balance"></p>
 		</ion-item>
   </ion-list>
+
   <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>
+
 </ion-content>
+
 <ion-footer>
   <ion-list>
     <ion-item>

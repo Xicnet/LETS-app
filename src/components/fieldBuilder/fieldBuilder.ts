@@ -38,6 +38,7 @@ export class FieldBuilderComponent implements OnInit {
 		let formFields = {};
 		let validations = [];
 		this.field.$placeholder = this.field.placeholder || this.field.label + (this.field.required === true ? ' (*)' : '');
+		this.field.type = this.field.type || 'textfield';
 		switch (this.field.type) {
 			case 'date':
 				if (this.field.min) {
