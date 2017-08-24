@@ -56,6 +56,7 @@ export class ProfilePage implements OnInit {
 									this.loader.dismiss();
 								},
 								error => {
+									//console.log(error);
 									this.alertService.showError(error);
 									this.loader.dismiss();
 								});
