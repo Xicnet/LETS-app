@@ -6,7 +6,7 @@ export class AppSettings {
 		return 'http://hamlets.communityforge.net';
 	}
 	public get SERVER_URL(): any {
-		return 'http://hamlets.communityforge.net/commex';
+		return `${this.WEB_SITE_URL}/commex`;
 	}
 	public get URL(): any {
 		return {
