@@ -11,6 +11,7 @@ import { HomePage } from '../../pages/home/home';
 export class MoreActionsBuilderComponent implements OnInit {
 	private options: Array<{ title: string, page?: any, icon: string }>;
 	private operation: string;
+	private status: string;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -21,6 +22,7 @@ export class MoreActionsBuilderComponent implements OnInit {
 		if (this.navParams.data) {
 			this.options = this.navParams.data.options;
 			this.operation = this.navParams.data.operation;
+			this.status = this.navParams.data.status || 'was saved';
 		}
 	}
 

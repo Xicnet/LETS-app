@@ -1,5 +1,5 @@
 <div class="app-confirm-operation">
-	<h6>{{ operation }} Successfully Recorded</h6>
+	<h6>{{ operation }} {{ status }}</h6>
 	<ion-list>
 	  <ion-item *ngFor="let option of options" (click)="goToPage(option)">
 	  	<i [class]="option.icon" item-left></i>

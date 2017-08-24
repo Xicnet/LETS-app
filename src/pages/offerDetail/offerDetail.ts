@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, ViewController, NavController, LoadingController, Loading } from 'ionic-angular';
+import { NavParams, ViewController, NavController, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
 import { OfferService } from '../../services/OfferService';
 import { AlertService } from '../../services/AlertService';
 import { MemberDetailPage } from '../memberDetail/memberDetail';
 import { Offer } from '../../domain/Offer';
 import { map } from 'lodash';
+import { MoreActionsBuilderComponent } from '../../components/moreActionsBuilder/moreActionsBuilder';
 
 @Component({
 	selector: 'page-offer-detail',
@@ -15,11 +16,13 @@ export class OfferDetailPage implements OnInit {
 	private offer: Offer;
 	private loader: Loading
 	private imageExpanded: boolean;
+	private popover: Popover;
 
 	constructor(private params: NavParams,
 		private viewCtrl: ViewController,
 		private navCtrl: NavController,
 		public loadingCtrl: LoadingController,
+		private popoverCtrl: PopoverController,
 		private offerService: OfferService,
 		private alertService: AlertService) { }
 
@@ -69,5 +72,17 @@ export class OfferDetailPage implements OnInit {
 
 	expandImage() {
 		this.imageExpanded = !this.imageExpanded;
+	}
+
+	showActions() {
+		this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
+			operation: 'Offer',
+			status: 'Menu',
+			options: []
+		}, {
+				cssClass: 'confirm-popover',
+				enableBackdropDismiss: true
+			});
+		this.popover.present();
 	}
 }
