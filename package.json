@@ -25,6 +25,8 @@
         "angular2-moment": "~1.1.0",
         "cordova-android": "^6.2.3",
         "cordova-browser": "^4.1.0",
+        "cordova-plugin-camera": "^2.4.1",
+        "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-splashscreen": "^4.0.3",
@@ -66,7 +68,8 @@
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
-            "ionic-plugin-keyboard": {}
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-camera": {}
         },
         "platforms": [
             "android",

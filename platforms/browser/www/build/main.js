@@ -1,73 +1,5 @@
 webpackJsonp([0],{
 
-/***/ 106:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MoreActionsBuilderComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_AuthService__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_login_login__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(154);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var MoreActionsBuilderComponent = (function () {
-    function MoreActionsBuilderComponent(viewCtrl, navCtrl, navParams, authService) {
-        this.viewCtrl = viewCtrl;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.authService = authService;
-    }
-    MoreActionsBuilderComponent.prototype.ngOnInit = function () {
-        if (this.navParams.data) {
-            this.options = this.navParams.data.options;
-            this.operation = this.navParams.data.operation;
-        }
-    };
-    MoreActionsBuilderComponent.prototype.goToPage = function (option) {
-        var page = option.page;
-        if (page) {
-            this.navCtrl.popToRoot();
-            this.navCtrl.push(page, option.params);
-            this.viewCtrl.dismiss();
-        }
-    };
-    MoreActionsBuilderComponent.prototype.goToHome = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */]);
-        this.viewCtrl.dismiss();
-    };
-    MoreActionsBuilderComponent.prototype.doLogout = function () {
-        var _this = this;
-        this.authService.doLogout().subscribe(function (response) {
-            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pages_login_login__["a" /* LoginPage */]);
-            _this.viewCtrl.dismiss();
-        });
-    };
-    MoreActionsBuilderComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'more-actions-builder-component',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/moreActionsBuilder/moreActionsBuilder.html"*/'<div class="app-confirm-operation">\n	<h6>{{ operation }} Successfully Recorded</h6>\n	<ion-list>\n	  <ion-item *ngFor="let option of options" (click)="goToPage(option)">\n	  	<i [class]="option.icon" item-left></i>\n	    <ion-label>{{ option.title }}</ion-label>\n	  </ion-item>\n	  <ion-item (click)="goToHome()">\n	  	<i class="ion-home" item-left></i>\n	    <ion-label>Main Menu</ion-label>\n	  </ion-item>\n	</ion-list>\n</div>'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/moreActionsBuilder/moreActionsBuilder.html"*/
-        }), 
-        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_AuthService__["a" /* AuthService */]])
-    ], MoreActionsBuilderComponent);
-    return MoreActionsBuilderComponent;
-}());
-//# sourceMappingURL=moreActionsBuilder.js.map
-
-/***/ }),
-
 /***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1211,7 +1143,7 @@ var AlertService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_OfferService__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_AlertService__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_confirmationBuilder_confirmationBuilder__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_offers_offers__ = __webpack_require__(155);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1398,7 +1330,7 @@ var CategoriesFilterPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_WantService__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_AlertService__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_confirmationBuilder_confirmationBuilder__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_wants_wants__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1533,7 +1465,7 @@ var AddWantPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_TransactionService__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_AlertService__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_confirmationBuilder_confirmationBuilder__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_lodash__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_lodash__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2093,6 +2025,7 @@ var HttpBasicAuth = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__memberDetail_memberDetail__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(80);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2108,12 +2041,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var OfferDetailPage = (function () {
-    function OfferDetailPage(params, viewCtrl, navCtrl, loadingCtrl, offerService, alertService) {
+    function OfferDetailPage(params, viewCtrl, navCtrl, loadingCtrl, popoverCtrl, offerService, alertService) {
         this.params = params;
         this.viewCtrl = viewCtrl;
         this.navCtrl = navCtrl;
         this.loadingCtrl = loadingCtrl;
+        this.popoverCtrl = popoverCtrl;
         this.offerService = offerService;
         this.alertService = alertService;
     }
@@ -2162,11 +2097,22 @@ var OfferDetailPage = (function () {
     OfferDetailPage.prototype.expandImage = function () {
         this.imageExpanded = !this.imageExpanded;
     };
+    OfferDetailPage.prototype.showActions = function () {
+        this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__["a" /* MoreActionsBuilderComponent */], {
+            operation: 'Offer',
+            status: 'Menu',
+            options: []
+        }, {
+            cssClass: 'confirm-popover',
+            enableBackdropDismiss: true
+        });
+        this.popover.present();
+    };
     OfferDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-offer-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offerDetail/offerDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Offering Details</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="offer">\n    <h2 class="title">{{ offer.title }}</h2>\n    <div class="image" [class.expanded]="imageExpanded" (click)="expandImage()">\n      <img [src]="offer.image || \'assets/images/default.jpg\'">\n      <div class="posted">Posted {{ offer.changed | unixTimeToMoment }}</div>\n    </div>\n    <p class="description">{{ offer.description }}</p>\n    <ion-row>\n      <ion-col col-6 (click)="showMember(offer.user_id.id)">\n        <ion-item class="item-avatar">\n          <ion-avatar item-left>\n            <img [src]="offer.user_id.portrait || \'assets/images/default_user.jpg\'">\n          </ion-avatar>\n        </ion-item>\n        <ion-item>\n          <h6>{{ offer.user_id.name }}</h6>\n          <p>{{ offer.user_id.mail }}</p>\n        </ion-item>\n      </ion-col>\n      <ion-col col-6>\n        <ion-item>\n          <p><b>Category:</b> {{ offer.$category }}</p>\n          <p><b>Expires:</b> {{ offer.expires | unixTimeToMoment }}</p>\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer>'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offerDetail/offerDetail.html"*/
         }), 
-        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__services_OfferService__["a" /* OfferService */], __WEBPACK_IMPORTED_MODULE_3__services_AlertService__["a" /* AlertService */]])
+        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_2__services_OfferService__["a" /* OfferService */], __WEBPACK_IMPORTED_MODULE_3__services_AlertService__["a" /* AlertService */]])
     ], OfferDetailPage);
     return OfferDetailPage;
 }());
@@ -2461,7 +2407,7 @@ var MembersPage = (function () {
     };
     MembersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-members',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/members/members.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Members</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-list class="app-filters" *ngIf="filterName">\n    <ion-item>\n      Members currently listed in {{ filterName }}\n    </ion-item>\n  </ion-list>\n  <ion-list class="app-items small">\n    <ion-item *ngFor="let member of members" (click)="showDetails(member.id)">\n      <ion-avatar item-left>\n        <img [src]="member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h6>{{ member.name }}</h6>\n      <p class="description">{{ member.id }}</p>\n    </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showFilters()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer>'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/members/members.html"*/
+            selector: 'page-members',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/members/members.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Members</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-list class="app-filters" *ngIf="filterName">\n    <ion-item>\n      Members currently listed in {{ filterName }}\n    </ion-item>\n  </ion-list>\n  <ion-list class="app-items small">\n    <ion-item *ngFor="let member of members" (click)="showDetails(member.id)">\n      <ion-avatar item-left>\n        <img [src]="member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h6>{{ member.name }}</h6>\n      <ion-note item-right>{{ member.locality }}</ion-note>\n      <p class="description">{{ member.aboutme }}</p>\n    </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showFilters()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/members/members.html"*/
         }), 
         __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_2__services_MemberService__["a" /* MemberService */], __WEBPACK_IMPORTED_MODULE_3__services_AlertService__["a" /* AlertService */]])
     ], MembersPage);
@@ -2482,7 +2428,7 @@ var MembersPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_MemberService__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_AlertService__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_confirmationBuilder_confirmationBuilder__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_filtersBuilder_filtersBuilder__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_wants_wants__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_offers_offers__ = __webpack_require__(155);
@@ -2538,6 +2484,7 @@ var ProfilePage = (function () {
                         _this.fields = _this.definitionMember.PATCH;
                         _this.loader.dismiss();
                     }, function (error) {
+                        //console.log(error);
                         _this.alertService.showError(error);
                         _this.loader.dismiss();
                     });
@@ -2766,7 +2713,7 @@ var ConfirmationBuilderComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_formBuilder_formBuilder__ = __webpack_require__(822);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_fieldBuilder_fieldBuilder__ = __webpack_require__(823);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_confirmationBuilder_confirmationBuilder__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_filtersBuilder_filtersBuilder__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_login_login__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_home_home__ = __webpack_require__(154);
@@ -2832,10 +2779,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["enableProdMode"])(); // workaround for error "Expression has changed after it was checked"
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
+        // workaround for error "Expression has changed after it was checked"
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* LetsApp */],
@@ -3236,6 +3186,75 @@ var LetsApp = (function () {
 
 
 //# sourceMappingURL=rxjs-operators.js.map
+
+/***/ }),
+
+/***/ 80:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MoreActionsBuilderComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_AuthService__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_login_login__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(154);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var MoreActionsBuilderComponent = (function () {
+    function MoreActionsBuilderComponent(viewCtrl, navCtrl, navParams, authService) {
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+    }
+    MoreActionsBuilderComponent.prototype.ngOnInit = function () {
+        if (this.navParams.data) {
+            this.options = this.navParams.data.options;
+            this.operation = this.navParams.data.operation;
+            this.status = this.navParams.data.status || 'was saved';
+        }
+    };
+    MoreActionsBuilderComponent.prototype.goToPage = function (option) {
+        var page = option.page;
+        if (page) {
+            this.navCtrl.popToRoot();
+            this.navCtrl.push(page, option.params);
+            this.viewCtrl.dismiss();
+        }
+    };
+    MoreActionsBuilderComponent.prototype.goToHome = function () {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */]);
+        this.viewCtrl.dismiss();
+    };
+    MoreActionsBuilderComponent.prototype.doLogout = function () {
+        var _this = this;
+        this.authService.doLogout().subscribe(function (response) {
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pages_login_login__["a" /* LoginPage */]);
+            _this.viewCtrl.dismiss();
+        });
+    };
+    MoreActionsBuilderComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'more-actions-builder-component',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/moreActionsBuilder/moreActionsBuilder.html"*/'<div class="app-confirm-operation">\n	<h6>{{ operation }} {{ status }}</h6>\n	<ion-list>\n	  <ion-item *ngFor="let option of options" (click)="goToPage(option)">\n	  	<i [class]="option.icon" item-left></i>\n	    <ion-label>{{ option.title }}</ion-label>\n	  </ion-item>\n	  <ion-item (click)="goToHome()">\n	  	<i class="ion-home" item-left></i>\n	    <ion-label>Main Menu</ion-label>\n	  </ion-item>\n	</ion-list>\n</div>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/moreActionsBuilder/moreActionsBuilder.html"*/
+        }), 
+        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_AuthService__["a" /* AuthService */]])
+    ], MoreActionsBuilderComponent);
+    return MoreActionsBuilderComponent;
+}());
+//# sourceMappingURL=moreActionsBuilder.js.map
 
 /***/ }),
 

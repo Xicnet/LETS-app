@@ -26678,6 +26678,14 @@ page-login form p {
   margin: 0;
 }
 
+page-members ion-note {
+  font-size: 14px;
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  padding-top: 6px;
+}
+
 page-user-profile ion-content.content {
   margin-bottom: 90px;
 }
