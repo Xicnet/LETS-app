@@ -101,12 +101,7 @@ export class HomePage implements OnInit {
 							}
 						}
 					}
-				},
-				{
-					title: 'Trading History',
-					icon: 'ion-stats-bars',
-					page: TransactionsPage
-				},
+				}
 			]
 		 },
 		{
@@ -116,12 +111,41 @@ export class HomePage implements OnInit {
 					title: 'Browse members',
 					icon: 'ion-person',
 					page: MembersPage
-				}, {
-					title: 'My Account',
+				},
+				{
+					title: 'Trading History',
+					icon: 'ion-stats-bars',
+					page: TransactionsPage
+				},
+			]
+		},
+		{
+			header: 'My Account',
+			menu_items: [
+				{
+					title: 'Edit my profile',
 					icon: 'ion-home',
 					page: ProfilePage
-				}]
-			}];
+				},
+				{
+					title: 'My offers',
+					page: OffersPage,
+					params: {
+						filter: `&user_id=${this.member.id}`,
+						filterName: `user: ${this.member.name}`,
+						myActions: true
+					},
+				},
+				{
+					title: 'My wants',
+					page: WantsPage,
+					params: {
+						filter: `&user_id=${this.member.id}`,
+						filterName: `user: ${this.member.name}`,
+						myActions: true
+					}
+					}]
+				}];
 		});
 	}
 

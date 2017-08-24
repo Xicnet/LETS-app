@@ -119,7 +119,7 @@ export class ProfilePage implements OnInit {
 				page: OffersPage,
 				params: {
 					filter: `&user_id=${this.user.id}`,
-					filterName: `user: ${this.user.mail}`,
+					filterName: `user: ${this.user.name}`,
 					myActions: true
 				}
 			}, {
@@ -127,7 +127,7 @@ export class ProfilePage implements OnInit {
 				page: WantsPage,
 				params: {
 					filter: `&user_id=${this.user.id}`,
-					filterName: `user: ${this.user.mail}`,
+					filterName: `user: ${this.user.name}`,
 					myActions: true
 				}
 			}]
