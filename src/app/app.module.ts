@@ -36,6 +36,8 @@ import { MembersPage } from '../pages/members/members';
 import { MemberDetailPage } from '../pages/memberDetail/memberDetail';
 import { ProfilePage } from '../pages/userProfile/userProfile';
 
+import {enableProdMode} from '@angular/core';
+enableProdMode(); // workaround for error "Expression has changed after it was checked"
 
 @NgModule({
   declarations: [
