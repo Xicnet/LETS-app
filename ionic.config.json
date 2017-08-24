@@ -1,6 +1,6 @@
 {
-  "name": "LETS_APP",
-  "app_id": "257ead4a",
+  "name": "LETS",
+  "app_id": "ed50d413",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

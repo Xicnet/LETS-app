@@ -34,3 +34,5 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 typings/cordova-typings.d.ts
+*.keystore
+*.apk
