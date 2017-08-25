@@ -6,13 +6,12 @@
 <ion-content scroll="false">
   <ion-list class="home-header">
     <ion-item>
+      <p [innerHTML]="member && member.balance" class="balance" item-right></p>
       <ion-avatar item-left>
         <img [src]="member && member.image || 'assets/images/default_user.jpg'">
       </ion-avatar>
-    </ion-item>
-    <ion-item>
-      <h2>{{ member && member.name }}</h2>
-      <p>{{ member && member.mail }}</p>
+      <h2>Hello, {{ member && member.name }}</h2>
+      <p>What's up in {{member.locality}} today?</p>
     </ion-item>
   </ion-list>
 

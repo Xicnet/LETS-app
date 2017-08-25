@@ -77,10 +77,10 @@ export class HomePage implements OnInit {
 				]
 			 },
 			{
-				header: 'Transactions',
+				header: "I made a trade",
 				menu_items: [
 				{
-					title: 'I bought something',
+					title: 'I received something',
 					icon: 'basket',
 					page: AddTransactionPage,
 					params: {
@@ -94,7 +94,7 @@ export class HomePage implements OnInit {
 					}
 				},
 				{
-					title: 'I sold something',
+					title: 'I provided something',
 					icon: 'filing',
 					page: AddTransactionPage,
 					params: {
@@ -106,26 +106,17 @@ export class HomePage implements OnInit {
 							}
 						}
 					}
-				}
-			]
-		 },
-		{
-			header: 'Other',
-			menu_items: [
-				{
-					title: 'Browse members',
-					icon: 'people',
-					page: MembersPage
 				},
 				{
-					title: 'Trading History',
+					title: 'Check past trades',
 					icon: 'stats',
 					page: TransactionsPage
 				},
 			]
-		},
+		 },
+
 		{
-			header: 'My Account',
+			header: 'Manage my account',
 			menu_items: [
 				{
 					title: 'Edit my profile',
@@ -133,7 +124,7 @@ export class HomePage implements OnInit {
 					page: ProfilePage
 				},
 				{
-					title: 'My offers',
+					title: 'Check my offers',
 					icon: 'briefcase',
 					page: OffersPage,
 					params: {
@@ -143,7 +134,7 @@ export class HomePage implements OnInit {
 					},
 				},
 				{
-					title: 'My wants',
+					title: 'Check my needs',
 					icon: 'list',
 					page: WantsPage,
 					params: {
@@ -151,7 +142,13 @@ export class HomePage implements OnInit {
 						filterName: `user: ${this.member.name}`,
 						myActions: true
 					}
-					}]
+				},
+				{
+					title: 'Browse community members',
+					icon: 'people',
+					page: MembersPage
+				},
+				]
 				}];
 		});
 	}

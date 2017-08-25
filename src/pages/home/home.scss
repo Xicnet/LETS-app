@@ -3,8 +3,7 @@ page-home {
 		margin: 0;
 
 		ion-item.item {
-			border-bottom: 0.55px solid #737A82;
-			font-size: 22px;
+			border-bottom: 0.55px solid #ccc;
 			min-height: 50px;
 			height: 50px;
 
@@ -12,28 +11,36 @@ page-home {
 				background: #737A82;
 				color: #fff;
 			}
+			ion-label {
+				font-size: 16px;
+			}
 			ion-icon {
 				font-size: 22px;
+				padding-left: 10px;
 				padding-top: 10px;
+				width:36px;
 			}
 			.item-inner {
 				border: none;
 			}
+
 		}
 	}
 	ion-list.list.home-nav {
 		margin: 0;
 
 		ion-list-header {
-			font-size: 15px;
+			font-size: 16px;
 			height: 25px;
 			min-height: 25px;
-			margin: 8px 0 0 0;
+			margin: 15px 7px 3px 0;
+			background: none;
+			color: #fff;
+			border:0;
 		}
 		ion-item.item {
-			font-size: 18px;
-			height: 32px;
-			min-height: 32px;
+			height: 36px;
+			min-height: 36px;
 		}
 	}
 }
@@ -47,7 +54,7 @@ ion-list.list.home-header {
 		min-height: initial;
 
 		ion-avatar {
-			margin: 0;
+			margin: 0 15px 0 0;
 
 			img {
 				height: 50px;
@@ -56,9 +63,15 @@ ion-list.list.home-header {
 		}
 		h2, p {
 			color: #fff;
+			font-size: 1.3rem;
 		}
 		p {
-			font-size: 17px;
+			font-size: 15px;
+		}
+		.balance {
+			margin: 0 8px 9px 0;
+			height: 30px;
+			font-size: 14px;
 		}
 	}
 }
