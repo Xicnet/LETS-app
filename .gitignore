@@ -47,3 +47,4 @@ typings/cordova-typings.d.ts
 resources/android/
 resources/ios/
 *.md5
+*.map
