@@ -43,3 +43,7 @@ typings/cordova-typings.d.ts
 
 *.keystore
 *.apk
+
+resources/android/
+resources/ios/
+*.md5
