@@ -5,10 +5,10 @@
 
 ionic cordova resources
 
-cp resources/android/icon/drawable-ldpi-icon.png src/assets/icon/favicon.png
+cp -f resources/android/icon/drawable-ldpi-icon.png src/assets/icon/favicon.png
 
-cp resources/android/icon/drawable-xxxhdpi-icon.png src/assets/images/app_logo.png
+cp -f resources/android/icon/drawable-xxxhdpi-icon.png src/assets/images/app_logo.png
 
-cp resources/community_logo.png src/assets/images/community_logo.png
+cp -f resources/community_logo.png src/assets/images/community_logo.png
 
-cp resources/android/splash/drawable-land-xxxhdpi-screen.png src/assets/images/splash.png # for browser
+cp -f resources/android/splash/drawable-port-xxxhdpi-screen.png src/assets/images/splash.png # for browser
