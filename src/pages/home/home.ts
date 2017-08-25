@@ -12,6 +12,7 @@ import { TransactionsPage } from '../../pages/transactions/transactions';
 import { MembersPage } from '../../pages/members/members';
 import { ProfilePage } from '../../pages/userProfile/userProfile';
 import { MenuOptionPopover } from './menu-option';
+import { AppSettings } from '../../app/app.settings';
 
 
 interface MenuEntry {
@@ -36,7 +37,9 @@ export class HomePage implements OnInit {
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
 		private popoverCtrl: PopoverController,
-		private authService: AuthService) { }
+		private authService: AuthService,
+		private settings: AppSettings,
+	) { }
 
 	ngOnInit(): void {
 		this.authService.userInfo.subscribe(
