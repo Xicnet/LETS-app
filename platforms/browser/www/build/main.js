@@ -3122,11 +3122,17 @@ var LetsApp = (function () {
         this.platform = platform;
         this.authService = authService;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_login_login__["a" /* LoginPage */];
+        this.isDesktop = false;
         this.authService.loadToken();
         if (this.authService.isAuthenticated()) {
             this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */];
         }
         this.initializeApp(statusBar, splashScreen);
+        if (platform.is('core') || platform.is('browser')) {
+            // This will only print when on desktop
+            console.log("Running on a desktop!");
+            this.isDesktop = true;
+        }
     }
     LetsApp.prototype.initializeApp = function (statusBar, splashScreen) {
         this.platform.ready().then(function () {
@@ -3137,7 +3143,7 @@ var LetsApp = (function () {
         });
     };
     LetsApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/app/app.html"*/'<ion-nav [ngClass]="{\'ionic-desktop-container\': isDesktop }" [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/app/app.html"*/
         }), 
         __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_3__services_AuthService__["a" /* AuthService */]])
     ], LetsApp);

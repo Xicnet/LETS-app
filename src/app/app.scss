@@ -18,6 +18,26 @@
 html {
 	font-size: 1em;
 }
+
+ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
+
+    right: 0;  //.app-root by default is set to position:absolute; top:0; left:0;
+    margin: 0 auto;  //in order to center the content
+
+    //Colour gradients for the sides
+    //fallback for old browsers
+    background: #3e98e1;
+    //Chrome 10-25, Safari 5.1-6
+    background: -webkit-linear-gradient(#3e98e1, #296696);
+    //W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari
+    background: linear-gradient(#3e98e1, #296696);
+}
+
+//This class will only be used for desktops browsers
+.ionic-desktop-container {
+    max-width: 480px;
+}
+
 ion-header {
 	text-align: center;
 
@@ -101,11 +121,11 @@ ion-list.list.app-filters {
 	margin-top: 15px;
 	padding: 0 15px;
 	background: #737A82;
-	
+
 	ion-item.item {
 		background: #737A82;
 		border: none;
-		
+
 		ion-label.label {
 			text-align: center;
 			white-space: normal;
