@@ -9,18 +9,16 @@
 		  <ion-slide>
 				<div class="image-wrapper">
 					<div class="image">
-						<img alt="logo" src="assets/images/ces_logo.png">
-						<h1 class="logo-title">Community</h1>
-						<h1 class="logo-title">Exchange</h1>
+						<img alt="logo" src="assets/images/app_logo.png">
+						<h1 class="logo-title">{{ settings.APP_NAME }}</h1>
 					</div>
 				</div>
 		  </ion-slide>
 		  <ion-slide>
 				<div class="image-wrapper">
 					<div class="image">
-						<img alt="logo" src="assets/images/ces_logo.png">
-						<h1 class="logo-title">CES</h1>
-						<h1 class="logo-title">Australia</h1>
+						<img alt="logo" src="assets/images/community_logo.png">
+						<h1 class="logo-title">{{ settings.COMMUNITY_NAME }}</h1>
 					</div>
 				</div>
 		  </ion-slide>
@@ -51,9 +49,9 @@
 				</ion-item>
 			</ion-list>
 			<button ion-button full [disabled]="!loginForm.valid" (click)="doLogin()">Sign in</button>
-	  	<p>This is the mobile site</p>
+	  	<p>This is the {{ settings.APP_NAME }} mobile app</p>
 	  	<p>
-	  		<a href="#" (click)="goToFullSite()">Go to full site</a>
+	  		<a href="#" (click)="goToFullSite()">Go to {{ settings.COMMUNITY_NAME }} website</a>
 	  	</p>
 		</form>
 	</div>

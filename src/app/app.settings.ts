@@ -8,6 +8,12 @@ export class AppSettings {
 	public get SERVER_URL(): any {
 		return `${this.WEB_SITE_URL}/commex`;
 	}
+	public get APP_NAME(): any {
+		return 'Community Exchange';
+	}
+	public get COMMUNITY_NAME(): any {
+		return 'CES Australia';
+	}
 	public get URL(): any {
 		return {
 			config: `${this.SERVER_URL}`,
