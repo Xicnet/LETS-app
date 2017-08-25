@@ -58,22 +58,25 @@ export class HttpBasicAuth {
 
 	private extractData(response: Response) {
 		let body = response.json();
+		// console.log(body)
 		return body || {};
 	}
 
 	private extractError(error): any {
+		console.log('error',error)
 		throw error._body;
 	}
 
 	getWithAuth(url) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		//console.log(headers);
+		console.log('getWithAuth',url, headers);
 		return this.get(url, headers);
 	}
 
 	get(url, headers: any = new Headers()) {
 		this.createAcceptHeader(headers);
+		// console.log('get', url, headers);
 		return this.http.get(url, {
 			headers: headers
 		}).map(this.extractData)

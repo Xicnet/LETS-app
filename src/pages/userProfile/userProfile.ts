@@ -88,6 +88,7 @@ export class ProfilePage implements OnInit {
 				this.memberService.patch(this.member).subscribe(
 					response => {
 						this.loader.dismiss();
+						// this.user = this.member; // dirty way to save the new user details locally
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
 							operation: 'Offer',
 							options: [{

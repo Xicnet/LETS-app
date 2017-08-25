@@ -12,18 +12,30 @@ export class AuthService {
 	userInfo = new ReplaySubject<Member>(1);
 
 	constructor(private settings: AppSettings,
-		private httpBasicAuth: HttpBasicAuth) {
+
+	private httpBasicAuth: HttpBasicAuth) {
 		this.hasToken = false;
 		this.loadToken();
 	}
 
 	loadToken() {
 		var token = window.localStorage.getItem(this.LOCAL_TOKEN_KEY);
+		var rememberMe = true;
 		if (!token) {
 			token = window.sessionStorage.getItem(this.LOCAL_TOKEN_KEY);
+			var rememberMe = false;
 		}
 		if (token) {
-			this.setToken(JSON.parse(token));
+			var token_stored = JSON.parse(token);
+
+			console.log('load token', this.hasToken, token_stored, token_stored.name)
+
+			if(!this.hasToken && token_stored.name){
+				// console.log('try to reload');
+				this.requestUserInfo(token_stored.name, rememberMe);
+			} 
+
+			this.setToken(token_stored);
 		}
 	}
 
@@ -52,11 +64,13 @@ export class AuthService {
 	}
 
 	private requestUserInfo(username, rememberMe): Observable<Member> {
+		console.log('requestUserInfo',username)
 		//console.log(this.isAuthenticated());
 		return this.httpBasicAuth
 			.getWithAuth(`${this.settings.URL.members}?fragment=${username}&depth=1`)
 			.map(response => {
 				for (let id in response) {
+					console.log('user loaded!')
 					this.storeToken(response[id], rememberMe);
 					break;
 				}
