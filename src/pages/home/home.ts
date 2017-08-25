@@ -51,12 +51,12 @@ export class HomePage implements OnInit {
 				menu_items: [
 					{
 						title: 'Browse offers',
-						icon: 'ion-pricetag',
+						icon: 'images',
 						page: OffersPage,
 					},
 					{
 						title: 'Post my need',
-						icon: 'ion-edit',
+						icon: 'megaphone',
 						page: AddWantPage,
 					}
 				 ]
@@ -66,10 +66,12 @@ export class HomePage implements OnInit {
 				menu_items: [
 					{
 						title: 'Browse needs',
+						icon: 'paper',
 						page: WantsPage
 					},
 					{
 						title: 'Post my offer',
+						icon: 'clipboard',
 						page: AddOfferPage
 					}
 				]
@@ -79,7 +81,7 @@ export class HomePage implements OnInit {
 				menu_items: [
 				{
 					title: 'I bought something',
-					icon: 'cart',
+					icon: 'basket',
 					page: AddTransactionPage,
 					params: {
 						title: 'As Buyer',
@@ -93,7 +95,7 @@ export class HomePage implements OnInit {
 				},
 				{
 					title: 'I sold something',
-					icon: 'ion-briefcase',
+					icon: 'filing',
 					page: AddTransactionPage,
 					params: {
 						title: 'As Seller',
@@ -112,12 +114,12 @@ export class HomePage implements OnInit {
 			menu_items: [
 				{
 					title: 'Browse members',
-					icon: 'ion-person',
+					icon: 'people',
 					page: MembersPage
 				},
 				{
 					title: 'Trading History',
-					icon: 'ion-stats-bars',
+					icon: 'stats',
 					page: TransactionsPage
 				},
 			]
@@ -127,11 +129,12 @@ export class HomePage implements OnInit {
 			menu_items: [
 				{
 					title: 'Edit my profile',
-					icon: 'ion-home',
+					icon: 'contact',
 					page: ProfilePage
 				},
 				{
 					title: 'My offers',
+					icon: 'briefcase',
 					page: OffersPage,
 					params: {
 						filter: `&user_id=${this.member.id}`,
@@ -141,6 +144,7 @@ export class HomePage implements OnInit {
 				},
 				{
 					title: 'My wants',
+					icon: 'list',
 					page: WantsPage,
 					params: {
 						filter: `&user_id=${this.member.id}`,

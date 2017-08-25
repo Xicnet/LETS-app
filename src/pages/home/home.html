@@ -22,7 +22,7 @@
 		<ion-list-header *ngIf="menu.header">{{ menu.header }}</ion-list-header>
 
 		<ion-item *ngFor="let menuEntry of menu.menu_items" (click)="goToPage(menuEntry);showOptions(menuEntry, $event)">
-      <i [class]="menuEntry.icon" item-left></i>
+      <ion-icon [name]="menuEntry.icon" item-left></ion-icon>
 			{{ menuEntry.title }}
       <i class="ion-arrow-down-b" *ngIf="menuEntry.options && menuEntry.options.length" item-right></i>
     </ion-item>
@@ -30,7 +30,8 @@
   </ng-container>
 
 	<ion-item (click)="doLogout()">
-		<i class="ion-log-out" item-left></i> Log Out
+    <ion-icon name="log-out" item-left></ion-icon>
+    Log Out
 	</ion-item>
 </ion-list>
 

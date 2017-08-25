@@ -25939,7 +25939,7 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
 }
 
 .ionic-desktop-container {
-  max-width: 480px;
+  max-width: 450px;
 }
 
 ion-header {
@@ -25979,6 +25979,10 @@ ion-header ion-title.title {
 ion-header .toolbar-title {
   color: white;
   font-size: 20px;
+}
+
+ion-header .toolbar-title a {
+  color: #B2DDFF;
 }
 
 ion-content.content {
@@ -26490,8 +26494,9 @@ page-home ion-list.list ion-item.item:hover {
   color: #fff;
 }
 
-page-home ion-list.list ion-item.item i {
-  width: 20px;
+page-home ion-list.list ion-item.item ion-icon {
+  font-size: 22px;
+  padding-top: 10px;
 }
 
 page-home ion-list.list ion-item.item .item-inner {
