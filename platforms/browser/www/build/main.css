@@ -26553,7 +26553,7 @@ page-login {
 }
 
 page-login ion-slides {
-  height: 40%;
+  height: 35%;
 }
 
 page-login ion-slides .image-wrapper {
@@ -26574,17 +26574,14 @@ page-login ion-slides .image-wrapper .image img {
 page-login ion-slides .logo-title {
   margin: 0;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #fff;
   font-family: sans-serif;
-  font-size: 40px;
-}
-
-page-login ion-slides .logo-title:last-child {
-  color: #2185d0;
+  font-size: 26px;
 }
 
 page-login form {
-  height: 60%;
+  height: 65%;
+  min-height: 330px;
   background: #ffffff;
   padding: 20px 30px 0;
 }
