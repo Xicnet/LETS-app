@@ -8,7 +8,7 @@
     <h2 class="title">{{ want.title }}</h2>
     <div class="image" [class.expanded]="imageExpanded" (click)="expandImage()">
       <img [src]="want.image || 'assets/images/default.jpg'">
-      <div class="posted">Posted {{ want.changed | unixTimeToMoment }}</div>
+      <div class="posted">Posted {{ want.changed }}</div>
     </div>
     <p class="description">{{ want.description }}</p>
     <ion-row>
@@ -26,7 +26,7 @@
       <ion-col col-6>
         <ion-item>
           <p><b>Category:</b> {{ want.$category }}</p>
-          <p><b>Expires:</b> {{ want.expires | unixTimeToMoment }}</p>
+          <p><b>Expires:</b> {{ want.expires }}</p>
         </ion-item>
       </ion-col>
     </ion-row>
