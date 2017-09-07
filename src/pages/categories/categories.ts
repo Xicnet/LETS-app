@@ -29,7 +29,7 @@ export class CategoriesFilterPage implements OnInit {
 		console.log(category);
 		this.navCtrl.popToRoot();
 		this.navCtrl.push(this.page, {
-			filter: `&cat_id=${category.id}`,
+			filter: `&category=${category.id}`,
 			filterName: category.name
 		});
 	}
