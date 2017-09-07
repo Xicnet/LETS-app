@@ -26706,6 +26706,18 @@ page-login form p {
   margin: 0;
 }
 
+page-memberDetail ion-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 120px !important;
+  max-height: 120px !important;
+}
+
+page-memberDetail .button-md {
+  text-transform: none;
+  font-weight: normal;
+}
+
 page-members ion-note {
   font-size: 14px;
   -webkit-align-self: flex-start;
