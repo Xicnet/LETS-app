@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewController, NavController, NavParams } from 'ionic-angular';
+// import * as _ from 'lodash';
 
 @Component({
 	selector: 'page-categories',
@@ -9,6 +10,7 @@ export class CategoriesFilterPage implements OnInit {
 	private categories: Array<any>;
 	private title: string;
 	private page: any;
+	// _: any = _;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -24,6 +26,7 @@ export class CategoriesFilterPage implements OnInit {
 
 	setFilter(category) {
 		// this.viewCtrl.dismiss();
+		console.log(category);
 		this.navCtrl.popToRoot();
 		this.navCtrl.push(this.page, {
 			filter: `&cat_id=${category.id}`,
