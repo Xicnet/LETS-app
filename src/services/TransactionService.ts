@@ -12,7 +12,7 @@ export class TransactionService {
 		private httpBasicAuth: HttpBasicAuth) { }
 
 	list(): Observable<Array<Transaction>> {
-		return this.httpBasicAuth.getWithAuth(`${this.settings.URL.transactions}?depth=1`)
+		return this.httpBasicAuth.getWithAuth(`${this.settings.URL.transactions}?depth=2`)
 			.map((response: Array<Transaction>) => {
 				response = map(response, (transaction: Transaction, key: any) => {
 					if (!transaction.id) {
@@ -25,7 +25,7 @@ export class TransactionService {
 	}
 
 	get(id): Observable<Transaction> {
-		return this.httpBasicAuth.getWithAuth(`${this.settings.URL.transactions}/${id}?depth=1`);
+		return this.httpBasicAuth.getWithAuth(`${this.settings.URL.transactions}/${id}?depth=2`);
 	}
 
 	post(transaction: Transaction): Observable<Transaction> {

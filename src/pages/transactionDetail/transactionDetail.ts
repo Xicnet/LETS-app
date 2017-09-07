@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, MenuController, ModalController } from 'ionic-angular';
+import { NavParams, MenuController, ModalController } from 'ionic-angular';
 import { AuthService } from '../../services/AuthService';
 import { TransactionService } from '../../services/TransactionService';
 import { AlertService } from '../../services/AlertService';
 import { Transaction } from '../../domain/Transaction';
-import { AddTransactionPage } from '../addTransaction/addTransaction';
-import { TransactionDetailPage } from '../transactionDetail/transactionDetail';
 
 @Component({
-	selector: 'page-transactions',
-	templateUrl: 'transactions.html'
+	selector: 'page-transaction-detail',
+	templateUrl: 'transactionDetail.html'
 })
-export class TransactionsPage implements OnInit {
+export class TransactionDetailPage implements OnInit {
 	private username: string;
 	private canPost = false;
 	private success = false;
 	private definitionTransaction: any;
-	private transactions: Array<Transaction>;
+	private transaction: Transaction;
 
-	constructor(private menuCtrl: MenuController,
-		private navCtrl: NavController,
+	constructor(private params: NavParams,
+		private menuCtrl: MenuController,
 		private modalCtrl: ModalController,
 		private authService: AuthService,
 		private transactionService: TransactionService,
@@ -40,31 +38,16 @@ export class TransactionsPage implements OnInit {
 			},
 			error => this.alertService.showError('Connection problem!')
 			);
-		this.loadTransactions();
+		this.loadTransaction(this.params.get('id'));
 	}
 
-	loadTransactions() {
-		this.transactionService.list()
+	loadTransaction(id) {
+		this.transactionService.get(id)
 			.subscribe(
-			response => this.transactions = response,
+			response => this.transaction = response,
 			error => this.alertService.showError('Connection problem!')
 			);
 	}
 
-	addTransaction() {
-		let modal = this.modalCtrl.create(AddTransactionPage);
-		modal.onDidDismiss((data: any = {}) => {
-			this.success = data.success;
-			this.loadTransactions();
-		});
-		modal.present();
-	}
-
-
-	showDetails(id) {
-		this.navCtrl.push(TransactionDetailPage, {
-			id: id
-		});
-	}
 
 }

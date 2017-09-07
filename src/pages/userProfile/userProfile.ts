@@ -9,6 +9,7 @@ import { FiltersBuilderComponent } from '../../components/filtersBuilder/filters
 import { WantsPage } from '../../pages/wants/wants';
 import { OffersPage } from '../../pages/offers/offers';
 import { Member } from '../../domain/Member';
+import { TransactionsPage } from '../../pages/transactions/transactions';
 
 @Component({
 	selector: 'page-user-profile',
@@ -133,7 +134,16 @@ export class ProfilePage implements OnInit {
 					filterName: `user: ${this.user.name}`,
 					myActions: true
 				}
-			}]
+			}, {
+				title: 'Show My Transactions',
+				page: TransactionsPage,
+				params: {
+					filter: `&user_id=${this.user.id}`,
+					filterName: `user: ${this.user.name}`,
+					myActions: true
+				}
+			}
+		]
 		}, {
 				cssClass: 'confirm-popover',
 				enableBackdropDismiss: true

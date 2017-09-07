@@ -22,6 +22,7 @@ import { HomePage } from '../pages/home/home';
 import { MenuOptionPopover } from '../pages/home/menu-option';
 import { AddTransactionPage } from '../pages/addTransaction/addTransaction';
 import { TransactionsPage } from '../pages/transactions/transactions';
+import { TransactionDetailPage } from '../pages/transactionDetail/transactionDetail';
 import { OffersPage } from '../pages/offers/offers';
 import { OfferDetailPage } from '../pages/offerDetail/offerDetail';
 import { AddOfferPage } from '../pages/addOffer/addOffer';
@@ -51,6 +52,7 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     MenuOptionPopover,
     AddTransactionPage,
 		TransactionsPage,
+    TransactionDetailPage,
     OffersPage,
     OfferDetailPage,
     AddOfferPage,
@@ -87,7 +89,8 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     MoreActionsBuilderComponent,
     FiltersBuilderComponent,
     AddTransactionPage,
-		TransactionsPage,
+    TransactionsPage,
+	  TransactionDetailPage,
     OffersPage,
     OfferDetailPage,
     AddOfferPage,
