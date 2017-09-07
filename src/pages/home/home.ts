@@ -10,6 +10,7 @@ import { AddWantPage } from '../../pages/addWant/addWant';
 import { AddTransactionPage } from '../../pages/addTransaction/addTransaction';
 import { TransactionsPage } from '../../pages/transactions/transactions';
 import { MembersPage } from '../../pages/members/members';
+import { MemberDetailPage } from '../../pages/memberDetail/memberDetail';
 import { ProfilePage } from '../../pages/userProfile/userProfile';
 import { MenuOptionPopover } from './menu-option';
 import { AppSettings } from '../../app/app.settings';
@@ -53,6 +54,9 @@ export class HomePage implements OnInit {
 						title: 'Browse offers',
 						icon: 'images',
 						page: OffersPage,
+						params: {
+							currentUser: this.member.id
+						}
 					},
 					{
 						title: 'Post my need',
@@ -108,7 +112,7 @@ export class HomePage implements OnInit {
 					}
 				},
 				{
-					title: 'Check past trades',
+					title: 'View past trades',
 					icon: 'stats',
 					page: TransactionsPage
 				},
@@ -116,15 +120,23 @@ export class HomePage implements OnInit {
 		 },
 
 		{
-			header: 'Manage my account',
+			header: ' ',
 			menu_items: [
 				{
-					title: 'Edit my profile',
+					title: 'View my profile',
+					icon: 'person',
+					page: MemberDetailPage,
+					params: {
+						id: this.member.id
+					},
+				},
+				{
+					title: 'Edit my details',
 					icon: 'contact',
 					page: ProfilePage
 				},
 				{
-					title: 'Check my offers',
+					title: 'View my offers',
 					icon: 'briefcase',
 					page: OffersPage,
 					params: {
@@ -134,7 +146,7 @@ export class HomePage implements OnInit {
 					},
 				},
 				{
-					title: 'Check my needs',
+					title: 'View my needs',
 					icon: 'list',
 					page: WantsPage,
 					params: {
@@ -144,7 +156,7 @@ export class HomePage implements OnInit {
 					}
 				},
 				{
-					title: 'Browse community members',
+					title: 'View community members',
 					icon: 'people',
 					page: MembersPage
 				},

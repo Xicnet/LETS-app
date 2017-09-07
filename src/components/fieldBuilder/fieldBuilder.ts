@@ -131,7 +131,7 @@ export class FieldBuilderComponent implements OnInit {
 		let parsedDate;
 		if (typeof date === 'number') {
 			parsedDate = moment(date * 1000);
-		} else {
+		} else if(parsedDate) {
 			let tokens = date.split(':');
 			while (tokens.length) {
 				switch (tokens.shift()) {
@@ -147,7 +147,8 @@ export class FieldBuilderComponent implements OnInit {
 				}
 			}
 		}
-		return parsedDate.toDate();
+		// console.log(parsedDate);
+		if(parsedDate) return parsedDate.toDate();
 	}
 
 	addImage() {

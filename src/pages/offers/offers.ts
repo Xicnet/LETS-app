@@ -9,6 +9,7 @@ import { CategoriesFilterPage } from '../categories/categories';
 import { KeywordsFilterPage } from '../keywords/keywords';
 import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
 import { FiltersBuilderComponent } from '../../components/filtersBuilder/filtersBuilder';
+import { Member } from '../../domain/Member';
 import * as $ from 'jquery';
 import { map } from 'lodash';
 
@@ -29,6 +30,7 @@ export class OffersPage implements OnInit {
 	private filterName: string;
 	private myActions: boolean;
 	private deleteOfferConfirmDialog: boolean;
+	private currentUser: Member;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -36,7 +38,8 @@ export class OffersPage implements OnInit {
 		public loadingCtrl: LoadingController,
 		private popoverCtrl: PopoverController,
 		private offerService: OfferService,
-		private alertService: AlertService) { }
+		private alertService: AlertService,
+) { }
 
 	ngOnInit(): void {
 		this.setPagination();
@@ -44,6 +47,7 @@ export class OffersPage implements OnInit {
 			this.filter = this.navParams.data.filter;
 			this.filterName = this.navParams.data.filterName;
 			this.myActions = this.navParams.data.myActions;
+			this.currentUser = this.navParams.data.currentUser;
 		}
 		this.viewCtrl.didEnter.subscribe(
 			response => {

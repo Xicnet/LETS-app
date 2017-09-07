@@ -11,13 +11,15 @@
       </ion-avatar>
 
       <h2 class="title">{{ member.name }}</h2>
-      <p class="subtitle">
+
+      <p class="subtitle" *ngIf="member.mail">
         <a ion-button icon-left href="mailto:{{member.mail}}">
-          <ion-icon name="send"></ion-icon>
+          <ion-icon name="mail"></ion-icon>
           {{ member.mail }}
         </a>
       </p>
-      <p class="subtitle">
+
+      <p class="subtitle" *ngIf="member.phone">
         <a ion-button icon-left href="tel:{{member.phone}}">
           <ion-icon name="call"></ion-icon>
           {{ member.phone }}
@@ -35,7 +37,7 @@
     <p class="description">{{ member.aboutme }}</p>
   </ion-card>
 </ion-content>
-<ion-footer>
+<!-- <ion-footer>
   <ion-list>
     <ion-item>
       <button (click)="showActions()">
@@ -43,4 +45,4 @@
       </button>
     </ion-item>
   </ion-list>
-</ion-footer>
+</ion-footer> -->
