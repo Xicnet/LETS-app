@@ -280,15 +280,25 @@ var HomePage = (function () {
                                 }
                             }
                         },
+                    ]
+                },
+                {
+                    header: 'Community',
+                    menu_items: [
                         {
-                            title: 'View past trades',
+                            title: 'View members',
+                            icon: 'people',
+                            page: __WEBPACK_IMPORTED_MODULE_10__pages_members_members__["a" /* MembersPage */]
+                        },
+                        {
+                            title: 'View exchanges',
                             icon: 'stats',
                             page: __WEBPACK_IMPORTED_MODULE_9__pages_transactions_transactions__["a" /* TransactionsPage */]
                         },
                     ]
                 },
                 {
-                    header: ' ',
+                    header: 'My account',
                     menu_items: [
                         {
                             title: 'View my profile',
@@ -323,13 +333,9 @@ var HomePage = (function () {
                                 myActions: true
                             }
                         },
-                        {
-                            title: 'View community members',
-                            icon: 'people',
-                            page: __WEBPACK_IMPORTED_MODULE_10__pages_members_members__["a" /* MembersPage */]
-                        },
                     ]
-                }];
+                }
+            ];
         });
     };
     HomePage.prototype.goToPage = function (menuEntry) {
@@ -2784,7 +2790,7 @@ var HttpBasicAuth = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         this.createAuthorizationHeader(headers);
         this.createAcceptHeader(headers);
-        //console.log(headers);
+        console.log(headers);
         return this.http.options(url, {
             headers: headers
         }).map(this.extractData)
