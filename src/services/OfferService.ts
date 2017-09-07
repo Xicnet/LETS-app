@@ -31,7 +31,7 @@ export class OfferService {
 	}
 
 	delete(id): Observable<Offer> {
-		return this.httpBasicAuth.delete(`${this.settings.URL.offers}/${id}`);
+		return this.httpBasicAuth.deleteWithAuth(`${this.settings.URL.offers}/${id}`);
 	}
 
 	post(offer: Offer): Observable<Offer> {
@@ -41,4 +41,9 @@ export class OfferService {
 	describe(): Observable<any> {
 		return this.httpBasicAuth.options(this.settings.URL.offers);
 	}
+
+	custom(href): Observable<any> {
+		return this.httpBasicAuth.putWithAuth(`${this.settings.URL.config}/${href}`, {});
+	}
+
 }

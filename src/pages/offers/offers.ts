@@ -128,6 +128,7 @@ export class OffersPage implements OnInit {
 		});
 	}
 
+
 	deleteOffer(id) {
 		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
 			fields: this.definitionOffer.POST,
@@ -145,6 +146,36 @@ export class OffersPage implements OnInit {
 				});
 				this.loader.present();
 				this.offerService.delete(id).subscribe(
+					response => {
+						this.loader.dismiss();
+						this.initPage();
+					},
+					error => {
+						this.alertService.showError(error);
+						this.loader.dismiss();
+					});
+			}
+		});
+		this.popover.present();
+	}
+
+	customAction(label: String, href: String, confirm: String) {
+		console.log(label, href, confirm);
+		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
+			operation: label
+		}, {
+				cssClass: 'confirm-popover',
+				enableBackdropDismiss: false
+			});
+		this.deleteOfferConfirmDialog = true;
+		this.popover.onDidDismiss((data) => {
+			this.deleteOfferConfirmDialog = false;
+			if (data && data.hasConfirmed) {
+				this.loader = this.loadingCtrl.create({
+					content: 'Please wait...'
+				});
+				this.loader.present();
+				this.offerService.custom(href).subscribe(
 					response => {
 						this.loader.dismiss();
 						this.initPage();

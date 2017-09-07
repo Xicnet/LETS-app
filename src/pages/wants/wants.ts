@@ -9,6 +9,7 @@ import { CategoriesFilterPage } from '../categories/categories';
 import { KeywordsFilterPage } from '../keywords/keywords';
 import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
 import { FiltersBuilderComponent } from '../../components/filtersBuilder/filtersBuilder';
+import { Member } from '../../domain/Member';
 import * as $ from 'jquery';
 import { map } from 'lodash';
 
@@ -29,6 +30,7 @@ export class WantsPage implements OnInit {
 	private filterName: string;
 	private myActions: boolean;
 	private deleteWantConfirmDialog: boolean;
+	private currentUser: Member;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -44,6 +46,7 @@ export class WantsPage implements OnInit {
 			this.filter = this.navParams.data.filter;
 			this.filterName = this.navParams.data.filterName;
 			this.myActions = this.navParams.data.myActions;
+			this.currentUser = this.navParams.data.currentUser;
 		}
 		this.viewCtrl.didEnter.subscribe(
 			response => {
@@ -141,6 +144,36 @@ export class WantsPage implements OnInit {
 				});
 				this.loader.present();
 				this.wantService.delete(id).subscribe(
+					response => {
+						this.loader.dismiss();
+						this.initPage();
+					},
+					error => {
+						this.alertService.showError(error);
+						this.loader.dismiss();
+					});
+			}
+		});
+		this.popover.present();
+	}
+
+	customAction(label: String, href: String, confirm: String) {
+		console.log(label, href, confirm);
+		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
+			operation: label
+		}, {
+				cssClass: 'confirm-popover',
+				enableBackdropDismiss: false
+			});
+		this.deleteWantConfirmDialog = true;
+		this.popover.onDidDismiss((data) => {
+			this.deleteWantConfirmDialog = false;
+			if (data && data.hasConfirmed) {
+				this.loader = this.loadingCtrl.create({
+					content: 'Please wait...'
+				});
+				this.loader.present();
+				this.wantService.custom(href).subscribe(
 					response => {
 						this.loader.dismiss();
 						this.initPage();

@@ -120,6 +120,20 @@ export class HttpBasicAuth {
 			.catch(this.extractError);
 	}
 
+	putWithAuth(url, data) {
+		let headers = new Headers();
+		this.createAuthorizationHeader(headers);
+		return this.put(url, data, headers);
+	}
+
+	put(url, data, headers: any = new Headers()) {
+		this.createAcceptHeader(headers);
+		return this.http.put(url, data, {
+			headers: headers
+		}).map(this.extractData)
+			.catch(this.extractError);
+	}
+
 	patchWithAuth(url, data) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);

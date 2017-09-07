@@ -71,7 +71,10 @@ export class HomePage implements OnInit {
 					{
 						title: 'Browse needs',
 						icon: 'paper',
-						page: WantsPage
+						page: WantsPage,
+						params: {
+							currentUser: this.member.id
+						}
 					},
 					{
 						title: 'Post my offer',
