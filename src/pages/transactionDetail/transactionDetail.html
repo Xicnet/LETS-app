@@ -4,28 +4,23 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <div class="ui success message" *ngIf="success">
     <i class="close icon"></i>
     <div class="header">Success!</div>
     <p>New transaction created.</p>
   </div>
 
-
-  <div class="ui one column grid">
-    <div class="ui column">
-      <div class="ui card">
-        <div class="content" *ngIf="transaction">
-          <h3 class="ui header">{{ transaction && transaction.description }}</h3>
-          <div class="description">
-            <p> <span [innerHTML]="transaction && transaction.amount"></span> from {{ transaction && transaction.payer }} to {{ transaction && transaction.payee }}</p>
-          </div>
-        </div>
-        <!-- <div class="extra content">
-          <button class="ui small fluid green button">Action</button>
-        </div> -->
-      </div>
-    </div>
-  </div>
+  <ion-card *ngIf="transaction">
+    <ion-card-content>
+      <p> {{ transaction.description }} </p>
+      <p> <span [innerHTML]="transaction.amount"></span> </p>
+      <p>from
+        <button ion-button small (click)="showMember(transaction.payer.id)">{{ transaction.payer.name }}</button>
+      <p>to
+        <button ion-button small (click)="showMember(transaction.payee.id)">{{ transaction.payee.name }}</button>
+      </p>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

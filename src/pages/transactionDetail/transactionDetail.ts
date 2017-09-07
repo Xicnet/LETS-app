@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, MenuController, ModalController } from 'ionic-angular';
+import { NavParams, NavController, MenuController, ModalController } from 'ionic-angular';
 import { AuthService } from '../../services/AuthService';
 import { TransactionService } from '../../services/TransactionService';
 import { AlertService } from '../../services/AlertService';
 import { Transaction } from '../../domain/Transaction';
+import { MemberDetailPage } from '../memberDetail/memberDetail';
 
 @Component({
 	selector: 'page-transaction-detail',
@@ -17,6 +18,7 @@ export class TransactionDetailPage implements OnInit {
 	private transaction: Transaction;
 
 	constructor(private params: NavParams,
+		private navCtrl: NavController,
 		private menuCtrl: MenuController,
 		private modalCtrl: ModalController,
 		private authService: AuthService,
@@ -49,5 +51,10 @@ export class TransactionDetailPage implements OnInit {
 			);
 	}
 
+	showMember(id) {
+		this.navCtrl.push(MemberDetailPage, {
+			id: id
+		});
+	}
 
 }

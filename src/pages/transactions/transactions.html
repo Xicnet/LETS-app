@@ -15,7 +15,7 @@
     <ion-item *ngFor="let transaction of transactions">
       <h6>{{ transaction.description }}</h6>
       <p class="description">
-        <span [innerHTML]="transaction.amount"></span> from {{ transaction.payer }} to {{ transaction.payee }}
+        <span [innerHTML]="transaction.amount"></span> from {{ transaction.payer.name }} to {{ transaction.payee.name }}
       </p>
       <button ion-button (click)="showDetails(transaction.id)">View</button>
     </ion-item>
