@@ -5,25 +5,34 @@
 </ion-header>
 <ion-content>
   <ion-card class="app-item-details" *ngIf="member">
-    <ion-item class="item-avatar item-avatar-title">
+    <ion-item>
       <ion-avatar item-left>
         <img [src]="member.portrait || 'assets/images/default_user.jpg'">
       </ion-avatar>
-    </ion-item>
-    <ion-item class="item-title">
+
       <h2 class="title">{{ member.name }}</h2>
-      <p class="subtitle">{{ member.mail }}</p>
-      <p class="subtitle">{{ member.phone }}</p>
+      <p class="subtitle">
+        <a ion-button icon-left href="mailto:{{member.mail}}">
+          <ion-icon name="send"></ion-icon>
+          {{ member.mail }}
+        </a>
+      </p>
+      <p class="subtitle">
+        <a ion-button icon-left href="tel:{{member.phone}}">
+          <ion-icon name="call"></ion-icon>
+          {{ member.phone }}
+        </a>
+      </p>
     </ion-item>
-    <p class="description">{{ member.aboutme }}</p>
     <ion-row>
       <ion-col>
         <ion-item>
-          <p><b>Address:</b> {{ member.street_address }}</p>
           <p><b>Locality:</b> {{ member.locality }}</p>
+          <p><b>Address:</b> {{ member.street_address }}</p>
         </ion-item>
       </ion-col>
     </ion-row>
+    <p class="description">{{ member.aboutme }}</p>
   </ion-card>
 </ion-content>
 <ion-footer>
