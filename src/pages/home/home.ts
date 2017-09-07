@@ -114,16 +114,26 @@ export class HomePage implements OnInit {
 						}
 					}
 				},
-				{
-					title: 'View past trades',
-					icon: 'stats',
-					page: TransactionsPage
-				},
-			]
-		 },
 
+			]
+		},
 		{
-			header: ' ',
+	 	header: 'Community',
+	 	menu_items: [
+	 		{
+	 			title: 'View members',
+	 			icon: 'people',
+	 			page: MembersPage
+	 		},
+			{
+				title: 'View exchanges',
+				icon: 'stats',
+				page: TransactionsPage
+			},
+	 		]
+	 	},
+		{
+			header: 'My account',
 			menu_items: [
 				{
 					title: 'View my profile',
@@ -158,13 +168,9 @@ export class HomePage implements OnInit {
 						myActions: true
 					}
 				},
-				{
-					title: 'View community members',
-					icon: 'people',
-					page: MembersPage
-				},
 				]
-				}];
+			}
+		];
 		});
 	}
 

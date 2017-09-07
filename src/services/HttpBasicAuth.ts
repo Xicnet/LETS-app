@@ -166,7 +166,7 @@ export class HttpBasicAuth {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
 		this.createAcceptHeader(headers);
-		//console.log(headers);
+		console.log(headers);
 		return this.http.options(url, {
 			headers: headers
 		}).map(this.extractData)
