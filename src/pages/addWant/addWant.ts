@@ -95,13 +95,13 @@ export class AddWantPage implements OnInit {
 					response => {
 						this.loader.dismiss();
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
-							operation: 'Want',
+							operation: 'Need',
 							options: [{
-								title: 'Record Want',
+								title: 'Record Another Need',
 								icon: 'ion-edit',
 								page: AddWantPage
 							}, {
-								title: 'List Wantings',
+								title: 'List Needs',
 								icon: 'ion-pin',
 								page: WantsPage
 							}]

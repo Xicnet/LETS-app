@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Wants</ion-title>
+    <ion-title>Needs</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
   <ion-list class="app-filters" *ngIf="filterName">
     <ion-item>
-      Wants currently listed in {{ filterName }}
+      Needs currently listed in {{ filterName }}
     </ion-item>
   </ion-list>
   <ion-list class="app-items">
@@ -35,7 +35,7 @@
 <ion-footer>
   <ion-list>
     <ion-item *ngIf="canPost">
-      <button (click)="addWant()">Add Want</button>
+      <button (click)="addWant()">Post Need</button>
     </ion-item>
     <ion-item>
       <button (click)="showFilters()">
