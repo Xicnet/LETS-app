@@ -21,6 +21,7 @@ export class AddOfferPage implements OnInit {
 	private isLoaded: boolean = false;
 	private popover: Popover;
 	private editOffer: Offer;
+	private offerID: any;
 
 	constructor(public viewCtrl: ViewController,
 		private navParams: NavParams,
@@ -34,6 +35,9 @@ export class AddOfferPage implements OnInit {
 		this.isLoaded = false;
 		if (this.navParams.data) {
 			this.editOffer = this.navParams.data.offer;
+			if(this.editOffer) this.offerID = this.editOffer.id;
+			// console.log("navParam editOffer");
+			// console.log(this.editOffer);
 		}
 		this.viewCtrl.didEnter.subscribe(
 			response => {
@@ -51,7 +55,7 @@ export class AddOfferPage implements OnInit {
 									if (this.definitionOffer.POST.user_id) {
 										this.definitionOffer.POST.user_id.default = userInfo.name;
 									}
-									console.log(this.editOffer)
+									// console.log(this.editOffer)
 									if (this.editOffer) {
 										for (let i in this.editOffer) {
 											if (this.editOffer[i] && this.definitionOffer.POST[i]) {
@@ -90,7 +94,7 @@ export class AddOfferPage implements OnInit {
 					content: 'Please wait...'
 				});
 				this.loader.present();
-				this.offerService.post(this.offer).subscribe(
+				this.offerService.save(this.offer, this.offerID).subscribe(
 					response => {
 						this.loader.dismiss();
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {

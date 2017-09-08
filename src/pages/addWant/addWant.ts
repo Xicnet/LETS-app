@@ -21,6 +21,7 @@ export class AddWantPage implements OnInit {
 	private isLoaded: boolean = false;
 	private popover: Popover;
 	private editWant: Want;
+	private wantID: any;
 
 	constructor(private viewCtrl: ViewController,
 		private navParams: NavParams,
@@ -34,6 +35,7 @@ export class AddWantPage implements OnInit {
 		this.isLoaded = false;
 		if (this.navParams.data) {
 			this.editWant = this.navParams.data.want;
+			if(this.editWant) this.wantID = this.editWant.id;
 		}
 		this.viewCtrl.didEnter.subscribe(
 			response => {
@@ -89,7 +91,7 @@ export class AddWantPage implements OnInit {
 					content: 'Please wait...'
 				});
 				this.loader.present();
-				this.wantService.post(this.want).subscribe(
+				this.wantService.save(this.want, this.wantID).subscribe(
 					response => {
 						this.loader.dismiss();
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {

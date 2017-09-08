@@ -46,4 +46,13 @@ export class WantService {
 		return this.httpBasicAuth.putWithAuth(`${this.settings.URL.config}/${href}`, {});
 	}
 
+	patch(id, want: Want): Observable<Want> {
+		return this.httpBasicAuth.patchWithAuth(`${this.settings.URL.wants}/${id}`, want);
+	}
+
+	save(want: Want, id): Observable<Want> {
+		if(id) return this.patch(id, want);
+		else return this.post(want);
+	}
+
 }

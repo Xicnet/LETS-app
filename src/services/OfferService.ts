@@ -46,4 +46,13 @@ export class OfferService {
 		return this.httpBasicAuth.putWithAuth(`${this.settings.URL.config}/${href}`, {});
 	}
 
+	patch(id, offer: Offer): Observable<Offer> {
+		return this.httpBasicAuth.patchWithAuth(`${this.settings.URL.offers}/${id}`, offer);
+	}
+
+	save(offer: Offer, id): Observable<Offer> {
+		if(id) return this.patch(id, offer);
+		else return this.post(offer);
+	}
+
 }
