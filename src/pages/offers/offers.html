@@ -4,11 +4,15 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
+
+  <ion-searchbar (search)="setFilter($event)"></ion-searchbar>
+
   <ion-list class="app-filters" *ngIf="filterName">
     <ion-item>
       Offerings currently listed in {{ filterName }}
     </ion-item>
   </ion-list>
+
   <ion-list class="app-items">
     <ion-item *ngFor="let offer of offers">
       <ion-thumbnail item-left>

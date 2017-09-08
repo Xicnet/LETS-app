@@ -3,7 +3,11 @@
     <ion-title>Needs</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content>
+
+  <ion-searchbar (search)="setFilter($event)"></ion-searchbar>
+
   <ion-list class="app-filters" *ngIf="filterName">
     <ion-item>
       Needs currently listed in {{ filterName }}

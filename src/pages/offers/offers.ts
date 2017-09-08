@@ -31,6 +31,7 @@ export class OffersPage implements OnInit {
 	private myActions: boolean;
 	private deleteOfferConfirmDialog: boolean;
 	private currentUser: Member;
+	private keywords: string;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -110,6 +111,16 @@ export class OffersPage implements OnInit {
 				this.loader.dismiss();
 				this.isLoading = false;
 			});
+	}
+
+	setFilter(ev) {
+		this.keywords = ev.target.value;
+		if(this.keywords){
+			this.navCtrl.push(OffersPage, {
+				filter: `&fragment=${this.keywords}`,
+				filterName: `'${this.keywords}'`
+			});
+		}
 	}
 
 	showDetails(id) {
