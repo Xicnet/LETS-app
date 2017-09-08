@@ -63,14 +63,14 @@ export class HttpBasicAuth {
 	}
 
 	private extractError(error): any {
-		console.log('error',error)
-		throw error._body;
+		console.log('http error',error);
+		throw JSON.parse(error._body);
 	}
 
 	getWithAuth(url) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		console.log('getWithAuth',url, headers);
+		// console.log('getWithAuth',url, headers);
 		return this.get(url, headers);
 	}
 

@@ -7,11 +7,15 @@ export class AlertService {
 	constructor(private toastCtrl: ToastController,
 		private alertCtrl: AlertController) { }
 
-	showError(message) {
+	showError(message: any) {
+		console.error('showError');
 		console.error(message);
+
+		var show = (message.error) ? message.error : message;
+
 		return this.alertCtrl.create({
 			title: 'Error!',
-			subTitle: message,
+			subTitle: show,
 			buttons: ['OK']
 		}).present();
 	}
