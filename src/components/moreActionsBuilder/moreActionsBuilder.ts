@@ -37,6 +37,8 @@ export class MoreActionsBuilderComponent implements OnInit {
 
 	goToHome() {
 		this.navCtrl.setRoot(HomePage);
+		// this.navCtrl.push(HomePage);
+		this.navCtrl.popToRoot();
 		this.viewCtrl.dismiss();
 	}
 

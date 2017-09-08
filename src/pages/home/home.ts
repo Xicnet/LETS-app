@@ -14,6 +14,7 @@ import { MemberDetailPage } from '../../pages/memberDetail/memberDetail';
 import { ProfilePage } from '../../pages/userProfile/userProfile';
 import { MenuOptionPopover } from './menu-option';
 import { AppSettings } from '../../app/app.settings';
+import { ConfigService } from '../../services/ConfigService';
 
 
 interface MenuEntry {
@@ -40,9 +41,13 @@ export class HomePage implements OnInit {
 		private popoverCtrl: PopoverController,
 		private authService: AuthService,
 		private settings: AppSettings,
-	) { }
+		private configService: ConfigService,
+) { }
 
 	ngOnInit(): void {
+
+		this.configService.initAppConfig();
+
 		this.authService.userInfo.subscribe(
 			userInfo => {
 				this.member = userInfo;

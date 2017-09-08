@@ -11,9 +11,27 @@ export class AppSettings {
 	public get APP_NAME(): any {
 		return 'Community Exchange';
 	}
-	public get COMMUNITY_NAME(): any {
-		return 'CES Australia';
+
+	public set COMMUNITY_NAME(opt) {
+		window.localStorage.setItem('sitename', opt);
 	}
+
+	public get COMMUNITY_NAME(): any {
+		var opt = window.localStorage.getItem('sitename');
+		if(opt) return opt;
+		else return 'Your Local LETS';
+	}
+
+	public set COMMUNITY_LOGO(opt) {
+		window.localStorage.setItem('logo', opt);
+	}
+
+	public get COMMUNITY_LOGO(): any {
+		var opt = window.localStorage.getItem('logo');
+		if(opt) return opt;
+		else return 'assets/images/community_logo.png';
+	}
+
 	public get URL(): any {
 		return {
 			config: `${this.SERVER_URL}`,

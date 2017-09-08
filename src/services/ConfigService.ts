@@ -13,12 +13,24 @@ export class ConfigService {
 	constructor(private settings: AppSettings,
 		private httpBasicAuth: HttpBasicAuth,
 		private alertService: AlertService) {
-		this.requestAppConfig().subscribe(
-			response => this.appConfig.next(response),
-			error => this.alertService.showError(error));
+		// this.requestAppConfig().subscribe(
+		// 	response => this.appConfig.next(response),
+		// 	error => this.alertService.showError(error));
 	}
 
 	requestAppConfig(): Observable<Config> {
 		return this.httpBasicAuth.get(this.settings.URL.config);
 	}
+
+	initAppConfig(): void {
+		this.requestAppConfig().subscribe(
+			response => {
+				console.log('got config sub')
+				console.log(response)
+				if(response.logo) this.settings.COMMUNITY_LOGO = response.logo;
+				if(response.sitename) this.settings.COMMUNITY_NAME = response.sitename;
+			},
+			error => this.alertService.showError('Could not get your community info. Are you online?\n' + error));
+	}
+
 }

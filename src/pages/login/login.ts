@@ -6,6 +6,7 @@ import { AuthService } from '../../services/AuthService';
 import { AlertService } from '../../services/AlertService';
 import { HomePage } from '../home/home';
 import * as $ from 'jquery';
+import { ConfigService } from '../../services/ConfigService';
 
 @Component({
 	selector: 'page-login',
@@ -21,9 +22,13 @@ export class LoginPage implements OnInit, AfterContentInit {
 		private formBuilder: FormBuilder,
 		private settings: AppSettings,
 		private authService: AuthService,
-		private alertService: AlertService) { }
+		private alertService: AlertService,
+		private configService: ConfigService,
+	) { }
 
 	ngOnInit(): void {
+		this.configService.initAppConfig();
+
 		this.buildForm();
 	}
 
