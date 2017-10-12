@@ -25989,6 +25989,12 @@ ion-content.content {
   background: #399AE1;
 }
 
+button.my-actions {
+  width: 100%;
+  display: block;
+  margin-top: 5px;
+}
+
 ion-footer ion-list.list {
   margin: 0;
 }
@@ -26026,6 +26032,10 @@ ion-footer ion-list.list ion-item.item .item-inner ion-label.label button {
   background: #737A82;
   color: #fff;
   text-transform: uppercase;
+}
+
+.button-normal {
+  text-transform: none;
 }
 
 ion-list.list.app-filters {
@@ -26109,15 +26119,18 @@ ion-list.list.app-items ion-item.item ion-avatar img {
 }
 
 ion-list.list.app-items ion-item.item ion-thumbnail {
-  margin: 11px 15px 11px 0;
-  width: 50%;
-  max-height: 185px;
-  height: 185px;
+  margin: 5px 8px 5px 0;
+  width: 30%;
+  height: 100%;
+  min-height: 80px;
+  max-height: 150px;
 }
 
 ion-list.list.app-items ion-item.item ion-thumbnail img {
-  height: 100%;
-  width: initial;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
   margin: 0 auto;
 }
 
@@ -26155,12 +26168,6 @@ ion-list.list.app-items ion-item.item .item-inner button {
   margin: 0;
   height: 30px;
   border-radius: 5px;
-}
-
-ion-list.list.app-items ion-item.item .item-inner button.my-actions {
-  width: 100%;
-  display: block;
-  margin-top: 5px;
 }
 
 ion-list.list.app-items ion-item.item .item-inner button.view {
