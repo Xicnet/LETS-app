@@ -26088,7 +26088,7 @@ ion-list.list.app-items.small ion-item.item .item-inner h6 {
   height: 24px;
 }
 
-ion-list.list.app-items.small ion-item.item .item-inner p.description {
+ion-list.list.app-items.small ion-item.item .item-inner .description {
   max-height: 22px;
 }
 
@@ -26127,9 +26127,8 @@ ion-list.list.app-items ion-item.item .item-inner {
 
 ion-list.list.app-items ion-item.item .item-inner h6 {
   white-space: normal;
-  font-size: 18px;
-  max-height: 48px;
-  height: 48px;
+  font-size: 17px;
+  max-height: 60px;
   overflow: hidden;
 }
 
@@ -26139,10 +26138,14 @@ ion-list.list.app-items ion-item.item .item-inner h5 {
   overflow: hidden;
 }
 
-ion-list.list.app-items ion-item.item .item-inner p.description {
+ion-list.list.app-items ion-item.item .item-inner .description {
+  max-height: 95px;
+  overflow: hidden;
+}
+
+ion-list.list.app-items ion-item.item .item-inner .description, ion-list.list.app-items ion-item.item .item-inner .description p {
   white-space: normal;
   font-size: 16px;
-  max-height: 88px;
   color: #777D84;
 }
 
@@ -26157,7 +26160,6 @@ ion-list.list.app-items ion-item.item .item-inner button {
 ion-list.list.app-items ion-item.item .item-inner button.my-actions {
   width: 100%;
   display: block;
-  border-radius: 0;
   margin-top: 5px;
 }
 
@@ -26260,7 +26262,7 @@ ion-card.card.app-item-details .image img {
   margin: 0 auto;
 }
 
-ion-card.card.app-item-details p.description {
+ion-card.card.app-item-details .description {
   font-size: 16px;
   color: #777D84;
   margin-bottom: 15px;
@@ -26716,6 +26718,25 @@ page-memberDetail ion-avatar img {
 page-memberDetail .button-md {
   text-transform: none;
   font-weight: normal;
+}
+
+page-memberDetail .item-button {
+  font-size: 16px !important;
+}
+
+page-memberDetail .balance {
+  height: 1em;
+}
+
+page-memberDetail .balance p {
+  font-size: 16px;
+}
+
+page-memberDetail .balance ion-avatar {
+  font-size: 20px;
+  height: 1em;
+  min-height: 1em;
+  min-width: inherit;
 }
 
 page-members ion-note {
