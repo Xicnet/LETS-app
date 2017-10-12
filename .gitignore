@@ -48,3 +48,4 @@ resources/android/
 resources/ios/
 *.md5
 *.map
+package-lock.json
