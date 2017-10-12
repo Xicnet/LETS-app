@@ -10,23 +10,32 @@
       <img [src]="want.image || 'assets/images/default.jpg'">
       <div class="posted">Posted {{ want.changed }}</div>
     </div>
-    <div class="description" [innerHTML]="offer.description"></div>
+    <div class="description" [innerHTML]="want.description"></div>
     <ion-row>
-      <ion-col col-6 (click)="showMember(offer.user_id.id)">
+      <ion-col col-6 (click)="showMember(want.user_id.id)">
         <ion-item class="item-avatar">
           <ion-avatar item-left>
             <img [src]="want.user_id.portrait || 'assets/images/default_user.jpg'">
           </ion-avatar>
         </ion-item>
         <ion-item>
-          <h6>{{ want.user_id.name }}</h6>
-          <p>{{ want.user_id.mail }}</p>
+          <button ion-button class="button-normal">{{ want.user_id.name }}</button>
         </ion-item>
       </ion-col>
       <ion-col col-6>
         <ion-item>
           <p><b>Category:</b> {{ want.$category }}</p>
           <p><b>Expires:</b> {{ want.expires }}</p>
+
+          <ng-container *ngIf="currentUser == want.user_id || currentUser == want.user_id.id">
+            <button class="my-actions edit" ion-button (click)="editWant(want)" >Edit</button>
+            <button class="my-actions delete" ion-button (click)="deleteWant(want.id)" >Delete</button>
+          </ng-container>
+
+          <ng-container *ngFor="let link of want._links">
+            <button *ngIf="link.rel !='self'" class="my-actions delete" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
+          </ng-container>
+
         </ion-item>
       </ion-col>
     </ion-row>

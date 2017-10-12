@@ -6,6 +6,10 @@ import { MemberDetailPage } from '../memberDetail/memberDetail';
 import { Offer } from '../../domain/Offer';
 import { map } from 'lodash';
 import { MoreActionsBuilderComponent } from '../../components/moreActionsBuilder/moreActionsBuilder';
+import { AuthService } from '../../services/AuthService';
+import { Member } from '../../domain/Member';
+import { AddOfferPage } from '../addOffer/addOffer';
+import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
 
 @Component({
 	selector: 'page-offer-detail',
@@ -17,6 +21,9 @@ export class OfferDetailPage implements OnInit {
 	private loader: Loading
 	private imageExpanded: boolean;
 	private popover: Popover;
+	private currentMember: Member;
+	private currentUser: any;
+	private deleteOfferConfirmDialog: boolean;
 
 	constructor(private params: NavParams,
 		private viewCtrl: ViewController,
@@ -24,6 +31,7 @@ export class OfferDetailPage implements OnInit {
 		public loadingCtrl: LoadingController,
 		private popoverCtrl: PopoverController,
 		private offerService: OfferService,
+		private authService: AuthService,
 		private alertService: AlertService) { }
 
 	ngOnInit(): void {
@@ -34,6 +42,14 @@ export class OfferDetailPage implements OnInit {
 					content: 'Please wait...'
 				});
 				this.loader.present();
+
+				this.authService.userInfo.subscribe(
+					userInfo => {
+						this.currentUser = userInfo.id;
+						this.currentMember = userInfo;
+						console.log(this.currentMember)
+					});
+
 				this.offerService.describe().subscribe(
 					response => {
 						this.definitionOffer = response;
@@ -85,4 +101,72 @@ export class OfferDetailPage implements OnInit {
 			});
 		this.popover.present();
 	}
+
+	editOffer(offer: Offer) {
+		this.navCtrl.push(AddOfferPage, {
+			offer: offer
+		});
+	}
+
+
+	deleteOffer(id) {
+		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
+			fields: this.definitionOffer.POST,
+			operation: 'Delete Offer'
+		}, {
+				cssClass: 'confirm-popover',
+				enableBackdropDismiss: false
+			});
+		this.deleteOfferConfirmDialog = true;
+		this.popover.onDidDismiss((data) => {
+			this.deleteOfferConfirmDialog = false;
+			if (data && data.hasConfirmed) {
+				this.loader = this.loadingCtrl.create({
+					content: 'Please wait...'
+				});
+				this.loader.present();
+				this.offerService.delete(id).subscribe(
+					response => {
+						this.loader.dismiss();
+						// this.initPage();
+					},
+					error => {
+						this.alertService.showError(error);
+						this.loader.dismiss();
+					});
+			}
+		});
+		this.popover.present();
+	}
+
+	customAction(label: String, href: String, confirm: String) {
+		console.log(label, href, confirm);
+		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
+			operation: label
+		}, {
+				cssClass: 'confirm-popover',
+				enableBackdropDismiss: false
+			});
+		this.deleteOfferConfirmDialog = true;
+		this.popover.onDidDismiss((data) => {
+			this.deleteOfferConfirmDialog = false;
+			if (data && data.hasConfirmed) {
+				this.loader = this.loadingCtrl.create({
+					content: 'Please wait...'
+				});
+				this.loader.present();
+				this.offerService.custom(href).subscribe(
+					response => {
+						this.loader.dismiss();
+						// this.initPage();
+					},
+					error => {
+						this.alertService.showError(error);
+						this.loader.dismiss();
+					});
+			}
+		});
+		this.popover.present();
+	}
+
 }
