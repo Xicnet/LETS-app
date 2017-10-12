@@ -19,7 +19,7 @@
         <img [src]="want.image || 'assets/images/default.jpg'">
       </ion-thumbnail>
       <h6>{{ want.title }}</h6>
-      <p class="description">{{ want.description }}</p>
+      <div class="description" [innerHTML]="want.description"></div>
 
       <button ion-button (click)="showDetails(want.id)" *ngIf="!myActions && currentUser != want.user_id">View</button>
 

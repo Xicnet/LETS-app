@@ -10,7 +10,7 @@
       <img [src]="want.image || 'assets/images/default.jpg'">
       <div class="posted">Posted {{ want.changed }}</div>
     </div>
-    <p class="description">{{ want.description }}</p>
+    <div class="description" [innerHTML]="offer.description"></div>
     <ion-row>
       <ion-col col-6 (click)="showMember(offer.user_id.id)">
         <ion-item class="item-avatar">

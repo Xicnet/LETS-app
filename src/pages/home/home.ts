@@ -131,7 +131,7 @@ export class HomePage implements OnInit {
 	 			page: MembersPage
 	 		},
 			{
-				title: 'View exchanges',
+				title: 'View transactions',
 				icon: 'stats',
 				page: TransactionsPage
 			},

@@ -179,7 +179,7 @@ ion-list.list.app-items {
 					max-height: 24px;
 					height: 24px;
 				}
-				p.description {
+				.description {
 					max-height: 22px;
 				}
 			}
@@ -216,9 +216,8 @@ ion-list.list.app-items {
 
 			h6 {
 				white-space: normal;
-				font-size: 18px;
-				max-height: 48px;
-				height: 48px;
+				font-size: 17px;
+				max-height: 60px;
 				overflow: hidden;
 			}
 			h5 {
@@ -226,10 +225,13 @@ ion-list.list.app-items {
 				font-size: 18px;
 				overflow: hidden;
 			}
-			p.description {
+			.description {
+				max-height: 95px;
+				overflow:hidden;
+			}
+			.description, .description p {
 				white-space: normal;
 				font-size: 16px;
-				max-height: 88px;
 				color: #777D84;
 			}
 			button {
@@ -242,7 +244,6 @@ ion-list.list.app-items {
 			button.my-actions {
 				width: 100%;
 		    display: block;
-		    border-radius: 0;
 		    margin-top: 5px;
 			}
 			button.view {
@@ -338,7 +339,7 @@ ion-card.card.app-item-details {
 			margin: 0 auto;
 		}
 	}
-	p.description {
+	.description {
 		font-size: 16px;
 		color: #777D84;
 		margin-bottom: 15px;
