@@ -9,15 +9,15 @@
 		  <ion-slide>
 				<div class="image-wrapper">
 					<div class="image">
-						<img alt="logo" src="assets/images/app_logo.png">
+						<img src="assets/images/app_logo.png">
 						<h1 class="logo-title">{{ settings.APP_NAME }}</h1>
 					</div>
 				</div>
 		  </ion-slide>
-		  <ion-slide>
+		  <ion-slide *ngIf="settings.COMMUNITY_NAME && settings.COMMUNITY_LOGO">
 				<div class="image-wrapper">
 					<div class="image">
-						<img alt="logo" src="{{ settings.COMMUNITY_LOGO }}">
+						<img src="{{ settings.COMMUNITY_LOGO }}">
 						<h1 class="logo-title">{{ settings.COMMUNITY_NAME }}</h1>
 					</div>
 				</div>
@@ -25,7 +25,13 @@
 		</ion-slides>
 		<form [formGroup]="loginForm">
 			<ion-list>
-			  <ion-item>
+        <ion-item>
+			    <ion-label>
+			   		URL
+			   	</ion-label>
+			    <ion-input type="text" placeholder="https://" required formControlName="community_url"  (blur)="setCommunityURL($event.target.value)"></ion-input>
+			  </ion-item>
+        <ion-item>
 			    <ion-label>
 			   		<i class="ion-person"></i>
 			   	</ion-label>
@@ -48,11 +54,13 @@
 				  <ion-checkbox checked="true" formControlName="rememberMe"></ion-checkbox>
 				</ion-item>
 			</ion-list>
-			<button ion-button full [disabled]="!loginForm.valid" (click)="doLogin()">Sign in</button>
-	  	<p>This is the {{ settings.APP_NAME }} mobile app</p>
-	  	<p>
+      <button ion-button full [disabled]="!loginForm.valid" (click)="doLogin()">Sign in</button>
+      <p>This is the {{ settings.APP_NAME }} mobile app</p>
+
+	  	<p *ngIf="settings.WEB_SITE_URL">
 	  		<a href="#" (click)="goToFullSite()">Go to {{ settings.COMMUNITY_NAME }} website</a>
 	  	</p>
+
 		</form>
 	</div>
 </ion-content>

@@ -154,6 +154,14 @@ export class HomePage implements OnInit {
 					page: ProfilePage
 				},
 				{
+					title: 'View my transactions',
+					icon: 'stats',
+					page: TransactionsPage,
+					params: {
+						filter: `&involving=${this.member.id}`
+					},
+				},
+				{
 					title: 'View my offers',
 					icon: 'briefcase',
 					page: OffersPage,

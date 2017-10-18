@@ -69,7 +69,7 @@ export class OffersPage implements OnInit {
 				this.definitionOffer = response;
 				this.canPost = !!this.definitionOffer.POST;
 				if (this.canPost) {
-					$('page-offers ion-content.content').children().css('margin-bottom', '90px');
+					$('page-offers ion-content.content').children().css('margin-bottom', '45px');
 				}
 			},
 			error => this.alertService.showError(error));
@@ -133,12 +133,12 @@ export class OffersPage implements OnInit {
 		this.navCtrl.push(AddOfferPage);
 	}
 
-	
+
 	showFilters() {
 		this.popover = this.popoverCtrl.create(FiltersBuilderComponent, {
 			options: [{
-				// 	title: 'Show Latest',
-				// 	page: OffersPage
+				// 	title: 'Add an offer',
+				// 	page: AddOfferPage
 				// }, {
 				title: 'Show By Categories',
 				page: CategoriesFilterPage,
@@ -150,13 +150,13 @@ export class OffersPage implements OnInit {
 					page: OffersPage
 				}
 			}, {
-				title: 'Show By Keyword',
-				page: KeywordsFilterPage,
-				params: {
-					title: 'Offerings',
-					page: OffersPage
-				}
-			}, {
+			// 	title: 'Show By Keyword',
+			// 	page: KeywordsFilterPage,
+			// 	params: {
+			// 		title: 'Offerings',
+			// 		page: OffersPage
+			// 	}
+			// }, {
 				title: 'Clear Filters',
 				page: OffersPage
 			}]

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, MenuController, ModalController } from 'ionic-angular';
+import { NavController, MenuController, ModalController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../services/AuthService';
 import { TransactionService } from '../../services/TransactionService';
 import { AlertService } from '../../services/AlertService';
@@ -17,12 +17,14 @@ export class TransactionsPage implements OnInit {
 	private success = false;
 	private definitionTransaction: any;
 	private transactions: Array<Transaction>;
+	private filter: any;
 
 	constructor(private menuCtrl: MenuController,
 		private navCtrl: NavController,
 		private modalCtrl: ModalController,
 		private authService: AuthService,
 		private transactionService: TransactionService,
+		private navParams: NavParams,
 		private alertService: AlertService) {
 		this.menuCtrl.enable(true, 'app-menu');
 		this.authService.userInfo.subscribe(
@@ -32,6 +34,9 @@ export class TransactionsPage implements OnInit {
 	}
 
 	ngOnInit(): void {
+		if (this.navParams.data) {
+			this.filter = this.navParams.data.filter;
+		}
 		this.transactionService.describe()
 			.subscribe(
 			response => {
@@ -44,7 +49,7 @@ export class TransactionsPage implements OnInit {
 	}
 
 	loadTransactions() {
-		this.transactionService.list()
+		this.transactionService.list(this.filter)
 			.subscribe(
 			response => this.transactions = response,
 			error => this.alertService.showError('Connection problem!')

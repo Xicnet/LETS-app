@@ -34,6 +34,11 @@
   			<p [innerHTML]="member && member.balance"></p>
   		</ion-item>
 
+
+      <ng-container *ngFor="let link of member._links">
+        <button *ngIf="link.rel !='self'" class="" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
+      </ng-container>
+
     </ion-item>
 
     <ion-row>

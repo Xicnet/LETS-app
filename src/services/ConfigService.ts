@@ -23,12 +23,13 @@ export class ConfigService {
 	}
 
 	initAppConfig(): void {
-		this.requestAppConfig().subscribe(
+		if(!this.settings.SERVER_URL) this.alertService.showError('The app does not know your community URL. Please configure it.\n');
+		else this.requestAppConfig().subscribe(
 			response => {
 				console.log('got config sub')
 				console.log(response)
-				if(response.logo) this.settings.COMMUNITY_LOGO = response.logo;
-				if(response.sitename) this.settings.COMMUNITY_NAME = response.sitename;
+				this.settings.COMMUNITY_LOGO = response.logo;
+				this.settings.COMMUNITY_NAME = response.sitename;
 			},
 			error => this.alertService.showError('Could not get your community info. Are you online?\n' + error));
 	}

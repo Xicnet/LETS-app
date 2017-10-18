@@ -2,12 +2,23 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AppSettings {
+
 	public get WEB_SITE_URL(): any {
-		return 'http://hamlets.communityforge.net';
+		var opt = window.localStorage.getItem('server_url');
+		if(opt) return opt;
+		// return 'https://hamlets.communityforge.net'; // fallback
 	}
+
+	public set SERVER_URL(link) {
+		link = link.trim();
+		link = (link.indexOf('://') === -1) ? 'https://' + link : link;
+		window.localStorage.setItem('server_url', link);
+	}
+
 	public get SERVER_URL(): any {
-		return `${this.WEB_SITE_URL}/commex`;
+		if(this.WEB_SITE_URL) return `${this.WEB_SITE_URL}/commex`;
 	}
+
 	public get APP_NAME(): any {
 		return 'Community Exchange';
 	}
@@ -29,7 +40,7 @@ export class AppSettings {
 	public get COMMUNITY_LOGO(): any {
 		var opt = window.localStorage.getItem('logo');
 		if(opt) return opt;
-		else return 'assets/images/community_logo.png';
+		// else return 'assets/images/community_logo.png';
 	}
 
 	public get URL(): any {

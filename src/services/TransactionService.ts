@@ -11,8 +11,8 @@ export class TransactionService {
 	constructor(private settings: AppSettings,
 		private httpBasicAuth: HttpBasicAuth) { }
 
-	list(): Observable<Array<Transaction>> {
-		return this.httpBasicAuth.getWithAuth(`${this.settings.URL.transactions}?depth=2`)
+	list(filter = ''): Observable<Array<Transaction>> {
+		return this.httpBasicAuth.getWithAuth(`${this.settings.URL.transactions}?depth=2&${filter}`)
 			.map((response: Array<Transaction>) => {
 				response = map(response, (transaction: Transaction, key: any) => {
 					if (!transaction.id) {

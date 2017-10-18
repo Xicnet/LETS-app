@@ -68,7 +68,7 @@ export class WantsPage implements OnInit {
 				this.definitionWant = response;
 				this.canPost = !!this.definitionWant.POST;
 				if (this.canPost) {
-					$('page-wants ion-content.content').children().css('margin-bottom', '90px');
+					$('page-wants ion-content.content').children().css('margin-bottom', '45px');
 				}
 			},
 			error => this.alertService.showError(error));
@@ -149,13 +149,13 @@ export class WantsPage implements OnInit {
 					page: WantsPage
 				}
 			}, {
-				title: 'Show By Keyword',
-				page: KeywordsFilterPage,
-				params: {
-					title: 'Wants',
-					page: WantsPage
-				}
-			}, {
+			// 	title: 'Show By Keyword',
+			// 	page: KeywordsFilterPage,
+			// 	params: {
+			// 		title: 'Wants',
+			// 		page: WantsPage
+			// 	}
+			// }, {
 				title: 'Clear Filters',
 				page: WantsPage
 			}]

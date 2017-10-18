@@ -12,12 +12,12 @@
   </div>
 
   <ion-list class="app-items">
-    <ion-item *ngFor="let transaction of transactions">
+    <ion-item *ngFor="let transaction of transactions"  (click)="showDetails(transaction.id)">
       <h6>{{ transaction.description }}</h6>
       <p class="description">
         <span [innerHTML]="transaction.amount"></span> from {{ transaction.payer.name }} to {{ transaction.payee.name }}
       </p>
-      <button ion-button (click)="showDetails(transaction.id)">View</button>
+      <!-- <button ion-button (click)="showDetails(transaction.id)">View</button> -->
     </ion-item>
   </ion-list>
 

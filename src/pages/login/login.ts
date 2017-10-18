@@ -14,6 +14,7 @@ import { ConfigService } from '../../services/ConfigService';
 })
 export class LoginPage implements OnInit, AfterContentInit {
 	loginForm: FormGroup;
+	private community_url: string;
 	private username: string;
 	private password: string;
 	private rememberMe: boolean;
@@ -27,7 +28,7 @@ export class LoginPage implements OnInit, AfterContentInit {
 	) { }
 
 	ngOnInit(): void {
-		this.configService.initAppConfig();
+		if(this.settings.SERVER_URL) this.configService.initAppConfig();
 
 		this.buildForm();
 	}
@@ -37,6 +38,8 @@ export class LoginPage implements OnInit, AfterContentInit {
 	}
 
 	doLogin() {
+		this.community_url = this.loginForm.value.community_url;
+		this.setCommunityURL(this.community_url);
 		this.username = this.loginForm.value.username;
 		this.password = this.loginForm.value.password;
 		this.rememberMe = this.loginForm.value.rememberMe;
@@ -50,7 +53,9 @@ export class LoginPage implements OnInit, AfterContentInit {
 	}
 
 	buildForm(): void {
+		this.community_url = this.settings.WEB_SITE_URL;
 		this.loginForm = this.formBuilder.group({
+			'community_url': [this.community_url, Validators.required],
 			'username': [this.username, Validators.required],
 			'password': [this.password, Validators.required],
 			'rememberMe': [this.rememberMe],
@@ -76,12 +81,23 @@ export class LoginPage implements OnInit, AfterContentInit {
 		}
 	}
 
+	setCommunityURL(link: any){
+		console.log(link);
+		var old_url = this.settings.SERVER_URL;
+		if(link) this.settings.SERVER_URL = link;
+		if(this.settings.SERVER_URL !=old_url) this.configService.initAppConfig();
+	}
+
 	formErrors = {
+		'community_url': '',
 		'username': '',
 		'password': ''
 	};
 
 	validationMessages = {
+		'community_url': {
+			'required': 'Please enter the URL of your local community website'
+		},
 		'username': {
 			'required': 'Email is required.'
 		},
