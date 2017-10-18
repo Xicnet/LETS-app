@@ -26143,6 +26143,7 @@ ion-list.list.app-items ion-item.item .item-inner h6 {
   font-size: 17px;
   max-height: 60px;
   overflow: hidden;
+  margin-top: 2px;
 }
 
 ion-list.list.app-items ion-item.item .item-inner h5 {
