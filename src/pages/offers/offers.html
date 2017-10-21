@@ -15,16 +15,40 @@
 
   <ion-list class="app-items">
 
-    <ion-item *ngFor="let offer of offers" (click)="showDetails(offer.id)">
-      <ion-thumbnail item-left >
-        <img  [src]="offer.image || 'assets/images/default_sm.jpg'">
-      </ion-thumbnail>
-      <h6>{{ offer.title }}</h6>
-      <div class="description" [innerHTML]="offer.description"></div>
+    <ion-item *ngFor="let offer of offers">
+    <ion-row>
+
+      <ion-col col-2 (click)="showMember(offer.user_id.id)" *ngIf="offer.image">
+        <ion-thumbnail>
+          <img [src]="offer.image || 'assets/images/default_sm.jpg'">
+        </ion-thumbnail>
+      </ion-col>
+
+      <ion-col col-10 (click)="showDetails(offer.id)" *ngIf="!offer.image">
+        <h6>{{ offer.title }}</h6>
+        <div class="description" [innerHTML]="offer.description"></div>
+      </ion-col>
+
+      <ion-col col-8 (click)="showDetails(offer.id)" *ngIf="offer.image">
+        <h6>{{ offer.title }}</h6>
+        <div class="description" [innerHTML]="offer.description"></div>
+      </ion-col>
+
+      <ion-col col-2 class="items-user" (click)="showMember(offer.user_id.id)">
+        <p>
+          {{ offer.user_id.name }}
+        </p>
+        <ion-avatar *ngIf="offer.user_id.portrait">
+          <img [src]="offer.user_id.portrait || 'assets/images/default_user.jpg'">
+        </ion-avatar>
+      </ion-col>
+
+    </ion-row>
     </ion-item>
 
   </ion-list>
 </ion-content>
+
 <ion-footer>
   <ion-list>
     <ion-item>

@@ -147,8 +147,7 @@ ion-list.list.app-filters {
 }
 ion-list.list.app-items {
 	margin: 0;
-	margin-top: 15px;
-	padding: 0 15px;
+	padding: 0 0 0 10px;
 	background: #fff;
 
 	&.mini {
@@ -160,19 +159,6 @@ ion-list.list.app-items {
 			height: 30px;
 			min-height: 30px;
 
-			ion-avatar {
-				margin: 0;
-				margin-right: 5px;
-				width: 25px;
-				min-width: 25px;
-				height: 25px;
-				min-height: 25px;
-
-				img {
-					height: 25px;
-					width: 25px;
-				}
-			}
 			.item-inner {
 				h6 {
 					max-height: 24px;
@@ -198,23 +184,34 @@ ion-list.list.app-items {
 		padding: 0;
 		border: none;
 		border-bottom: 0.55px solid #737A82;
-
+		.row{
+			align-items: center;
+		}
+		.label-md{
+			margin: 13px 0 13px 0;
+		}
+		.items-user p{
+			font-size: 10px;
+			text-align: center;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
 		ion-avatar {
 			margin: 0;
-			margin-right: 15px;
-
+			text-align: center;
 			img {
-				height: 50px;
-				width: 50px;
+				max-height: 100%;;
+				max-width: 100%;
+				height: auto;
+				width: auto;
+				display:inline;
 			}
 		}
 		ion-thumbnail {
-			margin: 5px 8px 5px 0;
-			width: 30%;
-			height: 100%;
-			min-height: 80px;
-			max-height: 150px;
-
+			// margin: 5px 8px 5px 0;
+			min-width: 100%;
+			min-height: 100%;
 			img {
 				width: auto;
 				height: auto;
@@ -240,11 +237,10 @@ ion-list.list.app-items {
 			}
 			.description {
 				max-height: 95px;
-				overflow:hidden;
 			}
 			.description, .description p {
 				white-space: normal;
-				font-size: 16px;
+				font-size: 14px;
 				color: #777D84;
 			}
 			button {

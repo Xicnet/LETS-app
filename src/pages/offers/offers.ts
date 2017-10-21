@@ -12,6 +12,7 @@ import { FiltersBuilderComponent } from '../../components/filtersBuilder/filters
 import { Member } from '../../domain/Member';
 import * as $ from 'jquery';
 import { map } from 'lodash';
+import { MemberDetailPage } from '../memberDetail/memberDetail';
 
 @Component({
 	selector: 'page-offers',
@@ -133,6 +134,11 @@ export class OffersPage implements OnInit {
 		this.navCtrl.push(AddOfferPage);
 	}
 
+	showMember(userId) {
+		this.navCtrl.push(MemberDetailPage, {
+			id: userId
+		});
+	}
 
 	showFilters() {
 		this.popover = this.popoverCtrl.create(FiltersBuilderComponent, {
