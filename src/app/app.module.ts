@@ -37,7 +37,8 @@ import { MembersPage } from '../pages/members/members';
 import { MemberDetailPage } from '../pages/memberDetail/memberDetail';
 import { ProfilePage } from '../pages/userProfile/userProfile';
 
-// import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser'; // ionic v3
+import { Camera } from '@ionic-native/camera';
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -73,7 +74,7 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     ProfilePage
   ],
   imports: [
-    // BrowserModule,
+    BrowserModule,
     IonicModule.forRoot(LetsApp),
     HttpModule,
     JsonpModule,
@@ -115,6 +116,7 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     MemberService,
     StatusBar,
     SplashScreen,
+    Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
 export class AppModule { }

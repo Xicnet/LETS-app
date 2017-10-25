@@ -6,8 +6,8 @@
 <ion-content scroll="false">
   <ion-list class="home-header">
     <ion-item>
-      <p [innerHTML]="member && member.balance" class="balance" item-right></p>
-      <ion-avatar item-left>
+      <p [innerHTML]="member && member.balance" class="balance" item-end></p>
+      <ion-avatar item-start>
         <img [src]="member && member.image || 'assets/images/default_user.jpg'">
       </ion-avatar>
       <h2>Hello, {{ member && member.name }}</h2>
@@ -21,15 +21,15 @@
 		<ion-list-header *ngIf="menu.header">{{ menu.header }}</ion-list-header>
 
 		<ion-item *ngFor="let menuEntry of menu.menu_items" (click)="goToPage(menuEntry);showOptions(menuEntry, $event)">
-      <ion-icon [name]="menuEntry.icon" item-left></ion-icon>
+      <ion-icon [name]="menuEntry.icon" item-start></ion-icon>
 			{{ menuEntry.title }}
-      <i class="ion-arrow-down-b" *ngIf="menuEntry.options && menuEntry.options.length" item-right></i>
+      <i class="ion-arrow-down-b" *ngIf="menuEntry.options && menuEntry.options.length" item-end></i>
     </ion-item>
 
   </ng-container>
 
 	<ion-item (click)="doLogout()">
-    <ion-icon name="log-out" item-left></ion-icon>
+    <ion-icon name="log-out" item-start></ion-icon>
     Log Out
 	</ion-item>
 </ion-list>

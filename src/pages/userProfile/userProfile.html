@@ -7,12 +7,12 @@
 <ion-content>
 	<ion-list class="home-header">
     <ion-item>
-      <ion-avatar item-left>
+      <ion-avatar item-start>
         <img [src]="user && user.image || 'assets/images/default_user.jpg'">
       </ion-avatar>
       <h2>{{ user && user.name }}</h2>
       <ion-item class="balance">
-  			<ion-avatar item-left>
+  			<ion-avatar item-start>
         	<ion-icon name="trending-up"></ion-icon>
       	</ion-avatar>
   			<p [innerHTML]="user && user.balance"></p>

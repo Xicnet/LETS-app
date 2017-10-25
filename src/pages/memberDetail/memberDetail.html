@@ -7,28 +7,28 @@
   <ion-card class="app-item-details" *ngIf="member">
 
     <ion-item>
-      <ion-avatar item-left>
+      <ion-avatar item-start>
         <img [src]="member.portrait || 'assets/images/default_user.jpg'">
       </ion-avatar>
 
       <h2 class="title">{{ member.name }}</h2>
 
       <p class="subtitle" *ngIf="member.mail">
-        <a ion-button icon-left href="mailto:{{member.mail}}">
+        <a ion-button icon-start href="mailto:{{member.mail}}">
           <ion-icon name="mail"></ion-icon>
           {{ member.mail }}
         </a>
       </p>
 
       <p class="subtitle" *ngIf="member.phone">
-        <a ion-button icon-left href="tel:{{member.phone}}">
+        <a ion-button icon-start href="tel:{{member.phone}}">
           <ion-icon name="call"></ion-icon>
           {{ member.phone }}
         </a>
       </p>
 
       <ion-item class="balance" *ngIf="member.balance">
-  			<ion-avatar item-left>
+  			<ion-avatar item-start>
         	<ion-icon name="trending-up"></ion-icon>
       	</ion-avatar>
   			<p [innerHTML]="member && member.balance"></p>

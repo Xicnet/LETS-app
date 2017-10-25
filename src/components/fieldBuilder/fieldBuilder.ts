@@ -6,6 +6,7 @@ import { HttpBasicAuth } from '../../services/HttpBasicAuth';
 import { AlertService } from '../../services/AlertService';
 import { map, forEach } from 'lodash';
 import * as moment from 'moment';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
 	selector: 'field-builder-component',
@@ -24,7 +25,9 @@ export class FieldBuilderComponent implements OnInit {
 		private settings: AppSettings,
 		private httpBasicAuth: HttpBasicAuth,
 		private formBuilder: FormBuilder,
-		private alertService: AlertService) { }
+		private alertService: AlertService,
+		private camera: Camera
+	) { }
 
 	ngOnInit(): void {
 		this.hasSelectedOption = false;
@@ -159,19 +162,26 @@ export class FieldBuilderComponent implements OnInit {
 		this.addImageToField(1); // CAMERA
 	}
 
+
 	addImageToField(sourceType) {
 		this.loader.present();
-		(<any>navigator).camera.getPicture(image => {
+
+		const options: CameraOptions = {
+		  quality: 100,
+		  destinationType: this.camera.DestinationType.DATA_URL,
+		  encodingType: this.camera.EncodingType.JPEG,
+		  mediaType: this.camera.MediaType.PICTURE
+		}
+
+		this.camera.getPicture(options).then((image) => {
 			this.field.imgSrc = `data:image/jpeg;base64,${image}`;
 			let fieldValue = {};
 			fieldValue[this.field.name] = this.field.imgSrc;
 			this.fieldForm.setValue(fieldValue);
 			this.loader.dismiss();
-		}, error => this.loader.dismiss(), {
-				destinationType: 0, // DATA_URL
-				mediaType: 0, // PICTURE
-				sourceType: sourceType
-			});
+		},
+		(err) => this.loader.dismiss()
+		);
 	}
 
 	autocompleteSearch(value) {

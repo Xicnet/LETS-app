@@ -11,11 +11,11 @@
   </ion-list>
   <ion-list class="app-items small">
     <ion-item *ngFor="let member of members" (click)="showDetails(member.id)">
-      <ion-avatar item-left>
+      <ion-avatar item-start>
         <img [src]="member.portrait || 'assets/images/default_user.jpg'">
       </ion-avatar>
       <h6>{{ member.name }}</h6>
-      <ion-note item-right>{{ member.locality }}</ion-note>
+      <ion-note item-end>{{ member.locality }}</ion-note>
       <p class="description">{{ member.aboutme }}</p>
     </ion-item>
   </ion-list>
