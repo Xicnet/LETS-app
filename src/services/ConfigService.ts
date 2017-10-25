@@ -5,6 +5,7 @@ import { AppSettings } from '../app/app.settings';
 import { HttpBasicAuth } from './HttpBasicAuth';
 import { AlertService } from './AlertService';
 import { Config } from '../domain/Config';
+import { AuthService } from './AuthService';
 
 @Injectable()
 export class ConfigService {
@@ -12,6 +13,7 @@ export class ConfigService {
 
 	constructor(private settings: AppSettings,
 		private httpBasicAuth: HttpBasicAuth,
+		private authService: AuthService,
 		private alertService: AlertService) {
 		// this.requestAppConfig().subscribe(
 		// 	response => this.appConfig.next(response),
@@ -23,7 +25,10 @@ export class ConfigService {
 	}
 
 	initAppConfig(): void {
-		if(!this.settings.SERVER_URL) this.alertService.showError('The app does not know your community URL. Please configure it.\n');
+		if(!this.settings.WEB_SITE_URL){
+			this.alertService.showError('The app does not know your community URL. Please log out to configure it.\n');
+			this.authService.doLogout();
+		}
 		else this.requestAppConfig().subscribe(
 			response => {
 				console.log('got config sub')

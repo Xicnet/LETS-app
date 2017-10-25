@@ -190,10 +190,11 @@ export class FieldBuilderComponent implements OnInit {
 
 	selectOption(option) {
 		let fieldValue = {};
-		fieldValue[this.field.name] = option.value;
-		this.field.$options = [];
+		fieldValue[this.field.name] = option.value || option.name;
+		console.log(option, this.field, fieldValue)
 		this.hasSelectedOption = true;
 		this.fieldForm.setValue(fieldValue);
+		this.field.$options = [];
 	}
 
 	childFieldChange(childField) {

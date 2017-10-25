@@ -34,10 +34,10 @@
 
 <ion-list class="app-items mini" *ngIf="field.$options">
   <ion-item *ngFor="let option of field.$options" (click)="selectOption(option)">
-  	<ion-avatar item-left>
-      <img [src]="option.portrait || option.image || 'assets/images/default_user.jpg'">
-    </ion-avatar>
-    <h6>{{ option.value }}</h6>
+  	<!-- <ion-avatar item-left *ngIf="option.portrait || option.image">
+      <img [src]="option.portrait || option.image">
+    </ion-avatar> -->
+    <h6>{{ option.value || option.name }}</h6>
   </ion-item>
 </ion-list>
 

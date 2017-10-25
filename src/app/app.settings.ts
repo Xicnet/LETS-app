@@ -4,15 +4,15 @@ import { Injectable } from '@angular/core';
 export class AppSettings {
 
 	public get WEB_SITE_URL(): any {
-		var opt = window.localStorage.getItem('server_url');
+		var opt = window.localStorage.getItem('website_url');
 		if(opt) return opt;
 		// return 'https://hamlets.communityforge.net'; // fallback
 	}
 
-	public set SERVER_URL(link) {
-		link = link.trim();
+	public set WEB_SITE_URL(link) {
+		link = link.trim().replace(/\/+$/, "");
 		link = (link.indexOf('://') === -1) ? 'https://' + link : link;
-		window.localStorage.setItem('server_url', link);
+		window.localStorage.setItem('website_url', link);
 	}
 
 	public get SERVER_URL(): any {
@@ -44,7 +44,7 @@ export class AppSettings {
 	}
 
 	public get URL(): any {
-		return {
+		if(this.SERVER_URL) return {
 			config: `${this.SERVER_URL}`,
 			transactions: `${this.SERVER_URL}/transaction`,
 			offers: `${this.SERVER_URL}/offer`,

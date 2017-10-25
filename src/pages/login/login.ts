@@ -28,7 +28,7 @@ export class LoginPage implements OnInit, AfterContentInit {
 	) { }
 
 	ngOnInit(): void {
-		if(this.settings.SERVER_URL) this.configService.initAppConfig();
+		if(this.settings.WEB_SITE_URL) this.configService.initAppConfig();
 
 		this.buildForm();
 	}
@@ -83,9 +83,9 @@ export class LoginPage implements OnInit, AfterContentInit {
 
 	setCommunityURL(link: any){
 		console.log(link);
-		var old_url = this.settings.SERVER_URL;
-		if(link) this.settings.SERVER_URL = link;
-		if(this.settings.SERVER_URL !=old_url) this.configService.initAppConfig();
+		var old_url = this.settings.WEB_SITE_URL;
+		if(link) this.settings.WEB_SITE_URL = link;
+		if(this.settings.WEB_SITE_URL !=old_url) this.configService.initAppConfig();
 	}
 
 	formErrors = {

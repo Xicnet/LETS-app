@@ -33,7 +33,7 @@ export class AuthService {
 			if(!this.hasToken && token_stored.name){
 				// console.log('try to reload');
 				this.requestUserInfo(token_stored.name, rememberMe);
-			} 
+			}
 
 			this.setToken(token_stored);
 		}
@@ -66,7 +66,7 @@ export class AuthService {
 	private requestUserInfo(username, rememberMe): Observable<Member> {
 		console.log('requestUserInfo',username)
 		//console.log(this.isAuthenticated());
-		return this.httpBasicAuth
+		if(this.settings.URL && this.settings.URL.members) return this.httpBasicAuth
 			.getWithAuth(`${this.settings.URL.members}?fragment=${username}&depth=1`)
 			.map(response => {
 				for (let id in response) {
@@ -76,6 +76,7 @@ export class AuthService {
 				}
 				return response;
 			});
+		else this.doLogout();
 	}
 
 	doLogin(username, password, rememberMe): Observable<Member> {
