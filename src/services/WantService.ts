@@ -14,7 +14,7 @@ export class WantService {
 
 	list(page, filter = ''): Observable<Array<Want>> {
 		let offset = this.pageSize * (page - 1);
-		return this.httpBasicAuth.getWithAuth(`${this.settings.URL.wants}?depth=1&offset=${offset}&limit=${this.pageSize}&sort=expires,desc${filter}`)
+		return this.httpBasicAuth.getWithAuth(`${this.settings.URL.wants}?depth=2&offset=${offset}&limit=${this.pageSize}&sort=expires,desc${filter}`)
 			.map((response: Array<Want>) => {
 				response = map(response, (want: Want, key: any) => {
 					if (!want.id) {

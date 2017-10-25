@@ -15,12 +15,37 @@
   </ion-list>
   <ion-list class="app-items">
 
-    <ion-item *ngFor="let want of wants" (click)="showDetails(want.id)">
-      <ion-thumbnail item-left>
-        <img [src]="want.image || 'assets/images/default.jpg'">
-      </ion-thumbnail>
-      <h6>{{ want.title }}</h6>
-      <div *ngIf="want.description" class="description" [innerHTML]="want.description"></div>
+    <ion-item *ngFor="let want of wants">
+
+      <ion-row>
+
+  <ion-col col-2 (click)="showMember(want.user_id.id)" *ngIf="want.image">
+    <ion-thumbnail>
+      <img [src]="want.image || 'assets/images/default_sm.jpg'">
+    </ion-thumbnail>
+  </ion-col>
+
+  <ion-col col-10 (click)="showDetails(want.id)" *ngIf="!want.image">
+    <h6>{{ want.title }}</h6>
+    <div class="description" [innerHTML]="want.description"></div>
+  </ion-col>
+
+  <ion-col col-8 (click)="showDetails(want.id)" *ngIf="want.image">
+    <h6>{{ want.title }}</h6>
+    <div class="description" [innerHTML]="want.description"></div>
+  </ion-col>
+
+  <ion-col col-2 class="items-user" (click)="showMember(want.user_id.id)">
+    <p>
+      {{ want.user_id.name }}
+    </p>
+    <ion-avatar *ngIf="want.user_id.portrait">
+      <img [src]="want.user_id.portrait || 'assets/images/default_user.jpg'">
+    </ion-avatar>
+  </ion-col>
+
+</ion-row>
+
     </ion-item>
 
   </ion-list>
