@@ -3,7 +3,7 @@
     <name>LETS</name>
     <description>LETS and Timebank app.</description>
     <author email="support@communityforge.net" href="http://communityforge.net">Community Forge Team</author>
-    <content original-src="index.html" src="http://192.168.1.4:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
