@@ -43,4 +43,8 @@ export class MemberService {
 	describe(member: any = {}): Observable<any> {
 		return this.httpBasicAuth.options(`${this.settings.URL.members}/${member.id}`);
 	}
+
+	custom(href): Observable<any> {
+		return this.httpBasicAuth.putWithAuth(`${this.settings.URL.config}/${href}`, {});
+	}
 }

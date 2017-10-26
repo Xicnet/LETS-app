@@ -29,7 +29,7 @@
 			    <ion-label>
 			   		URL
 			   	</ion-label>
-			    <ion-input type="text" placeholder="https://" required formControlName="community_url"  (blur)="setCommunityURL($event.target.value)"></ion-input>
+			    <ion-input type="text" placeholder="https://" required formControlName="community_url"  (ionBlur)="setCommunityURL()"></ion-input>
 			  </ion-item>
         <ion-item>
 			    <ion-label>

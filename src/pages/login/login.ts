@@ -39,7 +39,7 @@ export class LoginPage implements OnInit, AfterContentInit {
 
 	doLogin() {
 		this.community_url = this.loginForm.value.community_url;
-		this.setCommunityURL(this.community_url);
+		this.setCommunityURL();
 		this.username = this.loginForm.value.username;
 		this.password = this.loginForm.value.password;
 		this.rememberMe = this.loginForm.value.rememberMe;
@@ -81,11 +81,16 @@ export class LoginPage implements OnInit, AfterContentInit {
 		}
 	}
 
-	setCommunityURL(link: any){
-		console.log(link);
-		var old_url = this.settings.WEB_SITE_URL;
-		if(link) this.settings.WEB_SITE_URL = link;
-		if(this.settings.WEB_SITE_URL !=old_url) this.configService.initAppConfig();
+	setCommunityURL(){
+		console.log(this.community_url);
+		if(this.community_url){
+			var old_url = this.settings.WEB_SITE_URL;
+			this.settings.WEB_SITE_URL = this.community_url;
+			if(this.settings.WEB_SITE_URL !=old_url){
+				this.configService.initAppConfig();
+			}
+			this.community_url = this.settings.WEB_SITE_URL; // cleaned up
+		}
 	}
 
 	formErrors = {

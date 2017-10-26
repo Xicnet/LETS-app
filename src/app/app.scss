@@ -391,3 +391,13 @@ ion-card.card.app-item-details {
 		}
 	}
 }
+.popover-content{
+	width: 300px;
+
+	.item-md{
+		font-size: 14px;
+	}
+	.item-block{
+		min-height: inherit;
+	}
+}
