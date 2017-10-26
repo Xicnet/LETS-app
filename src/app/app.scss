@@ -78,11 +78,24 @@ ion-header {
 ion-content.content {
 	background: #399AE1;
 }
+button {
+	background: #399AE1;
+}
 button.my-actions {
 	width: 100%;
 	display: block;
 	margin-top: 5px;
 }
+button.view {
+	background: #399AE1;
+}
+button.edit {
+	background: #E67C16;
+}
+button.delete {
+	background: #FF0000;
+}
+
 ion-footer {
 	ion-list.list {
 		margin: 0;
@@ -257,21 +270,12 @@ ion-list.list.app-items {
 				color: #777D84;
 			}
 			button {
-				background: #399AE1;
 				padding: 10px;
 				margin: 0;
 				height: 30px;
 				border-radius: 5px;
 			}
-			button.view {
-				background: #737A82;
-			}
-			button.edit {
-				background: #399AE1;
-			}
-			button.delete {
-				background: #E67C16;
-			}
+
 		}
 	}
 }
@@ -391,6 +395,7 @@ ion-card.card.app-item-details {
 		}
 	}
 }
+
 .popover-content{
 	width: 300px;
 

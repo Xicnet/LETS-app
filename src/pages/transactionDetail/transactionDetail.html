@@ -16,10 +16,15 @@
       <p> {{ transaction.description }} </p>
       <p> <span [innerHTML]="transaction.amount"></span> </p>
       <p>from
-        <button ion-button small (click)="showMember(transaction.payer.id)">{{ transaction.payer.name }}</button>
+        <button ion-button small class="button-normal" (click)="showMember(transaction.payer.id)">{{ transaction.payer.name }}</button>
       <p>to
-        <button ion-button small (click)="showMember(transaction.payee.id)">{{ transaction.payee.name }}</button>
+        <button ion-button small class="button-normal" (click)="showMember(transaction.payee.id)">{{ transaction.payee.name }}</button>
       </p>
+
+      <ng-container *ngFor="let link of transaction._links">
+        <button *ngIf="link.rel !='self' && link.rel !='view'" class="edit" ion-button small (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
+      </ng-container>
+
     </ion-card-content>
   </ion-card>
 

@@ -38,4 +38,8 @@ export class TransactionService {
 				return response;
 			});
 	}
+
+	custom(href): Observable<any> {
+		return this.httpBasicAuth.putWithAuth(`${this.settings.URL.config}/${href}`, {});
+	}
 }

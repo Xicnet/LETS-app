@@ -33,7 +33,7 @@
           </ng-container>
 
           <ng-container *ngFor="let link of want._links">
-            <button *ngIf="link.rel !='self'" class="my-actions delete" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
+            <button *ngIf="link.rel !='self'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
           </ng-container>
 
         </ion-item>
