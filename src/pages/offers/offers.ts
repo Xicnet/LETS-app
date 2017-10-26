@@ -33,6 +33,7 @@ export class OffersPage implements OnInit {
 	private deleteOfferConfirmDialog: boolean;
 	private currentUser: Member;
 	private keywords: string;
+	private filters_action: any;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -51,6 +52,7 @@ export class OffersPage implements OnInit {
 			this.myActions = this.navParams.data.myActions;
 			this.currentUser = this.navParams.data.currentUser;
 		}
+
 		this.viewCtrl.didEnter.subscribe(
 			response => {
 				if (this.deleteOfferConfirmDialog) {
@@ -65,13 +67,27 @@ export class OffersPage implements OnInit {
 		this.hasNoMoreData = false;
 		this.isLoading = false;
 		this.offers = [];
+
 		this.offerService.describe().subscribe(
 			response => {
 				this.definitionOffer = response;
 				this.canPost = !!this.definitionOffer.POST;
-				if (this.canPost) {
-					$('page-offers ion-content.content').children().css('margin-bottom', '45px');
+				// if (this.canPost) {
+				// 	$('page-offers ion-content.content').children().css('margin-bottom', '45px');
+				// }
+
+				this.filters_action = {
+					title: 'Show By Categories',
+					page: CategoriesFilterPage,
+					params: {
+						categories: map(this.definitionOffer.POST.category.options, (category, key) => {
+							return { id: key, name: category };
+						}),
+						title: 'Offerings',
+						page: OffersPage
+					}
 				}
+
 			},
 			error => this.alertService.showError(error));
 		this.loadOffers();
@@ -142,20 +158,7 @@ export class OffersPage implements OnInit {
 
 	showFilters() {
 		this.popover = this.popoverCtrl.create(FiltersBuilderComponent, {
-			options: [{
-				// 	title: 'Add an offer',
-				// 	page: AddOfferPage
-				// }, {
-				title: 'Show By Categories',
-				page: CategoriesFilterPage,
-				params: {
-					categories: map(this.definitionOffer.POST.category.options, (category, key) => {
-						return { id: key, name: category };
-					}),
-					title: 'Offerings',
-					page: OffersPage
-				}
-			}, {
+			options: [this.filters_action, {
 			// 	title: 'Show By Keyword',
 			// 	page: KeywordsFilterPage,
 			// 	params: {
@@ -171,5 +174,16 @@ export class OffersPage implements OnInit {
 				enableBackdropDismiss: true
 			});
 		this.popover.present();
+	}
+
+	goToPage(menuEntry) {
+		let page = menuEntry.page;
+		if (page) {
+			this.navCtrl.push(page, menuEntry.params);
+		}
+	}
+
+	goToFilters() {
+		this.goToPage(this.filters_action)
 	}
 }

@@ -5,7 +5,16 @@
 </ion-header>
 <ion-content>
 
-  <ion-searchbar (search)="setFilter($event)"></ion-searchbar>
+
+  <ion-toolbar>
+		<ion-buttons left>
+			<button ion-button icon-only (click)="goToFilters()">
+				<i class="ion-navicon-round"></i>
+			</button>
+		</ion-buttons>
+		<ion-searchbar (search)="setFilter($event)"></ion-searchbar>
+	</ion-toolbar>
+
 
   <ion-list class="app-filters" *ngIf="filterName">
     <ion-item>
@@ -48,13 +57,3 @@
 
   </ion-list>
 </ion-content>
-
-<ion-footer>
-  <ion-list>
-    <ion-item>
-      <button (click)="showFilters()">
-        <i class="ion-navicon-round"></i>
-      </button>
-    </ion-item>
-  </ion-list>
-</ion-footer>

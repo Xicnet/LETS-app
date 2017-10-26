@@ -95,7 +95,9 @@ button.edit {
 button.delete {
 	background: #FF0000;
 }
-
+.searchbar-md .searchbar-input {
+	line-height: inherit;
+}
 ion-footer {
 	ion-list.list {
 		margin: 0;
