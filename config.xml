@@ -56,8 +56,9 @@
     </feature>
     <allow-navigation href="http://192.168.1.4:8100" />
     <preference name="SplashScreen" value="screen" />
-    <engine name="android" spec="^6.3.0" />
-    <engine name="browser" spec="^5.0.1" />
+    <allow-navigation href="http://192.168.1.4:8101" />
+    <engine name="browser" spec="5.0.1" />
+    <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />

@@ -50,4 +50,4 @@ resources/ios/
 *.map
 package-lock.json
 
-node_modules.bak
+/*.bak
