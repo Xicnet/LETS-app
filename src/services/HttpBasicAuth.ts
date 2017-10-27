@@ -62,9 +62,16 @@ export class HttpBasicAuth {
 		return body || {};
 	}
 
+
 	private extractError(error): any {
 		console.log('http error',error);
-		throw JSON.parse(error._body);
+		try {
+				throw JSON.parse(error._body);
+		} catch (e) {
+				throw "There was a connection or server error";
+		}
+		// if(this.isJson(error._body)) throw JSON.parse(error._body);
+		// else throw JSON.parse("There was a connection or server error.");
 	}
 
 	getWithAuth(url) {

@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Contact Member</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>
+</ion-content>
+<ion-footer>
+  <ion-list>
+    <ion-item>
+      <button [disabled]="!isValid" (click)="sendMessage()">Send</button>
+    </ion-item>
+  </ion-list>
+</ion-footer>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, ViewController, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
+import { NavParams, NavController, ViewController, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
 import { MemberService } from '../../services/MemberService';
 import { AlertService } from '../../services/AlertService';
 import { Member } from '../../domain/Member';
 import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
+import { ContactMemberPage } from '../memberContact/memberContact';
 
 @Component({
 	selector: 'page-memberDetail',
@@ -17,6 +18,7 @@ export class MemberDetailPage implements OnInit {
 
 	constructor(private params: NavParams,
 		private viewCtrl: ViewController,
+		private navCtrl: NavController,
 		public loadingCtrl: LoadingController,
 		private memberService: MemberService,
 		private popoverCtrl: PopoverController,
@@ -69,6 +71,12 @@ export class MemberDetailPage implements OnInit {
 			}
 		});
 		this.popover.present();
+	}
+
+	contactMember(id) {
+		this.navCtrl.push(ContactMemberPage, {
+			to_id: this.params.get('id')
+		});
 	}
 
 }

@@ -8,10 +8,10 @@ export class AlertService {
 		private alertCtrl: AlertController) { }
 
 	showError(message: any) {
-		console.error('showError');
+		console.log('showError');
 		console.error(message);
 
-		var show = (message.error) ? message.error : message;
+		var show = ( (message.error) ? message.error : (message) ? message : 'Unknown error' );
 
 		return this.alertCtrl.create({
 			title: 'Error!',

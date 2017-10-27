@@ -1,41 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewController, NavParams, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
 import { AuthService } from '../../services/AuthService';
-import { WantService } from '../../services/WantService';
 import { AlertService } from '../../services/AlertService';
 import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
 import { MoreActionsBuilderComponent } from '../../components/moreActionsBuilder/moreActionsBuilder';
-import { WantsPage } from '../../pages/wants/wants';
-import { Want } from '../../domain/Want';
+import { MemberService } from '../../services/MemberService';
 
 @Component({
-	selector: 'page-add-want',
-	templateUrl: 'addWant.html'
+	selector: 'page-contact-member',
+	templateUrl: 'memberContact.html'
 })
-export class AddWantPage implements OnInit {
+export class ContactMemberPage implements OnInit {
 	private definitionWant: any;
-	private fields: Array<any>;
-	private want: Want;
+	private fields: any;
 	private isValid: boolean = false;
 	private loader: Loading
 	private isLoaded: boolean = false;
 	private popover: Popover;
-	private editWant: Want;
-	private wantID: any;
+	private to_id: any;
+	private to_name: any;
+	private message_data: any;
 
 	constructor(private viewCtrl: ViewController,
 		private navParams: NavParams,
 		public loadingCtrl: LoadingController,
 		private popoverCtrl: PopoverController,
 		private authService: AuthService,
-		private wantService: WantService,
+		private memberService: MemberService,
 		private alertService: AlertService) { }
 
 	ngOnInit(): void {
 		this.isLoaded = false;
 		if (this.navParams.data) {
-			this.editWant = this.navParams.data.want;
-			if(this.editWant) this.wantID = this.editWant.id;
+			this.to_id = this.navParams.data.to_id;
+			this.to_name = this.navParams.data.to_name;
 		}
 		this.viewCtrl.didEnter.subscribe(
 			response => {
@@ -43,45 +41,37 @@ export class AddWantPage implements OnInit {
 					this.loader = this.loadingCtrl.create({
 						content: 'Please wait...'
 					});
-					this.loader.present();
-					this.authService.userInfo.subscribe(
-						userInfo => {
-							this.wantService.describe().subscribe(
-								response => {
-									this.isLoaded = true;
-									this.definitionWant = response;
-									if (this.definitionWant.POST.user_id) {
-										this.definitionWant.POST.user_id.default = userInfo.name;
-									}
-									if (this.editWant) {
-										for (let i in this.editWant) {
-											if (this.editWant[i] && this.definitionWant.POST[i]) {
-												this.definitionWant.POST[i].default = this.editWant[i];
-											}
-										}
-									}
-									this.fields = this.definitionWant.POST;
-									console.log(this.fields)
-									this.loader.dismiss();
-								},
-								error => {
-									this.alertService.showError(error);
-									this.loader.dismiss();
-								});
-						});
+
+					this.fields = {
+			      'subject': {
+							'name': 'subject',
+							'placeholder': '',
+							'label': 'Subject',
+							'required':true
+						},
+			      'body': {
+							'name': 'body',
+							'placeholder': '',
+							'label': 'Message',
+							'type':'textarea'
+						}
+			    };
+					this.isLoaded = true;
 				}
 			});
 	}
 
-	onChanged(options: { value: Want, isValid: boolean }) {
-		this.want = options.value;
+	onChanged(options: { value: any, isValid: boolean }) {
+		this.message_data = options.value;
 		this.isValid = options.isValid;
 	}
 
-	addWant() {
+	sendMessage() {
+		console.log(this.fields)
+		console.log(this.message_data)
 		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
-			fields: this.definitionWant.POST,
-			operation: 'Want'
+			fields: this.fields,
+			operation: 'Contact Member'
 		}, {
 				cssClass: 'confirm-popover',
 				enableBackdropDismiss: false
@@ -92,20 +82,13 @@ export class AddWantPage implements OnInit {
 					content: 'Please wait...'
 				});
 				this.loader.present();
-				this.wantService.save(this.want, this.wantID).subscribe(
+				this.memberService.contact(this.to_id, this.message_data).subscribe(
 					response => {
 						this.loader.dismiss();
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
-							operation: 'Need',
-							options: [{
-								title: 'Record Another Need',
-								icon: 'ion-edit',
-								page: AddWantPage
-							}, {
-								title: 'List Needs',
-								icon: 'ion-pin',
-								page: WantsPage
-							}]
+							operation: 'Message',
+							status: 'was sent',
+							options: []
 						}, {
 								cssClass: 'confirm-popover',
 								enableBackdropDismiss: false

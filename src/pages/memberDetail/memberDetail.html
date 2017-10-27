@@ -13,6 +13,8 @@
 
       <h2 class="title">{{ member.name }}</h2>
 
+      <button class="view" ion-button (click)="contactMember()">Send Message</button>
+
       <p class="subtitle" *ngIf="member.mail">
         <a ion-button icon-start href="mailto:{{member.mail}}">
           <ion-icon name="mail"></ion-icon>

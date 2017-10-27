@@ -36,6 +36,7 @@ import { ObjectKeys } from '../pipes/ObjectKeys';
 import { MembersPage } from '../pages/members/members';
 import { MemberDetailPage } from '../pages/memberDetail/memberDetail';
 import { ProfilePage } from '../pages/userProfile/userProfile';
+import { ContactMemberPage } from '../pages/memberContact/memberContact';
 
 import { BrowserModule } from '@angular/platform-browser'; // ionic v3
 import { Camera } from '@ionic-native/camera';
@@ -71,7 +72,8 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     ConfirmationBuilderComponent,
     MoreActionsBuilderComponent,
     FiltersBuilderComponent,
-    ProfilePage
+    ProfilePage,
+    ContactMemberPage
   ],
   imports: [
     BrowserModule,
@@ -102,7 +104,8 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     KeywordsFilterPage,
     MembersPage,
     MemberDetailPage,
-    ProfilePage
+    ProfilePage,
+    ContactMemberPage
   ],
   providers: [
     AppSettings,
