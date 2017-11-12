@@ -45,7 +45,7 @@ export class LoginPage implements OnInit, AfterContentInit {
 		this.rememberMe = this.loginForm.value.rememberMe;
 		this.authService.doLogin(this.username, this.password, this.rememberMe).subscribe(
 			response => this.navCtrl.setRoot(HomePage),
-			error => this.alertService.showError('Error with credentials. Please try again.\n' + error));
+			error => this.alertService.showError('Error with log in. Please check your details.\n' + error));
 	}
 
 	goToFullSite() {

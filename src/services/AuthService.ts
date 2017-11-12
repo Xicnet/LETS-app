@@ -40,6 +40,8 @@ export class AuthService {
 	}
 
 	private storeToken(token, rememberMe) {
+		console.log('store token', token, rememberMe)
+
 		if (rememberMe) {
 			window.localStorage.setItem(this.LOCAL_TOKEN_KEY, JSON.stringify(token));
 		} else {
@@ -64,7 +66,7 @@ export class AuthService {
 	}
 
 	private requestUserInfo(username, rememberMe): Observable<Member> {
-		console.log('requestUserInfo',username)
+		console.log('requestUserInfo', username, rememberMe, this.hasToken)
 		//console.log(this.isAuthenticated());
 		if(this.settings.URL && this.settings.URL.members) return this.httpBasicAuth
 			.getWithAuth(`${this.settings.URL.members}?fragment=${username}&depth=1`)
@@ -80,11 +82,13 @@ export class AuthService {
 	}
 
 	doLogin(username, password, rememberMe): Observable<Member> {
+		console.log('doLogin', username, rememberMe)
 		this.httpBasicAuth.setAuthorizationToken(username, password, rememberMe);
 		return this.requestUserInfo(username, rememberMe);
 	}
 
 	doLogout() {
+		console.log('doLogout')
 		return Observable.create(observer => {
 			this.destroyToken();
 			this.httpBasicAuth.logout();

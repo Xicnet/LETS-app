@@ -44,12 +44,18 @@ export class HttpBasicAuth {
 
 	setAuthorizationToken(username, password, rememberMe) {
 		this.authorizationToken = `Basic ${btoa(`${username}:${password}`)}`;
-		//console.log(this.authorizationToken)
+		console.log('setAuthorizationToken',username,this.authorizationToken)
 		this.storeToken(this.authorizationToken, rememberMe);
 	}
 
 	private createAuthorizationHeader(headers: Headers) {
-		headers.append('Authorization', this.authorizationToken);
+		if(this.authorizationToken){
+			headers.append('Authorization', this.authorizationToken);
+			return true;
+		} else {
+			console.log("You are not authenticated.");
+			return false;
+		}
 	}
 
 	private createAcceptHeader(headers: Headers) {
@@ -62,16 +68,17 @@ export class HttpBasicAuth {
 		return body || {};
 	}
 
-
 	private extractError(error): any {
 		console.log('http error',error);
 		try {
-				throw JSON.parse(error._body);
+				if(error._body && !error._body.type){
+					var b = JSON.parse(error._body);
+					if(b.error) throw(b.error)
+				}
+				throw ''
 		} catch (e) {
-				throw "There was a connection or server error";
+				throw `There was a connection or server error. ${e} `;
 		}
-		// if(this.isJson(error._body)) throw JSON.parse(error._body);
-		// else throw JSON.parse("There was a connection or server error.");
 	}
 
 	getWithAuth(url) {
