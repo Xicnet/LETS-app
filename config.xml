@@ -50,15 +50,16 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-targetSdkVersion" value="17" />
     <preference name="BackupWebStorage" value="none" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
-    <allow-navigation href="http://192.168.1.4:8100" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
     <preference name="SplashScreen" value="screen" />
-    <allow-navigation href="http://192.168.1.4:8101" />
     <engine name="browser" spec="5.0.1" />
-    <engine name="android" spec="6.3.0" />
+    <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
