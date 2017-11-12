@@ -534,6 +534,7 @@ var AuthService = (function () {
         }
     };
     AuthService.prototype.storeToken = function (token, rememberMe) {
+        console.log('store token', token, rememberMe);
         if (rememberMe) {
             window.localStorage.setItem(this.LOCAL_TOKEN_KEY, JSON.stringify(token));
         }
@@ -556,7 +557,7 @@ var AuthService = (function () {
     };
     AuthService.prototype.requestUserInfo = function (username, rememberMe) {
         var _this = this;
-        console.log('requestUserInfo', username);
+        console.log('requestUserInfo', username, rememberMe, this.hasToken);
         //console.log(this.isAuthenticated());
         if (this.settings.URL && this.settings.URL.members)
             return this.httpBasicAuth
@@ -573,11 +574,13 @@ var AuthService = (function () {
             this.doLogout();
     };
     AuthService.prototype.doLogin = function (username, password, rememberMe) {
+        console.log('doLogin', username, rememberMe);
         this.httpBasicAuth.setAuthorizationToken(username, password, rememberMe);
         return this.requestUserInfo(username, rememberMe);
     };
     AuthService.prototype.doLogout = function () {
         var _this = this;
+        console.log('doLogout');
         return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
             _this.destroyToken();
             _this.httpBasicAuth.logout();
@@ -820,11 +823,18 @@ var HttpBasicAuth = (function () {
     };
     HttpBasicAuth.prototype.setAuthorizationToken = function (username, password, rememberMe) {
         this.authorizationToken = "Basic " + btoa(username + ":" + password);
-        //console.log(this.authorizationToken)
+        console.log('setAuthorizationToken', username, this.authorizationToken);
         this.storeToken(this.authorizationToken, rememberMe);
     };
     HttpBasicAuth.prototype.createAuthorizationHeader = function (headers) {
-        headers.append('Authorization', this.authorizationToken);
+        if (this.authorizationToken) {
+            headers.append('Authorization', this.authorizationToken);
+            return true;
+        }
+        else {
+            console.log("You are not authenticated.");
+            return false;
+        }
     };
     HttpBasicAuth.prototype.createAcceptHeader = function (headers) {
         headers.append('Accept', 'application/json');
@@ -837,13 +847,16 @@ var HttpBasicAuth = (function () {
     HttpBasicAuth.prototype.extractError = function (error) {
         console.log('http error', error);
         try {
-            throw JSON.parse(error._body);
+            if (error._body && !error._body.type) {
+                var b = JSON.parse(error._body);
+                if (b.error)
+                    throw (b.error);
+            }
+            throw '';
         }
         catch (e) {
-            throw "There was a connection or server error";
+            throw "There was a connection or server error. " + e + " ";
         }
-        // if(this.isJson(error._body)) throw JSON.parse(error._body);
-        // else throw JSON.parse("There was a connection or server error.");
     };
     HttpBasicAuth.prototype.getWithAuth = function (url) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
@@ -3333,7 +3346,7 @@ var LoginPage = (function () {
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
         this.rememberMe = this.loginForm.value.rememberMe;
-        this.authService.doLogin(this.username, this.password, this.rememberMe).subscribe(function (response) { return _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */]); }, function (error) { return _this.alertService.showError('Error with credentials. Please try again.\n' + error); });
+        this.authService.doLogin(this.username, this.password, this.rememberMe).subscribe(function (response) { return _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */]); }, function (error) { return _this.alertService.showError('Error with log in. Please check your details.\n' + error); });
     };
     LoginPage.prototype.goToFullSite = function () {
         window.open(this.settings.WEB_SITE_URL, '_system', 'location=yes');
