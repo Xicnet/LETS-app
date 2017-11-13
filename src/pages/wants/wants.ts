@@ -32,6 +32,7 @@ export class WantsPage implements OnInit {
 	private deleteWantConfirmDialog: boolean;
 	private currentUser: Member;
 	private keywords: string;
+	private filters_action: any;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -67,9 +68,22 @@ export class WantsPage implements OnInit {
 			response => {
 				this.definitionWant = response;
 				this.canPost = !!this.definitionWant.POST;
-				if (this.canPost) {
-					$('page-wants ion-content.content').children().css('margin-bottom', '45px');
+				// if (this.canPost) {
+				// 	$('page-wants ion-content.content').children().css('margin-bottom', '45px');
+				// }
+
+				this.filters_action = {
+					title: 'Show By Categories',
+					page: CategoriesFilterPage,
+					params: {
+						categories: map(this.definitionWant.POST.category.options, (category, key) => {
+							return { id: key, name: category };
+						}),
+						title: 'Needs',
+						page: WantsPage
+					}
 				}
+
 			},
 			error => this.alertService.showError(error));
 		this.loadWants();
@@ -132,37 +146,16 @@ export class WantsPage implements OnInit {
 		this.navCtrl.push(AddWantPage);
 	}
 
-
-	showFilters() {
-		this.popover = this.popoverCtrl.create(FiltersBuilderComponent, {
-			options: [{
-				// 	title: 'Show Latest',
-				// 	page: WantsPage
-				// }, {
-				title: 'Show By Categories',
-				page: CategoriesFilterPage,
-				params: {
-					categories: map(this.definitionWant.POST.category.options, (category, key) => {
-						return { id: key, name: category };
-					}),
-					title: 'Wants',
-					page: WantsPage
-				}
-			}, {
-			// 	title: 'Show By Keyword',
-			// 	page: KeywordsFilterPage,
-			// 	params: {
-			// 		title: 'Wants',
-			// 		page: WantsPage
-			// 	}
-			// }, {
-				title: 'Clear Filters',
-				page: WantsPage
-			}]
-		}, {
-				cssClass: 'confirm-popover',
-				enableBackdropDismiss: true
-			});
-		this.popover.present();
+	goToPage(menuEntry) {
+		let page = menuEntry.page;
+		if (page) {
+			this.navCtrl.push(page, menuEntry.params);
+		}
 	}
+
+	goToFilters() {
+		this.goToPage(this.filters_action)
+	}
+
+
 }

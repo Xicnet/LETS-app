@@ -83,7 +83,7 @@ export class OffersPage implements OnInit {
 						categories: map(this.definitionOffer.POST.category.options, (category, key) => {
 							return { id: key, name: category };
 						}),
-						title: 'Offerings',
+						title: 'Offers',
 						page: OffersPage
 					}
 				}
@@ -154,26 +154,6 @@ export class OffersPage implements OnInit {
 		this.navCtrl.push(MemberDetailPage, {
 			id: userId
 		});
-	}
-
-	showFilters() {
-		this.popover = this.popoverCtrl.create(FiltersBuilderComponent, {
-			options: [this.filters_action, {
-			// 	title: 'Show By Keyword',
-			// 	page: KeywordsFilterPage,
-			// 	params: {
-			// 		title: 'Offerings',
-			// 		page: OffersPage
-			// 	}
-			// }, {
-				title: 'Clear Filters',
-				page: OffersPage
-			}]
-		}, {
-				cssClass: 'confirm-popover',
-				enableBackdropDismiss: true
-			});
-		this.popover.present();
 	}
 
 	goToPage(menuEntry) {
