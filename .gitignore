@@ -29,6 +29,8 @@ platforms/*
 !platforms/browser/
 platforms/browser/*
 !platforms/browser/www/
+!platforms/android/
+platforms/android/*/*
 
 plugins/
 plugins/android.json

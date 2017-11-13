@@ -30,6 +30,7 @@
     "angular2-moment": "^1.7.0",
     "cordova-android": "^6.3.0",
     "cordova-browser": "5.0.1",
+    "cordova-plugin-app-version": "^0.1.9",
     "cordova-plugin-camera": "^2.4.1",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-console": "^1.1.0",
@@ -71,7 +72,8 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {},
       "ionic-plugin-keyboard": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova-plugin-app-version": {}
     },
     "platforms": [
       "browser",
