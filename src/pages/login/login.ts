@@ -82,14 +82,16 @@ export class LoginPage implements OnInit, AfterContentInit {
 	}
 
 	setCommunityURL(){
-		console.log(this.community_url);
-		if(this.community_url){
+		// console.log(this.community_url);
+		console.log(this.loginForm.value.community_url);
+		if(this.loginForm.value.community_url){
 			var old_url = this.settings.WEB_SITE_URL;
-			this.settings.WEB_SITE_URL = this.community_url;
+			this.settings.WEB_SITE_URL = this.loginForm.value.community_url;
 			if(this.settings.WEB_SITE_URL !=old_url){
 				this.configService.initAppConfig();
 			}
 			this.community_url = this.settings.WEB_SITE_URL; // cleaned up
+			this.loginForm.value.community_url = this.settings.WEB_SITE_URL;
 		}
 	}
 
