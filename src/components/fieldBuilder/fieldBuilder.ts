@@ -10,7 +10,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
 	selector: 'field-builder-component',
-	templateUrl: 'fieldBuilder.html'
+	templateUrl: 'fieldBuilder.html',
+	providers: [Camera]
 })
 export class FieldBuilderComponent implements OnInit {
 	fieldForm: FormGroup;
@@ -155,11 +156,11 @@ export class FieldBuilderComponent implements OnInit {
 	}
 
 	addImage() {
-		this.addImageToField(0); // PHOTOLIBRARY
+		this.addImageToField(this.camera.PictureSourceType.PHOTOLIBRARY); // PHOTOLIBRARY
 	}
 
 	takePhoto() {
-		this.addImageToField(1); // CAMERA
+		this.addImageToField(this.camera.PictureSourceType.CAMERA); // CAMERA
 	}
 
 
@@ -170,7 +171,8 @@ export class FieldBuilderComponent implements OnInit {
 		  quality: 100,
 		  destinationType: this.camera.DestinationType.DATA_URL,
 		  encodingType: this.camera.EncodingType.JPEG,
-		  mediaType: this.camera.MediaType.PICTURE
+		  mediaType: this.camera.MediaType.PICTURE,
+			sourceType: sourceType
 		}
 
 		this.camera.getPicture(options).then((image) => {
