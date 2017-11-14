@@ -487,6 +487,7 @@ var ConfigService = (function () {
         // 	error => this.alertService.showError(error));
     }
     ConfigService.prototype.requestAppConfig = function () {
+        console.log(this.settings.URL.config);
         return this.httpBasicAuth.get(this.settings.URL.config);
     };
     ConfigService.prototype.initAppConfig = function () {
@@ -501,7 +502,7 @@ var ConfigService = (function () {
                 console.log(response);
                 _this.settings.COMMUNITY_LOGO = response.logo;
                 _this.settings.COMMUNITY_NAME = response.sitename;
-            }, function (error) { return _this.alertService.showError('Could not get your community info. Are you online?\n' + error); });
+            }, function (error) { return _this.alertService.showError('Could not get your community info. Are you online? If so, please check the URL. \n' + error); });
     };
     return ConfigService;
 }());
@@ -694,7 +695,7 @@ var AppSettings = (function () {
             // return 'https://hamlets.communityforge.net'; // fallback
         },
         set: function (link) {
-            link = link.trim().replace(/\/+$/, "");
+            link = link.trim().replace(/\/+$/, ""); // remove trailing slash
             link = (link.indexOf('://') === -1) ? 'https://' + link : link;
             window.localStorage.setItem('website_url', link);
         },
@@ -747,7 +748,7 @@ var AppSettings = (function () {
         get: function () {
             if (this.SERVER_URL)
                 return {
-                    config: "" + this.SERVER_URL,
+                    config: this.SERVER_URL + "/",
                     transactions: this.SERVER_URL + "/transaction",
                     offers: this.SERVER_URL + "/offer",
                     wants: this.SERVER_URL + "/want",

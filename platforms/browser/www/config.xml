@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.myapp106156" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="002" id="net.communityforge.lets" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>LETS</name>
-    <description>LETS and Timebank app.</description>
+    <description>Community Exchange</description>
     <author email="support@communityforge.net" href="http://communityforge.net">Community Forge Team</author>
     <content src="index.html" />
     <access origin="*" />
