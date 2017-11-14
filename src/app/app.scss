@@ -340,26 +340,19 @@ ion-card.card.app-item-details {
 		height: 200px;
 		width: 100%;
 		text-align: center;
-		position: relative;
 		margin-bottom: 15px;
+		// overflow: hidden;
 
 		&.expanded {
 			height: initial;
 		}
-		.posted {
-			background: rgba(0, 0, 0, 0.5);
-			font-size: 18px;
-			color: #FFF;
-			width: 100%;
-			position: absolute;
-			bottom: 0;
-			text-align: left;
-			padding: 0 10px;
-		}
 		img {
-			height: 100%;
-			width: initial;
+			max-height: 100%;
+			max-width: 100%;
 			margin: 0 auto;
+			display: block;
+			width: auto;
+			height: auto;
 		}
 	}
 	.description {

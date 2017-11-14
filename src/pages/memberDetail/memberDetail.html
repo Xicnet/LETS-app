@@ -46,8 +46,8 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <p><b>Locality:</b> {{ member.locality }}</p>
-          <p><b>Address:</b> {{ member.street_address }}</p>
+          <p *ngIf="member.locality"><b>Locality:</b> {{ member.locality }}</p>
+          <p *ngIf="member.street_address"><b>Address:</b> {{ member.street_address }}</p>
         </ion-item>
       </ion-col>
     </ion-row>
