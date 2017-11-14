@@ -26798,7 +26798,6 @@ ion-card.card.app-item-details .image {
   height: 200px;
   width: 100%;
   text-align: center;
-  position: relative;
   margin-bottom: 15px;
 }
 
@@ -26806,21 +26805,13 @@ ion-card.card.app-item-details .image.expanded {
   height: initial;
 }
 
-ion-card.card.app-item-details .image .posted {
-  background: rgba(0, 0, 0, 0.5);
-  font-size: 18px;
-  color: #FFF;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  text-align: left;
-  padding: 0 10px;
-}
-
 ion-card.card.app-item-details .image img {
-  height: 100%;
-  width: initial;
+  max-height: 100%;
+  max-width: 100%;
   margin: 0 auto;
+  display: block;
+  width: auto;
+  height: auto;
 }
 
 ion-card.card.app-item-details .description {
@@ -27318,6 +27309,15 @@ page-members ion-note {
   -ms-flex-item-align: start;
   align-self: flex-start;
   padding-top: 6px;
+}
+
+page-members ion-avatar {
+  width: 40%;
+  padding-right: 10px;
+}
+
+page-members .description {
+  max-height: inherit !important;
 }
 
 page-user-profile ion-content.content {
