@@ -4,4 +4,11 @@ page-members {
       align-self: flex-start;
       padding-top: 6px;
     }
+  ion-avatar{
+    width: 40%;
+    padding-right: 10px;
+  }
+  .description {
+    max-height: inherit !important;
+  }
 }
