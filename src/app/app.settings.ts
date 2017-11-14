@@ -10,7 +10,7 @@ export class AppSettings {
 	}
 
 	public set WEB_SITE_URL(link) {
-		link = link.trim().replace(/\/+$/, "");
+		link = link.trim().replace(/\/+$/, ""); // remove trailing slash
 		link = (link.indexOf('://') === -1) ? 'https://' + link : link;
 		window.localStorage.setItem('website_url', link);
 	}
@@ -45,7 +45,7 @@ export class AppSettings {
 
 	public get URL(): any {
 		if(this.SERVER_URL) return {
-			config: `${this.SERVER_URL}`,
+			config: `${this.SERVER_URL}/`,
 			transactions: `${this.SERVER_URL}/transaction`,
 			offers: `${this.SERVER_URL}/offer`,
 			wants: `${this.SERVER_URL}/want`,

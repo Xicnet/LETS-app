@@ -21,6 +21,7 @@ export class ConfigService {
 	}
 
 	requestAppConfig(): Observable<Config> {
+		console.log(this.settings.URL.config)
 		return this.httpBasicAuth.get(this.settings.URL.config);
 	}
 
@@ -36,7 +37,7 @@ export class ConfigService {
 				this.settings.COMMUNITY_LOGO = response.logo;
 				this.settings.COMMUNITY_NAME = response.sitename;
 			},
-			error => this.alertService.showError('Could not get your community info. Are you online?\n' + error));
+			error => this.alertService.showError('Could not get your community info. Are you online? If so, please check the URL. \n' + error));
 	}
 
 }
