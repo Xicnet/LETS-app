@@ -1,3 +1,5 @@
+echo "WARNING! Did you remember to change the version and versionCode numbers in config.xml?"
+
 ./lets-prepare.sh
 
 ionic cordova build --release android # compile
