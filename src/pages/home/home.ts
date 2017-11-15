@@ -48,8 +48,6 @@ export class HomePage implements OnInit {
 
 		this.configService.initAppConfig();
 
-	// this.authService.requestUserInfo.subscribe(
-	// response => {
 		this.authService.userInfo.subscribe(
 			userInfo => {
 				this.member = userInfo;
@@ -187,7 +185,6 @@ export class HomePage implements OnInit {
 			}
 		];
 		});
-	// });
 	}
 
 	goToPage(menuEntry) {

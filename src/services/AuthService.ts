@@ -28,10 +28,10 @@ export class AuthService {
 		if (token) {
 			var token_stored = JSON.parse(token);
 
-			console.log('load token', this.hasToken, token_stored.name, token_stored)
+			console.log('load token', this.hasToken, token_stored, token_stored.name)
 
 			if(!this.hasToken && token_stored.name){
-				console.log('reload user info');
+				// console.log('try to reload');
 				this.requestUserInfo(token_stored.name, rememberMe);
 			}
 
@@ -65,27 +65,20 @@ export class AuthService {
 		return this.hasToken;
 	}
 
-	public loadUserInfo(username, rememberMe, response_function): Observable<Member> {
-		console.log('loadUserInfo', username, rememberMe, this.hasToken)
+	private requestUserInfo(username, rememberMe): Observable<Member> {
+		console.log('requestUserInfo', username, rememberMe, this.hasToken)
 		//console.log(this.isAuthenticated());
 		if(this.settings.URL && this.settings.URL.members) return this.httpBasicAuth
 			.getWithAuth(`${this.settings.URL.members}?fragment=${username}&depth=1`)
-			.map(response => response_function);
+			.map(response => {
+				for (let id in response) {
+					console.log('user loaded!')
+					this.storeToken(response[id], rememberMe);
+					break;
+				}
+				return response;
+			});
 		else this.doLogout();
-		return null;
-	}
-
-	public requestUserInfo(username, rememberMe): Observable<Member> {
-		console.log('requestUserInfo', username, rememberMe, this.hasToken)
-		function response_function(response) : any {
-			for (let id in response) {
-				console.log('user loaded!')
-				this.storeToken(response[id], rememberMe);
-				break;
-			}
-			return response;
-		};
-		return this.loadUserInfo(username, rememberMe, response_function);
 	}
 
 	doLogin(username, password, rememberMe): Observable<Member> {
