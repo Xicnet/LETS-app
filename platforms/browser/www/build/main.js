@@ -900,6 +900,11 @@ var HttpBasicAuth = (function () {
     };
     HttpBasicAuth.prototype.extractError = function (error) {
         console.log('http error', error);
+        if (error.status == 401) {
+            window.localStorage.removeItem('auth_token');
+            window.sessionStorage.removeItem('auth_token');
+            throw "Your login details may be incorrect, please logout and login again.";
+        }
         try {
             if (error._body && !error._body.type) {
                 var b = JSON.parse(error._body);
@@ -2023,7 +2028,7 @@ var ProfilePage = (function () {
 }());
 ProfilePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-user-profile',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/userProfile/userProfile.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>My Account</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n	<ion-list class="home-header">\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="user && user.image || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h2>{{ user && user.name }}</h2>\n      <ion-item class="balance">\n  			<ion-avatar item-start>\n        	<ion-icon name="trending-up"></ion-icon>\n      	</ion-avatar>\n  			<p [innerHTML]="user && user.balance"></p>\n  		</ion-item>\n    </ion-item>\n\n  </ion-list>\n\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n\n</ion-content>\n\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="editProfile()">Submit</button>\n    </ion-item>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/userProfile/userProfile.html"*/
+        selector: 'page-user-profile',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/userProfile/userProfile.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>My Account</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n	<ion-list class="home-header">\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="user && user.image || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h2>{{ user && user.name }}</h2>\n      <ion-item class="balance">\n  			<ion-avatar item-start>\n        	<ion-icon name="trending-up"></ion-icon>\n      	</ion-avatar>\n  			<p [innerHTML]="user && user.balance"></p>\n  		</ion-item>\n    </ion-item>\n\n  </ion-list>\n\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n\n</ion-content>\n\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="editProfile()">Submit</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/userProfile/userProfile.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
@@ -3349,7 +3354,7 @@ var LoginPage = (function () {
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
         this.rememberMe = this.loginForm.value.rememberMe;
-        this.authService.doLogin(this.username, this.password, this.rememberMe).subscribe(function (response) { return _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */]); }, function (error) { return _this.alertService.showError('Error with log in. Please check your details.\n' + error); });
+        this.authService.doLogin(this.username, this.password, this.rememberMe).subscribe(function (response) { return _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */]); }, function (error) { return _this.alertService.showError('Please check your details.\n' + error); });
     };
     LoginPage.prototype.goToFullSite = function () {
         window.open(this.settings.WEB_SITE_URL, '_system', 'location=yes');

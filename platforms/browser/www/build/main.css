@@ -26459,6 +26459,13 @@ html {
   font-size: 1em;
 }
 
+body {
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}
+
 ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
   right: 0;
   margin: 0 auto;
