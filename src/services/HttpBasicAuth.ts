@@ -70,6 +70,13 @@ export class HttpBasicAuth {
 
 	private extractError(error): any {
 		console.log('http error',error);
+
+		if(error.status==401){
+			window.localStorage.removeItem('auth_token');
+			window.sessionStorage.removeItem('auth_token');
+			throw "Your login details may be incorrect, please logout and login again."
+		}
+
 		try {
 				if(error._body && !error._body.type){
 					var b = JSON.parse(error._body);
