@@ -34,6 +34,7 @@ export class HttpBasicAuth {
 	}
 
 	private destroyToken() {
+		this.setToken(null)
 		window.localStorage.removeItem(this.AUTH_TOKEN_KEY);
 		window.sessionStorage.removeItem(this.AUTH_TOKEN_KEY);
 	}
@@ -49,13 +50,19 @@ export class HttpBasicAuth {
 	}
 
 	private createAuthorizationHeader(headers: Headers) {
+		console.log("createAuthorizationHeader");
+		console.log(this.authorizationToken);
+
 		if(this.authorizationToken){
 			headers.append('Authorization', this.authorizationToken);
 			return true;
-		} else {
-			console.log("You are not authenticated.");
-			return false;
 		}
+		// else {
+		// 	console.log("You are not authenticated.");
+		// 	this.logout();
+		// 	// throw "Your authentication is invalid, please logout and login again.";
+		// 	return false;
+		// }
 	}
 
 	private createAcceptHeader(headers: Headers) {
@@ -68,14 +75,23 @@ export class HttpBasicAuth {
 		return body || {};
 	}
 
-	private extractError(error): any {
+	extractError(error): any {
 		console.log('http error',error);
+
+		if(error.status==401){
+			window.localStorage.removeItem('auth_token');
+			window.sessionStorage.removeItem('auth_token');
+			throw "Your authentication is invalid, please logout and login again."
+		}
+
 		try {
-				if(error._body && !error._body.type){
-					var b = JSON.parse(error._body);
-					if(b.error) throw(b.error)
-				}
-				throw ''
+
+			if(error._body && !error._body.type){
+				var b = JSON.parse(error._body);
+				if(b.error) throw(b.error)
+			}
+
+			throw ''
 		} catch (e) {
 				throw `There was a connection or server error. ${e} `;
 		}
@@ -84,7 +100,7 @@ export class HttpBasicAuth {
 	getWithAuth(url) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		// console.log('getWithAuth',url, headers);
+		console.log('getWithAuth', url, headers);
 		return this.get(url, headers);
 	}
 
