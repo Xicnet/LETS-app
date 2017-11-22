@@ -100,11 +100,11 @@ export class AddOfferPage implements OnInit {
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
 							operation: 'Offer',
 							options: [{
-								title: 'Record Another Offer',
+								title: 'Post Another Offer',
 								icon: 'ion-edit',
 								page: AddOfferPage
 							}, {
-								title: 'List Offers',
+								title: 'Browse Offers',
 								icon: 'ion-pricetag',
 								page: OffersPage
 							}]

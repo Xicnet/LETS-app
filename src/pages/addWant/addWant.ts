@@ -98,11 +98,11 @@ export class AddWantPage implements OnInit {
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
 							operation: 'Need',
 							options: [{
-								title: 'Record Another Need',
+								title: 'Post Another Need',
 								icon: 'ion-edit',
 								page: AddWantPage
 							}, {
-								title: 'List Needs',
+								title: 'Browse Needs',
 								icon: 'ion-pin',
 								page: WantsPage
 							}]

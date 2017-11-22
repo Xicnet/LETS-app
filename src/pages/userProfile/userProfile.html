@@ -8,7 +8,7 @@
 	<ion-list class="home-header">
     <ion-item>
       <ion-avatar item-start>
-        <img [src]="user && user.image || 'assets/images/default_user.jpg'">
+        <img [src]="user && user.image || user && user.portrait || 'assets/images/default_user.jpg'">
       </ion-avatar>
       <h2>{{ user && user.name }}</h2>
       <ion-item class="balance">

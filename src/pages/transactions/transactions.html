@@ -23,7 +23,7 @@
 
       <ng-container *ngFor="let link of transaction._links">
         <button *ngIf="link.rel !='self' && link.rel !='view'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
-        <button *ngIf="link.rel =='self' || link.rel =='view'" class="view" ion-button (click)="showDetails(transaction.id)">{{link.label}}</button>
+        <button *ngIf="link.rel =='self' || link.rel =='view'" class="view" ion-button (click)="showDetails(transaction.id)">{{link.label || 'Details'}}</button>
       </ng-container>
 
     </ion-item>
