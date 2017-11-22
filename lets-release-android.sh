@@ -8,4 +8,4 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore lets-android.ke
 
 rm LETS_app_beta.apk # delete old version
 
-~/Library/Android/sdk/build-tools/26.0.1/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk LETS_app_beta.apk # prepare apk
+~/Library/Android/sdk/build-tools/27.0.1/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk LETS_app_beta.apk # prepare apk

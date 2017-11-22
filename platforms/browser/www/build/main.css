@@ -27340,7 +27340,7 @@ page-members ion-avatar {
 }
 
 page-members .description {
-  max-height: inherit !important;
+  max-height: 120px !important;
 }
 
 page-user-profile ion-content.content {
