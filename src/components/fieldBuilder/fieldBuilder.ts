@@ -135,23 +135,27 @@ export class FieldBuilderComponent implements OnInit {
 		let parsedDate;
 		if (typeof date === 'number') {
 			parsedDate = moment(date * 1000);
-		} else if(parsedDate) {
+		} else if(date) {
 			let tokens = date.split(':');
+			// console.log(date, tokens);
 			while (tokens.length) {
 				switch (tokens.shift()) {
 					case 'today':
+						// console.log('today');
 						parsedDate = moment();
 						break;
 					case 'add':
+						// console.log('add');
 						if (!parsedDate) {
 							parsedDate = moment();
 						}
+						// console.log(parsedDate, tokens.shift(), tokens.shift());
 						parsedDate.add(tokens.shift(), tokens.shift());
 						break;
 				}
 			}
 		}
-		// console.log(parsedDate);
+		// console.log(date, parsedDate);
 		if(parsedDate) return parsedDate.toDate();
 	}
 
