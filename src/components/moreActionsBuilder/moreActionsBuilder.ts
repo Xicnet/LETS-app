@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewController, NavController, NavParams } from 'ionic-angular';
+import { App, ViewController, NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../services/AuthService';
 import { LoginPage } from '../../pages/login/login';
 import { HomePage } from '../../pages/home/home';
@@ -16,7 +16,9 @@ export class MoreActionsBuilderComponent implements OnInit {
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
 		private navParams: NavParams,
-		private authService: AuthService) { }
+		private authService: AuthService,
+		public appCtrl: App
+	 ) { }
 
 	ngOnInit(): void {
 		if (this.navParams.data) {
@@ -29,24 +31,32 @@ export class MoreActionsBuilderComponent implements OnInit {
 	goToPage(option) {
 		let page = option.page;
 		if (page) {
-			this.navCtrl.popToRoot();
-			this.navCtrl.push(page, option.params);
 			this.viewCtrl.dismiss();
+			this.appCtrl.getRootNav().push(page, option.params);
+			// this.navCtrl.popToRoot();
+			// this.navCtrl.push(page, option.params);
 		}
 	}
 
-	goToHome() {
-		this.navCtrl.setRoot(HomePage);
-		// this.navCtrl.push(HomePage);
-		this.navCtrl.popToRoot();
+	goBack() {
 		this.viewCtrl.dismiss();
+		// this.navCtrl.pop();
+		// this.navCtrl.remove(2,1);
+		this.appCtrl.getRootNav().pop();
+	}
+
+	goToHome() { // TODO - does not work well
+		this.viewCtrl.dismiss();
+		// this.navCtrl.setRoot(HomePage);
+		// this.navCtrl.push(HomePage);
+		this.appCtrl.getRootNav().popToRoot();
 	}
 
 	doLogout() {
 		this.authService.doLogout().subscribe(
 			response => {
-				this.navCtrl.setRoot(LoginPage);
 				this.viewCtrl.dismiss();
+				this.appCtrl.getRootNav().setRoot(LoginPage);
 			});
 	}
 }
