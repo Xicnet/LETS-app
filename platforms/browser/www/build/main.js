@@ -581,8 +581,8 @@ var AuthService = (function () {
             var token_stored = JSON.parse(token);
             console.log('load token', this.hasToken, token_stored, token_stored.name);
             if (!this.hasToken && token_stored.name) {
-                // console.log('try to reload');
-                this.requestUserInfo(token_stored.name, rememberMe);
+                console.log('try to reload');
+                this.getUserInfo(token_stored.name, rememberMe);
             }
             this.setToken(token_stored);
         }
@@ -611,9 +611,9 @@ var AuthService = (function () {
     };
     AuthService.prototype.requestUserInfo = function (username, rememberMe) {
         var _this = this;
-        console.log('requestUserInfo', username, rememberMe, this.hasToken);
+        console.log('requestUserInfo', username, rememberMe, this.hasToken, this.settings.URL.members);
         //console.log(this.isAuthenticated());
-        if (this.settings.URL && this.settings.URL.members)
+        if (this.settings.URL.members) {
             return this.httpBasicAuth
                 .getWithAuth(this.settings.URL.members + "?fragment=" + username + "&depth=1")
                 .map(function (response) {
@@ -624,8 +624,13 @@ var AuthService = (function () {
                 }
                 return response;
             });
+        }
         else
             this.doLogout();
+    };
+    AuthService.prototype.getUserInfo = function (username, rememberMe) {
+        console.log('getUserInfo', username, rememberMe);
+        this.requestUserInfo(username, rememberMe).subscribe(function (response) { return console.log('getUserInfo done'); });
     };
     AuthService.prototype.doLogin = function (username, password, rememberMe) {
         console.log('doLogin', username, rememberMe);
@@ -920,13 +925,13 @@ var HttpBasicAuth = (function () {
     HttpBasicAuth.prototype.getWithAuth = function (url) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         this.createAuthorizationHeader(headers);
-        // console.log('getWithAuth',url, headers);
+        // console.log('getWithAuth', url, headers);
         return this.get(url, headers);
     };
     HttpBasicAuth.prototype.get = function (url, headers) {
         if (headers === void 0) { headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](); }
         this.createAcceptHeader(headers);
-        // console.log('get', url, headers);
+        console.log('get', url, headers);
         return this.http.get(url, {
             headers: headers
         }).map(this.extractData)
@@ -1032,6 +1037,110 @@ HttpBasicAuth = __decorate([
 
 /***/ }),
 
+/***/ 34:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MemberDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_MemberService__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_AlertService__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_confirmationBuilder_confirmationBuilder__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__memberContact_memberContact__ = __webpack_require__(344);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var MemberDetailPage = (function () {
+    function MemberDetailPage(params, viewCtrl, navCtrl, loadingCtrl, memberService, popoverCtrl, alertService) {
+        this.params = params;
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.memberService = memberService;
+        this.popoverCtrl = popoverCtrl;
+        this.alertService = alertService;
+    }
+    MemberDetailPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.viewCtrl.didEnter.subscribe(function (response) {
+            _this.loader = _this.loadingCtrl.create({
+                content: 'Please wait...'
+            });
+            _this.loader.present();
+            _this.memberService.get(_this.params.get('id')).subscribe(function (response) {
+                _this.member = response;
+                _this.loader.dismiss();
+            }, function (error) {
+                _this.alertService.showError(error);
+                _this.loader.dismiss();
+            });
+        });
+    };
+    MemberDetailPage.prototype.customAction = function (label, href, confirm) {
+        var _this = this;
+        console.log(label, href, confirm);
+        this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_4__components_confirmationBuilder_confirmationBuilder__["a" /* ConfirmationBuilderComponent */], {
+            operation: label
+        }, {
+            cssClass: 'confirm-popover',
+            enableBackdropDismiss: false
+        });
+        this.deleteOfferConfirmDialog = true;
+        this.popover.onDidDismiss(function (data) {
+            _this.deleteOfferConfirmDialog = false;
+            if (data && data.hasConfirmed) {
+                _this.loader = _this.loadingCtrl.create({
+                    content: 'Please wait...'
+                });
+                _this.loader.present();
+                _this.memberService.custom(href).subscribe(function (response) {
+                    _this.loader.dismiss();
+                    // this.initPage();
+                }, function (error) {
+                    _this.alertService.showError(error);
+                    _this.loader.dismiss();
+                });
+            }
+        });
+        this.popover.present();
+    };
+    MemberDetailPage.prototype.contactMember = function (id) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__memberContact_memberContact__["a" /* ContactMemberPage */], {
+            to_id: this.params.get('id')
+        });
+    };
+    return MemberDetailPage;
+}());
+MemberDetailPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'page-memberDetail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberDetail/memberDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Member Details</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="member">\n\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n\n      <h2 class="title">{{ member.name }}</h2>\n\n      <button class="view" ion-button (click)="contactMember()">Send Message</button>\n\n      <p class="subtitle" *ngIf="member.mail">\n        <a ion-button icon-start href="mailto:{{member.mail}}">\n          <ion-icon name="mail"></ion-icon>\n          {{ member.mail }}\n        </a>\n      </p>\n\n      <p class="subtitle" *ngIf="member.phone">\n        <a ion-button icon-start href="tel:{{member.phone}}">\n          <ion-icon name="call"></ion-icon>\n          {{ member.phone }}\n        </a>\n      </p>\n\n      <ion-item class="balance" *ngIf="member.balance">\n  			<ion-avatar item-start>\n        	<ion-icon name="trending-up"></ion-icon>\n      	</ion-avatar>\n  			<p [innerHTML]="member && member.balance"></p>\n  		</ion-item>\n\n\n      <ng-container *ngFor="let link of member._links">\n        <button *ngIf="link.rel !=\'self\'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n      </ng-container>\n\n    </ion-item>\n\n    <ion-row>\n      <ion-col>\n        <ion-item>\n          <p *ngIf="member.locality"><b>Locality:</b> {{ member.locality }}</p>\n          <p *ngIf="member.street_address"><b>Address:</b> {{ member.street_address }}</p>\n        </ion-item>\n      </ion-col>\n    </ion-row>\n    <p class="description">{{ member.aboutme }}</p>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberDetail/memberDetail.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2__services_MemberService__["a" /* MemberService */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* PopoverController */],
+        __WEBPACK_IMPORTED_MODULE_3__services_AlertService__["a" /* AlertService */]])
+], MemberDetailPage);
+
+//# sourceMappingURL=memberDetail.js.map
+
+/***/ }),
+
 /***/ 343:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1041,7 +1150,7 @@ HttpBasicAuth = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_OfferService__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_AlertService__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__memberDetail_memberDetail__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__memberDetail_memberDetail__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__ = __webpack_require__(40);
@@ -1204,7 +1313,7 @@ var OfferDetailPage = (function () {
 }());
 OfferDetailPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-offer-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offerDetail/offerDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Offering Details</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="offer">\n    <h2 class="title">{{ offer.title }}</h2>\n\n    <div class="image" [class.expanded]="imageExpanded" *ngIf="offer.image" (click)="expandImage()">\n      <img [src]="offer.image">\n    </div>\n\n    <div class="description" [innerHTML]="offer.description"></div>\n    <ion-row>\n      <ion-col col-6 (click)="showMember(offer.user_id.id)">\n        <ion-item class="item-avatar">\n          <ion-avatar>\n            <img [src]="offer.user_id.portrait || \'assets/images/default_user.jpg\'">\n          </ion-avatar>\n        </ion-item>\n        <ion-item>\n          <button ion-button class="button-normal">{{ offer.user_id.name }}</button>\n        </ion-item>\n      </ion-col>\n\n      <ion-col col-6>\n        <ion-item>\n          <p *ngIf="offer.$category">Category: <b>{{ offer.$category }}</b></p>\n          <p *ngIf="offer.changed">Posted: <b>{{ offer.changed }}</b></p>\n          <p *ngIf="offer.expires">Expires: <b>{{ offer.expires }}</b></p>\n\n          <ng-container *ngIf="currentUser == offer.user_id || currentUser == offer.user_id.id">\n            <button class="my-actions edit" ion-button (click)="editOffer(offer)">Edit</button>\n            <button class="my-actions delete" ion-button (click)="deleteOffer(offer.id)">Delete</button>\n          </ng-container>\n\n          <ng-container *ngFor="let link of offer._links">\n            <button *ngIf="link.rel !=\'self\'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n          </ng-container>\n\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offerDetail/offerDetail.html"*/
+        selector: 'page-offer-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offerDetail/offerDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Offering Details</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="offer">\n    <h2 class="title">{{ offer.title }}</h2>\n\n    <div class="image" [class.expanded]="imageExpanded" *ngIf="offer.image" (click)="expandImage()">\n      <img [src]="offer.image">\n    </div>\n\n    <div class="description" [innerHTML]="offer.description"></div>\n    <ion-row>\n      <ion-col col-6 (click)="showMember(offer.user_id.id)">\n        <ion-item class="item-avatar">\n          <ion-avatar>\n            <img [src]="offer.user_id.portrait || \'assets/images/default_user.jpg\'">\n          </ion-avatar>\n					<p>\n						{{ offer.user_id.name }}\n					</p>\n        </ion-item>\n      </ion-col>\n\n      <ion-col col-6>\n        <ion-item>\n          <p *ngIf="offer.$category">Category: <b>{{ offer.$category }}</b></p>\n          <p *ngIf="offer.changed">Posted: <b>{{ offer.changed }}</b></p>\n          <p *ngIf="offer.expires">Expires: <b>{{ offer.expires }}</b></p>\n\n          <ng-container *ngIf="currentUser == offer.user_id || currentUser == offer.user_id.id">\n            <button class="my-actions edit" ion-button (click)="editOffer(offer)">Edit</button>\n            <button class="my-actions delete" ion-button (click)="deleteOffer(offer.id)">Delete</button>\n          </ng-container>\n\n          <ng-container *ngFor="let link of offer._links">\n            <button *ngIf="link.rel !=\'self\'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n          </ng-container>\n\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offerDetail/offerDetail.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
@@ -1358,7 +1467,7 @@ ContactMemberPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_WantService__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_AlertService__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__memberDetail_memberDetail__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__memberDetail_memberDetail__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_AuthService__ = __webpack_require__(14);
@@ -1508,7 +1617,7 @@ var WantDetailPage = (function () {
 }());
 WantDetailPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-want-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wantDetail/wantDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Want Details</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="want">\n    <h2 class="title">{{ want.title }}</h2>\n    <div class="image" [class.expanded]="imageExpanded" (click)="expandImage()">\n      <img [src]="want.image || \'assets/images/default.jpg\'">\n      <div class="posted">Posted {{ want.changed }}</div>\n    </div>\n    <div class="description" [innerHTML]="want.description"></div>\n    <ion-row>\n      <ion-col col-6 (click)="showMember(want.user_id.id)">\n        <ion-item class="item-avatar">\n          <ion-avatar item-start>\n            <img [src]="want.user_id.portrait || \'assets/images/default_user.jpg\'">\n          </ion-avatar>\n        </ion-item>\n        <ion-item>\n          <button ion-button class="button-normal">{{ want.user_id.name }}</button>\n        </ion-item>\n      </ion-col>\n      <ion-col col-6>\n        <ion-item>\n          <p><b>Category:</b> {{ want.$category }}</p>\n          <p><b>Expires:</b> {{ want.expires }}</p>\n\n          <ng-container *ngIf="currentUser == want.user_id || currentUser == want.user_id.id">\n            <button class="my-actions edit" ion-button (click)="editWant(want)" >Edit</button>\n            <button class="my-actions delete" ion-button (click)="deleteWant(want.id)" >Delete</button>\n          </ng-container>\n\n          <ng-container *ngFor="let link of want._links">\n            <button *ngIf="link.rel !=\'self\'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n          </ng-container>\n\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wantDetail/wantDetail.html"*/
+        selector: 'page-want-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wantDetail/wantDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Want Details</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="want">\n    <h2 class="title">{{ want.title }}</h2>\n\n    <div class="description" [innerHTML]="want.description"></div>\n    <ion-row>\n      <ion-col col-6 (click)="showMember(want.user_id.id)">\n        <ion-item class="item-avatar">\n          <ion-avatar item-start>\n            <img [src]="want.user_id.portrait || \'assets/images/default_user.jpg\'">\n          </ion-avatar>\n					<p>\n						{{ want.user_id.name }}\n					</p>\n        </ion-item>\n\n      </ion-col>\n      <ion-col col-6>\n        <ion-item>\n					<p *ngIf="want.$category">Category: <b>{{ want.$category }}</b></p>\n          <p *ngIf="want.changed">Posted: <b>{{ want.changed }}</b></p>\n          <p *ngIf="want.expires">Expires: <b>{{ want.expires }}</b></p>\n\n          <ng-container *ngIf="currentUser == want.user_id || currentUser == want.user_id.id">\n            <button class="my-actions edit" ion-button (click)="editWant(want)" >Edit</button>\n            <button class="my-actions delete" ion-button (click)="deleteWant(want.id)" >Delete</button>\n          </ng-container>\n\n          <ng-container *ngFor="let link of want._links">\n            <button *ngIf="link.rel !=\'self\'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n          </ng-container>\n\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wantDetail/wantDetail.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
@@ -1534,7 +1643,7 @@ WantDetailPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_AuthService__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_TransactionService__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_AlertService__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__memberDetail_memberDetail__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__memberDetail_memberDetail__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_confirmationBuilder_confirmationBuilder__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1648,7 +1757,7 @@ TransactionDetailPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_MemberService__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_AlertService__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__memberDetail_memberDetail__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__memberDetail_memberDetail__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__keywords_keywords__ = __webpack_require__(348);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_filtersBuilder_filtersBuilder__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jquery__ = __webpack_require__(52);
@@ -1882,6 +1991,7 @@ KeywordsFilterPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_wants_wants__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_offers_offers__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_transactions_transactions__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_memberDetail_memberDetail__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1891,6 +2001,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1965,17 +2076,17 @@ var ProfilePage = (function () {
                 _this.member.id = _this.user.id;
                 _this.memberService.patch(_this.member).subscribe(function (response) {
                     _this.loader.dismiss();
+                    _this.authService.getUserInfo(_this.member.name, true);
                     // this.user = this.member; // dirty way to save the new user details locally
                     _this.popover = _this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__["a" /* MoreActionsBuilderComponent */], {
-                        operation: 'Offer',
+                        operation: 'Member',
                         options: [{
-                                title: 'List Offerings',
-                                icon: 'ion-pricetag',
-                                page: __WEBPACK_IMPORTED_MODULE_9__pages_offers_offers__["a" /* OffersPage */]
-                            }, {
-                                title: 'List Wants',
-                                icon: 'ion-pin',
-                                page: __WEBPACK_IMPORTED_MODULE_8__pages_wants_wants__["a" /* WantsPage */]
+                                title: 'View my profile',
+                                icon: 'person',
+                                page: __WEBPACK_IMPORTED_MODULE_11__pages_memberDetail_memberDetail__["a" /* MemberDetailPage */],
+                                params: {
+                                    id: _this.member.id
+                                },
                             }]
                     }, {
                         cssClass: 'confirm-popover',
@@ -2153,10 +2264,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pipes_UnixTimeToMoment__ = __webpack_require__(447);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pipes_ObjectKeys__ = __webpack_require__(448);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_members_members__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_memberDetail_memberDetail__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_memberDetail_memberDetail__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_userProfile_userProfile__ = __webpack_require__(349);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_memberContact_memberContact__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__angular_platform_browser__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__ionic_native_camera__ = __webpack_require__(354);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__ionic_native_status_bar__ = __webpack_require__(351);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__ionic_native_splash_screen__ = __webpack_require__(353);
@@ -2299,110 +2410,6 @@ AppModule = __decorate([
 ], AppModule);
 
 //# sourceMappingURL=app.module.js.map
-
-/***/ }),
-
-/***/ 39:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MemberDetailPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_MemberService__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_AlertService__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_confirmationBuilder_confirmationBuilder__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__memberContact_memberContact__ = __webpack_require__(344);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var MemberDetailPage = (function () {
-    function MemberDetailPage(params, viewCtrl, navCtrl, loadingCtrl, memberService, popoverCtrl, alertService) {
-        this.params = params;
-        this.viewCtrl = viewCtrl;
-        this.navCtrl = navCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.memberService = memberService;
-        this.popoverCtrl = popoverCtrl;
-        this.alertService = alertService;
-    }
-    MemberDetailPage.prototype.ngOnInit = function () {
-        var _this = this;
-        this.viewCtrl.didEnter.subscribe(function (response) {
-            _this.loader = _this.loadingCtrl.create({
-                content: 'Please wait...'
-            });
-            _this.loader.present();
-            _this.memberService.get(_this.params.get('id')).subscribe(function (response) {
-                _this.member = response;
-                _this.loader.dismiss();
-            }, function (error) {
-                _this.alertService.showError(error);
-                _this.loader.dismiss();
-            });
-        });
-    };
-    MemberDetailPage.prototype.customAction = function (label, href, confirm) {
-        var _this = this;
-        console.log(label, href, confirm);
-        this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_4__components_confirmationBuilder_confirmationBuilder__["a" /* ConfirmationBuilderComponent */], {
-            operation: label
-        }, {
-            cssClass: 'confirm-popover',
-            enableBackdropDismiss: false
-        });
-        this.deleteOfferConfirmDialog = true;
-        this.popover.onDidDismiss(function (data) {
-            _this.deleteOfferConfirmDialog = false;
-            if (data && data.hasConfirmed) {
-                _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
-                });
-                _this.loader.present();
-                _this.memberService.custom(href).subscribe(function (response) {
-                    _this.loader.dismiss();
-                    // this.initPage();
-                }, function (error) {
-                    _this.alertService.showError(error);
-                    _this.loader.dismiss();
-                });
-            }
-        });
-        this.popover.present();
-    };
-    MemberDetailPage.prototype.contactMember = function (id) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__memberContact_memberContact__["a" /* ContactMemberPage */], {
-            to_id: this.params.get('id')
-        });
-    };
-    return MemberDetailPage;
-}());
-MemberDetailPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-memberDetail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberDetail/memberDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Member Details</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="member">\n\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n\n      <h2 class="title">{{ member.name }}</h2>\n\n      <button class="view" ion-button (click)="contactMember()">Send Message</button>\n\n      <p class="subtitle" *ngIf="member.mail">\n        <a ion-button icon-start href="mailto:{{member.mail}}">\n          <ion-icon name="mail"></ion-icon>\n          {{ member.mail }}\n        </a>\n      </p>\n\n      <p class="subtitle" *ngIf="member.phone">\n        <a ion-button icon-start href="tel:{{member.phone}}">\n          <ion-icon name="call"></ion-icon>\n          {{ member.phone }}\n        </a>\n      </p>\n\n      <ion-item class="balance" *ngIf="member.balance">\n  			<ion-avatar item-start>\n        	<ion-icon name="trending-up"></ion-icon>\n      	</ion-avatar>\n  			<p [innerHTML]="member && member.balance"></p>\n  		</ion-item>\n\n\n      <ng-container *ngFor="let link of member._links">\n        <button *ngIf="link.rel !=\'self\'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n      </ng-container>\n\n    </ion-item>\n\n    <ion-row>\n      <ion-col>\n        <ion-item>\n          <p *ngIf="member.locality"><b>Locality:</b> {{ member.locality }}</p>\n          <p *ngIf="member.street_address"><b>Address:</b> {{ member.street_address }}</p>\n        </ion-item>\n      </ion-col>\n    </ion-row>\n    <p class="description">{{ member.aboutme }}</p>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberDetail/memberDetail.html"*/
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_2__services_MemberService__["a" /* MemberService */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* PopoverController */],
-        __WEBPACK_IMPORTED_MODULE_3__services_AlertService__["a" /* AlertService */]])
-], MemberDetailPage);
-
-//# sourceMappingURL=memberDetail.js.map
 
 /***/ }),
 
@@ -3435,7 +3442,7 @@ LoginPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_addTransaction_addTransaction__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_transactions_transactions__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_members_members__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_memberDetail_memberDetail__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_memberDetail_memberDetail__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_userProfile_userProfile__ = __webpack_require__(349);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__menu_option__ = __webpack_require__(350);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_app_settings__ = __webpack_require__(21);
@@ -3637,11 +3644,14 @@ var HomePage = (function () {
         var _this = this;
         this.authService.doLogout().subscribe(function (response) { return _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pages_login_login__["a" /* LoginPage */]); });
     };
+    HomePage.prototype.goToFullSite = function () {
+        window.open(this.settings.WEB_SITE_URL, '_system', 'location=yes');
+    };
     return HomePage;
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ settings.APP_NAME }} / <a href="{{ settings.WEB_SITE_URL }}">{{ settings.COMMUNITY_NAME }}</a></ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content scroll="false">\n  <ion-list class="home-header">\n    <ion-item>\n      <p [innerHTML]="member && member.balance" class="balance" item-end></p>\n      <ion-avatar item-start>\n        <img [src]="member && member.image || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h2>Hello, {{ member && member.name }}</h2>\n      <p>What\'s up in {{member.locality}} today?</p>\n    </ion-item>\n  </ion-list>\n\n<ion-list class="home-nav">\n	<ng-container *ngFor="let menu of menus">\n\n		<ion-list-header *ngIf="menu.header">{{ menu.header }}</ion-list-header>\n\n		<ion-item *ngFor="let menuEntry of menu.menu_items" (click)="goToPage(menuEntry);showOptions(menuEntry, $event)">\n      <ion-icon [name]="menuEntry.icon" item-start></ion-icon>\n			{{ menuEntry.title }}\n      <i class="ion-arrow-down-b" *ngIf="menuEntry.options && menuEntry.options.length" item-end></i>\n    </ion-item>\n\n  </ng-container>\n\n	<ion-item (click)="doLogout()">\n    <ion-icon name="log-out" item-start></ion-icon>\n    Log Out\n	</ion-item>\n</ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ settings.APP_NAME }} / <a href="#" (click)="goToFullSite()">{{ settings.COMMUNITY_NAME }}</a></ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content scroll="false">\n  <ion-list class="home-header">\n    <ion-item>\n      <p [innerHTML]="member && member.balance" class="balance" item-end></p>\n      <ion-avatar item-start>\n        <img [src]="member && member.image || member && member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h2>Hello, {{ member && member.name }}</h2>\n      <p>What\'s up in {{member.locality}} today?</p>\n    </ion-item>\n  </ion-list>\n\n<ion-list class="home-nav">\n	<ng-container *ngFor="let menu of menus">\n\n		<ion-list-header *ngIf="menu.header">{{ menu.header }}</ion-list-header>\n\n		<ion-item *ngFor="let menuEntry of menu.menu_items" (click)="goToPage(menuEntry);showOptions(menuEntry, $event)">\n      <ion-icon [name]="menuEntry.icon" item-start></ion-icon>\n			{{ menuEntry.title }}\n      <i class="ion-arrow-down-b" *ngIf="menuEntry.options && menuEntry.options.length" item-end></i>\n    </ion-item>\n\n  </ng-container>\n\n	<ion-item (click)="doLogout()">\n    <ion-icon name="log-out" item-start></ion-icon>\n    Log Out\n	</ion-item>\n</ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
@@ -3671,7 +3681,7 @@ HomePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_lodash__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__memberDetail_memberDetail__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__memberDetail_memberDetail__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);

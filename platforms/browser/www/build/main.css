@@ -26478,6 +26478,22 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
   max-width: 450px;
 }
 
+.item-md ion-avatar {
+  min-width: 60px;
+  min-height: 60px;
+}
+
+.item-md ion-avatar img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+ion-avatar img {
+  border-radius: 0 !important;
+}
+
 ion-header {
   text-align: center;
 }
@@ -26833,8 +26849,8 @@ ion-card.card.app-item-details ion-col {
 
 ion-card.card.app-item-details ion-col ion-item.item.item-avatar {
   padding: 0;
-  height: 36px;
-  min-height: 36px;
+  min-height: 100px;
+  min-width: 100px;
 }
 
 ion-card.card.app-item-details ion-col ion-item.item.item-avatar ion-avatar {
