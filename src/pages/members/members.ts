@@ -51,7 +51,7 @@ export class MembersPage implements OnInit {
 			if (this.hasNoMoreData || this.isLoading) {
 				return;
 			}
-			if ((ev.target.scrollHeight - ev.target.scrollTop) < 700) {
+			if ((ev.target.scrollHeight - ev.target.scrollTop) < 800) {
 				this.loadMembers();
 			}
 		});

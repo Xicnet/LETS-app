@@ -94,7 +94,7 @@ export class WantsPage implements OnInit {
 			if (this.hasNoMoreData || this.isLoading) {
 				return;
 			}
-			if ((ev.target.scrollHeight - ev.target.scrollTop) < 600) {
+			if ((ev.target.scrollHeight - ev.target.scrollTop) < 800) {
 				this.loadWants();
 			}
 		});
