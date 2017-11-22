@@ -126,7 +126,7 @@ export class HomePage implements OnInit {
 	 	header: 'Community',
 	 	menu_items: [
 	 		{
-	 			title: 'View members',
+	 			title: 'Browse members',
 	 			icon: 'people',
 	 			page: MembersPage
 	 		},

@@ -21,6 +21,7 @@ export class MembersPage implements OnInit {
 	private hasNoMoreData: boolean;
 	private filter: any;
 	private filterName: string;
+	private keywords: string;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -108,4 +109,15 @@ export class MembersPage implements OnInit {
 			});
 		this.popover.present();
 	}
+
+	setFilter(ev) {
+		this.keywords = ev.target.value;
+		if(this.keywords){
+			this.navCtrl.push(MembersPage, {
+				filter: `&fragment=${this.keywords}`,
+				filterName: `'${this.keywords}'`
+			});
+		}
+	}
+
 }
