@@ -91,13 +91,13 @@ export class HttpBasicAuth {
 	getWithAuth(url) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		// console.log('getWithAuth',url, headers);
+		// console.log('getWithAuth', url, headers);
 		return this.get(url, headers);
 	}
 
 	get(url, headers: any = new Headers()) {
 		this.createAcceptHeader(headers);
-		// console.log('get', url, headers);
+		console.log('get', url, headers);
 		return this.http.get(url, {
 			headers: headers
 		}).map(this.extractData)

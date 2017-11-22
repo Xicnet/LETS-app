@@ -10,6 +10,7 @@ import { WantsPage } from '../../pages/wants/wants';
 import { OffersPage } from '../../pages/offers/offers';
 import { Member } from '../../domain/Member';
 import { TransactionsPage } from '../../pages/transactions/transactions';
+import { MemberDetailPage } from '../../pages/memberDetail/memberDetail';
 
 @Component({
 	selector: 'page-user-profile',
@@ -89,17 +90,17 @@ export class ProfilePage implements OnInit {
 				this.memberService.patch(this.member).subscribe(
 					response => {
 						this.loader.dismiss();
+						this.authService.getUserInfo(this.member.name, true);
 						// this.user = this.member; // dirty way to save the new user details locally
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
-							operation: 'Offer',
+							operation: 'Member',
 							options: [{
-								title: 'List Offerings',
-								icon: 'ion-pricetag',
-								page: OffersPage
-							}, {
-								title: 'List Wants',
-								icon: 'ion-pin',
-								page: WantsPage
+								title: 'View my profile',
+								icon: 'person',
+								page: MemberDetailPage,
+								params: {
+									id: this.member.id
+								},
 							}]
 						}, {
 								cssClass: 'confirm-popover',

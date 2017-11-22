@@ -31,8 +31,8 @@ export class AuthService {
 			console.log('load token', this.hasToken, token_stored, token_stored.name)
 
 			if(!this.hasToken && token_stored.name){
-				// console.log('try to reload');
-				this.requestUserInfo(token_stored.name, rememberMe);
+				console.log('try to reload');
+				this.getUserInfo(token_stored.name, rememberMe);
 			}
 
 			this.setToken(token_stored);
@@ -65,20 +65,31 @@ export class AuthService {
 		return this.hasToken;
 	}
 
-	private requestUserInfo(username, rememberMe): Observable<Member> {
-		console.log('requestUserInfo', username, rememberMe, this.hasToken)
+	public requestUserInfo(username, rememberMe): Observable<Member> {
+		console.log('requestUserInfo', username, rememberMe, this.hasToken, this.settings.URL.members)
 		//console.log(this.isAuthenticated());
-		if(this.settings.URL && this.settings.URL.members) return this.httpBasicAuth
-			.getWithAuth(`${this.settings.URL.members}?fragment=${username}&depth=1`)
-			.map(response => {
-				for (let id in response) {
-					console.log('user loaded!')
-					this.storeToken(response[id], rememberMe);
-					break;
-				}
-				return response;
-			});
+		if(this.settings.URL.members){
+			return this.httpBasicAuth
+				.getWithAuth(`${this.settings.URL.members}?fragment=${username}&depth=1`)
+				.map(response => {
+					for (let id in response) {
+						console.log('user loaded!')
+						this.storeToken(response[id], rememberMe);
+						break;
+					}
+					return response;
+				});
+		}
 		else this.doLogout();
+	}
+
+	public getUserInfo(username, rememberMe): any{
+		console.log('getUserInfo', username, rememberMe)
+
+		this.requestUserInfo(username, rememberMe).subscribe(
+			response => console.log('getUserInfo done'),
+			// error => this.alertService.showError('Please check your details.\n' + error)
+		);
 	}
 
 	doLogin(username, password, rememberMe): Observable<Member> {
