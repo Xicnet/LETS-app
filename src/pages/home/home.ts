@@ -213,4 +213,8 @@ export class HomePage implements OnInit {
 		this.authService.doLogout().subscribe(
 			response => this.navCtrl.setRoot(LoginPage));
 	}
+
+	goToFullSite() {
+		window.open(this.settings.WEB_SITE_URL, '_system', 'location=yes');
+	}
 }
