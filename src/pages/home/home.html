@@ -8,7 +8,7 @@
     <ion-item>
       <p [innerHTML]="member && member.balance" class="balance" item-end></p>
       <ion-avatar item-start>
-        <img [src]="member && member.image || 'assets/images/default_user.jpg'">
+        <img [src]="member && member.image || member && member.portrait || 'assets/images/default_user.jpg'">
       </ion-avatar>
       <h2>Hello, {{ member && member.name }}</h2>
       <p>What's up in {{member.locality}} today?</p>
