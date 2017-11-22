@@ -6,10 +6,7 @@
 <ion-content>
   <ion-card class="app-item-details" *ngIf="want">
     <h2 class="title">{{ want.title }}</h2>
-    <div class="image" [class.expanded]="imageExpanded" (click)="expandImage()">
-      <img [src]="want.image || 'assets/images/default.jpg'">
-      <div class="posted">Posted {{ want.changed }}</div>
-    </div>
+
     <div class="description" [innerHTML]="want.description"></div>
     <ion-row>
       <ion-col col-6 (click)="showMember(want.user_id.id)">
@@ -24,8 +21,9 @@
       </ion-col>
       <ion-col col-6>
         <ion-item>
-          <p><b>Category:</b> {{ want.$category }}</p>
-          <p><b>Expires:</b> {{ want.expires }}</p>
+					<p *ngIf="want.$category">Category: <b>{{ want.$category }}</b></p>
+          <p *ngIf="want.changed">Posted: <b>{{ want.changed }}</b></p>
+          <p *ngIf="want.expires">Expires: <b>{{ want.expires }}</b></p>
 
           <ng-container *ngIf="currentUser == want.user_id || currentUser == want.user_id.id">
             <button class="my-actions edit" ion-button (click)="editWant(want)" >Edit</button>
