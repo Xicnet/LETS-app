@@ -33,11 +33,11 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
+              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
               "count": 1
             },
             {
-              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+              "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
               "count": 1
             }
           ]
@@ -55,15 +55,15 @@
           "/manifest": [
             {
               "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
-              "count": 9
+              "count": 16
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 7
+              "count": 14
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 7
+              "count": 14
             }
           ]
         }
@@ -92,10 +92,10 @@
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "net.communityforge.lets"
     },
-    "cordova-plugin-app-version": {
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "net.communityforge.lets"
     },
-    "cordova-plugin-inappbrowser": {
+    "uk.co.whiteoctober.cordova.appversion": {
       "PACKAGE_NAME": "net.communityforge.lets"
     }
   },
@@ -167,20 +167,20 @@
       "runs": true
     },
     {
-      "id": "cordova-plugin-app-version.AppVersionPlugin",
-      "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
-      "pluginId": "cordova-plugin-app-version",
-      "clobbers": [
-        "cordova.getAppVersion"
-      ]
-    },
-    {
       "id": "cordova-plugin-inappbrowser.inappbrowser",
       "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
       "pluginId": "cordova-plugin-inappbrowser",
       "clobbers": [
         "cordova.InAppBrowser.open",
         "window.open"
+      ]
+    },
+    {
+      "id": "uk.co.whiteoctober.cordova.appversion.AppVersionPlugin",
+      "file": "plugins/uk.co.whiteoctober.cordova.appversion/www/AppVersionPlugin.js",
+      "pluginId": "uk.co.whiteoctober.cordova.appversion",
+      "clobbers": [
+        "cordova.getAppVersion"
       ]
     }
   ],
@@ -192,7 +192,7 @@
     "cordova-plugin-statusbar": "2.2.3",
     "cordova-plugin-whitelist": "1.3.2",
     "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-app-version": "0.1.9",
-    "cordova-plugin-inappbrowser": "1.7.2"
+    "cordova-plugin-inappbrowser": "1.7.2",
+    "uk.co.whiteoctober.cordova.appversion": "0.1.7"
   }
 }

@@ -27067,6 +27067,11 @@ form.app-form button.confirm-button {
   height: 2em;
 }
 
+page-home .toolbar-title a {
+  color: #fff;
+  text-decoration: none;
+}
+
 page-home ion-list.list {
   margin: 0;
 }
