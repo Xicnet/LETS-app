@@ -42,6 +42,7 @@ import { BrowserModule } from '@angular/platform-browser'; // ionic v3
 import { Camera } from '@ionic-native/camera';
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AppVersion } from '@ionic-native/app-version';
 
 import {enableProdMode} from '@angular/core';
 enableProdMode(); // workaround for error "Expression has changed after it was checked"
@@ -120,6 +121,7 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     StatusBar,
     SplashScreen,
     Camera,
+		AppVersion,
     { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
 export class AppModule { }

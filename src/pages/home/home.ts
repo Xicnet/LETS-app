@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewController, NavController, PopoverController, Popover } from 'ionic-angular';
+import { ViewController, NavController, PopoverController, Popover, Platform } from 'ionic-angular';
 import { AuthService } from '../../services/AuthService';
 import { Member } from '../../domain/Member';
 import { LoginPage } from '../../pages/login/login';
@@ -15,6 +15,7 @@ import { ProfilePage } from '../../pages/userProfile/userProfile';
 import { MenuOptionPopover } from './menu-option';
 import { AppSettings } from '../../app/app.settings';
 import { ConfigService } from '../../services/ConfigService';
+import { AppVersion } from '@ionic-native/app-version';
 
 
 interface MenuEntry {
@@ -35,6 +36,7 @@ export class HomePage implements OnInit {
 	// private menu: Array<MenuEntry>;
 	private menus: any;
 	private popover: Popover;
+	public version: any;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -42,9 +44,18 @@ export class HomePage implements OnInit {
 		private authService: AuthService,
 		private settings: AppSettings,
 		private configService: ConfigService,
+		public platform: Platform,
+		public appVersion: AppVersion,
 ) { }
 
 	ngOnInit(): void {
+
+		if (this.platform.is('cordova')) {
+			this.appVersion.getVersionNumber().then((version)=>{
+          this.version = version;
+        }
+      )
+		}
 
 		this.configService.initAppConfig();
 

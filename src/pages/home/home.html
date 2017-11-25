@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ settings.APP_NAME }} / <a href="#" (click)="goToFullSite()">{{ settings.COMMUNITY_NAME }}</a></ion-title>
+    <ion-title><a href="#" (click)="goToFullSite()">{{ settings.COMMUNITY_NAME || settings.APP_NAME }}</a></ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content scroll="false">
@@ -11,7 +11,7 @@
         <img [src]="member && member.image || member && member.portrait || 'assets/images/default_user.jpg'">
       </ion-avatar>
       <h2>Hello, {{ member && member.name }}</h2>
-      <p>What's up in {{member.locality}} today?</p>
+      <p>What's up in {{member && member.locality}} today?</p>
     </ion-item>
   </ion-list>
 
@@ -32,6 +32,8 @@
     <ion-icon name="log-out" item-start></ion-icon>
     Log Out
 	</ion-item>
+
+	<ion-list-header>{{ settings.APP_NAME }} <span *ngIf="version">{{version}}</span></ion-list-header>
 </ion-list>
 
 
