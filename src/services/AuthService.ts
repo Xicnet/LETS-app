@@ -23,7 +23,7 @@ export class AuthService {
 		var rememberMe = true;
 		if (!token) {
 			token = window.sessionStorage.getItem(this.LOCAL_TOKEN_KEY);
-			var rememberMe = false;
+			rememberMe = false;
 		}
 		if (token) {
 			var token_stored = JSON.parse(token);

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { App, ViewController, NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../services/AuthService';
 import { LoginPage } from '../../pages/login/login';
-import { HomePage } from '../../pages/home/home';
+// import { HomePage } from '../../pages/home/home';
 
 @Component({
 	selector: 'more-actions-builder-component',
@@ -14,7 +14,7 @@ export class MoreActionsBuilderComponent implements OnInit {
 	private status: string;
 
 	constructor(public viewCtrl: ViewController,
-		private navCtrl: NavController,
+		// private navCtrl: NavController,
 		private navParams: NavParams,
 		private authService: AuthService,
 		public appCtrl: App

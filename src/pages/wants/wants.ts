@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewController, NavController, NavParams, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
+import { ViewController, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 import { WantService } from '../../services/WantService';
 import { AlertService } from '../../services/AlertService';
 import { Want } from '../../domain/Want';
 import { WantDetailPage } from '../wantDetail/wantDetail';
 import { AddWantPage } from '../addWant/addWant';
 import { CategoriesFilterPage } from '../categories/categories';
-import { KeywordsFilterPage } from '../keywords/keywords';
-import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
-import { FiltersBuilderComponent } from '../../components/filtersBuilder/filtersBuilder';
+// import { KeywordsFilterPage } from '../keywords/keywords';
+// import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
+// import { FiltersBuilderComponent } from '../../components/filtersBuilder/filtersBuilder';
 import { Member } from '../../domain/Member';
 import * as $ from 'jquery';
 import { map } from 'lodash';
@@ -22,7 +22,7 @@ export class WantsPage implements OnInit {
 	private definitionWant: any;
 	private wants: Array<Want>;
 	private loader: Loading;
-	private popover: Popover;
+	// private popover: Popover;
 	private page: number;
 	private isLoading: boolean;
 	private hasNoMoreData: boolean;
@@ -38,7 +38,7 @@ export class WantsPage implements OnInit {
 		private navCtrl: NavController,
 		private navParams: NavParams,
 		public loadingCtrl: LoadingController,
-		private popoverCtrl: PopoverController,
+		// private popoverCtrl: PopoverController,
 		private wantService: WantService,
 		private alertService: AlertService) { }
 

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ToastController, AlertController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 @Injectable()
 export class AlertService {
 
-	constructor(private toastCtrl: ToastController,
-		private alertCtrl: AlertController) { }
+	constructor(
+		private alertCtrl: AlertController
+	) { }
 
 	showError(message: any) {
 		console.log('showError');

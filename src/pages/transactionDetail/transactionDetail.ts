@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, NavController, MenuController, ModalController, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
+import { NavParams, NavController, MenuController, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
 import { AuthService } from '../../services/AuthService';
 import { TransactionService } from '../../services/TransactionService';
 import { AlertService } from '../../services/AlertService';
@@ -14,7 +14,7 @@ import { ConfirmationBuilderComponent } from '../../components/confirmationBuild
 export class TransactionDetailPage implements OnInit {
 	private username: string;
 	private canPost = false;
-	private success = false;
+	// private success = false;
 	private definitionTransaction: any;
 	private transaction: Transaction;
 	private loader: Loading;
@@ -24,7 +24,7 @@ export class TransactionDetailPage implements OnInit {
 	constructor(private params: NavParams,
 		private navCtrl: NavController,
 		private menuCtrl: MenuController,
-		private modalCtrl: ModalController,
+		// private modalCtrl: ModalController,
 		private authService: AuthService,
 		private transactionService: TransactionService,
 		public loadingCtrl: LoadingController,

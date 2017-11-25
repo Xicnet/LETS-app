@@ -32,7 +32,7 @@ interface MenuEntry {
 
 export class HomePage implements OnInit {
 	private member: Member;
-	private menu: Array<MenuEntry>;
+	// private menu: Array<MenuEntry>;
 	private menus: any;
 	private popover: Popover;
 

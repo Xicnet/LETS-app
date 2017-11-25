@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewController, NavParams, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
-import { AuthService } from '../../services/AuthService';
+// import { AuthService } from '../../services/AuthService';
 import { AlertService } from '../../services/AlertService';
 import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
 import { MoreActionsBuilderComponent } from '../../components/moreActionsBuilder/moreActionsBuilder';
@@ -11,7 +11,6 @@ import { MemberService } from '../../services/MemberService';
 	templateUrl: 'memberContact.html'
 })
 export class ContactMemberPage implements OnInit {
-	private definitionWant: any;
 	private fields: any;
 	private isValid: boolean = false;
 	private loader: Loading
@@ -25,7 +24,7 @@ export class ContactMemberPage implements OnInit {
 		private navParams: NavParams,
 		public loadingCtrl: LoadingController,
 		private popoverCtrl: PopoverController,
-		private authService: AuthService,
+		// private authService: AuthService,
 		private memberService: MemberService,
 		private alertService: AlertService) { }
 

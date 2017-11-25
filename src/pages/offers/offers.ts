@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewController, NavController, NavParams, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
+import { ViewController, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 import { OfferService } from '../../services/OfferService';
 import { AlertService } from '../../services/AlertService';
 import { Offer } from '../../domain/Offer';
 import { OfferDetailPage } from '../offerDetail/offerDetail';
 import { AddOfferPage } from '../addOffer/addOffer';
 import { CategoriesFilterPage } from '../categories/categories';
-import { KeywordsFilterPage } from '../keywords/keywords';
-import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
-import { FiltersBuilderComponent } from '../../components/filtersBuilder/filtersBuilder';
+// import { KeywordsFilterPage } from '../keywords/keywords';
+// import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
+// import { FiltersBuilderComponent } from '../../components/filtersBuilder/filtersBuilder';
 import { Member } from '../../domain/Member';
 import * as $ from 'jquery';
 import { map } from 'lodash';
@@ -23,7 +23,7 @@ export class OffersPage implements OnInit {
 	private definitionOffer: any;
 	private offers: Array<Offer>;
 	private loader: Loading;
-	private popover: Popover;
+	// private popover: Popover;
 	private page: number;
 	private isLoading: boolean;
 	private hasNoMoreData: boolean;
@@ -39,7 +39,7 @@ export class OffersPage implements OnInit {
 		private navCtrl: NavController,
 		private navParams: NavParams,
 		public loadingCtrl: LoadingController,
-		private popoverCtrl: PopoverController,
+		// private popoverCtrl: PopoverController,
 		private offerService: OfferService,
 		private alertService: AlertService,
 ) { }
