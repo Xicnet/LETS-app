@@ -5,6 +5,8 @@ import { AlertService } from '../../services/AlertService';
 import { Member } from '../../domain/Member';
 import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
 import { ContactMemberPage } from '../memberContact/memberContact';
+import { OffersPage } from '../../pages/offers/offers';
+import { WantsPage } from '../../pages/wants/wants';
 
 @Component({
 	selector: 'page-memberDetail',
@@ -73,10 +75,25 @@ export class MemberDetailPage implements OnInit {
 		this.popover.present();
 	}
 
-	contactMember(id) {
+	contactMember() {
 		this.navCtrl.push(ContactMemberPage, {
 			to_id: this.params.get('id')
 		});
 	}
+
+	memberOffers() {
+		this.navCtrl.push(OffersPage, {
+			filter: '&user_id='+this.params.get('id'),
+			filterName: `user: ${this.member.name}`,
+		});
+	}
+
+	memberWants() {
+		this.navCtrl.push(WantsPage, {
+			filter: '&user_id='+this.params.get('id'),
+			filterName: `user: ${this.member.name}`,
+		});
+	}
+
 
 }

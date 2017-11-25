@@ -12,6 +12,7 @@ import { CategoriesFilterPage } from '../categories/categories';
 import { Member } from '../../domain/Member';
 import * as $ from 'jquery';
 import { map } from 'lodash';
+import { MemberDetailPage } from '../../pages/memberDetail/memberDetail';
 
 @Component({
 	selector: 'page-wants',
@@ -144,6 +145,12 @@ export class WantsPage implements OnInit {
 
 	addWant() {
 		this.navCtrl.push(AddWantPage);
+	}
+
+	showMember(userId) {
+		this.navCtrl.push(MemberDetailPage, {
+			id: userId
+		});
 	}
 
 	goToPage(menuEntry) {

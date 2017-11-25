@@ -28,6 +28,12 @@
           {{ member.phone }}
         </a>
       </p>
+			
+			<p>
+				<button class="view" ion-button (click)="memberOffers()">Offers</button>
+				<button class="view" ion-button (click)="memberWants()">Needs</button>
+			</p>
+
 
       <ion-item class="balance" *ngIf="member.balance">
   			<ion-avatar item-start>
