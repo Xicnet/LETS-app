@@ -45,16 +45,25 @@
       },
       "AndroidManifest.xml": {
         "parents": {
-          "/*": [
-            {
-              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 1
-            }
-          ],
+          "/*": [],
           "application": [
             {
               "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"android.support.v4.content.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/provider_paths\" /></provider>",
               "count": 1
+            }
+          ],
+          "/manifest": [
+            {
+              "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
+              "count": 6
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 4
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+              "count": 4
             }
           ]
         }
@@ -63,28 +72,28 @@
   },
   "installed_plugins": {
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.ionicframework.myapp106156"
+      "PACKAGE_NAME": "net.communityforge.lets"
     },
     "cordova-plugin-console": {
-      "PACKAGE_NAME": "com.ionicframework.myapp106156"
+      "PACKAGE_NAME": "net.communityforge.lets"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.ionicframework.myapp106156"
+      "PACKAGE_NAME": "net.communityforge.lets"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.ionicframework.myapp106156"
+      "PACKAGE_NAME": "net.communityforge.lets"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.ionicframework.myapp106156"
+      "PACKAGE_NAME": "net.communityforge.lets"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.ionicframework.myapp106156"
+      "PACKAGE_NAME": "net.communityforge.lets"
     },
     "ionic-plugin-keyboard": {
-      "PACKAGE_NAME": "com.ionicframework.myapp106156"
+      "PACKAGE_NAME": "net.communityforge.lets"
     },
     "cordova-plugin-app-version": {
-      "PACKAGE_NAME": "com.ionicframework.myapp106156"
+      "PACKAGE_NAME": "net.communityforge.lets"
     },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "net.communityforge.lets"
