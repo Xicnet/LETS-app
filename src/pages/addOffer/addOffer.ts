@@ -33,6 +33,7 @@ export class AddOfferPage implements OnInit {
 
 	ngOnInit(): void {
 		this.isLoaded = false;
+
 		if (this.navParams.data) {
 			this.editOffer = this.navParams.data.offer;
 			if(this.editOffer) this.offerID = this.editOffer.id;
@@ -54,6 +55,7 @@ export class AddOfferPage implements OnInit {
 									this.definitionOffer = response;
 									if (this.definitionOffer.POST.user_id) {
 										this.definitionOffer.POST.user_id.default = userInfo.name;
+										this.definitionOffer.POST.user_id.disabled = true;
 									}
 									// console.log(this.editOffer)
 									if (this.editOffer) {

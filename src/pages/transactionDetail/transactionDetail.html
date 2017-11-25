@@ -16,9 +16,9 @@
       <p> {{ transaction.description }} </p>
       <p> <span [innerHTML]="transaction.amount"></span> </p>
       <p>from
-        <button ion-button small class="button-normal" (click)="showMember(transaction.payer.id)">{{ transaction.payer.name }}</button>
+        <button ion-button small class="button-normal" (click)="showMember(transaction.payer_ref.id)">{{ transaction.payer_ref.name }}</button>
       <p>to
-        <button ion-button small class="button-normal" (click)="showMember(transaction.payee.id)">{{ transaction.payee.name }}</button>
+        <button ion-button small class="button-normal" (click)="showMember(transaction.payee_ref.id)">{{ transaction.payee_ref.name }}</button>
       </p>
 
       <ng-container *ngFor="let link of transaction._links">

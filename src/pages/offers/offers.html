@@ -43,12 +43,12 @@
         <div class="description" [innerHTML]="offer.description"></div>
       </ion-col>
 
-      <ion-col col-2 class="items-user" (click)="showMember(offer.user_id.id)">
+      <ion-col col-2 class="items-user" (click)="showMember(offer.user_id)">
         <p>
-          {{ offer.user_id.name }}
+          {{ offer.user_id_ref.name }}
         </p>
-        <ion-avatar *ngIf="offer.user_id.portrait">
-          <img [src]="offer.user_id.portrait">
+        <ion-avatar *ngIf="offer.user_id_ref.portrait">
+          <img [src]="offer.user_id_ref.portrait">
         </ion-avatar>
       </ion-col>
 

@@ -13,13 +13,13 @@
 
     <div class="description" [innerHTML]="offer.description"></div>
     <ion-row>
-      <ion-col col-6 (click)="showMember(offer.user_id.id)">
+      <ion-col col-6 (click)="showMember(offer.user_id)">
         <ion-item class="item-avatar">
           <ion-avatar>
-            <img [src]="offer.user_id.portrait || 'assets/images/default_user.jpg'">
+            <img [src]="offer.user_id_ref.portrait || 'assets/images/default_user.jpg'">
           </ion-avatar>
 					<p>
-						{{ offer.user_id.name }}
+						{{ offer.user_id_ref.name }}
 					</p>
         </ion-item>
       </ion-col>
@@ -30,7 +30,7 @@
           <p *ngIf="offer.changed">Posted: <b>{{ offer.changed }}</b></p>
           <p *ngIf="offer.expires">Expires: <b>{{ offer.expires }}</b></p>
 
-          <ng-container *ngIf="currentUser == offer.user_id || currentUser == offer.user_id.id">
+          <ng-container *ngIf="currentUser == offer.user_id">
             <button class="my-actions edit" ion-button (click)="editOffer(offer)">Edit</button>
             <button class="my-actions delete" ion-button (click)="deleteOffer(offer.id)">Delete</button>
           </ng-container>

@@ -16,7 +16,7 @@
 
       <h6>{{ transaction.description }}</h6>
       <p class="description">
-        <span [innerHTML]="transaction.amount"></span> from {{ transaction.payer.name }} to {{ transaction.payee.name }}
+        <span [innerHTML]="transaction.amount"></span> from {{ transaction.payer_ref.name }} to {{ transaction.payee_ref.name }}
       </p>
 
       <!-- <button ion-button (click)="showDetails(transaction.id)">View</button> -->

@@ -52,6 +52,7 @@ export class AddWantPage implements OnInit {
 									this.definitionWant = response;
 									if (this.definitionWant.POST.user_id) {
 										this.definitionWant.POST.user_id.default = userInfo.name;
+										this.definitionWant.POST.user_id.disabled = true;
 									}
 									if (this.editWant) {
 										for (let i in this.editWant) {

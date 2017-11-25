@@ -3,7 +3,7 @@ export class Want {
   id?: string;
   title: string;
   description: string;
-  user_id: any;
+  user_id: string;
   name: string;
   expires: string;
   uri?: string;
