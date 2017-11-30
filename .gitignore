@@ -32,7 +32,7 @@ platforms/browser/*
 !platforms/android/
 platforms/android/*/*
 
-plugins/
+/plugins/
 plugins/android.json
 plugins/ios.json
 /www/
