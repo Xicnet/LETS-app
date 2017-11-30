@@ -5,6 +5,36 @@
   },
   "config_munge": {
     "files": {
+      "AndroidManifest.xml": {
+        "parents": {
+          "/manifest": [
+            {
+              "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
+              "count": 8
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 8
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+              "count": 8
+            }
+          ],
+          "/*": [
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "count": 1
+            }
+          ],
+          "application": [
+            {
+              "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"android.support.v4.content.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/provider_paths\" /></provider>",
+              "count": 1
+            }
+          ]
+        }
+      },
       "res/xml/config.xml": {
         "parents": {
           "/*": [
@@ -14,6 +44,10 @@
             },
             {
               "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
               "count": 1
             },
             {
@@ -33,37 +67,8 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
               "count": 1
-            }
-          ]
-        }
-      },
-      "AndroidManifest.xml": {
-        "parents": {
-          "/*": [],
-          "application": [
-            {
-              "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"android.support.v4.content.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/provider_paths\" /></provider>",
-              "count": 1
-            }
-          ],
-          "/manifest": [
-            {
-              "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
-              "count": 16
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 14
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 14
             }
           ]
         }
@@ -74,10 +79,10 @@
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "net.communityforge.lets"
     },
-    "cordova-plugin-console": {
+    "cordova-plugin-device": {
       "PACKAGE_NAME": "net.communityforge.lets"
     },
-    "cordova-plugin-device": {
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "net.communityforge.lets"
     },
     "cordova-plugin-splashscreen": {
@@ -89,13 +94,13 @@
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "net.communityforge.lets"
     },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "net.communityforge.lets"
+    },
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "net.communityforge.lets"
     },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "net.communityforge.lets"
-    },
-    "uk.co.whiteoctober.cordova.appversion": {
+    "cordova-plugin-app-version": {
       "PACKAGE_NAME": "net.communityforge.lets"
     }
   },
@@ -142,6 +147,15 @@
       ]
     },
     {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open",
+        "window.open"
+      ]
+    },
+    {
       "id": "cordova-plugin-splashscreen.SplashScreen",
       "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
       "pluginId": "cordova-plugin-splashscreen",
@@ -167,18 +181,9 @@
       "runs": true
     },
     {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open",
-        "window.open"
-      ]
-    },
-    {
-      "id": "uk.co.whiteoctober.cordova.appversion.AppVersionPlugin",
-      "file": "plugins/uk.co.whiteoctober.cordova.appversion/www/AppVersionPlugin.js",
-      "pluginId": "uk.co.whiteoctober.cordova.appversion",
+      "id": "cordova-plugin-app-version.AppVersionPlugin",
+      "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+      "pluginId": "cordova-plugin-app-version",
       "clobbers": [
         "cordova.getAppVersion"
       ]
@@ -186,13 +191,13 @@
   ],
   "plugin_metadata": {
     "cordova-plugin-camera": "2.4.1",
-    "cordova-plugin-console": "1.1.0",
-    "cordova-plugin-device": "1.1.6",
-    "cordova-plugin-splashscreen": "4.0.3",
-    "cordova-plugin-statusbar": "2.2.3",
-    "cordova-plugin-whitelist": "1.3.2",
-    "ionic-plugin-keyboard": "2.2.1",
+    "cordova-plugin-device": "1.1.7",
     "cordova-plugin-inappbrowser": "1.7.2",
-    "uk.co.whiteoctober.cordova.appversion": "0.1.7"
+    "cordova-plugin-splashscreen": "4.1.0",
+    "cordova-plugin-statusbar": "2.3.0",
+    "cordova-plugin-whitelist": "1.3.2",
+    "cordova-plugin-console": "1.1.0",
+    "ionic-plugin-keyboard": "2.2.1",
+    "cordova-plugin-app-version": "0.1.9"
   }
 }

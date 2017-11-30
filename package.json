@@ -29,9 +29,9 @@
     "@types/moment": "^2",
     "ajv": "^5.3.0",
     "angular2-moment": "^1.7.0",
-    "cordova-android": "^6.3.0",
+    "cordova-android": "6.4.0",
     "cordova-browser": "5.0.1",
-    "cordova-plugin-app-version": "^0.1.7",
+    "cordova-plugin-app-version": "^0.1.9",
     "cordova-plugin-camera": "^2.4.1",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-console": "^1.1.0",
@@ -48,8 +48,7 @@
     "ng-semantic": "~1.1.13",
     "rxjs": "5.4.3",
     "sw-toolbox": "^3.6.0",
-    "zone.js": "^0.8",
-    "uk.co.whiteoctober.cordova.appversion": "~0.1.7"
+    "zone.js": "^0.8"
   },
   "devDependencies": {
     "@ionic/app-scripts": "^3",
@@ -77,7 +76,7 @@
       "ionic-plugin-keyboard": {},
       "cordova-plugin-camera": {},
       "cordova-plugin-inappbrowser": {},
-      "uk.co.whiteoctober.cordova.appversion": {}
+      "cordova-plugin-app-version": {}
     },
     "platforms": [
       "browser",
