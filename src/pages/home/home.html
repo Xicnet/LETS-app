@@ -10,8 +10,8 @@
       <ion-avatar item-start>
         <img [src]="member && member.image || member && member.portrait || 'assets/images/default_user.jpg'">
       </ion-avatar>
-      <h2>Hello, {{ member && member.name }}</h2>
-      <p>What's up in {{member && member.locality}} today?</p>
+      <h2 translate [translateParams]="{name: member.name }">Hello!</h2>
+      <p translate [translateParams]="{locality: member.locality || 'your area' }">What's up in your area today?</p>
     </ion-item>
   </ion-list>
 
