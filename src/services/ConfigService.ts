@@ -7,6 +7,8 @@ import { AlertService } from './AlertService';
 import { Config } from '../domain/Config';
 import { AuthService } from './AuthService';
 
+import { TranslateService } from '@ngx-translate/core';
+
 @Injectable()
 export class ConfigService {
 	appConfig = new ReplaySubject<Config>(1);
@@ -14,7 +16,9 @@ export class ConfigService {
 	constructor(private settings: AppSettings,
 		private httpBasicAuth: HttpBasicAuth,
 		private authService: AuthService,
-		private alertService: AlertService) {
+		private alertService: AlertService,
+		private translate: TranslateService
+	) {
 		// this.requestAppConfig().subscribe(
 		// 	response => this.appConfig.next(response),
 		// 	error => this.alertService.showError(error));
@@ -34,10 +38,29 @@ export class ConfigService {
 			response => {
 				console.log('got config sub')
 				console.log(response)
-				this.settings.COMMUNITY_LOGO = response.logo;
-				this.settings.COMMUNITY_NAME = response.sitename;
+				if(response.logo) this.settings.COMMUNITY_LOGO = response.logo;
+				if(response.sitename) this.settings.COMMUNITY_NAME = response.sitename;
+				if(response.language) this.settings.COMMUNITY_LANG = response.language;
+				this.initTranslate();
 			},
 			error => this.alertService.showError('Could not get your community info. Are you online? If so, please check the URL. \n' + error));
 	}
+
+	initTranslate() {
+
+    // Set the default language for translation strings, and the current language.
+    this.translate.setDefaultLang('en');
+
+		if(this.settings.COMMUNITY_LANG){
+			this.translate.use(this.settings.COMMUNITY_LANG); // Set your language here
+		}
+    else if (this.translate.getBrowserLang() !== undefined) {
+      this.translate.use(this.translate.getBrowserLang());
+    }
+
+    // this.translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {
+    //   this.config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
+    // });
+  }
 
 }
