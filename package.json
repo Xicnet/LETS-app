@@ -26,6 +26,8 @@
     "@ionic-native/splash-screen": "^4.3.2",
     "@ionic-native/status-bar": "^4.3.2",
     "@ionic/storage": "^2",
+    "@ngx-translate/core": "^9.0.2",
+    "@ngx-translate/http-loader": "^2.0.0",
     "@types/jquery": "^2",
     "@types/moment": "^2",
     "ajv": "^5.3.0",
@@ -53,11 +55,12 @@
     "zone.js": "^0.8"
   },
   "devDependencies": {
+    "@biesbjerg/ngx-translate-extract": "^2.3.4",
     "@ionic/app-scripts": "^3",
     "@types/lodash": "^4.14.80",
     "ionic": "3.19.0",
-    "typescript": "~2.2.1",
-    "node-sass": "^4.7.2"
+    "node-sass": "^4.7.2",
+    "typescript": "~2.2.1"
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",

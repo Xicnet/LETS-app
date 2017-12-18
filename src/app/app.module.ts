@@ -43,6 +43,7 @@ import { Camera } from '@ionic-native/camera';
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppVersion } from '@ionic-native/app-version';
+import { TranslateModule } from '@ngx-translate/core';
 
 import {enableProdMode} from '@angular/core';
 enableProdMode(); // workaround for error "Expression has changed after it was checked"
@@ -81,7 +82,8 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     IonicModule.forRoot(LetsApp),
     HttpModule,
     JsonpModule,
-    MomentModule
+    MomentModule,
+		TranslateModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
