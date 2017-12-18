@@ -52,6 +52,15 @@ export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+import {MissingTranslationHandler, MissingTranslationHandlerParams} from '@ngx-translate/core';
+
+export class MyMissingTranslationHandler implements MissingTranslationHandler {
+    handle(params: MissingTranslationHandlerParams) {
+				// console.log('MyMissingTranslationHandler',params)
+				// if(params && params.key) return params.key;
+				return '! MISSING TRANSLATION !';
+    }
+}
 
 import {enableProdMode} from '@angular/core';
 enableProdMode(); // workaround for error "Expression has changed after it was checked"
@@ -97,7 +106,8 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
                 provide: TranslateLoader,
                 useFactory: (createTranslateLoader),
                 deps: [HttpClient]
-            }
+            },
+						missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler}
         })
   ],
   bootstrap: [IonicApp],
