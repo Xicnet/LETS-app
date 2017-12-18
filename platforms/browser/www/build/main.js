@@ -25,9 +25,9 @@ var AlertService = (function () {
     AlertService.prototype.showError = function (message) {
         console.log('showError');
         console.error(message);
-        var show = ((message.error) ? message.error : (message) ? message : 'Unknown error');
+        var show = ((message.error) ? message.error : (message) ? message : ('Unknown error'));
         return this.alertCtrl.create({
-            title: 'Error!',
+            title: ('Error'),
             subTitle: show,
             buttons: ['OK']
         }).present();
@@ -58,13 +58,13 @@ AlertService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_addWant_addWant__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_addTransaction_addTransaction__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_transactions_transactions__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_members_members__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_members_members__ = __webpack_require__(360);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_memberDetail_memberDetail__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_userProfile_userProfile__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__menu_option__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_userProfile_userProfile__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__menu_option__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_app_settings__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_ConfigService__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_app_version__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_app_version__ = __webpack_require__(137);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -106,7 +106,8 @@ var HomePage = (function () {
         var _this = this;
         if (this.platform.is('cordova')) {
             this.appVersion.getVersionNumber().then(function (version) {
-                _this.version = version;
+                // this.version = version;
+                _this.settings.APP_VERSION = version;
             });
         }
         this.configService.initAppConfig();
@@ -114,10 +115,10 @@ var HomePage = (function () {
             _this.member = userInfo;
             _this.menus = [
                 {
-                    header: 'I need something',
+                    header: ('I need something'),
                     menu_items: [
                         {
-                            title: 'Browse offers',
+                            title: ('Browse offers'),
                             icon: 'images',
                             page: __WEBPACK_IMPORTED_MODULE_4__pages_offers_offers__["a" /* OffersPage */],
                             params: {
@@ -125,17 +126,17 @@ var HomePage = (function () {
                             }
                         },
                         {
-                            title: 'Post my need',
+                            title: ('Post my need'),
                             icon: 'megaphone',
                             page: __WEBPACK_IMPORTED_MODULE_7__pages_addWant_addWant__["a" /* AddWantPage */],
                         }
                     ]
                 },
                 {
-                    header: 'I have something to offer',
+                    header: ('I have something to offer'),
                     menu_items: [
                         {
-                            title: 'Browse needs',
+                            title: ('Browse needs'),
                             icon: 'paper',
                             page: __WEBPACK_IMPORTED_MODULE_6__pages_wants_wants__["a" /* WantsPage */],
                             params: {
@@ -143,21 +144,21 @@ var HomePage = (function () {
                             }
                         },
                         {
-                            title: 'Post my offer',
+                            title: ('Post my offer'),
                             icon: 'clipboard',
                             page: __WEBPACK_IMPORTED_MODULE_5__pages_addOffer_addOffer__["a" /* AddOfferPage */]
                         }
                     ]
                 },
                 {
-                    header: "I made a trade",
+                    header: ("I made a trade"),
                     menu_items: [
                         {
-                            title: 'I received something',
+                            title: ('I received something'),
                             icon: 'basket',
                             page: __WEBPACK_IMPORTED_MODULE_8__pages_addTransaction_addTransaction__["a" /* AddTransactionPage */],
                             params: {
-                                title: 'As Buyer',
+                                title: ('As Buyer'),
                                 fields: {
                                     payer: {
                                         default: _this.member.name,
@@ -167,11 +168,11 @@ var HomePage = (function () {
                             }
                         },
                         {
-                            title: 'I provided something',
+                            title: ('I provided something'),
                             icon: 'filing',
                             page: __WEBPACK_IMPORTED_MODULE_8__pages_addTransaction_addTransaction__["a" /* AddTransactionPage */],
                             params: {
-                                title: 'As Seller',
+                                title: ('As Seller'),
                                 fields: {
                                     payee: {
                                         default: _this.member.name,
@@ -183,25 +184,25 @@ var HomePage = (function () {
                     ]
                 },
                 {
-                    header: 'Community',
+                    header: ('Community'),
                     menu_items: [
                         {
-                            title: 'Browse members',
+                            title: ('Browse members'),
                             icon: 'people',
                             page: __WEBPACK_IMPORTED_MODULE_10__pages_members_members__["a" /* MembersPage */]
                         },
                         {
-                            title: 'View transactions',
+                            title: ('View transactions'),
                             icon: 'stats',
                             page: __WEBPACK_IMPORTED_MODULE_9__pages_transactions_transactions__["a" /* TransactionsPage */]
                         },
                     ]
                 },
                 {
-                    header: 'My account',
+                    header: ('My account'),
                     menu_items: [
                         {
-                            title: 'View my profile',
+                            title: ('View my profile'),
                             icon: 'person',
                             page: __WEBPACK_IMPORTED_MODULE_11__pages_memberDetail_memberDetail__["a" /* MemberDetailPage */],
                             params: {
@@ -209,12 +210,12 @@ var HomePage = (function () {
                             },
                         },
                         {
-                            title: 'Edit my details',
+                            title: ('Edit my details'),
                             icon: 'contact',
                             page: __WEBPACK_IMPORTED_MODULE_12__pages_userProfile_userProfile__["a" /* ProfilePage */]
                         },
                         {
-                            title: 'View my transactions',
+                            title: ('View my transactions'),
                             icon: 'stats',
                             page: __WEBPACK_IMPORTED_MODULE_9__pages_transactions_transactions__["a" /* TransactionsPage */],
                             params: {
@@ -222,22 +223,22 @@ var HomePage = (function () {
                             },
                         },
                         {
-                            title: 'View my offers',
+                            title: ('View my offers'),
                             icon: 'briefcase',
                             page: __WEBPACK_IMPORTED_MODULE_4__pages_offers_offers__["a" /* OffersPage */],
                             params: {
                                 filter: "&user_id=" + _this.member.id,
-                                filterName: "user: " + _this.member.name,
+                                filterName: _this.member.name,
                                 myActions: true
                             },
                         },
                         {
-                            title: 'View my needs',
+                            title: ('View my needs'),
                             icon: 'list',
                             page: __WEBPACK_IMPORTED_MODULE_6__pages_wants_wants__["a" /* WantsPage */],
                             params: {
                                 filter: "&user_id=" + _this.member.id,
-                                filterName: "user: " + _this.member.name,
+                                filterName: _this.member.name,
                                 myActions: true
                             }
                         },
@@ -277,7 +278,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title><a href="#" (click)="goToFullSite()">{{ settings.COMMUNITY_NAME || settings.APP_NAME }}</a></ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content scroll="false">\n  <ion-list class="home-header">\n    <ion-item>\n      <p [innerHTML]="member && member.balance" class="balance" item-end></p>\n      <ion-avatar item-start>\n        <img [src]="member && member.image || member && member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h2 translate [translateParams]="{name: member.name }">Hello!</h2>\n      <p translate [translateParams]="{locality: member.locality || \'your area\' }">What\'s up in your area today?</p>\n    </ion-item>\n  </ion-list>\n\n<ion-list class="home-nav">\n	<ng-container *ngFor="let menu of menus">\n\n		<ion-list-header *ngIf="menu.header">{{ menu.header }}</ion-list-header>\n\n		<ion-item *ngFor="let menuEntry of menu.menu_items" (click)="goToPage(menuEntry);showOptions(menuEntry, $event)">\n      <ion-icon [name]="menuEntry.icon" item-start></ion-icon>\n			{{ menuEntry.title }}\n      <i class="ion-arrow-down-b" *ngIf="menuEntry.options && menuEntry.options.length" item-end></i>\n    </ion-item>\n\n  </ng-container>\n\n	<ion-item (click)="doLogout()">\n    <ion-icon name="log-out" item-start></ion-icon>\n    Log Out\n	</ion-item>\n\n	<ion-list-header>{{ settings.APP_NAME }} <span *ngIf="version">{{version}}</span></ion-list-header>\n</ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title><a href="#" (click)="goToFullSite()">{{ settings.COMMUNITY_NAME || settings.APP_NAME }}</a></ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content scroll="false">\n  <ion-list class="home-header">\n    <ion-item>\n      <p [innerHTML]="member && member.balance" class="balance" item-end></p>\n      <ion-avatar item-start>\n        <img [src]="member && member.image || member && member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h2 translate [translateParams]="{name: member.name }">Hello!</h2>\n      <p translate [translateParams]="{locality: member.locality || \'your area\' }">What\'s up in your area today?</p>\n    </ion-item>\n  </ion-list>\n\n<ion-list class="home-nav">\n	<ng-container *ngFor="let menu of menus">\n\n		<ion-list-header *ngIf="menu.header">{{ menu.header | translate }}</ion-list-header>\n\n		<ion-item *ngFor="let menuEntry of menu.menu_items" (click)="goToPage(menuEntry);showOptions(menuEntry, $event)">\n      <ion-icon [name]="menuEntry.icon" item-start></ion-icon>\n			{{ menuEntry.title | translate }}\n      <i class="ion-arrow-down-b" *ngIf="menuEntry.options && menuEntry.options.length" item-end></i>\n    </ion-item>\n\n  </ng-container>\n\n	<ion-item (click)="doLogout()">\n    <ion-icon name="log-out" item-start></ion-icon>\n    {{ \'Log Out\' | translate }}\n	</ion-item>\n\n	<ion-list-header>{{ settings.APP_NAME }} <span *ngIf="settings.APP_VERSION">{{settings.APP_VERSION}}</span></ion-list-header>\n</ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
@@ -339,7 +340,7 @@ var CategoriesFilterPage = (function () {
 }());
 CategoriesFilterPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-categories',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/categories/categories.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ title }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-list class="app-items">\n    <ion-item *ngFor="let category of categories" (click)="setFilter(category)">\n      <h5>{{ category.name }}</h5>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/categories/categories.html"*/
+        selector: 'page-categories',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/categories/categories.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ title || translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-list class="app-items">\n    <ion-item *ngFor="let category of categories" (click)="setFilter(category)">\n      <h5>{{ category.name }}</h5>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/categories/categories.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
@@ -404,7 +405,7 @@ var AddTransactionPage = AddTransactionPage_1 = (function () {
         this.viewCtrl.didEnter.subscribe(function (response) {
             if (!_this.isLoaded) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.transactionService.describe().subscribe(function (response) {
@@ -434,7 +435,7 @@ var AddTransactionPage = AddTransactionPage_1 = (function () {
         var _this = this;
         this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_5__components_confirmationBuilder_confirmationBuilder__["a" /* ConfirmationBuilderComponent */], {
             fields: this.definitionTransaction.POST,
-            operation: 'Transaction'
+            operation: ('Transaction')
         }, {
             cssClass: 'confirm-popover',
             enableBackdropDismiss: false
@@ -442,19 +443,19 @@ var AddTransactionPage = AddTransactionPage_1 = (function () {
         this.popover.onDidDismiss(function (data) {
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.transactionService.post(_this.transaction).subscribe(function (response) {
                     _this.loader.dismiss();
                     _this.popover = _this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__["a" /* MoreActionsBuilderComponent */], {
-                        operation: 'Transaction',
+                        operation: ('Transaction'),
                         options: [{
-                                title: 'Record Transaction - as a Seller',
+                                title: ('Record Transaction - as a Seller'),
                                 icon: 'ion-edit',
                                 page: AddTransactionPage_1,
                                 params: {
-                                    title: 'as Seller',
+                                    title: ('as Seller'),
                                     fields: {
                                         payee: {
                                             default: _this.member.name,
@@ -463,11 +464,11 @@ var AddTransactionPage = AddTransactionPage_1 = (function () {
                                     }
                                 }
                             }, {
-                                title: 'Record Transaction - as a Buyer',
+                                title: ('Record Transaction - as a Buyer'),
                                 icon: 'ion-edit',
                                 page: AddTransactionPage_1,
                                 params: {
-                                    title: 'as Buyer',
+                                    title: ('as Buyer'),
                                     fields: {
                                         payer: {
                                             default: _this.member.name,
@@ -497,7 +498,7 @@ var AddTransactionPage = AddTransactionPage_1 = (function () {
 }());
 AddTransactionPage = AddTransactionPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-add-transaction',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addTransaction/addTransaction.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Record Transaction - {{ title }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="addTransaction()">Submit</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addTransaction/addTransaction.html"*/
+        selector: 'page-add-transaction',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addTransaction/addTransaction.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ \'Record Transaction\' | translate }} - {{ title | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="addTransaction()">{{ \'Submit\' | translate }}</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addTransaction/addTransaction.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -524,7 +525,7 @@ var AddTransactionPage_1;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_TransactionService__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_AlertService__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addTransaction_addTransaction__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__transactionDetail_transactionDetail__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__transactionDetail_transactionDetail__ = __webpack_require__(359);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_confirmationBuilder_confirmationBuilder__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -608,7 +609,7 @@ var TransactionsPage = (function () {
             _this.deleteOfferConfirmDialog = false;
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.transactionService.custom(href).subscribe(function (response) {
@@ -626,7 +627,7 @@ var TransactionsPage = (function () {
 }());
 TransactionsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-transactions',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactions/transactions.html"*/'<ion-header>\n  <ion-navbar>\n		<ion-title>Transactions</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div class="ui success message" *ngIf="success">\n    <i class="close icon"></i>\n    <div class="header">Success!</div>\n    <p>New transaction created.</p>\n  </div>\n\n  <ion-list class="app-items">\n    <ion-item *ngFor="let transaction of transactions">\n\n      <h6>{{ transaction.description }}</h6>\n      <p class="description">\n        <span [innerHTML]="transaction.amount"></span> from {{ transaction.payer_ref.name }} to {{ transaction.payee_ref.name }}\n      </p>\n\n      <!-- <button ion-button (click)="showDetails(transaction.id)">View</button> -->\n\n      <ng-container *ngFor="let link of transaction._links">\n        <button *ngIf="link.rel !=\'self\' && link.rel !=\'view\'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n        <button *ngIf="link.rel ==\'self\' || link.rel ==\'view\'" class="view" ion-button (click)="showDetails(transaction.id)">{{link.label || \'Details\'}}</button>\n      </ng-container>\n\n    </ion-item>\n  </ion-list>\n\n  <!-- <button *ngIf="canPost" class="ui add-new button" (click)="addTransaction()">\n    <i class="plus icon"></i> New Transaction\n  </button> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactions/transactions.html"*/
+        selector: 'page-transactions',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactions/transactions.html"*/'<ion-header>\n  <ion-navbar>\n		<ion-title>{{ \'Transactions\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div class="ui success message" *ngIf="success">\n    <i class="close icon"></i>\n    <div class="header">{{ \'Success!\' | translate }}</div>\n    <p>{{ \'New transaction created\' | translate }}.</p>\n  </div>\n\n  <ion-list class="app-items">\n    <ion-item *ngFor="let transaction of transactions">\n\n      <h6>{{ transaction.description }}</h6>\n      <p class="description">\n        <span [innerHTML]="transaction.amount"></span> {{ \'from\' | translate }} {{ transaction.payer_ref.name }} {{ \'to\' | translate }} {{ transaction.payee_ref.name }}\n      </p>\n\n      <!-- <button ion-button (click)="showDetails(transaction.id)">View</button> -->\n\n      <ng-container *ngFor="let link of transaction._links">\n        <button *ngIf="link.rel !=\'self\' && link.rel !=\'view\'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n        <button *ngIf="link.rel ==\'self\' || link.rel ==\'view\'" class="view" ion-button (click)="showDetails(transaction.id)">{{link.label || \'Details\'}}</button>\n      </ng-container>\n\n    </ion-item>\n  </ion-list>\n\n  <!-- <button *ngIf="canPost" class="ui add-new button" (click)="addTransaction()">\n    <i class="plus icon"></i> New Transaction\n  </button> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactions/transactions.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
@@ -702,13 +703,13 @@ FiltersBuilderComponent = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfigService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_settings__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__HttpBasicAuth__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AlertService__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__AuthService__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(364);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -744,7 +745,7 @@ var ConfigService = (function () {
     ConfigService.prototype.initAppConfig = function () {
         var _this = this;
         if (!this.settings.WEB_SITE_URL) {
-            this.alertService.showError('The app does not know your community URL. Please log out to configure it.\n');
+            this.alertService.showError(('The app does not know your community URL - please log out to configure it'));
             this.authService.doLogout();
         }
         else
@@ -758,16 +759,21 @@ var ConfigService = (function () {
                 if (response.language)
                     _this.settings.COMMUNITY_LANG = response.language;
                 _this.initTranslate();
-            }, function (error) { return _this.alertService.showError('Could not get your community info. Are you online? If so, please check the URL. \n' + error); });
+            }, function (error) { return _this.alertService.showError(('Could not get your community info - please check the URL, and that you are online') + '.\n' + error); });
     };
     ConfigService.prototype.initTranslate = function () {
         var lang = 'en'; // Set the default language for translation strings
         this.translate.setDefaultLang(lang);
-        if (this.settings.COMMUNITY_LANG) {
-            lang = this.settings.COMMUNITY_LANG; // Set your language here
-        }
-        else if (this.translate.getBrowserLang() !== undefined) {
-            lang = this.translate.getBrowserLang();
+        var overide = this.settings.APP_ENGLISH;
+        // console.log("lang? "+this.settings.COMMUNITY_LANG);
+        // console.log("english? "+overide);
+        if (!overide || overide == 'false') {
+            if (this.settings.COMMUNITY_LANG) {
+                lang = this.settings.COMMUNITY_LANG; // Set your language here
+            }
+            else if (this.translate.getBrowserLang() !== undefined) {
+                lang = this.translate.getBrowserLang();
+            }
         }
         this.translate.use(lang);
         console.log("localise: " + lang);
@@ -790,7 +796,7 @@ ConfigService = __decorate([
 
 /***/ }),
 
-/***/ 147:
+/***/ 148:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -803,7 +809,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 147;
+webpackEmptyAsyncContext.id = 148;
 
 /***/ }),
 
@@ -815,7 +821,7 @@ webpackEmptyAsyncContext.id = 147;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_ReplaySubject__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_ReplaySubject__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_ReplaySubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_settings__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__HttpBasicAuth__ = __webpack_require__(35);
@@ -931,7 +937,7 @@ AuthService = __decorate([
 
 /***/ }),
 
-/***/ 188:
+/***/ 189:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -944,7 +950,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 188;
+webpackEmptyAsyncContext.id = 189;
 
 /***/ }),
 
@@ -989,7 +995,7 @@ var ConfirmationBuilderComponent = (function () {
 }());
 ConfirmationBuilderComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'confirmation-builder-component',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/confirmationBuilder/confirmationBuilder.html"*/'<div class="app-confirm-operation">\n	<h6>Confirm {{ operation }}</h6>\n	<ion-grid>\n	  <ion-row *ngFor="let field of fields | keys">\n	    <ion-col class="label" col-6 *ngIf="field.$value">{{ field.label }}</ion-col>\n	    <ion-col class="value" col-6 *ngIf="field.$value" [ngSwitch]="field.type" >\n	    	<div *ngSwitchCase="\'image\'" class="image">\n					<img *ngIf="field.$value" [src]="field.$value">\n				</div>\n				<div *ngSwitchDefault>{{ field.$value }}</div>\n	    </ion-col>\n	  </ion-row>\n	  <ion-row class="actions">\n	  	<ion-col col-6>\n	  		<button class="cancel" (click)="doCancel()">\n	  			<i class="ion-ios-arrow-back"></i> Back\n	  		</button>\n	  	</ion-col>\n	  	<ion-col col-6>\n	  		<button class="confim" (click)="doConfirm()">Confirm</button>\n	  	</ion-col>\n	  </ion-row>\n	</ion-grid>\n</div>'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/confirmationBuilder/confirmationBuilder.html"*/
+        selector: 'confirmation-builder-component',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/confirmationBuilder/confirmationBuilder.html"*/'<div class="app-confirm-operation">\n	<h6>{{ \'Confirm\' | translate }} {{ operation | translate }}</h6>\n	<ion-grid>\n	  <ion-row *ngFor="let field of fields | keys">\n	    <ion-col class="label" col-6 *ngIf="field.$value">{{ field.label }}</ion-col>\n	    <ion-col class="value" col-6 *ngIf="field.$value" [ngSwitch]="field.type" >\n	    	<div *ngSwitchCase="\'image\'" class="image">\n					<img *ngIf="field.$value" [src]="field.$value">\n				</div>\n				<div *ngSwitchDefault>{{ field.$value }}</div>\n	    </ion-col>\n	  </ion-row>\n	  <ion-row class="actions">\n	  	<ion-col col-6>\n	  		<button class="cancel" (click)="doCancel()">\n	  			<i class="ion-ios-arrow-back"></i> {{ \'Back\' | translate }}\n	  		</button>\n	  	</ion-col>\n	  	<ion-col col-6>\n	  		<button class="confim" (click)="doConfirm()">{{ \'Confirm\' | translate }}</button>\n	  	</ion-col>\n	  </ion-row>\n	</ion-grid>\n</div>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/confirmationBuilder/confirmationBuilder.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]])
@@ -1086,6 +1092,30 @@ var AppSettings = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(AppSettings.prototype, "APP_VERSION", {
+        get: function () {
+            var opt = window.localStorage.getItem('version');
+            if (opt)
+                return opt;
+            else
+                return '0.x';
+        },
+        set: function (opt) {
+            window.localStorage.setItem('version', opt);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AppSettings.prototype, "APP_ENGLISH", {
+        get: function () {
+            return window.localStorage.getItem('in_english');
+        },
+        set: function (opt) {
+            window.localStorage.setItem('in_english', opt);
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(AppSettings.prototype, "URL", {
         get: function () {
             if (this.SERVER_URL)
@@ -1121,7 +1151,7 @@ AppSettings = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_MemberService__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_AlertService__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_confirmationBuilder_confirmationBuilder__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__memberContact_memberContact__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__memberContact_memberContact__ = __webpack_require__(357);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_offers_offers__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_wants_wants__ = __webpack_require__(55);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1155,7 +1185,7 @@ var MemberDetailPage = (function () {
         var _this = this;
         this.viewCtrl.didEnter.subscribe(function (response) {
             _this.loader = _this.loadingCtrl.create({
-                content: 'Please wait...'
+                content: ('Please wait') + '...'
             });
             _this.loader.present();
             _this.memberService.get(_this.params.get('id')).subscribe(function (response) {
@@ -1181,7 +1211,7 @@ var MemberDetailPage = (function () {
             _this.deleteOfferConfirmDialog = false;
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.memberService.custom(href).subscribe(function (response) {
@@ -1203,20 +1233,20 @@ var MemberDetailPage = (function () {
     MemberDetailPage.prototype.memberOffers = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__pages_offers_offers__["a" /* OffersPage */], {
             filter: '&user_id=' + this.params.get('id'),
-            filterName: "user: " + this.member.name,
+            filterName: this.member.name,
         });
     };
     MemberDetailPage.prototype.memberWants = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__pages_wants_wants__["a" /* WantsPage */], {
             filter: '&user_id=' + this.params.get('id'),
-            filterName: "user: " + this.member.name,
+            filterName: this.member.name,
         });
     };
     return MemberDetailPage;
 }());
 MemberDetailPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-memberDetail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberDetail/memberDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Member Details</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="member">\n\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n\n      <h2 class="title">{{ member.name }}</h2>\n\n      <button class="view" ion-button (click)="contactMember()">Send Message</button>\n\n      <p class="subtitle" *ngIf="member.mail">\n        <a ion-button icon-start href="mailto:{{member.mail}}">\n          <ion-icon name="mail"></ion-icon>\n          {{ member.mail }}\n        </a>\n      </p>\n\n      <p class="subtitle" *ngIf="member.phone">\n        <a ion-button icon-start href="tel:{{member.phone}}">\n          <ion-icon name="call"></ion-icon>\n          {{ member.phone }}\n        </a>\n      </p>\n			\n			<p>\n				<button class="view" ion-button (click)="memberOffers()">Offers</button>\n				<button class="view" ion-button (click)="memberWants()">Needs</button>\n			</p>\n\n\n      <ion-item class="balance" *ngIf="member.balance">\n  			<ion-avatar item-start>\n        	<ion-icon name="trending-up"></ion-icon>\n      	</ion-avatar>\n  			<p [innerHTML]="member && member.balance"></p>\n  		</ion-item>\n\n\n      <ng-container *ngFor="let link of member._links">\n        <button *ngIf="link.rel !=\'self\'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n      </ng-container>\n\n    </ion-item>\n\n    <ion-row>\n      <ion-col>\n        <ion-item>\n          <p *ngIf="member.locality"><b>Locality:</b> {{ member.locality }}</p>\n          <p *ngIf="member.street_address"><b>Address:</b> {{ member.street_address }}</p>\n        </ion-item>\n      </ion-col>\n    </ion-row>\n    <p class="description">{{ member.aboutme }}</p>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberDetail/memberDetail.html"*/
+        selector: 'page-memberDetail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberDetail/memberDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ \'Member Details\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="member">\n\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n\n      <h2 class="title">{{ member.name }}</h2>\n\n      <button class="view" ion-button (click)="contactMember()">{{ \'Message\' | translate }}</button>\n\n      <p class="subtitle" *ngIf="member.mail">\n        <a ion-button icon-start href="mailto:{{member.mail}}">\n          <ion-icon name="mail"></ion-icon>\n          {{ member.mail }}\n        </a>\n      </p>\n\n      <p class="subtitle" *ngIf="member.phone">\n        <a ion-button icon-start href="tel:{{member.phone}}">\n          <ion-icon name="call"></ion-icon>\n          {{ member.phone }}\n        </a>\n      </p>\n\n			<p>\n				<button class="view" ion-button (click)="memberOffers()">{{ \'Offers\' | translate }}</button>\n				<button class="view" ion-button (click)="memberWants()">{{ \'Needs\' | translate }}</button>\n			</p>\n\n\n      <ion-item class="balance" *ngIf="member.balance">\n  			<ion-avatar item-start>\n        	<ion-icon name="trending-up"></ion-icon>\n      	</ion-avatar>\n  			<p [innerHTML]="member && member.balance"></p>\n  		</ion-item>\n\n\n      <ng-container *ngFor="let link of member._links">\n        <button *ngIf="link.rel !=\'self\'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n      </ng-container>\n\n    </ion-item>\n\n    <ion-row>\n      <ion-col>\n        <ion-item>\n          <p *ngIf="member.locality"><b>{{ \'Locality\' | translate }}:</b> {{ member.locality }}</p>\n          <p *ngIf="member.street_address"><b>{{ \'Address\' | translate }}:</b> {{ member.street_address }}</p>\n        </ion-item>\n      </ion-col>\n    </ion-row>\n    <p class="description">{{ member.aboutme }}</p>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberDetail/memberDetail.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
@@ -1237,7 +1267,7 @@ MemberDetailPage = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpBasicAuth; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_settings__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
@@ -1314,7 +1344,7 @@ var HttpBasicAuth = (function () {
         if (error.status == 401) {
             window.localStorage.removeItem('auth_token');
             window.sessionStorage.removeItem('auth_token');
-            throw "Your login details may be incorrect, please logout and login again.";
+            throw ('Your login details may be incorrect, please logout and login again');
         }
         try {
             if (error._body && !error._body.type) {
@@ -1325,7 +1355,7 @@ var HttpBasicAuth = (function () {
             throw '';
         }
         catch (e) {
-            throw "There was a connection or server error. " + e + " ";
+            throw ('There was a connection or server error!') + e;
         }
     };
     HttpBasicAuth.prototype.getWithAuth = function (url) {
@@ -1443,7 +1473,7 @@ HttpBasicAuth = __decorate([
 
 /***/ }),
 
-/***/ 355:
+/***/ 356:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1494,7 +1524,7 @@ var OfferDetailPage = (function () {
         this.viewCtrl.didEnter.subscribe(function (response) {
             _this.imageExpanded = false;
             _this.loader = _this.loadingCtrl.create({
-                content: 'Please wait...'
+                content: ('Please wait') + '...'
             });
             _this.loader.present();
             _this.authService.userInfo.subscribe(function (userInfo) {
@@ -1541,7 +1571,7 @@ var OfferDetailPage = (function () {
     };
     OfferDetailPage.prototype.showActions = function () {
         this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__["a" /* MoreActionsBuilderComponent */], {
-            operation: 'Offer',
+            operation: ('Offer'),
             status: 'Menu',
             options: []
         }, {
@@ -1559,7 +1589,7 @@ var OfferDetailPage = (function () {
         var _this = this;
         this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_9__components_confirmationBuilder_confirmationBuilder__["a" /* ConfirmationBuilderComponent */], {
             fields: this.definitionOffer.POST,
-            operation: 'Delete Offer'
+            operation: ('Delete Offer')
         }, {
             cssClass: 'confirm-popover',
             enableBackdropDismiss: false
@@ -1569,7 +1599,7 @@ var OfferDetailPage = (function () {
             _this.deleteOfferConfirmDialog = false;
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.offerService.delete(id).subscribe(function (response) {
@@ -1597,7 +1627,7 @@ var OfferDetailPage = (function () {
             _this.deleteOfferConfirmDialog = false;
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.offerService.custom(href).subscribe(function (response) {
@@ -1615,7 +1645,7 @@ var OfferDetailPage = (function () {
 }());
 OfferDetailPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-offer-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offerDetail/offerDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Offering Details</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="offer">\n    <h2 class="title">{{ offer.title }}</h2>\n\n    <div class="image" [class.expanded]="imageExpanded" *ngIf="offer.image" (click)="expandImage()">\n      <img [src]="offer.image">\n    </div>\n\n    <div class="description" [innerHTML]="offer.description"></div>\n    <ion-row>\n      <ion-col col-6 (click)="showMember(offer.user_id)">\n        <ion-item class="item-avatar">\n          <ion-avatar>\n            <img [src]="offer.user_id_ref.portrait || \'assets/images/default_user.jpg\'">\n          </ion-avatar>\n					<p>\n						{{ offer.user_id_ref.name }}\n					</p>\n        </ion-item>\n      </ion-col>\n\n      <ion-col col-6>\n        <ion-item>\n          <p *ngIf="offer.$category">Category: <b>{{ offer.$category }}</b></p>\n          <p *ngIf="offer.changed">Posted: <b>{{ offer.changed }}</b></p>\n          <p *ngIf="offer.expires">Expires: <b>{{ offer.expires }}</b></p>\n\n          <ng-container *ngIf="currentUser == offer.user_id">\n            <button class="my-actions edit" ion-button (click)="editOffer(offer)">Edit</button>\n            <button class="my-actions delete" ion-button (click)="deleteOffer(offer.id)">Delete</button>\n          </ng-container>\n\n          <ng-container *ngFor="let link of offer._links">\n            <button *ngIf="link.rel !=\'self\'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n          </ng-container>\n\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offerDetail/offerDetail.html"*/
+        selector: 'page-offer-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offerDetail/offerDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ \'Offer Details\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="offer">\n    <h2 class="title">{{ offer.title }}</h2>\n\n    <div class="image" [class.expanded]="imageExpanded" *ngIf="offer.image" (click)="expandImage()">\n      <img [src]="offer.image">\n    </div>\n\n    <div class="description" [innerHTML]="offer.description"></div>\n    <ion-row>\n      <ion-col col-6 (click)="showMember(offer.user_id)">\n        <ion-item class="item-avatar">\n          <ion-avatar>\n            <img [src]="offer.user_id_ref.portrait || \'assets/images/default_user.jpg\'">\n          </ion-avatar>\n					<p>\n						{{ offer.user_id_ref.name }}\n					</p>\n        </ion-item>\n      </ion-col>\n\n      <ion-col col-6>\n        <ion-item>\n          <p *ngIf="offer.$category">{{ \'Category\' | translate }}: <b>{{ offer.$category }}</b></p>\n          <p *ngIf="offer.changed">{{ \'Posted\' | translate }}: <b>{{ offer.changed }}</b></p>\n          <p *ngIf="offer.expires">{{ \'Expires\' | translate }}: <b>{{ offer.expires }}</b></p>\n\n          <ng-container *ngIf="currentUser == offer.user_id">\n            <button class="my-actions edit" ion-button (click)="editOffer(offer)">Edit</button>\n            <button class="my-actions delete" ion-button (click)="deleteOffer(offer.id)">Delete</button>\n          </ng-container>\n\n          <ng-container *ngFor="let link of offer._links">\n            <button *ngIf="link.rel !=\'self\'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n          </ng-container>\n\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offerDetail/offerDetail.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
@@ -1631,7 +1661,7 @@ OfferDetailPage = __decorate([
 
 /***/ }),
 
-/***/ 356:
+/***/ 357:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1681,19 +1711,19 @@ var ContactMemberPage = (function () {
         this.viewCtrl.didEnter.subscribe(function (response) {
             if (!_this.isLoaded) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.fields = {
                     'subject': {
                         'name': 'subject',
                         'placeholder': '',
-                        'label': 'Subject',
+                        'label': ('Subject'),
                         'required': true
                     },
                     'body': {
                         'name': 'body',
                         'placeholder': '',
-                        'label': 'Message',
+                        'label': ('Message'),
                         'type': 'textarea'
                     }
                 };
@@ -1711,7 +1741,7 @@ var ContactMemberPage = (function () {
         console.log(this.message_data);
         this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_3__components_confirmationBuilder_confirmationBuilder__["a" /* ConfirmationBuilderComponent */], {
             fields: this.fields,
-            operation: 'Contact Member'
+            operation: ('Contact Member')
         }, {
             cssClass: 'confirm-popover',
             enableBackdropDismiss: false
@@ -1719,14 +1749,14 @@ var ContactMemberPage = (function () {
         this.popover.onDidDismiss(function (data) {
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.memberService.contact(_this.to_id, _this.message_data).subscribe(function (response) {
                     _this.loader.dismiss();
                     _this.popover = _this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_4__components_moreActionsBuilder_moreActionsBuilder__["a" /* MoreActionsBuilderComponent */], {
-                        operation: 'Message',
-                        status: 'was sent',
+                        operation: ('Message'),
+                        status: ('was sent'),
                         options: []
                     }, {
                         cssClass: 'confirm-popover',
@@ -1745,7 +1775,7 @@ var ContactMemberPage = (function () {
 }());
 ContactMemberPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-contact-member',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberContact/memberContact.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Contact Member</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="sendMessage()">Send</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberContact/memberContact.html"*/
+        selector: 'page-contact-member',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberContact/memberContact.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ \'Contact Member\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="sendMessage()">{{ \'Send\' | translate }}</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/memberContact/memberContact.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -1759,7 +1789,7 @@ ContactMemberPage = __decorate([
 
 /***/ }),
 
-/***/ 357:
+/***/ 358:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1808,7 +1838,7 @@ var WantDetailPage = (function () {
         this.viewCtrl.didEnter.subscribe(function (response) {
             _this.imageExpanded = false;
             _this.loader = _this.loadingCtrl.create({
-                content: 'Please wait...'
+                content: ('Please wait') + '...'
             });
             _this.loader.present();
             _this.authService.userInfo.subscribe(function (userInfo) {
@@ -1862,7 +1892,7 @@ var WantDetailPage = (function () {
         var _this = this;
         this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_8__components_confirmationBuilder_confirmationBuilder__["a" /* ConfirmationBuilderComponent */], {
             fields: this.definitionWant.POST,
-            operation: 'Delete Want'
+            operation: ('Delete Want')
         }, {
             cssClass: 'confirm-popover',
             enableBackdropDismiss: false
@@ -1872,7 +1902,7 @@ var WantDetailPage = (function () {
             _this.deleteWantConfirmDialog = false;
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.wantService.delete(id).subscribe(function (response) {
@@ -1900,7 +1930,7 @@ var WantDetailPage = (function () {
             _this.deleteWantConfirmDialog = false;
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.wantService.custom(href).subscribe(function (response) {
@@ -1918,7 +1948,7 @@ var WantDetailPage = (function () {
 }());
 WantDetailPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-want-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wantDetail/wantDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Want Details</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="want">\n    <h2 class="title">{{ want.title }}</h2>\n\n    <div class="description" [innerHTML]="want.description"></div>\n    <ion-row>\n      <ion-col col-6 (click)="showMember(want.user_id)">\n        <ion-item class="item-avatar">\n          <ion-avatar>\n            <img [src]="want.user_id_ref.portrait || \'assets/images/default_user.jpg\'">\n          </ion-avatar>\n					<p>\n						{{ want.user_id_ref.name }}\n					</p>\n        </ion-item>\n\n      </ion-col>\n      <ion-col col-6>\n        <ion-item>\n					<p *ngIf="want.$category">Category: <b>{{ want.$category }}</b></p>\n          <p *ngIf="want.changed">Posted: <b>{{ want.changed }}</b></p>\n          <p *ngIf="want.expires">Expires: <b>{{ want.expires }}</b></p>\n\n          <ng-container *ngIf="currentUser == want.user_id">\n            <button class="my-actions edit" ion-button (click)="editWant(want)" >Edit</button>\n            <button class="my-actions delete" ion-button (click)="deleteWant(want.id)" >Delete</button>\n          </ng-container>\n\n          <ng-container *ngFor="let link of want._links">\n            <button *ngIf="link.rel !=\'self\'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n          </ng-container>\n\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wantDetail/wantDetail.html"*/
+        selector: 'page-want-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wantDetail/wantDetail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ \'Need Details\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-card class="app-item-details" *ngIf="want">\n    <h2 class="title">{{ want.title }}</h2>\n\n    <div class="description" [innerHTML]="want.description"></div>\n    <ion-row>\n      <ion-col col-6 (click)="showMember(want.user_id)">\n        <ion-item class="item-avatar">\n          <ion-avatar>\n            <img [src]="want.user_id_ref.portrait || \'assets/images/default_user.jpg\'">\n          </ion-avatar>\n					<p>\n						{{ want.user_id_ref.name }}\n					</p>\n        </ion-item>\n\n      </ion-col>\n      <ion-col col-6>\n        <ion-item>\n					<p *ngIf="want.$category">{{ \'Category\' | translate }}: <b>{{ want.$category }}</b></p>\n          <p *ngIf="want.changed">{{ \'Posted\' | translate }}: <b>{{ want.changed }}</b></p>\n          <p *ngIf="want.expires">{{ \'Expires\' | translate }}: <b>{{ want.expires }}</b></p>\n\n          <ng-container *ngIf="currentUser == want.user_id">\n            <button class="my-actions edit" ion-button (click)="editWant(want)" >{{ \'Edit\' | translate }}</button>\n            <button class="my-actions delete" ion-button (click)="deleteWant(want.id)" >{{ \'Delete\' | translate }}</button>\n          </ng-container>\n\n          <ng-container *ngFor="let link of want._links">\n            <button *ngIf="link.rel !=\'self\'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n          </ng-container>\n\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showActions()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wantDetail/wantDetail.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
@@ -1934,7 +1964,7 @@ WantDetailPage = __decorate([
 
 /***/ }),
 
-/***/ 358:
+/***/ 359:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2014,7 +2044,7 @@ var TransactionDetailPage = (function () {
             _this.deleteOfferConfirmDialog = false;
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.transactionService.custom(href).subscribe(function (response) {
@@ -2032,7 +2062,7 @@ var TransactionDetailPage = (function () {
 }());
 TransactionDetailPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-transaction-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactionDetail/transactionDetail.html"*/'<ion-header>\n  <ion-navbar>\n		<ion-title>Transaction</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div class="ui success message" *ngIf="success">\n    <i class="close icon"></i>\n    <div class="header">Success!</div>\n    <p>New transaction created.</p>\n  </div>\n\n  <ion-card *ngIf="transaction">\n    <ion-card-content>\n      <p> {{ transaction.description }} </p>\n      <p> <span [innerHTML]="transaction.amount"></span> </p>\n      <p>from\n        <button ion-button small class="button-normal" (click)="showMember(transaction.payer_ref.id)">{{ transaction.payer_ref.name }}</button>\n      <p>to\n        <button ion-button small class="button-normal" (click)="showMember(transaction.payee_ref.id)">{{ transaction.payee_ref.name }}</button>\n      </p>\n\n      <ng-container *ngFor="let link of transaction._links">\n        <button *ngIf="link.rel !=\'self\' && link.rel !=\'view\'" class="edit" ion-button small (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n      </ng-container>\n\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactionDetail/transactionDetail.html"*/
+        selector: 'page-transaction-detail',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactionDetail/transactionDetail.html"*/'<ion-header>\n  <ion-navbar>\n		<ion-title>{{ \'Transaction\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div class="ui success message" *ngIf="success">\n    <i class="close icon"></i>\n    <div class="header">{{ \'Success!\' | translate }}</div>\n    <p>{{ \'New transaction created\' | translate }}.</p>\n  </div>\n\n  <ion-card *ngIf="transaction">\n    <ion-card-content>\n      <p> {{ transaction.description }} </p>\n      <p> <span [innerHTML]="transaction.amount"></span> </p>\n      <p>from\n        <button ion-button small class="button-normal" (click)="showMember(transaction.payer_ref.id)">{{ transaction.payer_ref.name }}</button>\n      <p>to\n        <button ion-button small class="button-normal" (click)="showMember(transaction.payee_ref.id)">{{ transaction.payee_ref.name }}</button>\n      </p>\n\n      <ng-container *ngFor="let link of transaction._links">\n        <button *ngIf="link.rel !=\'self\' && link.rel !=\'view\'" class="edit" ion-button small (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n      </ng-container>\n\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactionDetail/transactionDetail.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
@@ -2048,7 +2078,7 @@ TransactionDetailPage = __decorate([
 
 /***/ }),
 
-/***/ 359:
+/***/ 360:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2058,7 +2088,7 @@ TransactionDetailPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_MemberService__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_AlertService__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__memberDetail_memberDetail__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__keywords_keywords__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__keywords_keywords__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_filtersBuilder_filtersBuilder__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jquery__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_jquery__);
@@ -2122,7 +2152,7 @@ var MembersPage = MembersPage_1 = (function () {
         }
         this.isLoading = true;
         this.loader = this.loadingCtrl.create({
-            content: 'Please wait...'
+            content: ('Please wait') + '...'
         });
         this.loader.present();
         this.memberService.list(this.page, this.filter).subscribe(function (response) {
@@ -2147,14 +2177,14 @@ var MembersPage = MembersPage_1 = (function () {
     MembersPage.prototype.showFilters = function () {
         this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_6__components_filtersBuilder_filtersBuilder__["a" /* FiltersBuilderComponent */], {
             options: [{
-                    title: 'Show By Keyword',
+                    title: ('Show By Keyword'),
                     page: __WEBPACK_IMPORTED_MODULE_5__keywords_keywords__["a" /* KeywordsFilterPage */],
                     params: {
-                        title: 'Members',
+                        title: ('Members'),
                         page: MembersPage_1
                     }
                 }, {
-                    title: 'Clear Filters',
+                    title: ('Clear Filters'),
                     page: MembersPage_1
                 }]
         }, {
@@ -2176,7 +2206,7 @@ var MembersPage = MembersPage_1 = (function () {
 }());
 MembersPage = MembersPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-members',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/members/members.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Members</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n\n	<ion-toolbar>\n		<ion-searchbar (search)="setFilter($event)"></ion-searchbar>\n	</ion-toolbar>\n\n\n  <ion-list class="app-filters" *ngIf="filterName">\n    <ion-item>\n      Members currently listed in {{ filterName }}\n    </ion-item>\n  </ion-list>\n\n  <ion-list class="app-items small">\n    <ion-item *ngFor="let member of members" (click)="showDetails(member.id)">\n      <ion-avatar item-start>\n        <img [src]="member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h6>{{ member.name }}</h6>\n      <ion-note>{{ member.locality }}</ion-note>\n      <p class="description">{{ member.aboutme }}</p>\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showFilters()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/members/members.html"*/
+        selector: 'page-members',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/members/members.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ \'Members\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n\n	<ion-toolbar>\n		<ion-searchbar (search)="setFilter($event)"></ion-searchbar>\n	</ion-toolbar>\n\n\n  <ion-list class="app-filters" *ngIf="filterName">\n    <ion-item>\n      {{ \'Members found for\' | translate }} {{ filterName }}\n    </ion-item>\n  </ion-list>\n\n  <ion-list class="app-items small">\n    <ion-item *ngFor="let member of members" (click)="showDetails(member.id)">\n      <ion-avatar item-start>\n        <img [src]="member.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h6>{{ member.name }}</h6>\n      <ion-note>{{ member.locality }}</ion-note>\n      <p class="description">{{ member.aboutme }}</p>\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n\n<!-- <ion-footer>\n  <ion-list>\n    <ion-item>\n      <button (click)="showFilters()">\n        <i class="ion-navicon-round"></i>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/members/members.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
@@ -2192,7 +2222,7 @@ var MembersPage_1;
 
 /***/ }),
 
-/***/ 360:
+/***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2223,7 +2253,7 @@ var KeywordsFilterPage = (function () {
         };
         this.validationMessages = {
             'keywords': {
-                'required': 'Email is required.'
+                'required': ('Email is required')
             }
         };
     }
@@ -2272,7 +2302,7 @@ var KeywordsFilterPage = (function () {
 }());
 KeywordsFilterPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-keywords',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/keywords/keywords.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ title }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n	<form class="app-form" [formGroup]="keywordsForm">\n		<ion-list>\n	  	<ion-item>\n	  		<ion-input type="text" placeholder="Keyword" formControlName="keywords"></ion-input>\n	  	</ion-item>\n	  </ion-list>\n	  <button class="confirm-button" ion-button full [disabled]="!keywordsForm.valid" (click)="setFilter()">Search</button>\n	</form>\n</ion-content>'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/keywords/keywords.html"*/
+        selector: 'page-keywords',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/keywords/keywords.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ title || translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n	<form class="app-form" [formGroup]="keywordsForm">\n		<ion-list>\n	  	<ion-item>\n	  		<ion-input type="text" placeholder="Keyword" formControlName="keywords"></ion-input>\n	  	</ion-item>\n	  </ion-list>\n	  <button class="confirm-button" ion-button full [disabled]="!keywordsForm.valid" (click)="setFilter()">{{ \'Search\' | translate }}</button>\n	</form>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/keywords/keywords.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
@@ -2284,7 +2314,7 @@ KeywordsFilterPage = __decorate([
 
 /***/ }),
 
-/***/ 361:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2339,7 +2369,7 @@ var ProfilePage = (function () {
         this.viewCtrl.didEnter.subscribe(function (response) {
             if (!_this.isLoaded) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.authService.userInfo.subscribe(function (userInfo) {
@@ -2371,7 +2401,7 @@ var ProfilePage = (function () {
         var _this = this;
         this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_5__components_confirmationBuilder_confirmationBuilder__["a" /* ConfirmationBuilderComponent */], {
             fields: this.definitionMember.PATCH,
-            operation: 'My Account'
+            operation: ('My Account')
         }, {
             cssClass: 'confirm-popover',
             enableBackdropDismiss: false
@@ -2379,7 +2409,7 @@ var ProfilePage = (function () {
         this.popover.onDidDismiss(function (data) {
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.member.id = _this.user.id;
@@ -2388,9 +2418,9 @@ var ProfilePage = (function () {
                     _this.authService.getUserInfo(_this.member.name, true);
                     // this.user = this.member; // dirty way to save the new user details locally
                     _this.popover = _this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__["a" /* MoreActionsBuilderComponent */], {
-                        operation: 'Member',
+                        operation: ('Member'),
                         options: [{
-                                title: 'View my profile',
+                                title: ('View my profile'),
                                 icon: 'person',
                                 page: __WEBPACK_IMPORTED_MODULE_11__pages_memberDetail_memberDetail__["a" /* MemberDetailPage */],
                                 params: {
@@ -2413,27 +2443,27 @@ var ProfilePage = (function () {
     ProfilePage.prototype.showActions = function () {
         this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_7__components_filtersBuilder_filtersBuilder__["a" /* FiltersBuilderComponent */], {
             options: [{
-                    title: 'Show My Offerings',
+                    title: ('Show My Offers'),
                     page: __WEBPACK_IMPORTED_MODULE_9__pages_offers_offers__["a" /* OffersPage */],
                     params: {
                         filter: "&user_id=" + this.user.id,
-                        filterName: "user: " + this.user.name,
+                        filterName: this.user.name,
                         myActions: true
                     }
                 }, {
-                    title: 'Show My Wants',
+                    title: ('Show My Needs'),
                     page: __WEBPACK_IMPORTED_MODULE_8__pages_wants_wants__["a" /* WantsPage */],
                     params: {
                         filter: "&user_id=" + this.user.id,
-                        filterName: "user: " + this.user.name,
+                        filterName: this.user.name,
                         myActions: true
                     }
                 }, {
-                    title: 'Show My Transactions',
+                    title: ('Show My Transactions'),
                     page: __WEBPACK_IMPORTED_MODULE_10__pages_transactions_transactions__["a" /* TransactionsPage */],
                     params: {
                         filter: "&user_id=" + this.user.id,
-                        filterName: "user: " + this.user.name,
+                        filterName: this.user.name,
                         myActions: true
                     }
                 }
@@ -2448,7 +2478,7 @@ var ProfilePage = (function () {
 }());
 ProfilePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-user-profile',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/userProfile/userProfile.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>My Account</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n	<ion-list class="home-header">\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="user && user.image || user && user.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h2>{{ user && user.name }}</h2>\n      <ion-item class="balance">\n  			<ion-avatar item-start>\n        	<ion-icon name="trending-up"></ion-icon>\n      	</ion-avatar>\n  			<p [innerHTML]="user && user.balance"></p>\n  		</ion-item>\n    </ion-item>\n\n  </ion-list>\n\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n\n</ion-content>\n\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="editProfile()">Submit</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/userProfile/userProfile.html"*/
+        selector: 'page-user-profile',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/userProfile/userProfile.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ \'My Account\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n	<ion-list class="home-header">\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="user && user.image || user && user.portrait || \'assets/images/default_user.jpg\'">\n      </ion-avatar>\n      <h2>{{ user && user.name }}</h2>\n      <ion-item class="balance">\n  			<ion-avatar item-start>\n        	<ion-icon name="trending-up"></ion-icon>\n      	</ion-avatar>\n  			<p [innerHTML]="user && user.balance"></p>\n  		</ion-item>\n    </ion-item>\n\n  </ion-list>\n\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n\n</ion-content>\n\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="editProfile()">{{ \'Save\' | translate }}</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/userProfile/userProfile.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
@@ -2462,7 +2492,7 @@ ProfilePage = __decorate([
 
 /***/ }),
 
-/***/ 362:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2506,7 +2536,7 @@ var MenuOptionPopover = (function () {
 }());
 MenuOptionPopover = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'popover-menu-option',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/menu-option.html"*/'<ion-list class="options-popover">\n  <ion-item *ngFor="let option of options" (click)="goToPage(option)">\n    <ion-label>{{ option.title }}</ion-label>\n  </ion-item>\n</ion-list>'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/menu-option.html"*/
+        selector: 'popover-menu-option',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/menu-option.html"*/'<ion-list class="options-popover">\n  <ion-item *ngFor="let option of options" (click)="goToPage(option)">\n    <ion-label>{{ option.title | translate }}</ion-label>\n  </ion-item>\n</ion-list>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/home/menu-option.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
@@ -2539,7 +2569,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_moment__ = __webpack_require__(426);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(430);
@@ -2559,31 +2589,31 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_filtersBuilder_filtersBuilder__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_login_login__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_home_home__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_home_menu_option__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_home_menu_option__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_addTransaction_addTransaction__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_transactions_transactions__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_transactionDetail_transactionDetail__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_transactionDetail_transactionDetail__ = __webpack_require__(359);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_offers_offers__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_offerDetail_offerDetail__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_offerDetail_offerDetail__ = __webpack_require__(356);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_addOffer_addOffer__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_wants_wants__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_wantDetail_wantDetail__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_wantDetail_wantDetail__ = __webpack_require__(358);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_addWant_addWant__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_categories_categories__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_keywords_keywords__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_keywords_keywords__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pipes_UnixTimeToMoment__ = __webpack_require__(469);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pipes_ObjectKeys__ = __webpack_require__(470);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_members_members__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_members_members__ = __webpack_require__(360);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_memberDetail_memberDetail__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_userProfile_userProfile__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_memberContact_memberContact__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_userProfile_userProfile__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_memberContact_memberContact__ = __webpack_require__(357);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__ionic_native_camera__ = __webpack_require__(372);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__ionic_native_status_bar__ = __webpack_require__(370);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__ionic_native_splash_screen__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__ionic_native_app_version__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__ionic_native_app_version__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__angular_common_http__ = __webpack_require__(471);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ngx_translate_core__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ngx_translate_core__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ngx_translate_http_loader__ = __webpack_require__(475);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2639,8 +2669,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 function createTranslateLoader(http) {
-    return new __WEBPACK_IMPORTED_MODULE_46__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, './assets/i18n/', '.json');
+    return new __WEBPACK_IMPORTED_MODULE_46__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, 'assets/i18n/', '.json');
 }
+// import {MissingTranslationHandler, MissingTranslationHandlerParams} from '@ngx-translate/core';
+// export class MyMissingTranslationHandler implements MissingTranslationHandler {
+//     handle(params: MissingTranslationHandlerParams) {
+// 				// console.log('MyMissingTranslationHandler',params)
+// 				// if(params && params.key) return params.key;
+// 				return '! MISSING TRANSLATION !';
+//     }
+// }
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["enableProdMode"])(); // workaround for error "Expression has changed after it was checked"
 var AppModule = (function () {
@@ -2692,7 +2730,7 @@ AppModule = __decorate([
                     provide: __WEBPACK_IMPORTED_MODULE_45__ngx_translate_core__["a" /* TranslateLoader */],
                     useFactory: (createTranslateLoader),
                     deps: [__WEBPACK_IMPORTED_MODULE_44__angular_common_http__["a" /* HttpClient */]]
-                }
+                },
             })
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* IonicApp */]],
@@ -2814,7 +2852,7 @@ var MoreActionsBuilderComponent = (function () {
 }());
 MoreActionsBuilderComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'more-actions-builder-component',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/moreActionsBuilder/moreActionsBuilder.html"*/'<div class="app-confirm-operation">\n	<h6>{{ operation }} {{ status }}</h6>\n	<ion-list>\n	  <ion-item *ngFor="let option of options" (click)="goToPage(option)">\n	  	<i [class]="option.icon" item-start></i>\n	    <ion-label>{{ option.title }}</ion-label>\n	  </ion-item>\n	  <ion-item (click)="goBack()">\n	  	<i class="ion-back" item-start></i>\n	    <ion-label>Go Back</ion-label>\n	  </ion-item>\n		<ion-item (click)="goToHome()">\n	  	<i class="ion-home" item-start></i>\n	    <ion-label>Go Home</ion-label>\n	  </ion-item>\n	</ion-list>\n</div>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/moreActionsBuilder/moreActionsBuilder.html"*/
+        selector: 'more-actions-builder-component',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/moreActionsBuilder/moreActionsBuilder.html"*/'<div class="app-confirm-operation">\n	<h6>{{ operation | translate }} {{ status | translate }}</h6>\n	<ion-list>\n	  <ion-item *ngFor="let option of options" (click)="goToPage(option)">\n	  	<i [class]="option.icon" item-start></i>\n	    <ion-label>{{ option.title | translate }}</ion-label>\n	  </ion-item>\n	  <ion-item (click)="goBack()">\n	  	<i class="ion-back" item-start></i>\n	    <ion-label>{{ \'Go Back\' | translate }}</ion-label>\n	  </ion-item>\n		<ion-item (click)="goToHome()">\n	  	<i class="ion-home" item-start></i>\n	    <ion-label>{{ \'Go Home\' | translate }}</ion-label>\n	  </ion-item>\n	</ion-list>\n</div>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/moreActionsBuilder/moreActionsBuilder.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -2830,222 +2868,222 @@ MoreActionsBuilderComponent = __decorate([
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 231,
-	"./af.js": 231,
-	"./ar": 232,
-	"./ar-dz": 233,
-	"./ar-dz.js": 233,
-	"./ar-ly": 234,
-	"./ar-ly.js": 234,
-	"./ar-ma": 235,
-	"./ar-ma.js": 235,
-	"./ar-sa": 236,
-	"./ar-sa.js": 236,
-	"./ar-tn": 237,
-	"./ar-tn.js": 237,
-	"./ar.js": 232,
-	"./az": 238,
-	"./az.js": 238,
-	"./be": 239,
-	"./be.js": 239,
-	"./bg": 240,
-	"./bg.js": 240,
-	"./bn": 241,
-	"./bn.js": 241,
-	"./bo": 242,
-	"./bo.js": 242,
-	"./br": 243,
-	"./br.js": 243,
-	"./bs": 244,
-	"./bs.js": 244,
-	"./ca": 245,
-	"./ca.js": 245,
-	"./cs": 246,
-	"./cs.js": 246,
-	"./cv": 247,
-	"./cv.js": 247,
-	"./cy": 248,
-	"./cy.js": 248,
-	"./da": 249,
-	"./da.js": 249,
-	"./de": 250,
-	"./de-at": 251,
-	"./de-at.js": 251,
-	"./de.js": 250,
-	"./dv": 252,
-	"./dv.js": 252,
-	"./el": 253,
-	"./el.js": 253,
-	"./en-au": 254,
-	"./en-au.js": 254,
-	"./en-ca": 255,
-	"./en-ca.js": 255,
-	"./en-gb": 256,
-	"./en-gb.js": 256,
-	"./en-ie": 257,
-	"./en-ie.js": 257,
-	"./en-nz": 258,
-	"./en-nz.js": 258,
-	"./eo": 259,
-	"./eo.js": 259,
-	"./es": 260,
-	"./es-do": 261,
-	"./es-do.js": 261,
-	"./es.js": 260,
-	"./et": 262,
-	"./et.js": 262,
-	"./eu": 263,
-	"./eu.js": 263,
-	"./fa": 264,
-	"./fa.js": 264,
-	"./fi": 265,
-	"./fi.js": 265,
-	"./fo": 266,
-	"./fo.js": 266,
-	"./fr": 267,
-	"./fr-ca": 268,
-	"./fr-ca.js": 268,
-	"./fr-ch": 269,
-	"./fr-ch.js": 269,
-	"./fr.js": 267,
-	"./fy": 270,
-	"./fy.js": 270,
-	"./gd": 271,
-	"./gd.js": 271,
-	"./gl": 272,
-	"./gl.js": 272,
-	"./he": 273,
-	"./he.js": 273,
-	"./hi": 274,
-	"./hi.js": 274,
-	"./hr": 275,
-	"./hr.js": 275,
-	"./hu": 276,
-	"./hu.js": 276,
-	"./hy-am": 277,
-	"./hy-am.js": 277,
-	"./id": 278,
-	"./id.js": 278,
-	"./is": 279,
-	"./is.js": 279,
-	"./it": 280,
-	"./it.js": 280,
-	"./ja": 281,
-	"./ja.js": 281,
-	"./jv": 282,
-	"./jv.js": 282,
-	"./ka": 283,
-	"./ka.js": 283,
-	"./kk": 284,
-	"./kk.js": 284,
-	"./km": 285,
-	"./km.js": 285,
-	"./ko": 286,
-	"./ko.js": 286,
-	"./ky": 287,
-	"./ky.js": 287,
-	"./lb": 288,
-	"./lb.js": 288,
-	"./lo": 289,
-	"./lo.js": 289,
-	"./lt": 290,
-	"./lt.js": 290,
-	"./lv": 291,
-	"./lv.js": 291,
-	"./me": 292,
-	"./me.js": 292,
-	"./mi": 293,
-	"./mi.js": 293,
-	"./mk": 294,
-	"./mk.js": 294,
-	"./ml": 295,
-	"./ml.js": 295,
-	"./mr": 296,
-	"./mr.js": 296,
-	"./ms": 297,
-	"./ms-my": 298,
-	"./ms-my.js": 298,
-	"./ms.js": 297,
-	"./my": 299,
-	"./my.js": 299,
-	"./nb": 300,
-	"./nb.js": 300,
-	"./ne": 301,
-	"./ne.js": 301,
-	"./nl": 302,
-	"./nl-be": 303,
-	"./nl-be.js": 303,
-	"./nl.js": 302,
-	"./nn": 304,
-	"./nn.js": 304,
-	"./pa-in": 305,
-	"./pa-in.js": 305,
-	"./pl": 306,
-	"./pl.js": 306,
-	"./pt": 307,
-	"./pt-br": 308,
-	"./pt-br.js": 308,
-	"./pt.js": 307,
-	"./ro": 309,
-	"./ro.js": 309,
-	"./ru": 310,
-	"./ru.js": 310,
-	"./se": 311,
-	"./se.js": 311,
-	"./si": 312,
-	"./si.js": 312,
-	"./sk": 313,
-	"./sk.js": 313,
-	"./sl": 314,
-	"./sl.js": 314,
-	"./sq": 315,
-	"./sq.js": 315,
-	"./sr": 316,
-	"./sr-cyrl": 317,
-	"./sr-cyrl.js": 317,
-	"./sr.js": 316,
-	"./ss": 318,
-	"./ss.js": 318,
-	"./sv": 319,
-	"./sv.js": 319,
-	"./sw": 320,
-	"./sw.js": 320,
-	"./ta": 321,
-	"./ta.js": 321,
-	"./te": 322,
-	"./te.js": 322,
-	"./tet": 323,
-	"./tet.js": 323,
-	"./th": 324,
-	"./th.js": 324,
-	"./tl-ph": 325,
-	"./tl-ph.js": 325,
-	"./tlh": 326,
-	"./tlh.js": 326,
-	"./tr": 327,
-	"./tr.js": 327,
-	"./tzl": 328,
-	"./tzl.js": 328,
-	"./tzm": 329,
-	"./tzm-latn": 330,
-	"./tzm-latn.js": 330,
-	"./tzm.js": 329,
-	"./uk": 331,
-	"./uk.js": 331,
-	"./uz": 332,
-	"./uz.js": 332,
-	"./vi": 333,
-	"./vi.js": 333,
-	"./x-pseudo": 334,
-	"./x-pseudo.js": 334,
-	"./yo": 335,
-	"./yo.js": 335,
-	"./zh-cn": 336,
-	"./zh-cn.js": 336,
-	"./zh-hk": 337,
-	"./zh-hk.js": 337,
-	"./zh-tw": 338,
-	"./zh-tw.js": 338
+	"./af": 232,
+	"./af.js": 232,
+	"./ar": 233,
+	"./ar-dz": 234,
+	"./ar-dz.js": 234,
+	"./ar-ly": 235,
+	"./ar-ly.js": 235,
+	"./ar-ma": 236,
+	"./ar-ma.js": 236,
+	"./ar-sa": 237,
+	"./ar-sa.js": 237,
+	"./ar-tn": 238,
+	"./ar-tn.js": 238,
+	"./ar.js": 233,
+	"./az": 239,
+	"./az.js": 239,
+	"./be": 240,
+	"./be.js": 240,
+	"./bg": 241,
+	"./bg.js": 241,
+	"./bn": 242,
+	"./bn.js": 242,
+	"./bo": 243,
+	"./bo.js": 243,
+	"./br": 244,
+	"./br.js": 244,
+	"./bs": 245,
+	"./bs.js": 245,
+	"./ca": 246,
+	"./ca.js": 246,
+	"./cs": 247,
+	"./cs.js": 247,
+	"./cv": 248,
+	"./cv.js": 248,
+	"./cy": 249,
+	"./cy.js": 249,
+	"./da": 250,
+	"./da.js": 250,
+	"./de": 251,
+	"./de-at": 252,
+	"./de-at.js": 252,
+	"./de.js": 251,
+	"./dv": 253,
+	"./dv.js": 253,
+	"./el": 254,
+	"./el.js": 254,
+	"./en-au": 255,
+	"./en-au.js": 255,
+	"./en-ca": 256,
+	"./en-ca.js": 256,
+	"./en-gb": 257,
+	"./en-gb.js": 257,
+	"./en-ie": 258,
+	"./en-ie.js": 258,
+	"./en-nz": 259,
+	"./en-nz.js": 259,
+	"./eo": 260,
+	"./eo.js": 260,
+	"./es": 261,
+	"./es-do": 262,
+	"./es-do.js": 262,
+	"./es.js": 261,
+	"./et": 263,
+	"./et.js": 263,
+	"./eu": 264,
+	"./eu.js": 264,
+	"./fa": 265,
+	"./fa.js": 265,
+	"./fi": 266,
+	"./fi.js": 266,
+	"./fo": 267,
+	"./fo.js": 267,
+	"./fr": 268,
+	"./fr-ca": 269,
+	"./fr-ca.js": 269,
+	"./fr-ch": 270,
+	"./fr-ch.js": 270,
+	"./fr.js": 268,
+	"./fy": 271,
+	"./fy.js": 271,
+	"./gd": 272,
+	"./gd.js": 272,
+	"./gl": 273,
+	"./gl.js": 273,
+	"./he": 274,
+	"./he.js": 274,
+	"./hi": 275,
+	"./hi.js": 275,
+	"./hr": 276,
+	"./hr.js": 276,
+	"./hu": 277,
+	"./hu.js": 277,
+	"./hy-am": 278,
+	"./hy-am.js": 278,
+	"./id": 279,
+	"./id.js": 279,
+	"./is": 280,
+	"./is.js": 280,
+	"./it": 281,
+	"./it.js": 281,
+	"./ja": 282,
+	"./ja.js": 282,
+	"./jv": 283,
+	"./jv.js": 283,
+	"./ka": 284,
+	"./ka.js": 284,
+	"./kk": 285,
+	"./kk.js": 285,
+	"./km": 286,
+	"./km.js": 286,
+	"./ko": 287,
+	"./ko.js": 287,
+	"./ky": 288,
+	"./ky.js": 288,
+	"./lb": 289,
+	"./lb.js": 289,
+	"./lo": 290,
+	"./lo.js": 290,
+	"./lt": 291,
+	"./lt.js": 291,
+	"./lv": 292,
+	"./lv.js": 292,
+	"./me": 293,
+	"./me.js": 293,
+	"./mi": 294,
+	"./mi.js": 294,
+	"./mk": 295,
+	"./mk.js": 295,
+	"./ml": 296,
+	"./ml.js": 296,
+	"./mr": 297,
+	"./mr.js": 297,
+	"./ms": 298,
+	"./ms-my": 299,
+	"./ms-my.js": 299,
+	"./ms.js": 298,
+	"./my": 300,
+	"./my.js": 300,
+	"./nb": 301,
+	"./nb.js": 301,
+	"./ne": 302,
+	"./ne.js": 302,
+	"./nl": 303,
+	"./nl-be": 304,
+	"./nl-be.js": 304,
+	"./nl.js": 303,
+	"./nn": 305,
+	"./nn.js": 305,
+	"./pa-in": 306,
+	"./pa-in.js": 306,
+	"./pl": 307,
+	"./pl.js": 307,
+	"./pt": 308,
+	"./pt-br": 309,
+	"./pt-br.js": 309,
+	"./pt.js": 308,
+	"./ro": 310,
+	"./ro.js": 310,
+	"./ru": 311,
+	"./ru.js": 311,
+	"./se": 312,
+	"./se.js": 312,
+	"./si": 313,
+	"./si.js": 313,
+	"./sk": 314,
+	"./sk.js": 314,
+	"./sl": 315,
+	"./sl.js": 315,
+	"./sq": 316,
+	"./sq.js": 316,
+	"./sr": 317,
+	"./sr-cyrl": 318,
+	"./sr-cyrl.js": 318,
+	"./sr.js": 317,
+	"./ss": 319,
+	"./ss.js": 319,
+	"./sv": 320,
+	"./sv.js": 320,
+	"./sw": 321,
+	"./sw.js": 321,
+	"./ta": 322,
+	"./ta.js": 322,
+	"./te": 323,
+	"./te.js": 323,
+	"./tet": 324,
+	"./tet.js": 324,
+	"./th": 325,
+	"./th.js": 325,
+	"./tl-ph": 326,
+	"./tl-ph.js": 326,
+	"./tlh": 327,
+	"./tlh.js": 327,
+	"./tr": 328,
+	"./tr.js": 328,
+	"./tzl": 329,
+	"./tzl.js": 329,
+	"./tzm": 330,
+	"./tzm-latn": 331,
+	"./tzm-latn.js": 331,
+	"./tzm.js": 330,
+	"./uk": 332,
+	"./uk.js": 332,
+	"./uz": 333,
+	"./uz.js": 333,
+	"./vi": 334,
+	"./vi.js": 334,
+	"./x-pseudo": 335,
+	"./x-pseudo.js": 335,
+	"./yo": 336,
+	"./yo.js": 336,
+	"./zh-cn": 337,
+	"./zh-cn.js": 337,
+	"./zh-hk": 338,
+	"./zh-hk.js": 338,
+	"./zh-tw": 339,
+	"./zh-tw.js": 339
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -3147,7 +3185,7 @@ LetsApp = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_distinctUntilChanged___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_distinctUntilChanged__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__ = __webpack_require__(354);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise__ = __webpack_require__(444);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise__);
@@ -3272,7 +3310,7 @@ var FieldBuilderComponent = (function () {
     FieldBuilderComponent.prototype.ngOnInit = function () {
         this.hasSelectedOption = false;
         this.loader = this.loadingCtrl.create({
-            content: 'Please wait...'
+            content: ('Please wait') + '...'
         });
         this.buildForm();
     };
@@ -3465,7 +3503,7 @@ __decorate([
 ], FieldBuilderComponent.prototype, "changed", void 0);
 FieldBuilderComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'field-builder-component',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/fieldBuilder/fieldBuilder.html"*/'<ion-item [formGroup]="fieldForm" [ngSwitch]="field.type">\n\n  <ion-label *ngIf="field.placeholder">{{ field.label }}</ion-label>\n\n	<ion-textarea *ngSwitchCase="\'textarea\'" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name" [attr.rows]="field.lines || 4"></ion-textarea>\n\n	<input *ngSwitchCase="\'date\'" type="hidden" [required]="field.required === true" [formControlName]="field.name">\n	<ion-datetime *ngSwitchCase="\'date\'" [required]="field.required === true" [min]="field.parsedMin" [max]="field.parsedMax" [formControlName]="\'$date\' + field.name"></ion-datetime>\n\n	<ion-select *ngSwitchCase="\'select\'" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name" [multiple]="field.multiple" interface="popover">\n    <ion-option [value]="option.name" *ngFor="let option of field.options | keys">{{ option }}</ion-option>\n  </ion-select>\n\n	<input *ngSwitchCase="\'image\'" type="hidden" [required]="field.required === true" [formControlName]="field.name">\n	<div *ngSwitchCase="\'image\'">\n		<div class="image" *ngIf="field.imgSrc">\n			<img [src]="field.imgSrc">\n		</div>\n	</div>\n	<button *ngSwitchCase="\'image\'" ion-button full (click)="addImage()"><i class="image icon"></i>Add Image</button>\n	<button *ngSwitchCase="\'image\'" ion-button full (click)="takePhoto()"><i class="photo icon"></i>Take Photo</button>\n\n	<ion-input *ngSwitchCase="\'textfield\'" type="text" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name"></ion-input>\n\n	<ion-input *ngSwitchCase="\'number\'" type="number" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name" [min]="field.min" [max]="field.max"></ion-input>\n\n	<ion-row *ngSwitchDefault>\n		<ion-col *ngFor="let childfield of field.type | keys">\n			<field-builder-component [field]="childfield" (changed)="childFieldChange($event)"></field-builder-component>\n		</ion-col>\n	</ion-row>\n\n</ion-item>\n\n<ion-list class="app-items mini" *ngIf="field.$options">\n  <ion-item *ngFor="let option of field.$options" (click)="selectOption(option)">\n  	<!-- <ion-avatar item-start *ngIf="option.portrait || option.image">\n      <img [src]="option.portrait || option.image">\n    </ion-avatar> -->\n    <h6>{{ option.value || option.name }}</h6>\n  </ion-item>\n</ion-list>\n\n<ion-item class="form-error" *ngIf="field.errors">\n  <p>{{ field.errors }}</p>\n</ion-item>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/fieldBuilder/fieldBuilder.html"*/,
+        selector: 'field-builder-component',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/fieldBuilder/fieldBuilder.html"*/'<ion-item [formGroup]="fieldForm" [ngSwitch]="field.type">\n\n  <ion-label *ngIf="field.placeholder">{{ field.label }}</ion-label>\n\n	<ion-textarea *ngSwitchCase="\'textarea\'" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name" [attr.rows]="field.lines || 4"></ion-textarea>\n\n	<input *ngSwitchCase="\'date\'" type="hidden" [required]="field.required === true" [formControlName]="field.name">\n	<ion-datetime *ngSwitchCase="\'date\'" [required]="field.required === true" [min]="field.parsedMin" [max]="field.parsedMax" [formControlName]="\'$date\' + field.name"></ion-datetime>\n\n	<ion-select *ngSwitchCase="\'select\'" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name" [multiple]="field.multiple" interface="popover">\n    <ion-option [value]="option.name" *ngFor="let option of field.options | keys">{{ option }}</ion-option>\n  </ion-select>\n\n	<input *ngSwitchCase="\'image\'" type="hidden" [required]="field.required === true" [formControlName]="field.name">\n	<div *ngSwitchCase="\'image\'">\n		<div class="image" *ngIf="field.imgSrc">\n			<img [src]="field.imgSrc">\n		</div>\n	</div>\n	<button *ngSwitchCase="\'image\'" ion-button full (click)="addImage()"><i class="image icon"></i>{{ \'Add Image\' | translate }}</button>\n	<button *ngSwitchCase="\'image\'" ion-button full (click)="takePhoto()"><i class="photo icon"></i>{{ \'Take Photo\' | translate }}</button>\n\n	<ion-input *ngSwitchCase="\'textfield\'" type="text" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name"></ion-input>\n\n	<ion-input *ngSwitchCase="\'number\'" type="number" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name" [min]="field.min" [max]="field.max"></ion-input>\n\n	<ion-row *ngSwitchDefault>\n		<ion-col *ngFor="let childfield of field.type | keys">\n			<field-builder-component [field]="childfield" (changed)="childFieldChange($event)"></field-builder-component>\n		</ion-col>\n	</ion-row>\n\n</ion-item>\n\n<ion-list class="app-items mini" *ngIf="field.$options">\n  <ion-item *ngFor="let option of field.$options" (click)="selectOption(option)">\n  	<!-- <ion-avatar item-start *ngIf="option.portrait || option.image">\n      <img [src]="option.portrait || option.image">\n    </ion-avatar> -->\n    <h6>{{ option.value || option.name }}</h6>\n  </ion-item>\n</ion-list>\n\n<ion-item class="form-error" *ngIf="field.errors">\n  <p>{{ field.errors }}</p>\n</ion-item>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/components/fieldBuilder/fieldBuilder.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__["a" /* Camera */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
@@ -3558,7 +3596,7 @@ ObjectKeys = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_OfferService__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_AlertService__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__offerDetail_offerDetail__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__offerDetail_offerDetail__ = __webpack_require__(356);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addOffer_addOffer__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__categories_categories__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jquery__ = __webpack_require__(56);
@@ -3626,13 +3664,13 @@ var OffersPage = OffersPage_1 = (function () {
             // 	$('page-offers ion-content.content').children().css('margin-bottom', '45px');
             // }
             _this.filters_action = {
-                title: 'Show By Categories',
+                title: ('Show By Categories'),
                 page: __WEBPACK_IMPORTED_MODULE_6__categories_categories__["a" /* CategoriesFilterPage */],
                 params: {
                     categories: Object(__WEBPACK_IMPORTED_MODULE_8_lodash__["map"])(_this.definitionOffer.POST.category.options, function (category, key) {
                         return { id: key, name: category };
                     }),
-                    title: 'Offers',
+                    title: ('Offers'),
                     page: OffersPage_1
                 }
             };
@@ -3657,7 +3695,7 @@ var OffersPage = OffersPage_1 = (function () {
         }
         this.isLoading = true;
         this.loader = this.loadingCtrl.create({
-            content: 'Please wait...'
+            content: ('Please wait') + '...'
         });
         this.loader.present();
         this.offerService.list(this.page, this.filter).subscribe(function (response) {
@@ -3709,7 +3747,7 @@ var OffersPage = OffersPage_1 = (function () {
 }());
 OffersPage = OffersPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-offers',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offers/offers.html"*/'<ion-header>\n  <ion-navbar>\n		<ion-title>Offerings</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n\n\n  <ion-toolbar>\n		<ion-buttons left>\n			<button ion-button icon-only (click)="goToFilters()">\n				<i class="ion-navicon-round"></i>\n			</button>\n		</ion-buttons>\n		<ion-searchbar (search)="setFilter($event)"></ion-searchbar>\n	</ion-toolbar>\n\n\n  <ion-list class="app-filters" *ngIf="filterName">\n    <ion-item>\n      Offers listed for {{ filterName }}\n    </ion-item>\n  </ion-list>\n\n  <ion-list class="app-items">\n\n    <ion-item *ngFor="let offer of offers">\n    <ion-row>\n\n      <ion-col col-4 (click)="showDetails(offer.id)" *ngIf="offer.image">\n        <ion-thumbnail>\n          <img [src]="offer.image">\n        </ion-thumbnail>\n      </ion-col>\n\n      <ion-col col-10 (click)="showDetails(offer.id)" *ngIf="!offer.image">\n        <h6>{{ offer.title }}</h6>\n        <div class="description" [innerHTML]="offer.description"></div>\n      </ion-col>\n\n      <ion-col col-6 (click)="showDetails(offer.id)" *ngIf="offer.image">\n        <h6>{{ offer.title }}</h6>\n        <div class="description" [innerHTML]="offer.description"></div>\n      </ion-col>\n\n      <ion-col col-2 class="items-user" (click)="showMember(offer.user_id)">\n        <p>\n          {{ offer.user_id_ref.name }}\n        </p>\n        <ion-avatar *ngIf="offer.user_id_ref.portrait">\n          <img [src]="offer.user_id_ref.portrait">\n        </ion-avatar>\n      </ion-col>\n\n    </ion-row>\n    </ion-item>\n\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offers/offers.html"*/
+        selector: 'page-offers',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offers/offers.html"*/'<ion-header>\n  <ion-navbar>\n		<ion-title>{{ \'Offers\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n\n\n  <ion-toolbar>\n		<ion-buttons left>\n			<button ion-button icon-only (click)="goToFilters()">\n				<i class="ion-navicon-round"></i>\n			</button>\n		</ion-buttons>\n		<ion-searchbar (search)="setFilter($event)"></ion-searchbar>\n	</ion-toolbar>\n\n\n  <ion-list class="app-filters" *ngIf="filterName">\n    <ion-item>\n       {{ \'Offers found for\' | translate }} {{ filterName }}\n    </ion-item>\n  </ion-list>\n\n  <ion-list class="app-items">\n\n    <ion-item *ngFor="let offer of offers">\n    <ion-row>\n\n      <ion-col col-4 (click)="showDetails(offer.id)" *ngIf="offer.image">\n        <ion-thumbnail>\n          <img [src]="offer.image">\n        </ion-thumbnail>\n      </ion-col>\n\n      <ion-col col-10 (click)="showDetails(offer.id)" *ngIf="!offer.image">\n        <h6>{{ offer.title }}</h6>\n        <div class="description" [innerHTML]="offer.description"></div>\n      </ion-col>\n\n      <ion-col col-6 (click)="showDetails(offer.id)" *ngIf="offer.image">\n        <h6>{{ offer.title }}</h6>\n        <div class="description" [innerHTML]="offer.description"></div>\n      </ion-col>\n\n      <ion-col col-2 class="items-user" (click)="showMember(offer.user_id)">\n        <p>\n          {{ offer.user_id_ref.name }}\n        </p>\n        <ion-avatar *ngIf="offer.user_id_ref.portrait">\n          <img [src]="offer.user_id_ref.portrait">\n        </ion-avatar>\n      </ion-col>\n\n    </ion-row>\n    </ion-item>\n\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offers/offers.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
@@ -3813,7 +3851,7 @@ MemberService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_WantService__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_AlertService__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__wantDetail_wantDetail__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__wantDetail_wantDetail__ = __webpack_require__(358);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addWant_addWant__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__categories_categories__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jquery__ = __webpack_require__(56);
@@ -3881,13 +3919,13 @@ var WantsPage = WantsPage_1 = (function () {
             // 	$('page-wants ion-content.content').children().css('margin-bottom', '45px');
             // }
             _this.filters_action = {
-                title: 'Show By Categories',
+                title: ('Show By Categories'),
                 page: __WEBPACK_IMPORTED_MODULE_6__categories_categories__["a" /* CategoriesFilterPage */],
                 params: {
                     categories: Object(__WEBPACK_IMPORTED_MODULE_8_lodash__["map"])(_this.definitionWant.POST.category.options, function (category, key) {
                         return { id: key, name: category };
                     }),
-                    title: 'Needs',
+                    title: ('Needs'),
                     page: WantsPage_1
                 }
             };
@@ -3912,7 +3950,7 @@ var WantsPage = WantsPage_1 = (function () {
         }
         this.isLoading = true;
         this.loader = this.loadingCtrl.create({
-            content: 'Please wait...'
+            content: ('Please wait') + '...'
         });
         this.loader.present();
         this.wantService.list(this.page, this.filter).subscribe(function (response) {
@@ -3964,7 +4002,7 @@ var WantsPage = WantsPage_1 = (function () {
 }());
 WantsPage = WantsPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-wants',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wants/wants.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Needs</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-toolbar>\n		<ion-buttons left>\n			<button ion-button icon-only (click)="goToFilters()">\n				<i class="ion-navicon-round"></i>\n			</button>\n		</ion-buttons>\n		<ion-searchbar (search)="setFilter($event)"></ion-searchbar>\n	</ion-toolbar>\n\n  <ion-list class="app-filters" *ngIf="filterName">\n    <ion-item>\n      Needs listed for {{ filterName }}\n    </ion-item>\n  </ion-list>\n  <ion-list class="app-items">\n\n    <ion-item *ngFor="let want of wants">\n\n      <ion-row>\n\n  <ion-col col-2 (click)="showMember(want.user_id.id)" *ngIf="want.image">\n    <ion-thumbnail>\n      <img [src]="want.image || \'assets/images/default_sm.jpg\'">\n    </ion-thumbnail>\n  </ion-col>\n\n  <ion-col col-10 (click)="showDetails(want.id)" *ngIf="!want.image">\n    <h6>{{ want.title }}</h6>\n    <div class="description" [innerHTML]="want.description"></div>\n  </ion-col>\n\n  <ion-col col-8 (click)="showDetails(want.id)" *ngIf="want.image">\n    <h6>{{ want.title }}</h6>\n    <div class="description" [innerHTML]="want.description"></div>\n  </ion-col>\n\n  <ion-col col-2 class="items-user" (click)="showMember(want.user_id)">\n    <p>\n      {{ want.user_id_ref.name }}\n    </p>\n    <ion-avatar *ngIf="want.user_id_ref.portrait">\n      <img [src]="want.user_id_ref.portrait">\n    </ion-avatar>\n  </ion-col>\n\n</ion-row>\n\n    </ion-item>\n\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wants/wants.html"*/
+        selector: 'page-wants',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wants/wants.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ \'Needs\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-toolbar>\n		<ion-buttons left>\n			<button ion-button icon-only (click)="goToFilters()">\n				<i class="ion-navicon-round"></i>\n			</button>\n		</ion-buttons>\n		<ion-searchbar (search)="setFilter($event)"></ion-searchbar>\n	</ion-toolbar>\n\n  <ion-list class="app-filters" *ngIf="filterName">\n    <ion-item>\n      {{ \'Needs found for\' | translate }} {{ filterName }}\n    </ion-item>\n  </ion-list>\n  <ion-list class="app-items">\n\n    <ion-item *ngFor="let want of wants">\n\n      <ion-row>\n\n  <ion-col col-2 (click)="showMember(want.user_id.id)" *ngIf="want.image">\n    <ion-thumbnail>\n      <img [src]="want.image || \'assets/images/default_sm.jpg\'">\n    </ion-thumbnail>\n  </ion-col>\n\n  <ion-col col-10 (click)="showDetails(want.id)" *ngIf="!want.image">\n    <h6>{{ want.title }}</h6>\n    <div class="description" [innerHTML]="want.description"></div>\n  </ion-col>\n\n  <ion-col col-8 (click)="showDetails(want.id)" *ngIf="want.image">\n    <h6>{{ want.title }}</h6>\n    <div class="description" [innerHTML]="want.description"></div>\n  </ion-col>\n\n  <ion-col col-2 class="items-user" (click)="showMember(want.user_id)">\n    <p>\n      {{ want.user_id_ref.name }}\n    </p>\n    <ion-avatar *ngIf="want.user_id_ref.portrait">\n      <img [src]="want.user_id_ref.portrait">\n    </ion-avatar>\n  </ion-col>\n\n</ion-row>\n\n    </ion-item>\n\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/wants/wants.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
@@ -3994,6 +4032,7 @@ var WantsPage_1;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jquery__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_ConfigService__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_app_version__ = __webpack_require__(137);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4012,14 +4051,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginPage = (function () {
-    function LoginPage(navCtrl, formBuilder, settings, authService, alertService, configService) {
+    function LoginPage(navCtrl, formBuilder, settings, authService, alertService, configService, platform, appVersion) {
         this.navCtrl = navCtrl;
         this.formBuilder = formBuilder;
         this.settings = settings;
         this.authService = authService;
         this.alertService = alertService;
         this.configService = configService;
+        this.platform = platform;
+        this.appVersion = appVersion;
         this.formErrors = {
             'community_url': '',
             'username': '',
@@ -4027,20 +4069,26 @@ var LoginPage = (function () {
         };
         this.validationMessages = {
             'community_url': {
-                'required': 'Please enter the URL of your local community website'
+                'required': ('Please enter the URL of your local community website')
             },
             'username': {
-                'required': 'Email is required.'
+                'required': ('Email is required')
             },
             'password': {
-                'required': 'Password is required.'
+                'required': ('Password is required')
             }
         };
     }
     LoginPage.prototype.ngOnInit = function () {
+        var _this = this;
         if (this.settings.WEB_SITE_URL)
             this.configService.initAppConfig();
         this.buildForm();
+        if (this.platform.is('cordova')) {
+            this.appVersion.getVersionNumber().then(function (version) {
+                _this.settings.APP_VERSION = version;
+            });
+        }
     };
     LoginPage.prototype.ngAfterContentInit = function () {
         __WEBPACK_IMPORTED_MODULE_7_jquery__('div.page-login').height(__WEBPACK_IMPORTED_MODULE_7_jquery__('page-login').height());
@@ -4052,7 +4100,7 @@ var LoginPage = (function () {
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
         this.rememberMe = this.loginForm.value.rememberMe;
-        this.authService.doLogin(this.username, this.password, this.rememberMe).subscribe(function (response) { return _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */]); }, function (error) { return _this.alertService.showError('Please check your details.\n' + error); });
+        this.authService.doLogin(this.username, this.password, this.rememberMe).subscribe(function (response) { return _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */]); }, function (error) { return _this.alertService.showError(('Please check your details') + '.\n' + error); });
     };
     LoginPage.prototype.goToFullSite = function () {
         window.open(this.settings.WEB_SITE_URL, '_system', 'location=yes');
@@ -4103,14 +4151,16 @@ var LoginPage = (function () {
 }());
 LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-login',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/login/login.html"*/'<ion-header>\n  <ion-navbar>\n  	<ion-title>Welcome</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content scroll="false">\n	<div class="page-login">\n		<ion-slides [pager]="true" [autoplay]="3000" [loop]="true">\n		  <ion-slide>\n				<div class="image-wrapper">\n					<div class="image">\n						<img src="assets/images/app_logo.png">\n						<h1 class="logo-title">{{ settings.APP_NAME }}</h1>\n					</div>\n				</div>\n		  </ion-slide>\n		  <ion-slide *ngIf="settings.COMMUNITY_NAME && settings.COMMUNITY_LOGO">\n				<div class="image-wrapper">\n					<div class="image">\n						<img src="{{ settings.COMMUNITY_LOGO }}">\n						<h1 class="logo-title">{{ settings.COMMUNITY_NAME }}</h1>\n					</div>\n				</div>\n		  </ion-slide>\n		</ion-slides>\n		<form [formGroup]="loginForm">\n			<ion-list>\n        <ion-item>\n			    <ion-label>\n			   		URL\n			   	</ion-label>\n			    <ion-input type="text" placeholder="https://" required formControlName="community_url"  (ionBlur)="setCommunityURL()"></ion-input>\n			  </ion-item>\n        <ion-item>\n			    <ion-label>\n			   		<i class="ion-person"></i>\n			   	</ion-label>\n			    <ion-input type="text" placeholder="Username" required formControlName="username"></ion-input>\n			  </ion-item>\n			  <ion-item class="form-error" *ngIf="formErrors.username">\n				  <p>{{ formErrors.username }}</p>\n			  </ion-item>\n			  <ion-item>\n			    <ion-label>\n			   		<i class="ion-locked"></i>\n			   	</ion-label>\n			    <ion-input type="password" placeholder="Password" required formControlName="password"></ion-input>\n			  </ion-item>\n			  <ion-item class="form-error" *ngIf="formErrors.password">\n				  <p>{{ formErrors.password }}</p>\n			  </ion-item>\n			  <ion-item>\n				  <ion-label>Remember me</ion-label>\n				  <ion-checkbox checked="true" formControlName="rememberMe"></ion-checkbox>\n				</ion-item>\n			</ion-list>\n      <button ion-button full [disabled]="!loginForm.valid" (click)="doLogin()">Sign in</button>\n      <p>This is the {{ settings.APP_NAME }} mobile app</p>\n\n	  	<p *ngIf="settings.WEB_SITE_URL">\n	  		<a href="#" (click)="goToFullSite()">Go to {{ settings.COMMUNITY_NAME }} website</a>\n	  	</p>\n\n		</form>\n	</div>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/login/login.html"*/
+        selector: 'page-login',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/login/login.html"*/'<ion-header>\n  <ion-navbar>\n  	<ion-title>{{ \'Welcome\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content scroll="false">\n	<div class="page-login">\n		<ion-slides [pager]="true" [autoplay]="3000" [loop]="true">\n		  <ion-slide>\n				<div class="image-wrapper">\n					<div class="image">\n						<img src="assets/images/app_logo.png">\n						<h1 class="logo-title">{{ settings.APP_NAME }}</h1>\n					</div>\n				</div>\n		  </ion-slide>\n		  <ion-slide *ngIf="settings.COMMUNITY_NAME && settings.COMMUNITY_LOGO">\n				<div class="image-wrapper">\n					<div class="image">\n						<img src="{{ settings.COMMUNITY_LOGO }}">\n						<h1 class="logo-title">{{ settings.COMMUNITY_NAME }}</h1>\n					</div>\n				</div>\n		  </ion-slide>\n		</ion-slides>\n		<form [formGroup]="loginForm">\n			<ion-list>\n\n        <ion-item>\n			    <ion-label>\n			   		{{ \'URL\' | translate }}\n			   	</ion-label>\n			    <ion-input type="text" placeholder="https://" required formControlName="community_url"  (ionBlur)="setCommunityURL()"></ion-input>\n			  </ion-item>\n\n\n        <ion-item>\n			    <ion-label>\n			   		<i class="ion-person"></i>\n			   	</ion-label>\n			    <ion-input type="text" placeholder="Username" required formControlName="username"></ion-input>\n			  </ion-item>\n			  <ion-item class="form-error" *ngIf="formErrors.username">\n				  <p>{{ formErrors.username }}</p>\n			  </ion-item>\n\n			  <ion-item>\n			    <ion-label>\n			   		<i class="ion-locked"></i>\n			   	</ion-label>\n			    <ion-input type="password" placeholder="Password" required formControlName="password"></ion-input>\n			  </ion-item>\n\n			  <ion-item class="form-error" *ngIf="formErrors.password">\n				  <p>{{ formErrors.password }}</p>\n			  </ion-item>\n\n				<ion-item>\n				  <ion-label>{{ \'Remember me\' | translate }}</ion-label>\n				  <!-- <ion-checkbox checked="true" formControlName="rememberMe"></ion-checkbox> -->\n					<ion-toggle checked="true" formControlName="rememberMe"></ion-toggle>\n				</ion-item>\n\n				<ion-item>\n					<ion-label>\n						{{ \'Use in English\' | translate }}\n					</ion-label>\n					<ion-toggle [(ngModel)]="settings.APP_ENGLISH" [ngModelOptions]="{standalone: true}" (ionChange)="configService.initTranslate()"></ion-toggle>\n				</ion-item>\n\n			</ion-list>\n      <button ion-button full [disabled]="!loginForm.valid" (click)="doLogin()">{{ \'Sign in\' | translate }}</button>\n      <p>{{ settings.APP_NAME }} <span *ngIf="settings.APP_VERSION">{{settings.APP_VERSION}}</span></p>\n\n	  	<p *ngIf="settings.WEB_SITE_URL">\n	  		<a href="#" (click)="goToFullSite()" translate [translateParams]="{name: settings.COMMUNITY_NAME }">Visit the website</a>\n	  	</p>\n\n		</form>\n	</div>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/login/login.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
         __WEBPACK_IMPORTED_MODULE_3__app_app_settings__["a" /* AppSettings */],
         __WEBPACK_IMPORTED_MODULE_4__services_AuthService__["a" /* AuthService */],
         __WEBPACK_IMPORTED_MODULE_5__services_AlertService__["a" /* AlertService */],
-        __WEBPACK_IMPORTED_MODULE_8__services_ConfigService__["a" /* ConfigService */]])
+        __WEBPACK_IMPORTED_MODULE_8__services_ConfigService__["a" /* ConfigService */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_9__ionic_native_app_version__["a" /* AppVersion */]])
 ], LoginPage);
 
 //# sourceMappingURL=login.js.map
@@ -4328,7 +4378,7 @@ var AddWantPage = AddWantPage_1 = (function () {
         this.viewCtrl.didEnter.subscribe(function (response) {
             if (!_this.isLoaded) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.authService.userInfo.subscribe(function (userInfo) {
@@ -4365,7 +4415,7 @@ var AddWantPage = AddWantPage_1 = (function () {
         var _this = this;
         this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_5__components_confirmationBuilder_confirmationBuilder__["a" /* ConfirmationBuilderComponent */], {
             fields: this.definitionWant.POST,
-            operation: 'Want'
+            operation: ('Want')
         }, {
             cssClass: 'confirm-popover',
             enableBackdropDismiss: false
@@ -4373,19 +4423,19 @@ var AddWantPage = AddWantPage_1 = (function () {
         this.popover.onDidDismiss(function (data) {
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.wantService.save(_this.want, _this.wantID).subscribe(function (response) {
                     _this.loader.dismiss();
                     _this.popover = _this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__["a" /* MoreActionsBuilderComponent */], {
-                        operation: 'Need',
+                        operation: ('Need'),
                         options: [{
-                                title: 'Post Another Need',
+                                title: ('Post Another Need'),
                                 icon: 'ion-edit',
                                 page: AddWantPage_1
                             }, {
-                                title: 'Browse Needs',
+                                title: ('Browse Needs'),
                                 icon: 'ion-pin',
                                 page: __WEBPACK_IMPORTED_MODULE_7__pages_wants_wants__["a" /* WantsPage */]
                             }]
@@ -4406,7 +4456,7 @@ var AddWantPage = AddWantPage_1 = (function () {
 }());
 AddWantPage = AddWantPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-add-want',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addWant/addWant.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Add Need</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="addWant()">Submit</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addWant/addWant.html"*/
+        selector: 'page-add-want',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addWant/addWant.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ \'Add Need\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="addWant()">{{ \'Submit\' | translate }}</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addWant/addWant.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -4477,7 +4527,7 @@ var AddOfferPage = AddOfferPage_1 = (function () {
         this.viewCtrl.didEnter.subscribe(function (response) {
             if (!_this.isLoaded) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.authService.userInfo.subscribe(function (userInfo) {
@@ -4514,7 +4564,7 @@ var AddOfferPage = AddOfferPage_1 = (function () {
         var _this = this;
         this.popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_5__components_confirmationBuilder_confirmationBuilder__["a" /* ConfirmationBuilderComponent */], {
             fields: this.definitionOffer.POST,
-            operation: 'Offer'
+            operation: ('Offer')
         }, {
             cssClass: 'confirm-popover',
             enableBackdropDismiss: false
@@ -4522,19 +4572,19 @@ var AddOfferPage = AddOfferPage_1 = (function () {
         this.popover.onDidDismiss(function (data) {
             if (data && data.hasConfirmed) {
                 _this.loader = _this.loadingCtrl.create({
-                    content: 'Please wait...'
+                    content: ('Please wait') + '...'
                 });
                 _this.loader.present();
                 _this.offerService.save(_this.offer, _this.offerID).subscribe(function (response) {
                     _this.loader.dismiss();
                     _this.popover = _this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_6__components_moreActionsBuilder_moreActionsBuilder__["a" /* MoreActionsBuilderComponent */], {
-                        operation: 'Offer',
+                        operation: ('Offer'),
                         options: [{
-                                title: 'Post Another Offer',
+                                title: ('Post Another Offer'),
                                 icon: 'ion-edit',
                                 page: AddOfferPage_1
                             }, {
-                                title: 'Browse Offers',
+                                title: ('Browse Offers'),
                                 icon: 'ion-pricetag',
                                 page: __WEBPACK_IMPORTED_MODULE_7__pages_offers_offers__["a" /* OffersPage */]
                             }]
@@ -4555,7 +4605,7 @@ var AddOfferPage = AddOfferPage_1 = (function () {
 }());
 AddOfferPage = AddOfferPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-add-offer',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addOffer/addOffer.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Add Offer</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="addOffer()">Submit</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addOffer/addOffer.html"*/
+        selector: 'page-add-offer',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addOffer/addOffer.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ \'Add Offer\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form-builder-component [fields]="fields" (changed)="onChanged($event)"></form-builder-component>\n</ion-content>\n<ion-footer>\n  <ion-list>\n    <ion-item>\n      <button [disabled]="!isValid" (click)="addOffer()">{{ \'Submit\' | translate }}</button>\n    </ion-item>\n  </ion-list>\n</ion-footer>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/addOffer/addOffer.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],

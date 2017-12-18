@@ -27428,7 +27428,7 @@ page-login form ion-list.list ion-item.item.item-input ion-label.label ion-icon.
   width: 15px;
 }
 
-page-login form ion-list.list ion-item.item.item-checkbox {
+page-login form ion-list.list ion-item.item.item-checkbox, page-login form ion-list.list ion-item.item.item-toggle {
   padding: 0;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -27438,12 +27438,16 @@ page-login form ion-list.list ion-item.item.item-checkbox {
   min-height: 25px;
   height: 25px;
   text-align: center;
-  width: 150px;
+  width: 200px;
   border: none !important;
 }
 
-page-login form ion-list.list ion-item.item.item-checkbox ion-checkbox.checkbox {
+page-login form ion-list.list ion-item.item.item-checkbox ion-checkbox.checkbox, page-login form ion-list.list ion-item.item.item-toggle ion-checkbox.checkbox {
   margin: 0;
+}
+
+page-login form ion-list.list ion-item.item.item-checkbox .item-inner, page-login form ion-list.list ion-item.item.item-toggle .item-inner {
+  border-bottom: 0;
 }
 
 page-login form button.button.button-full {
