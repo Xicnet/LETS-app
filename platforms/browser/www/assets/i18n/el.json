@@ -1,4 +1,4 @@
 {
 	"Hello!": "Γεια σας {{name}}!",
-	"What's up in your area today?": "What's up in {{locality}} today?"
+	"What's up in your area today?": "Τι παίζει σήμερα στην {{locality}};"
 }
