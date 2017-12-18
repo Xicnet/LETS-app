@@ -10,15 +10,15 @@
           "/manifest": [
             {
               "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
-              "count": 11
+              "count": 12
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 11
+              "count": 12
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 11
+              "count": 12
             }
           ],
           "/*": [
@@ -69,6 +69,10 @@
             {
               "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Globalization\"><param name=\"android-package\" value=\"org.apache.cordova.globalization.Globalization\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -101,6 +105,9 @@
       "PACKAGE_NAME": "net.communityforge.lets"
     },
     "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "net.communityforge.lets"
+    },
+    "cordova-plugin-globalization": {
       "PACKAGE_NAME": "net.communityforge.lets"
     }
   },
@@ -187,6 +194,22 @@
       "clobbers": [
         "cordova.getAppVersion"
       ]
+    },
+    {
+      "id": "cordova-plugin-globalization.GlobalizationError",
+      "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+      "pluginId": "cordova-plugin-globalization",
+      "clobbers": [
+        "window.GlobalizationError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-globalization.globalization",
+      "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+      "pluginId": "cordova-plugin-globalization",
+      "clobbers": [
+        "navigator.globalization"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -198,6 +221,7 @@
     "cordova-plugin-whitelist": "1.3.2",
     "cordova-plugin-console": "1.1.0",
     "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-app-version": "0.1.9"
+    "cordova-plugin-app-version": "0.1.9",
+    "cordova-plugin-globalization": "1.0.8"
   }
 }
