@@ -30,7 +30,7 @@ export class MemberDetailPage implements OnInit {
 		this.viewCtrl.didEnter.subscribe(
 			response => {
 				this.loader = this.loadingCtrl.create({
-					content: 'Please wait...'
+					content: _('Please wait')+'...'
 				});
 				this.loader.present();
 				this.memberService.get(this.params.get('id')).subscribe(
@@ -58,7 +58,7 @@ export class MemberDetailPage implements OnInit {
 			this.deleteOfferConfirmDialog = false;
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: 'Please wait...'
+					content: _('Please wait')+'...'
 				});
 				this.loader.present();
 				this.memberService.custom(href).subscribe(
@@ -84,14 +84,14 @@ export class MemberDetailPage implements OnInit {
 	memberOffers() {
 		this.navCtrl.push(OffersPage, {
 			filter: '&user_id='+this.params.get('id'),
-			filterName: `user: ${this.member.name}`,
+			filterName: this.member.name,
 		});
 	}
 
 	memberWants() {
 		this.navCtrl.push(WantsPage, {
 			filter: '&user_id='+this.params.get('id'),
-			filterName: `user: ${this.member.name}`,
+			filterName: this.member.name,
 		});
 	}
 

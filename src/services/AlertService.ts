@@ -12,10 +12,10 @@ export class AlertService {
 		console.log('showError');
 		console.error(message);
 
-		var show = ( (message.error) ? message.error : (message) ? message : 'Unknown error' );
+		var show = ( (message.error) ? message.error : (message) ? message : _('Unknown error') );
 
 		return this.alertCtrl.create({
-			title: 'Error!',
+			title: _('Error'),
 			subTitle: show,
 			buttons: ['OK']
 		}).present();

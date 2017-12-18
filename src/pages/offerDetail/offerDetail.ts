@@ -39,7 +39,7 @@ export class OfferDetailPage implements OnInit {
 			response => {
 				this.imageExpanded = false;
 				this.loader = this.loadingCtrl.create({
-					content: 'Please wait...'
+					content: _('Please wait')+'...'
 				});
 				this.loader.present();
 
@@ -92,7 +92,7 @@ export class OfferDetailPage implements OnInit {
 
 	showActions() {
 		this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
-			operation: 'Offer',
+			operation: _('Offer'),
 			status: 'Menu',
 			options: []
 		}, {
@@ -112,7 +112,7 @@ export class OfferDetailPage implements OnInit {
 	deleteOffer(id) {
 		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
 			fields: this.definitionOffer.POST,
-			operation: 'Delete Offer'
+			operation: _('Delete Offer')
 		}, {
 				cssClass: 'confirm-popover',
 				enableBackdropDismiss: false
@@ -122,7 +122,7 @@ export class OfferDetailPage implements OnInit {
 			this.deleteOfferConfirmDialog = false;
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: 'Please wait...'
+					content: _('Please wait')+'...'
 				});
 				this.loader.present();
 				this.offerService.delete(id).subscribe(
@@ -152,7 +152,7 @@ export class OfferDetailPage implements OnInit {
 			this.deleteOfferConfirmDialog = false;
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: 'Please wait...'
+					content: _('Please wait')+'...'
 				});
 				this.loader.present();
 				this.offerService.custom(href).subscribe(

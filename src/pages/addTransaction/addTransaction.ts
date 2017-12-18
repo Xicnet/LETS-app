@@ -45,7 +45,7 @@ export class AddTransactionPage implements OnInit {
 			response => {
 				if (!this.isLoaded) {
 					this.loader = this.loadingCtrl.create({
-						content: 'Please wait...'
+						content: _('Please wait')+'...'
 					});
 					this.loader.present();
 					this.transactionService.describe().subscribe(
@@ -78,7 +78,7 @@ export class AddTransactionPage implements OnInit {
 	addTransaction() {
 		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
 			fields: this.definitionTransaction.POST,
-			operation: 'Transaction'
+			operation: _('Transaction')
 		}, {
 				cssClass: 'confirm-popover',
 				enableBackdropDismiss: false
@@ -86,20 +86,20 @@ export class AddTransactionPage implements OnInit {
 		this.popover.onDidDismiss((data) => {
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: 'Please wait...'
+					content: _('Please wait')+'...'
 				});
 				this.loader.present();
 				this.transactionService.post(this.transaction).subscribe(
 					response => {
 						this.loader.dismiss();
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
-							operation: 'Transaction',
+							operation: _('Transaction'),
 							options: [{
-								title: 'Record Transaction - as a Seller',
+								title: _('Record Transaction - as a Seller'),
 								icon: 'ion-edit',
 								page: AddTransactionPage,
 								params: {
-									title: 'as Seller',
+									title: _('as Seller'),
 									fields: {
 										payee: {
 											default: this.member.name,
@@ -108,11 +108,11 @@ export class AddTransactionPage implements OnInit {
 									}
 								}
 							}, {
-								title: 'Record Transaction - as a Buyer',
+								title: _('Record Transaction - as a Buyer'),
 								icon: 'ion-edit',
 								page: AddTransactionPage,
 								params: {
-									title: 'as Buyer',
+									title: _('as Buyer'),
 									fields: {
 										payer: {
 											default: this.member.name,

@@ -17,8 +17,8 @@
 			<img [src]="field.imgSrc">
 		</div>
 	</div>
-	<button *ngSwitchCase="'image'" ion-button full (click)="addImage()"><i class="image icon"></i>Add Image</button>
-	<button *ngSwitchCase="'image'" ion-button full (click)="takePhoto()"><i class="photo icon"></i>Take Photo</button>
+	<button *ngSwitchCase="'image'" ion-button full (click)="addImage()"><i class="image icon"></i>{{ 'Add Image' | translate }}</button>
+	<button *ngSwitchCase="'image'" ion-button full (click)="takePhoto()"><i class="photo icon"></i>{{ 'Take Photo' | translate }}</button>
 
 	<ion-input *ngSwitchCase="'textfield'" type="text" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name"></ion-input>
 

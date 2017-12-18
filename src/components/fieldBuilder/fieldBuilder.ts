@@ -33,7 +33,7 @@ export class FieldBuilderComponent implements OnInit {
 	ngOnInit(): void {
 		this.hasSelectedOption = false;
 		this.loader = this.loadingCtrl.create({
-			content: 'Please wait...'
+			content: _('Please wait')+'...'
 		});
 		this.buildForm();
 	}

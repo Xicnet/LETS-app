@@ -66,7 +66,7 @@ export class KeywordsFilterPage implements OnInit {
 
 	validationMessages = {
 		'keywords': {
-			'required': 'Email is required.'
+			'required': _('Email is required')
 		}
 	};
 }

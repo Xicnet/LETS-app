@@ -39,7 +39,7 @@ export class ProfilePage implements OnInit {
 			response => {
 				if (!this.isLoaded) {
 					this.loader = this.loadingCtrl.create({
-						content: 'Please wait...'
+						content: _('Please wait')+'...'
 					});
 					this.loader.present();
 					this.authService.userInfo.subscribe(
@@ -75,7 +75,7 @@ export class ProfilePage implements OnInit {
 	editProfile() {
 		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
 			fields: this.definitionMember.PATCH,
-			operation: 'My Account'
+			operation: _('My Account')
 		}, {
 				cssClass: 'confirm-popover',
 				enableBackdropDismiss: false
@@ -83,7 +83,7 @@ export class ProfilePage implements OnInit {
 		this.popover.onDidDismiss((data) => {
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: 'Please wait...'
+					content: _('Please wait')+'...'
 				});
 				this.loader.present();
 				this.member.id = this.user.id;
@@ -93,9 +93,9 @@ export class ProfilePage implements OnInit {
 						this.authService.getUserInfo(this.member.name, true);
 						// this.user = this.member; // dirty way to save the new user details locally
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
-							operation: 'Member',
+							operation: _('Member'),
 							options: [{
-								title: 'View my profile',
+								title: _('View my profile'),
 								icon: 'person',
 								page: MemberDetailPage,
 								params: {
@@ -120,27 +120,27 @@ export class ProfilePage implements OnInit {
 	showActions() {
 		this.popover = this.popoverCtrl.create(FiltersBuilderComponent, {
 			options: [{
-				title: 'Show My Offerings',
+				title: _('Show My Offers'),
 				page: OffersPage,
 				params: {
 					filter: `&user_id=${this.user.id}`,
-					filterName: `user: ${this.user.name}`,
+					filterName: this.user.name,
 					myActions: true
 				}
 			}, {
-				title: 'Show My Wants',
+				title: _('Show My Needs'),
 				page: WantsPage,
 				params: {
 					filter: `&user_id=${this.user.id}`,
-					filterName: `user: ${this.user.name}`,
+					filterName: this.user.name,
 					myActions: true
 				}
 			}, {
-				title: 'Show My Transactions',
+				title: _('Show My Transactions'),
 				page: TransactionsPage,
 				params: {
 					filter: `&user_id=${this.user.id}`,
-					filterName: `user: ${this.user.name}`,
+					filterName: this.user.name,
 					myActions: true
 				}
 			}

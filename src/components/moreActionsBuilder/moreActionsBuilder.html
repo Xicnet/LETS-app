@@ -1,17 +1,17 @@
 <div class="app-confirm-operation">
-	<h6>{{ operation }} {{ status }}</h6>
+	<h6>{{ operation | translate }} {{ status | translate }}</h6>
 	<ion-list>
 	  <ion-item *ngFor="let option of options" (click)="goToPage(option)">
 	  	<i [class]="option.icon" item-start></i>
-	    <ion-label>{{ option.title }}</ion-label>
+	    <ion-label>{{ option.title | translate }}</ion-label>
 	  </ion-item>
 	  <ion-item (click)="goBack()">
 	  	<i class="ion-back" item-start></i>
-	    <ion-label>Go Back</ion-label>
+	    <ion-label>{{ 'Go Back' | translate }}</ion-label>
 	  </ion-item>
 		<ion-item (click)="goToHome()">
 	  	<i class="ion-home" item-start></i>
-	    <ion-label>Go Home</ion-label>
+	    <ion-label>{{ 'Go Home' | translate }}</ion-label>
 	  </ion-item>
 	</ion-list>
 </div>
