@@ -22,7 +22,7 @@
 
 		<ion-item *ngFor="let menuEntry of menu.menu_items" (click)="goToPage(menuEntry);showOptions(menuEntry, $event)">
       <ion-icon [name]="menuEntry.icon" item-start></ion-icon>
-			{{ menuEntry.title }}
+			{{ menuEntry.title | translate }}
       <i class="ion-arrow-down-b" *ngIf="menuEntry.options && menuEntry.options.length" item-end></i>
     </ion-item>
 

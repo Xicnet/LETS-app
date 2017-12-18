@@ -17,6 +17,7 @@ import { AppSettings } from '../../app/app.settings';
 import { ConfigService } from '../../services/ConfigService';
 import { AppVersion } from '@ionic-native/app-version';
 
+// import { _ } from '@biesbjerg/ngx-translate-extract';
 
 interface MenuEntry {
 	title: string;
@@ -65,10 +66,10 @@ export class HomePage implements OnInit {
 				this.member = userInfo;
 				this.menus = [
 			{
-				header: 'I need something',
+				header: ('I need something'),
 				menu_items: [
 					{
-						title: 'Browse offers',
+						title: ('Browse offers'),
 						icon: 'images',
 						page: OffersPage,
 						params: {
@@ -76,17 +77,17 @@ export class HomePage implements OnInit {
 						}
 					},
 					{
-						title: 'Post my need',
+						title: ('Post my need'),
 						icon: 'megaphone',
 						page: AddWantPage,
 					}
 				 ]
 			},
 			{
-				header: 'I have something to offer',
+				header: ('I have something to offer'),
 				menu_items: [
 					{
-						title: 'Browse needs',
+						title: ('Browse needs'),
 						icon: 'paper',
 						page: WantsPage,
 						params: {
@@ -94,21 +95,21 @@ export class HomePage implements OnInit {
 						}
 					},
 					{
-						title: 'Post my offer',
+						title: ('Post my offer'),
 						icon: 'clipboard',
 						page: AddOfferPage
 					}
 				]
 			 },
 			{
-				header: "I made a trade",
+				header: ("I made a trade"),
 				menu_items: [
 				{
-					title: 'I received something',
+					title: ('I received something'),
 					icon: 'basket',
 					page: AddTransactionPage,
 					params: {
-						title: 'As Buyer',
+						title: ('As Buyer'),
 						fields: {
 							payer: {
 								default: this.member.name,
@@ -118,11 +119,11 @@ export class HomePage implements OnInit {
 					}
 				},
 				{
-					title: 'I provided something',
+					title: ('I provided something'),
 					icon: 'filing',
 					page: AddTransactionPage,
 					params: {
-						title: 'As Seller',
+						title: ('As Seller'),
 						fields: {
 							payee: {
 								default: this.member.name,
@@ -135,25 +136,25 @@ export class HomePage implements OnInit {
 			]
 		},
 		{
-	 	header: 'Community',
+	 	header: ('Community'),
 	 	menu_items: [
 	 		{
-	 			title: 'Browse members',
+	 			title: ('Browse members'),
 	 			icon: 'people',
 	 			page: MembersPage
 	 		},
 			{
-				title: 'View transactions',
+				title: ('View transactions'),
 				icon: 'stats',
 				page: TransactionsPage
 			},
 	 		]
 	 	},
 		{
-			header: 'My account',
+			header: ('My account'),
 			menu_items: [
 				{
-					title: 'View my profile',
+					title: ('View my profile'),
 					icon: 'person',
 					page: MemberDetailPage,
 					params: {
@@ -161,12 +162,12 @@ export class HomePage implements OnInit {
 					},
 				},
 				{
-					title: 'Edit my details',
+					title: ('Edit my details'),
 					icon: 'contact',
 					page: ProfilePage
 				},
 				{
-					title: 'View my transactions',
+					title: ('View my transactions'),
 					icon: 'stats',
 					page: TransactionsPage,
 					params: {
@@ -174,7 +175,7 @@ export class HomePage implements OnInit {
 					},
 				},
 				{
-					title: 'View my offers',
+					title: ('View my offers'),
 					icon: 'briefcase',
 					page: OffersPage,
 					params: {
@@ -184,7 +185,7 @@ export class HomePage implements OnInit {
 					},
 				},
 				{
-					title: 'View my needs',
+					title: ('View my needs'),
 					icon: 'list',
 					page: WantsPage,
 					params: {
