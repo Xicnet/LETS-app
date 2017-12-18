@@ -52,7 +52,8 @@ export class HomePage implements OnInit {
 
 		if (this.platform.is('cordova')) {
 			this.appVersion.getVersionNumber().then((version)=>{
-          this.version = version;
+          // this.version = version;
+					this.settings.APP_VERSION = version;
         }
       )
 		}

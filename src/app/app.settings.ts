@@ -53,6 +53,17 @@ export class AppSettings {
 		else return 'en';
 	}
 
+	public set APP_VERSION(opt) {
+		window.localStorage.setItem('version', opt);
+	}
+
+	public get APP_VERSION(): any {
+		var opt = window.localStorage.getItem('version');
+		if(opt) return opt;
+		else return '0.x';
+	}
+
+
 	public get URL(): any {
 		if(this.SERVER_URL) return {
 			config: `${this.SERVER_URL}/`,

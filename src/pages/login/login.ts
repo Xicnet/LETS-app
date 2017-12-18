@@ -1,12 +1,14 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { AppSettings } from '../../app/app.settings';
 import { AuthService } from '../../services/AuthService';
 import { AlertService } from '../../services/AlertService';
 import { HomePage } from '../home/home';
 import * as $ from 'jquery';
 import { ConfigService } from '../../services/ConfigService';
+
+import { AppVersion } from '@ionic-native/app-version';
 
 @Component({
 	selector: 'page-login',
@@ -25,12 +27,22 @@ export class LoginPage implements OnInit, AfterContentInit {
 		private authService: AuthService,
 		private alertService: AlertService,
 		private configService: ConfigService,
-	) { }
+		public platform: Platform,
+		public appVersion: AppVersion
+) { }
 
 	ngOnInit(): void {
+
 		if(this.settings.WEB_SITE_URL) this.configService.initAppConfig();
 
 		this.buildForm();
+
+		if (this.platform.is('cordova')) {
+			this.appVersion.getVersionNumber().then((version)=>{
+					this.settings.APP_VERSION = version;
+				}
+			)
+		}
 	}
 
 	ngAfterContentInit(): void {
