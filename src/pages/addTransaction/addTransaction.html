@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Record Transaction - {{ title }}</ion-title>
+    <ion-title>{{ 'Record Transaction' | translate }} - {{ title }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -9,7 +9,7 @@
 <ion-footer>
   <ion-list>
     <ion-item>
-      <button [disabled]="!isValid" (click)="addTransaction()">Submit</button>
+      <button [disabled]="!isValid" (click)="addTransaction()">{{ 'Submit' | translate }}</button>
     </ion-item>
   </ion-list>
 </ion-footer>

@@ -18,7 +18,7 @@
 <ion-list class="home-nav">
 	<ng-container *ngFor="let menu of menus">
 
-		<ion-list-header *ngIf="menu.header">{{ menu.header }}</ion-list-header>
+		<ion-list-header *ngIf="menu.header">{{ menu.header | translate }}</ion-list-header>
 
 		<ion-item *ngFor="let menuEntry of menu.menu_items" (click)="goToPage(menuEntry);showOptions(menuEntry, $event)">
       <ion-icon [name]="menuEntry.icon" item-start></ion-icon>
@@ -30,10 +30,10 @@
 
 	<ion-item (click)="doLogout()">
     <ion-icon name="log-out" item-start></ion-icon>
-    Log Out
+    {{ 'Log Out' | translate }}
 	</ion-item>
 
-	<ion-list-header>{{ settings.APP_NAME }} <span *ngIf="version">{{version}}</span></ion-list-header>
+	<ion-list-header>{{ settings.APP_NAME }} <span *ngIf="settings.APP_VERSION">{{settings.APP_VERSION}}</span></ion-list-header>
 </ion-list>
 
 

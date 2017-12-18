@@ -10,6 +10,6 @@
 	  		<ion-input type="text" placeholder="Keyword" formControlName="keywords"></ion-input>
 	  	</ion-item>
 	  </ion-list>
-	  <button class="confirm-button" ion-button full [disabled]="!keywordsForm.valid" (click)="setFilter()">Search</button>
+	  <button class="confirm-button" ion-button full [disabled]="!keywordsForm.valid" (click)="setFilter()">{{ 'Search' | translate }}</button>
 	</form>
 </ion-content>

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Needs</ion-title>
+    <ion-title>{{ 'Needs' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,7 +17,7 @@
 
   <ion-list class="app-filters" *ngIf="filterName">
     <ion-item>
-      Needs listed for {{ filterName }}
+      {{ 'Needs found for' | translate }} {{ filterName }}
     </ion-item>
   </ion-list>
   <ion-list class="app-items">

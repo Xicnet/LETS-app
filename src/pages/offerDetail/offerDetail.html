@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Offering Details</ion-title>
+    <ion-title>{{ 'Offer Details' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -26,9 +26,9 @@
 
       <ion-col col-6>
         <ion-item>
-          <p *ngIf="offer.$category">Category: <b>{{ offer.$category }}</b></p>
-          <p *ngIf="offer.changed">Posted: <b>{{ offer.changed }}</b></p>
-          <p *ngIf="offer.expires">Expires: <b>{{ offer.expires }}</b></p>
+          <p *ngIf="offer.$category">{{ 'Category' | translate }}: <b>{{ offer.$category }}</b></p>
+          <p *ngIf="offer.changed">{{ 'Posted' | translate }}: <b>{{ offer.changed }}</b></p>
+          <p *ngIf="offer.expires">{{ 'Expires' | translate }}: <b>{{ offer.expires }}</b></p>
 
           <ng-container *ngIf="currentUser == offer.user_id">
             <button class="my-actions edit" ion-button (click)="editOffer(offer)">Edit</button>

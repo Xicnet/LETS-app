@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Want Details</ion-title>
+    <ion-title>{{ 'Need Details' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -22,13 +22,13 @@
       </ion-col>
       <ion-col col-6>
         <ion-item>
-					<p *ngIf="want.$category">Category: <b>{{ want.$category }}</b></p>
-          <p *ngIf="want.changed">Posted: <b>{{ want.changed }}</b></p>
-          <p *ngIf="want.expires">Expires: <b>{{ want.expires }}</b></p>
+					<p *ngIf="want.$category">{{ 'Category' | translate }}: <b>{{ want.$category }}</b></p>
+          <p *ngIf="want.changed">{{ 'Posted' | translate }}: <b>{{ want.changed }}</b></p>
+          <p *ngIf="want.expires">{{ 'Expires' | translate }}: <b>{{ want.expires }}</b></p>
 
           <ng-container *ngIf="currentUser == want.user_id">
-            <button class="my-actions edit" ion-button (click)="editWant(want)" >Edit</button>
-            <button class="my-actions delete" ion-button (click)="deleteWant(want.id)" >Delete</button>
+            <button class="my-actions edit" ion-button (click)="editWant(want)" >{{ 'Edit' | translate }}</button>
+            <button class="my-actions delete" ion-button (click)="deleteWant(want.id)" >{{ 'Delete' | translate }}</button>
           </ng-container>
 
           <ng-container *ngFor="let link of want._links">

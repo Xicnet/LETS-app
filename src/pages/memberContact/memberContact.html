@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Contact Member</ion-title>
+    <ion-title>{{ 'Contact Member' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -9,7 +9,7 @@
 <ion-footer>
   <ion-list>
     <ion-item>
-      <button [disabled]="!isValid" (click)="sendMessage()">Send</button>
+      <button [disabled]="!isValid" (click)="sendMessage()">{{ 'Send' | translate }}</button>
     </ion-item>
   </ion-list>
 </ion-footer>

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-		<ion-title>Offerings</ion-title>
+		<ion-title>{{ 'Offers' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -18,7 +18,7 @@
 
   <ion-list class="app-filters" *ngIf="filterName">
     <ion-item>
-      Offers listed for {{ filterName }}
+       {{ 'Offers found for' | translate }} {{ filterName }}
     </ion-item>
   </ion-list>
 

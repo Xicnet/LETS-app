@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Members</ion-title>
+    <ion-title>{{ 'Members' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -12,7 +12,7 @@
 
   <ion-list class="app-filters" *ngIf="filterName">
     <ion-item>
-      Members currently listed in {{ filterName }}
+      {{ 'Members found for' | translate }} {{ filterName }}
     </ion-item>
   </ion-list>
 

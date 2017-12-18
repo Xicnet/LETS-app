@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Member Details</ion-title>
+    <ion-title>{{ 'Member Details' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -13,7 +13,7 @@
 
       <h2 class="title">{{ member.name }}</h2>
 
-      <button class="view" ion-button (click)="contactMember()">Send Message</button>
+      <button class="view" ion-button (click)="contactMember()">{{ 'Message' | translate }}</button>
 
       <p class="subtitle" *ngIf="member.mail">
         <a ion-button icon-start href="mailto:{{member.mail}}">
@@ -28,10 +28,10 @@
           {{ member.phone }}
         </a>
       </p>
-			
+
 			<p>
-				<button class="view" ion-button (click)="memberOffers()">Offers</button>
-				<button class="view" ion-button (click)="memberWants()">Needs</button>
+				<button class="view" ion-button (click)="memberOffers()">{{ 'Offers' | translate }}</button>
+				<button class="view" ion-button (click)="memberWants()">{{ 'Needs' | translate }}</button>
 			</p>
 
 
@@ -52,8 +52,8 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <p *ngIf="member.locality"><b>Locality:</b> {{ member.locality }}</p>
-          <p *ngIf="member.street_address"><b>Address:</b> {{ member.street_address }}</p>
+          <p *ngIf="member.locality"><b>{{ 'Locality' | translate }}:</b> {{ member.locality }}</p>
+          <p *ngIf="member.street_address"><b>{{ 'Address' | translate }}:</b> {{ member.street_address }}</p>
         </ion-item>
       </ion-col>
     </ion-row>

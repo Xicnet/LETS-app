@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>My Account</ion-title>
+    <ion-title>{{ 'My Account' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -28,7 +28,7 @@
 <ion-footer>
   <ion-list>
     <ion-item>
-      <button [disabled]="!isValid" (click)="editProfile()">Submit</button>
+      <button [disabled]="!isValid" (click)="editProfile()">{{ 'Save' | translate }}</button>
     </ion-item>
   </ion-list>
 </ion-footer>

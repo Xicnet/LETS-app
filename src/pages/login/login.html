@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-  	<ion-title>Welcome</ion-title>
+  	<ion-title>{{ 'Welcome' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content scroll="false">
@@ -27,7 +27,7 @@
 			<ion-list>
         <ion-item>
 			    <ion-label>
-			   		URL
+			   		{{ 'URL' | translate }}
 			   	</ion-label>
 			    <ion-input type="text" placeholder="https://" required formControlName="community_url"  (ionBlur)="setCommunityURL()"></ion-input>
 			  </ion-item>
@@ -50,15 +50,15 @@
 				  <p>{{ formErrors.password }}</p>
 			  </ion-item>
 			  <ion-item>
-				  <ion-label>Remember me</ion-label>
+				  <ion-label>{{ 'Remember me' | translate }}</ion-label>
 				  <ion-checkbox checked="true" formControlName="rememberMe"></ion-checkbox>
 				</ion-item>
 			</ion-list>
-      <button ion-button full [disabled]="!loginForm.valid" (click)="doLogin()">Sign in</button>
-      <p>This is the {{ settings.APP_NAME }} mobile app</p>
+      <button ion-button full [disabled]="!loginForm.valid" (click)="doLogin()">{{ 'Sign in' | translate }}</button>
+      <p>{{ settings.APP_NAME }} <span *ngIf="settings.APP_VERSION">{{settings.APP_VERSION}}</span></p>
 
 	  	<p *ngIf="settings.WEB_SITE_URL">
-	  		<a href="#" (click)="goToFullSite()">Go to {{ settings.COMMUNITY_NAME }} website</a>
+	  		<a href="#" (click)="goToFullSite()" translate [translateParams]="{name: settings.COMMUNITY_NAME }">Visit the website</a>
 	  	</p>
 
 		</form>

@@ -1,14 +1,14 @@
 <ion-header>
   <ion-navbar>
-		<ion-title>Transaction</ion-title>
+		<ion-title>{{ 'Transaction' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <div class="ui success message" *ngIf="success">
     <i class="close icon"></i>
-    <div class="header">Success!</div>
-    <p>New transaction created.</p>
+    <div class="header">{{ 'Success!' | translate }}</div>
+    <p>{{ 'New transaction created' | translate }}.</p>
   </div>
 
   <ion-card *ngIf="transaction">

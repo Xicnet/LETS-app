@@ -1,14 +1,14 @@
 <ion-header>
   <ion-navbar>
-		<ion-title>Transactions</ion-title>
+		<ion-title>{{ 'Transactions' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div class="ui success message" *ngIf="success">
     <i class="close icon"></i>
-    <div class="header">Success!</div>
-    <p>New transaction created.</p>
+    <div class="header">{{ 'Success!' | translate }}</div>
+    <p>{{ 'New transaction created' | translate }}.</p>
   </div>
 
   <ion-list class="app-items">
@@ -16,7 +16,7 @@
 
       <h6>{{ transaction.description }}</h6>
       <p class="description">
-        <span [innerHTML]="transaction.amount"></span> from {{ transaction.payer_ref.name }} to {{ transaction.payee_ref.name }}
+        <span [innerHTML]="transaction.amount"></span> {{ 'from' | translate }} {{ transaction.payer_ref.name }} {{ 'to' | translate }} {{ transaction.payee_ref.name }}
       </p>
 
       <!-- <button ion-button (click)="showDetails(transaction.id)">View</button> -->
