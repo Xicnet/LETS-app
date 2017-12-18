@@ -76,7 +76,7 @@ export class TransactionDetailPage implements OnInit {
 			this.deleteOfferConfirmDialog = false;
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: _('Please wait')+'...'
+					content: ('Please wait')+'...'
 				});
 				this.loader.present();
 				this.transactionService.custom(href).subscribe(

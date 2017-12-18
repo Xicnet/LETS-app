@@ -74,7 +74,7 @@ export class HttpBasicAuth {
 		if(error.status==401){
 			window.localStorage.removeItem('auth_token');
 			window.sessionStorage.removeItem('auth_token');
-			throw _("Your login details may be incorrect, please logout and login again")
+			throw ('Your login details may be incorrect, please logout and login again')
 		}
 
 		try {
@@ -84,7 +84,7 @@ export class HttpBasicAuth {
 				}
 				throw ''
 		} catch (e) {
-				throw _('There was a connection or server error!') + e;
+				throw ('There was a connection or server error!') + e;
 		}
 	}
 

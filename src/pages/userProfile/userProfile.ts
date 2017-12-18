@@ -39,7 +39,7 @@ export class ProfilePage implements OnInit {
 			response => {
 				if (!this.isLoaded) {
 					this.loader = this.loadingCtrl.create({
-						content: _('Please wait')+'...'
+						content: ('Please wait')+'...'
 					});
 					this.loader.present();
 					this.authService.userInfo.subscribe(
@@ -75,7 +75,7 @@ export class ProfilePage implements OnInit {
 	editProfile() {
 		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
 			fields: this.definitionMember.PATCH,
-			operation: _('My Account')
+			operation: ('My Account')
 		}, {
 				cssClass: 'confirm-popover',
 				enableBackdropDismiss: false
@@ -83,7 +83,7 @@ export class ProfilePage implements OnInit {
 		this.popover.onDidDismiss((data) => {
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: _('Please wait')+'...'
+					content: ('Please wait')+'...'
 				});
 				this.loader.present();
 				this.member.id = this.user.id;
@@ -93,9 +93,9 @@ export class ProfilePage implements OnInit {
 						this.authService.getUserInfo(this.member.name, true);
 						// this.user = this.member; // dirty way to save the new user details locally
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
-							operation: _('Member'),
+							operation: ('Member'),
 							options: [{
-								title: _('View my profile'),
+								title: ('View my profile'),
 								icon: 'person',
 								page: MemberDetailPage,
 								params: {
@@ -120,7 +120,7 @@ export class ProfilePage implements OnInit {
 	showActions() {
 		this.popover = this.popoverCtrl.create(FiltersBuilderComponent, {
 			options: [{
-				title: _('Show My Offers'),
+				title: ('Show My Offers'),
 				page: OffersPage,
 				params: {
 					filter: `&user_id=${this.user.id}`,
@@ -128,7 +128,7 @@ export class ProfilePage implements OnInit {
 					myActions: true
 				}
 			}, {
-				title: _('Show My Needs'),
+				title: ('Show My Needs'),
 				page: WantsPage,
 				params: {
 					filter: `&user_id=${this.user.id}`,
@@ -136,7 +136,7 @@ export class ProfilePage implements OnInit {
 					myActions: true
 				}
 			}, {
-				title: _('Show My Transactions'),
+				title: ('Show My Transactions'),
 				page: TransactionsPage,
 				params: {
 					filter: `&user_id=${this.user.id}`,

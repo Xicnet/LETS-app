@@ -57,7 +57,7 @@ export class LoginPage implements OnInit, AfterContentInit {
 		this.rememberMe = this.loginForm.value.rememberMe;
 		this.authService.doLogin(this.username, this.password, this.rememberMe).subscribe(
 			response => this.navCtrl.setRoot(HomePage),
-			error => this.alertService.showError(_('Please check your details')+'.\n' + error));
+			error => this.alertService.showError(('Please check your details')+'.\n' + error));
 	}
 
 	goToFullSite() {
@@ -115,13 +115,13 @@ export class LoginPage implements OnInit, AfterContentInit {
 
 	validationMessages = {
 		'community_url': {
-			'required': _('Please enter the URL of your local community website')
+			'required': ('Please enter the URL of your local community website')
 		},
 		'username': {
-			'required': _('Email is required')
+			'required': ('Email is required')
 		},
 		'password': {
-			'required': _('Password is required')
+			'required': ('Password is required')
 		}
 	};
 }

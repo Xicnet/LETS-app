@@ -38,7 +38,7 @@ export class WantDetailPage implements OnInit {
 			response => {
 				this.imageExpanded = false;
 				this.loader = this.loadingCtrl.create({
-					content: _('Please wait')+'...'
+					content: ('Please wait')+'...'
 				});
 				this.loader.present();
 
@@ -99,7 +99,7 @@ export class WantDetailPage implements OnInit {
 	deleteWant(id) {
 		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
 			fields: this.definitionWant.POST,
-			operation: _('Delete Want')
+			operation: ('Delete Want')
 		}, {
 				cssClass: 'confirm-popover',
 				enableBackdropDismiss: false
@@ -109,7 +109,7 @@ export class WantDetailPage implements OnInit {
 			this.deleteWantConfirmDialog = false;
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: _('Please wait')+'...'
+					content: ('Please wait')+'...'
 				});
 				this.loader.present();
 				this.wantService.delete(id).subscribe(
@@ -139,7 +139,7 @@ export class WantDetailPage implements OnInit {
 			this.deleteWantConfirmDialog = false;
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: _('Please wait')+'...'
+					content: ('Please wait')+'...'
 				});
 				this.loader.present();
 				this.wantService.custom(href).subscribe(

@@ -41,7 +41,7 @@ export class AddWantPage implements OnInit {
 			response => {
 				if (!this.isLoaded) {
 					this.loader = this.loadingCtrl.create({
-						content: _('Please wait')+'...'
+						content: ('Please wait')+'...'
 					});
 					this.loader.present();
 					this.authService.userInfo.subscribe(
@@ -82,7 +82,7 @@ export class AddWantPage implements OnInit {
 	addWant() {
 		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
 			fields: this.definitionWant.POST,
-			operation: _('Want')
+			operation: ('Want')
 		}, {
 				cssClass: 'confirm-popover',
 				enableBackdropDismiss: false
@@ -90,20 +90,20 @@ export class AddWantPage implements OnInit {
 		this.popover.onDidDismiss((data) => {
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: _('Please wait')+'...'
+					content: ('Please wait')+'...'
 				});
 				this.loader.present();
 				this.wantService.save(this.want, this.wantID).subscribe(
 					response => {
 						this.loader.dismiss();
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
-							operation: _('Need'),
+							operation: ('Need'),
 							options: [{
-								title: _('Post Another Need'),
+								title: ('Post Another Need'),
 								icon: 'ion-edit',
 								page: AddWantPage
 							}, {
-								title: _('Browse Needs'),
+								title: ('Browse Needs'),
 								icon: 'ion-pin',
 								page: WantsPage
 							}]

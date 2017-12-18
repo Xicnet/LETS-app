@@ -64,7 +64,7 @@ export class MembersPage implements OnInit {
 		}
 		this.isLoading = true;
 		this.loader = this.loadingCtrl.create({
-			content: _('Please wait')+'...'
+			content: ('Please wait')+'...'
 		});
 		this.loader.present();
 		this.memberService.list(this.page, this.filter).subscribe(
@@ -93,14 +93,14 @@ export class MembersPage implements OnInit {
 	showFilters() {
 		this.popover = this.popoverCtrl.create(FiltersBuilderComponent, {
 			options: [{
-				title: _('Show By Keyword'),
+				title: ('Show By Keyword'),
 				page: KeywordsFilterPage,
 				params: {
-					title: _('Members'),
+					title: ('Members'),
 					page: MembersPage
 				}
 			}, {
-				title: _('Clear Filters'),
+				title: ('Clear Filters'),
 				page: MembersPage
 			}]
 		}, {

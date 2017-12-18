@@ -77,13 +77,13 @@ export class OffersPage implements OnInit {
 				// }
 
 				this.filters_action = {
-					title: _('Show By Categories'),
+					title: ('Show By Categories'),
 					page: CategoriesFilterPage,
 					params: {
 						categories: map(this.definitionOffer.POST.category.options, (category, key) => {
 							return { id: key, name: category };
 						}),
-						title: _('Offers'),
+						title: ('Offers'),
 						page: OffersPage
 					}
 				}
@@ -110,7 +110,7 @@ export class OffersPage implements OnInit {
 		}
 		this.isLoading = true;
 		this.loader = this.loadingCtrl.create({
-			content: _('Please wait')+'...'
+			content: ('Please wait')+'...'
 		});
 		this.loader.present();
 		this.offerService.list(this.page, this.filter).subscribe(

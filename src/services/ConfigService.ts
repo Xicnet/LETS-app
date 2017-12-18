@@ -31,7 +31,7 @@ export class ConfigService {
 
 	initAppConfig(): void {
 		if(!this.settings.WEB_SITE_URL){
-			this.alertService.showError(_('The app does not know your community URL - please log out to configure it'));
+			this.alertService.showError(('The app does not know your community URL - please log out to configure it'));
 			this.authService.doLogout();
 		}
 		else this.requestAppConfig().subscribe(
@@ -43,7 +43,7 @@ export class ConfigService {
 				if(response.language) this.settings.COMMUNITY_LANG = response.language;
 				this.initTranslate();
 			},
-			error => this.alertService.showError(_('Could not get your community info - please check the URL, and that you are online')+'.\n' + error));
+			error => this.alertService.showError(('Could not get your community info - please check the URL, and that you are online')+'.\n' + error));
 	}
 
 	initTranslate() {

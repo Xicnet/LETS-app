@@ -44,7 +44,7 @@ export class AddOfferPage implements OnInit {
 			response => {
 				if (!this.isLoaded) {
 					this.loader = this.loadingCtrl.create({
-						content: _('Please wait')+'...'
+						content: ('Please wait')+'...'
 					});
 					this.loader.present();
 					this.authService.userInfo.subscribe(
@@ -85,7 +85,7 @@ export class AddOfferPage implements OnInit {
 	addOffer() {
 		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
 			fields: this.definitionOffer.POST,
-			operation: _('Offer')
+			operation: ('Offer')
 		}, {
 				cssClass: 'confirm-popover',
 				enableBackdropDismiss: false
@@ -93,20 +93,20 @@ export class AddOfferPage implements OnInit {
 		this.popover.onDidDismiss((data) => {
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: _('Please wait')+'...'
+					content: ('Please wait')+'...'
 				});
 				this.loader.present();
 				this.offerService.save(this.offer, this.offerID).subscribe(
 					response => {
 						this.loader.dismiss();
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
-							operation: _('Offer'),
+							operation: ('Offer'),
 							options: [{
-								title: _('Post Another Offer'),
+								title: ('Post Another Offer'),
 								icon: 'ion-edit',
 								page: AddOfferPage
 							}, {
-								title: _('Browse Offers'),
+								title: ('Browse Offers'),
 								icon: 'ion-pricetag',
 								page: OffersPage
 							}]

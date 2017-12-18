@@ -38,20 +38,20 @@ export class ContactMemberPage implements OnInit {
 			response => {
 				if (!this.isLoaded) {
 					this.loader = this.loadingCtrl.create({
-						content: _('Please wait')+'...'
+						content: ('Please wait')+'...'
 					});
 
 					this.fields = {
 			      'subject': {
 							'name': 'subject',
 							'placeholder': '',
-							'label': _('Subject'),
+							'label': ('Subject'),
 							'required':true
 						},
 			      'body': {
 							'name': 'body',
 							'placeholder': '',
-							'label': _('Message'),
+							'label': ('Message'),
 							'type':'textarea'
 						}
 			    };
@@ -70,7 +70,7 @@ export class ContactMemberPage implements OnInit {
 		console.log(this.message_data)
 		this.popover = this.popoverCtrl.create(ConfirmationBuilderComponent, {
 			fields: this.fields,
-			operation: _('Contact Member')
+			operation: ('Contact Member')
 		}, {
 				cssClass: 'confirm-popover',
 				enableBackdropDismiss: false
@@ -78,15 +78,15 @@ export class ContactMemberPage implements OnInit {
 		this.popover.onDidDismiss((data) => {
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: _('Please wait')+'...'
+					content: ('Please wait')+'...'
 				});
 				this.loader.present();
 				this.memberService.contact(this.to_id, this.message_data).subscribe(
 					response => {
 						this.loader.dismiss();
 						this.popover = this.popoverCtrl.create(MoreActionsBuilderComponent, {
-							operation: _('Message'),
-							status: _('was sent'),
+							operation: ('Message'),
+							status: ('was sent'),
 							options: []
 						}, {
 								cssClass: 'confirm-popover',

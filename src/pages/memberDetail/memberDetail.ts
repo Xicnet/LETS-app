@@ -30,7 +30,7 @@ export class MemberDetailPage implements OnInit {
 		this.viewCtrl.didEnter.subscribe(
 			response => {
 				this.loader = this.loadingCtrl.create({
-					content: _('Please wait')+'...'
+					content: ('Please wait')+'...'
 				});
 				this.loader.present();
 				this.memberService.get(this.params.get('id')).subscribe(
@@ -58,7 +58,7 @@ export class MemberDetailPage implements OnInit {
 			this.deleteOfferConfirmDialog = false;
 			if (data && data.hasConfirmed) {
 				this.loader = this.loadingCtrl.create({
-					content: _('Please wait')+'...'
+					content: ('Please wait')+'...'
 				});
 				this.loader.present();
 				this.memberService.custom(href).subscribe(
