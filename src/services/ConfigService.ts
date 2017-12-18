@@ -52,14 +52,23 @@ export class ConfigService {
 
     this.translate.setDefaultLang(lang);
 
-		if(this.settings.COMMUNITY_LANG){
-			lang = this.settings.COMMUNITY_LANG; // Set your language here
+		var overide = this.settings.APP_ENGLISH;
+
+		// console.log("lang? "+this.settings.COMMUNITY_LANG);
+		// console.log("english? "+overide);
+
+		if(!overide || overide=='false'){
+
+			if(this.settings.COMMUNITY_LANG){
+				lang = this.settings.COMMUNITY_LANG; // Set your language here
+			}
+	    else if (this.translate.getBrowserLang() !== undefined) {
+	      lang = this.translate.getBrowserLang();
+	    }
 		}
-    else if (this.translate.getBrowserLang() !== undefined) {
-      lang = this.translate.getBrowserLang();
-    }
 
 		this.translate.use(lang);
+
 		console.log("localise: "+lang);
 
     // this.translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {

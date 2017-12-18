@@ -78,7 +78,7 @@ page-login {
 					}
 				}
 			}
-			ion-item.item.item-checkbox {
+			ion-item.item.item-checkbox, ion-item.item.item-toggle {
 				padding: 0;
 				margin: 0 auto;
 				margin-bottom: 20px;
@@ -88,13 +88,18 @@ page-login {
 				min-height: 25px;
 				height: 25px;
 				text-align: center;
-				width: 150px;
+				width: 200px;
 				border: none !important;
 
 				ion-checkbox.checkbox {
 					margin: 0;
 				}
+
+				.item-inner{
+					border-bottom: 0;
+				}
 			}
+
 		}
 		button.button.button-full {
 			border-radius: 5px;

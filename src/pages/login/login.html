@@ -25,12 +25,15 @@
 		</ion-slides>
 		<form [formGroup]="loginForm">
 			<ion-list>
+
         <ion-item>
 			    <ion-label>
 			   		{{ 'URL' | translate }}
 			   	</ion-label>
 			    <ion-input type="text" placeholder="https://" required formControlName="community_url"  (ionBlur)="setCommunityURL()"></ion-input>
 			  </ion-item>
+
+
         <ion-item>
 			    <ion-label>
 			   		<i class="ion-person"></i>
@@ -40,19 +43,31 @@
 			  <ion-item class="form-error" *ngIf="formErrors.username">
 				  <p>{{ formErrors.username }}</p>
 			  </ion-item>
+
 			  <ion-item>
 			    <ion-label>
 			   		<i class="ion-locked"></i>
 			   	</ion-label>
 			    <ion-input type="password" placeholder="Password" required formControlName="password"></ion-input>
 			  </ion-item>
+
 			  <ion-item class="form-error" *ngIf="formErrors.password">
 				  <p>{{ formErrors.password }}</p>
 			  </ion-item>
-			  <ion-item>
+
+				<ion-item>
 				  <ion-label>{{ 'Remember me' | translate }}</ion-label>
-				  <ion-checkbox checked="true" formControlName="rememberMe"></ion-checkbox>
+				  <!-- <ion-checkbox checked="true" formControlName="rememberMe"></ion-checkbox> -->
+					<ion-toggle checked="true" formControlName="rememberMe"></ion-toggle>
 				</ion-item>
+
+				<ion-item>
+					<ion-label>
+						{{ 'Use in English' | translate }}
+					</ion-label>
+					<ion-toggle [(ngModel)]="settings.APP_ENGLISH" [ngModelOptions]="{standalone: true}" (ionChange)="configService.initTranslate()"></ion-toggle>
+				</ion-item>
+
 			</ion-list>
       <button ion-button full [disabled]="!loginForm.valid" (click)="doLogin()">{{ 'Sign in' | translate }}</button>
       <p>{{ settings.APP_NAME }} <span *ngIf="settings.APP_VERSION">{{settings.APP_VERSION}}</span></p>

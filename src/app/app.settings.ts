@@ -63,6 +63,14 @@ export class AppSettings {
 		else return '0.x';
 	}
 
+	public set APP_ENGLISH(opt) {
+		window.localStorage.setItem('in_english', opt);
+	}
+
+	public get APP_ENGLISH(): any {
+		return window.localStorage.getItem('in_english');
+	}
+
 
 	public get URL(): any {
 		if(this.SERVER_URL) return {
