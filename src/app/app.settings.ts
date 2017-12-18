@@ -43,6 +43,16 @@ export class AppSettings {
 		// else return 'assets/images/community_logo.png';
 	}
 
+	public set COMMUNITY_LANG(opt) {
+		window.localStorage.setItem('language', opt);
+	}
+
+	public get COMMUNITY_LANG(): any {
+		var opt = window.localStorage.getItem('language');
+		if(opt) return opt;
+		else return 'en';
+	}
+
 	public get URL(): any {
 		if(this.SERVER_URL) return {
 			config: `${this.SERVER_URL}/`,

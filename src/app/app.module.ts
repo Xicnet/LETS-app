@@ -43,7 +43,15 @@ import { Camera } from '@ionic-native/camera';
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppVersion } from '@ionic-native/app-version';
-import { TranslateModule } from '@ngx-translate/core';
+
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 
 import {enableProdMode} from '@angular/core';
 enableProdMode(); // workaround for error "Expression has changed after it was checked"
@@ -83,7 +91,14 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     HttpModule,
     JsonpModule,
     MomentModule,
-		TranslateModule.forRoot()
+		HttpClientModule,
+		TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (createTranslateLoader),
+                deps: [HttpClient]
+            }
+        })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
