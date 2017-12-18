@@ -48,15 +48,19 @@ export class ConfigService {
 
 	initTranslate() {
 
-    // Set the default language for translation strings, and the current language.
-    this.translate.setDefaultLang('en');
+		var lang = 'en'; // Set the default language for translation strings
+
+    this.translate.setDefaultLang(lang);
 
 		if(this.settings.COMMUNITY_LANG){
-			this.translate.use(this.settings.COMMUNITY_LANG); // Set your language here
+			lang = this.settings.COMMUNITY_LANG; // Set your language here
 		}
     else if (this.translate.getBrowserLang() !== undefined) {
-      this.translate.use(this.translate.getBrowserLang());
+      lang = this.translate.getBrowserLang();
     }
+
+		this.translate.use(lang);
+		console.log("localise: "+lang);
 
     // this.translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {
     //   this.config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
