@@ -156,7 +156,6 @@ ion-footer {
 						font-size: 18px;
 						background: #737A82;
 						color: #fff;
-						text-transform: uppercase;
 					}
 
 				}
@@ -164,9 +163,9 @@ ion-footer {
 		}
 	}
 }
-.button-normal {
+.button-normal, .button-md {
 	text-transform: none;
-}
+}	
 ion-list.list.app-filters {
 	margin: 0;
 	margin-top: 15px;
