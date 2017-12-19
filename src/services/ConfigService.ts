@@ -25,8 +25,8 @@ export class ConfigService {
 	}
 
 	requestAppConfig(): Observable<Config> {
-		console.log(this.settings.URL.config)
-		return this.httpBasicAuth.get(this.settings.URL.config);
+		// console.log(this.settings.URL.config)
+		if(this.settings.URL.config) return this.httpBasicAuth.get(this.settings.URL.config);
 	}
 
 	initAppConfig(): void {
@@ -52,14 +52,16 @@ export class ConfigService {
 
     this.translate.setDefaultLang(lang);
 
-		var overide = this.settings.APP_ENGLISH;
+		var override = this.settings.APP_ENGLISH;
 
-		// console.log("lang? "+this.settings.COMMUNITY_LANG);
-		// console.log("english? "+overide);
+		// console.log("c lang? "+this.settings.COMMUNITY_LANG);
+		// console.log("english? "+override);
+		// console.log("browser? "+this.translate.getBrowserLang());
 
-		if(!overide || overide=='false'){
+		if(!override || override=='false'){
+			// console.log("dont override");
 
-			if(this.settings.COMMUNITY_LANG){
+			if(this.settings.COMMUNITY_LANG && this.settings.COMMUNITY_LANG !='false'){
 				lang = this.settings.COMMUNITY_LANG; // Set your language here
 			}
 	    else if (this.translate.getBrowserLang() !== undefined) {

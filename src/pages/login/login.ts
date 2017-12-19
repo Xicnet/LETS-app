@@ -33,6 +33,9 @@ export class LoginPage implements OnInit, AfterContentInit {
 
 	ngOnInit(): void {
 
+		this.settings.COMMUNITY_LANG = false; // first run
+		this.configService.initTranslate();
+
 		if(this.settings.WEB_SITE_URL) this.configService.initAppConfig();
 
 		this.buildForm();
