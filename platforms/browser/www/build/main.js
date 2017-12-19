@@ -627,7 +627,7 @@ var TransactionsPage = (function () {
 }());
 TransactionsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-transactions',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactions/transactions.html"*/'<ion-header>\n  <ion-navbar>\n		<ion-title>{{ \'Transactions\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div class="ui success message" *ngIf="success">\n    <i class="close icon"></i>\n    <div class="header">{{ \'Success!\' | translate }}</div>\n    <p>{{ \'New transaction created\' | translate }}.</p>\n  </div>\n\n  <ion-list class="app-items">\n    <ion-item *ngFor="let transaction of transactions">\n\n      <h6>{{ transaction.description }}</h6>\n      <p class="description">\n        <span [innerHTML]="transaction.amount"></span> {{ \'from\' | translate }} {{ transaction.payer_ref.name }} {{ \'to\' | translate }} {{ transaction.payee_ref.name }}\n      </p>\n\n      <!-- <button ion-button (click)="showDetails(transaction.id)">View</button> -->\n\n      <ng-container *ngFor="let link of transaction._links">\n        <button *ngIf="link.rel !=\'self\' && link.rel !=\'view\'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n        <button *ngIf="link.rel ==\'self\' || link.rel ==\'view\'" class="view" ion-button (click)="showDetails(transaction.id)">{{link.label || \'Details\'}}</button>\n      </ng-container>\n\n    </ion-item>\n  </ion-list>\n\n  <!-- <button *ngIf="canPost" class="ui add-new button" (click)="addTransaction()">\n    <i class="plus icon"></i> New Transaction\n  </button> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactions/transactions.html"*/
+        selector: 'page-transactions',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactions/transactions.html"*/'<ion-header>\n  <ion-navbar>\n		<ion-title>{{ \'Transactions\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div class="ui success message" *ngIf="success">\n    <i class="close icon"></i>\n    <div class="header">{{ \'Success!\' | translate }}</div>\n    <p>{{ \'New transaction created\' | translate }}.</p>\n  </div>\n\n  <ion-list class="app-items">\n    <ion-item *ngFor="let transaction of transactions">\n\n      <h6>{{ transaction.description }}</h6>\n      <p class="description">\n        <span [innerHTML]="transaction.amount"></span> {{ \'from\' | translate }} {{ transaction.payer_ref && transaction.payer_ref.name || transaction.payer }} {{ \'to\' | translate }} {{ transaction.payee_ref && transaction.payee_ref.name || transaction.payee }}\n      </p>\n\n      <!-- <button ion-button (click)="showDetails(transaction.id)">View</button> -->\n\n      <ng-container *ngFor="let link of transaction._links">\n        <button *ngIf="link.rel !=\'self\' && link.rel !=\'view\'" class="edit" ion-button  (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>\n        <button *ngIf="link.rel ==\'self\' || link.rel ==\'view\'" class="view" ion-button  (click)="showDetails(transaction.id)">{{link.label || \'Details\'}}</button>\n      </ng-container>\n\n    </ion-item>\n  </ion-list>\n\n  <!-- <button *ngIf="canPost" class="ui add-new button" (click)="addTransaction()">\n    <i class="plus icon"></i> New Transaction\n  </button> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/transactions/transactions.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
@@ -739,8 +739,9 @@ var ConfigService = (function () {
         // 	error => this.alertService.showError(error));
     }
     ConfigService.prototype.requestAppConfig = function () {
-        console.log(this.settings.URL.config);
-        return this.httpBasicAuth.get(this.settings.URL.config);
+        // console.log(this.settings.URL.config)
+        if (this.settings.URL.config)
+            return this.httpBasicAuth.get(this.settings.URL.config);
     };
     ConfigService.prototype.initAppConfig = function () {
         var _this = this;
@@ -764,11 +765,13 @@ var ConfigService = (function () {
     ConfigService.prototype.initTranslate = function () {
         var lang = 'en'; // Set the default language for translation strings
         this.translate.setDefaultLang(lang);
-        var overide = this.settings.APP_ENGLISH;
-        // console.log("lang? "+this.settings.COMMUNITY_LANG);
-        // console.log("english? "+overide);
-        if (!overide || overide == 'false') {
-            if (this.settings.COMMUNITY_LANG) {
+        var override = this.settings.APP_ENGLISH;
+        // console.log("c lang? "+this.settings.COMMUNITY_LANG);
+        // console.log("english? "+override);
+        // console.log("browser? "+this.translate.getBrowserLang());
+        if (!override || override == 'false') {
+            // console.log("dont override");
+            if (this.settings.COMMUNITY_LANG && this.settings.COMMUNITY_LANG != 'false') {
                 lang = this.settings.COMMUNITY_LANG; // Set your language here
             }
             else if (this.translate.getBrowserLang() !== undefined) {
@@ -4081,6 +4084,8 @@ var LoginPage = (function () {
     }
     LoginPage.prototype.ngOnInit = function () {
         var _this = this;
+        this.settings.COMMUNITY_LANG = false; // first run
+        this.configService.initTranslate();
         if (this.settings.WEB_SITE_URL)
             this.configService.initAppConfig();
         this.buildForm();
