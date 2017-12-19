@@ -16,7 +16,7 @@
 
       <h6>{{ transaction.description }}</h6>
       <p class="description">
-        <span [innerHTML]="transaction.amount"></span> {{ 'from' | translate }} {{ transaction.payer_ref.name }} {{ 'to' | translate }} {{ transaction.payee_ref.name }}
+        <span [innerHTML]="transaction.amount"></span> {{ 'from' | translate }} {{ transaction.payer_ref && transaction.payer_ref.name || transaction.payer }} {{ 'to' | translate }} {{ transaction.payee_ref && transaction.payee_ref.name || transaction.payee }}
       </p>
 
       <!-- <button ion-button (click)="showDetails(transaction.id)">View</button> -->
