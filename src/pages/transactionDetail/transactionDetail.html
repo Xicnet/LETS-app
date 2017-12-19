@@ -15,6 +15,7 @@
     <ion-card-content>
       <p> {{ transaction.description }} </p>
       <p> <span [innerHTML]="transaction.amount"></span> </p>
+			<p *ngIf="transaction.created">{{ transaction.created }}</p>
       <p>from
         <button ion-button small class="button-normal" (click)="showMember(transaction.payer_ref.id)">{{ transaction.payer_ref.name }}</button>
       <p>to
