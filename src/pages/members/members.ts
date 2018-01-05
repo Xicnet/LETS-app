@@ -33,7 +33,7 @@ export class MembersPage implements OnInit {
 		private popoverCtrl: PopoverController,
 		private memberService: MemberService,
 		private alertService: AlertService,
-		private keyboard: Keyboard 
+		private keyboard: Keyboard
 	) { }
 
 	ngOnInit(): void {
@@ -48,7 +48,8 @@ export class MembersPage implements OnInit {
 				this.hasNoMoreData = false;
 				this.isLoading = false;
 				this.members = [];
-				// this.loadMembers();
+
+				if(this.filter) this.loadMembers(); // only load when searching
 
 				setTimeout(()=>{
 			      this.searchbar.setFocus();
@@ -124,7 +125,7 @@ export class MembersPage implements OnInit {
 		this.popover.present();
 	}
 
-	setFilter(ev) {
+	setFilterPage(ev) {
 		this.keywords = ev.target.value;
 		if(this.keywords){
 			this.navCtrl.push(MembersPage, {
@@ -134,4 +135,11 @@ export class MembersPage implements OnInit {
 		}
 	}
 
+	setFilter(ev) {
+		this.keywords = ev.target.value;
+		if(this.keywords){
+			this.filter = `&fragment=${this.keywords}`;
+			this.loadMembers();
+		}
+	}
 }
