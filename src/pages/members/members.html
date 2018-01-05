@@ -6,7 +6,7 @@
 <ion-content>
 
 	<ion-toolbar>
-		<ion-searchbar (search)="setFilter($event)" (keyup.enter)="setFilter($event)"></ion-searchbar>
+		<ion-searchbar #searchbar (search)="setFilter($event)" (keyup.enter)="setFilter($event)"></ion-searchbar>
 	</ion-toolbar>
 
 

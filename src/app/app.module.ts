@@ -42,6 +42,7 @@ import { BrowserModule } from '@angular/platform-browser'; // ionic v3
 import { Camera } from '@ionic-native/camera';
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Keyboard } from '@ionic-native/keyboard';
 import { AppVersion } from '@ionic-native/app-version';
 
 import {HttpClientModule, HttpClient} from '@angular/common/http';
@@ -146,6 +147,7 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     MemberService,
     StatusBar,
     SplashScreen,
+		Keyboard,
     Camera,
 		AppVersion,
     { provide: ErrorHandler, useClass: IonicErrorHandler }]

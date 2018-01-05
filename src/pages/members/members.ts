@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ViewController, NavController, NavParams, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ViewController, NavController, NavParams, LoadingController, Loading, PopoverController, Popover, Searchbar } from 'ionic-angular';
 import { MemberService } from '../../services/MemberService';
 import { AlertService } from '../../services/AlertService';
 import { Member } from '../../domain/Member';
@@ -7,6 +7,7 @@ import { MemberDetailPage } from '../memberDetail/memberDetail';
 import { KeywordsFilterPage } from '../keywords/keywords';
 import { FiltersBuilderComponent } from '../../components/filtersBuilder/filtersBuilder';
 import * as $ from 'jquery';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @Component({
 	selector: 'page-members',
@@ -23,13 +24,17 @@ export class MembersPage implements OnInit {
 	private filterName: string;
 	private keywords: string;
 
+	@ViewChild("searchbar") searchbar:Searchbar;
+
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
 		private navParams: NavParams,
 		public loadingCtrl: LoadingController,
 		private popoverCtrl: PopoverController,
 		private memberService: MemberService,
-		private alertService: AlertService) { }
+		private alertService: AlertService,
+		private keyboard: Keyboard 
+	) { }
 
 	ngOnInit(): void {
 		this.setPagination();
@@ -43,7 +48,16 @@ export class MembersPage implements OnInit {
 				this.hasNoMoreData = false;
 				this.isLoading = false;
 				this.members = [];
-				this.loadMembers();
+				// this.loadMembers();
+
+				setTimeout(()=>{
+			      this.searchbar.setFocus();
+			  }, 200);
+
+				this.keyboard.onKeyboardShow().subscribe((data)=>{
+		      this.searchbar.setFocus();
+		    })
+
 			});
 	}
 
