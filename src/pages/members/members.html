@@ -1,31 +1,31 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{ 'Members' | translate }}</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{ 'Members' | translate }}</ion-title>
+	</ion-navbar>
 </ion-header>
 <ion-content>
 
 	<ion-toolbar>
-		<ion-searchbar (search)="setFilter($event)"></ion-searchbar>
+		<ion-searchbar (search)="setFilter($event)" (keyup.enter)="setFilter($event)"></ion-searchbar>
 	</ion-toolbar>
 
 
-  <ion-list class="app-filters" *ngIf="filterName">
-    <ion-item>
-      {{ 'Members found for' | translate }} {{ filterName }}
-    </ion-item>
-  </ion-list>
+	<ion-list class="app-filters" *ngIf="filterName">
+		<ion-item>
+			{{ 'Members found for' | translate }} {{ filterName }}
+		</ion-item>
+	</ion-list>
 
-  <ion-list class="app-items small">
-    <ion-item *ngFor="let member of members" (click)="showDetails(member.id)">
-      <ion-avatar item-start>
-        <img [src]="member.portrait || 'assets/images/default_user.jpg'">
-      </ion-avatar>
-      <h6>{{ member.name }}</h6>
-      <ion-note>{{ member.locality }}</ion-note>
-      <p class="description">{{ member.aboutme }}</p>
-    </ion-item>
-  </ion-list>
+	<ion-list class="app-items small">
+		<ion-item *ngFor="let member of members" (click)="showDetails(member.id)">
+			<ion-avatar item-start>
+				<img [src]="member.portrait || 'assets/images/default_user.jpg'">
+			</ion-avatar>
+			<h6>{{ member.name }}</h6>
+			<ion-note>{{ member.locality }}</ion-note>
+			<p class="description">{{ member.aboutme }}</p>
+		</ion-item>
+	</ion-list>
 
 </ion-content>
 

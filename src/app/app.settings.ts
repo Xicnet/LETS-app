@@ -20,7 +20,7 @@ export class AppSettings {
 	}
 
 	public get APP_NAME(): any {
-		return 'LETS Community App';
+		return 'LETS Community Exchange';
 	}
 
 	public set COMMUNITY_NAME(opt) {

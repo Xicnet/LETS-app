@@ -1,59 +1,59 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{ 'Needs' | translate }}</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{ 'Needs' | translate }}</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-toolbar>
+	<ion-toolbar>
 		<ion-buttons left>
 			<button ion-button icon-only (click)="goToFilters()">
 				<i class="ion-navicon-round"></i>
 			</button>
 		</ion-buttons>
-		<ion-searchbar (search)="setFilter($event)"></ion-searchbar>
+		<ion-searchbar (search)="setFilter($event)" (keyup.enter)="setFilter($event)"></ion-searchbar>
 	</ion-toolbar>
 
-  <ion-list class="app-filters" *ngIf="filterName">
-    <ion-item>
-      {{ 'Needs found for' | translate }} {{ filterName }}
-    </ion-item>
-  </ion-list>
-  <ion-list class="app-items">
+	<ion-list class="app-filters" *ngIf="filterName">
+		<ion-item>
+			{{ 'Needs found for' | translate }} {{ filterName }}
+		</ion-item>
+	</ion-list>
+	<ion-list class="app-items">
 
-    <ion-item *ngFor="let want of wants">
+		<ion-item *ngFor="let want of wants">
 
-      <ion-row>
+			<ion-row>
 
-  <ion-col col-2 (click)="showMember(want.user_id.id)" *ngIf="want.image">
-    <ion-thumbnail>
-      <img [src]="want.image || 'assets/images/default_sm.jpg'">
-    </ion-thumbnail>
-  </ion-col>
+				<ion-col col-2 (click)="showMember(want.user_id.id)" *ngIf="want.image">
+					<ion-thumbnail>
+						<img [src]="want.image || 'assets/images/default_sm.jpg'">
+					</ion-thumbnail>
+				</ion-col>
 
-  <ion-col col-10 (click)="showDetails(want.id)" *ngIf="!want.image">
-    <h6>{{ want.title }}</h6>
-    <div class="description" [innerHTML]="want.description"></div>
-  </ion-col>
+				<ion-col col-10 (click)="showDetails(want.id)" *ngIf="!want.image">
+					<h6>{{ want.title }}</h6>
+					<div class="description" [innerHTML]="want.description"></div>
+				</ion-col>
 
-  <ion-col col-8 (click)="showDetails(want.id)" *ngIf="want.image">
-    <h6>{{ want.title }}</h6>
-    <div class="description" [innerHTML]="want.description"></div>
-  </ion-col>
+				<ion-col col-8 (click)="showDetails(want.id)" *ngIf="want.image">
+					<h6>{{ want.title }}</h6>
+					<div class="description" [innerHTML]="want.description"></div>
+				</ion-col>
 
-  <ion-col col-2 class="items-user" (click)="showMember(want.user_id)">
-    <p>
-      {{ want.user_id_ref.name }}
-    </p>
-    <ion-avatar *ngIf="want.user_id_ref.portrait">
-      <img [src]="want.user_id_ref.portrait">
-    </ion-avatar>
-  </ion-col>
+				<ion-col col-2 class="items-user" (click)="showMember(want.user_id)">
+					<p>
+						{{ want.user_id_ref.name }}
+					</p>
+					<ion-avatar *ngIf="want.user_id_ref.portrait">
+						<img [src]="want.user_id_ref.portrait">
+					</ion-avatar>
+				</ion-col>
 
-</ion-row>
+			</ion-row>
 
-    </ion-item>
+		</ion-item>
 
-  </ion-list>
+	</ion-list>
 </ion-content>
