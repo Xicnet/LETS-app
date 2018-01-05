@@ -138,6 +138,10 @@ export class MembersPage implements OnInit {
 	setFilter(ev) {
 		this.keywords = ev.target.value;
 		if(this.keywords){
+			this.page = 1; // reset
+			this.members = [];
+			this.hasNoMoreData = false;
+			
 			this.filter = `&fragment=${this.keywords}`;
 			this.loadMembers();
 		}
