@@ -23,6 +23,8 @@ export class MembersPage implements OnInit {
 	private filter: any;
 	private filterName: string;
 	private keywords: string;
+	private operation: string;
+	private isPopover: boolean;
 
 	@ViewChild("searchbar") searchbar:Searchbar;
 
@@ -41,6 +43,8 @@ export class MembersPage implements OnInit {
 		if (this.navParams.data) {
 			this.filter = this.navParams.data.filter;
 			this.filterName = this.navParams.data.filterName;
+			this.isPopover = this.navParams.data.isPopover;
+			this.operation = this.navParams.data.operation;
 		}
 		this.viewCtrl.didEnter.subscribe(
 			response => {
@@ -99,10 +103,14 @@ export class MembersPage implements OnInit {
 			});
 	}
 
-	showDetails(id) {
-		this.navCtrl.push(MemberDetailPage, {
-			id: id
-		});
+	showDetails(member) {
+		if (this.isPopover) {
+			this.viewCtrl.dismiss(member);
+		} else {
+			this.navCtrl.push(MemberDetailPage, {
+				id: member.id
+			});
+		}
 	}
 
 	showFilters() {
@@ -125,7 +133,7 @@ export class MembersPage implements OnInit {
 		this.popover.present();
 	}
 
-	setFilterPage(ev) {
+	setFilterPage(ev) { // deprecate
 		this.keywords = ev.target.value;
 		if(this.keywords){
 			this.navCtrl.push(MembersPage, {
@@ -141,7 +149,7 @@ export class MembersPage implements OnInit {
 			this.page = 1; // reset
 			this.members = [];
 			this.hasNoMoreData = false;
-			
+
 			this.filter = `&fragment=${this.keywords}`;
 			this.loadMembers();
 		}

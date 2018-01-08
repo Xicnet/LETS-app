@@ -141,7 +141,10 @@ export class HomePage implements OnInit {
 	 		{
 	 			title: ('Find a member'),
 	 			icon: 'people',
-	 			page: MembersPage
+	 			page: MembersPage,
+				params: {
+					operaton: 'Find a'
+				},
 	 		},
 			{
 				title: ('View transactions'),

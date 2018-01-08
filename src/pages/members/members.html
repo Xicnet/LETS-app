@@ -1,6 +1,6 @@
 <ion-header>
 	<ion-navbar>
-		<ion-title>{{ 'Members' | translate }}</ion-title>
+		<ion-title>{{ operation | translate }} {{ 'Member' | translate }}</ion-title>
 	</ion-navbar>
 </ion-header>
 <ion-content>
@@ -17,7 +17,7 @@
 	</ion-list>
 
 	<ion-list class="app-items small">
-		<ion-item *ngFor="let member of members" (click)="showDetails(member.id)">
+		<ion-item *ngFor="let member of members" (click)="showDetails(member)">
 			<ion-avatar item-start>
 				<img [src]="member.portrait || 'assets/images/default_user.jpg'">
 			</ion-avatar>

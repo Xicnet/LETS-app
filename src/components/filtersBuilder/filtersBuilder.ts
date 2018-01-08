@@ -25,7 +25,7 @@ export class FiltersBuilderComponent implements OnInit {
 		if (page) {
 			// this.navCtrl.popToRoot();
 			this.navCtrl.push(page, option.params);
-			this.viewCtrl.dismiss();
 		}
+		this.viewCtrl.dismiss(option);
 	}
 }
