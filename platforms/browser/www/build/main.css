@@ -26791,6 +26791,7 @@ ion-list.list.app-filters ion-item.item ion-label.label {
   text-align: center;
   white-space: normal;
   color: #FFF;
+  font-size: 0.7em;
 }
 
 ion-list.list.app-items {
