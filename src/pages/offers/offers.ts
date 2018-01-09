@@ -39,6 +39,7 @@ export class OffersPage implements OnInit {
 	private categories: any;
 	private category: any;
 	private member: any;
+	private noResults: boolean;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -111,7 +112,7 @@ export class OffersPage implements OnInit {
 		});
 	}
 
-	loadOffers() {
+	loadOffers(from_scratch, filterName) {
 		if (this.hasNoMoreData || this.isLoading) {
 			return;
 		}
@@ -122,8 +123,13 @@ export class OffersPage implements OnInit {
 		this.loader.present();
 		this.offerService.list(this.page, this.filter).subscribe(
 			response => {
+				if(from_scratch) this.offers = [];
+				if(filterName) this.filterName = filterName;
 				if (!response.length) {
 					this.hasNoMoreData = true;
+					this.noResults = true;
+				} else {
+					this.noResults = false;
 				}
 				this.offers = this.offers.concat(response);
 				this.page++;
@@ -194,6 +200,7 @@ export class OffersPage implements OnInit {
 			operation: 'Filter by'
 		}, {
 				cssClass: 'confirm-popover',
+				showBackdrop: true,
 				enableBackdropDismiss: true
 			});
 
@@ -228,27 +235,26 @@ export class OffersPage implements OnInit {
 
 
 	activateFilter() {
-		this.filter = this.filterName = '';
+		let filterName = this.filter = '';
 		this.is_filtered = false;
 		if(this.keywords){
 			this.is_filtered = true;
-			this.filterName = ` matching "${this.keywords}"`;
+			filterName = ` matching "${this.keywords}"`;
 			this.filter = `&fragment=${this.keywords}`;
 		}
 		if(this.member){
 			this.is_filtered = true;
-			this.filterName = this.filterName+` by ${this.member.name}`;
+			filterName = filterName+` by ${this.member.name}`;
 			this.filter = this.filter+`&user_id=${this.member.id}`;
 		}
 		if(this.category){
 			this.is_filtered = true;
-			this.filterName = this.filterName+` in ${this.category.title}`;
+			filterName = filterName+` in ${this.category.title}`;
 			this.filter = this.filter+`&category=${this.category.id}`;
 		}
 		this.page = 1; // reset
 		this.hasNoMoreData = false;
-		this.offers = [];
-		this.loadOffers();
+		this.loadOffers(true, filterName);
 	}
 
 

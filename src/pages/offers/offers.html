@@ -32,6 +32,8 @@
 
 	<ion-list class="app-items">
 
+		<ion-item *ngIf="noResults && (!offers || !offers.length || offers.length <1) ">No Results</ion-item>
+
 		<ion-item *ngFor="let offer of offers">
 			<ion-row>
 

@@ -118,9 +118,6 @@ button.edit {
 button.delete {
 	background: #FF0000;
 }
-.searchbar-md .searchbar-input {
-	line-height: inherit;
-}
 
 ion-footer {
 	ion-list.list {
@@ -424,4 +421,39 @@ ion-card.card.app-item-details {
 	.item-block{
 		min-height: inherit;
 	}
+}
+
+ion-content {
+
+	.toolbar{
+		min-height: inherit;
+
+		.bar-button {
+			font-size: 1rem;
+		}
+
+		.searchbar-input {
+			font-size: 1.2rem;
+		}
+
+		.searchbar-search-icon{
+			top: 8px;
+			left: 10px;
+		}
+		.searchbar-clear-icon {
+			right: 10px;
+		}
+		.searchbar-input{
+			padding: 6px 42px;
+		}
+	}
+
+}
+.searchbar-md .searchbar-input {
+	line-height: inherit;
+}
+
+ion-backdrop {
+	opacity: .7;
+	background-color: #296696;
 }
