@@ -98,7 +98,9 @@ export class OffersPage implements OnInit {
 
 			},
 			error => this.alertService.showError(error));
-		this.loadOffers();
+
+
+		this.loadOffers(true, 'Recent Offers');
 	}
 
 	setPagination() {
@@ -235,11 +237,12 @@ export class OffersPage implements OnInit {
 
 
 	activateFilter() {
-		let filterName = this.filter = '';
+		this.filter = '';
+		let filterName = 'Offers';
 		this.is_filtered = false;
 		if(this.keywords){
 			this.is_filtered = true;
-			filterName = ` matching "${this.keywords}"`;
+			filterName = filterName+` of "${this.keywords}"`;
 			this.filter = `&fragment=${this.keywords}`;
 		}
 		if(this.member){
