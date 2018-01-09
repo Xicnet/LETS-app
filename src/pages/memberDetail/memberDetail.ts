@@ -84,14 +84,16 @@ export class MemberDetailPage implements OnInit {
 	memberOffers() {
 		this.navCtrl.push(OffersPage, {
 			filter: '&user_id='+this.params.get('id'),
-			filterName: this.member.name,
+			filterName: 'Offers by '+this.member.name,
+			is_filtered: true
 		});
 	}
 
 	memberWants() {
 		this.navCtrl.push(WantsPage, {
 			filter: '&user_id='+this.params.get('id'),
-			filterName: this.member.name,
+			filterName: 'Needs by '+this.member.name,
+			is_filtered: true
 		});
 	}
 

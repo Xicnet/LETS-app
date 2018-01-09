@@ -57,7 +57,8 @@ export class OffersPage implements OnInit {
 			this.filterName = this.navParams.data.filterName;
 			this.myActions = this.navParams.data.myActions;
 			this.currentUser = this.navParams.data.currentUser;
-		}
+			this.is_filtered = this.navParams.data.is_filtered;
+	}
 
 		this.viewCtrl.didEnter.subscribe(
 			response => {
@@ -86,21 +87,11 @@ export class OffersPage implements OnInit {
 					return { id: key, title: category };
 				});
 
-				this.filters_action = { // deprecate
-					title: ('Show By Categories'),
-					page: CategoriesFilterPage,
-					params: {
-						categories: this.categories, // uses name rather than title
-						title: ('Offers'),
-						page: OffersPage
-					}
-				}
-
 			},
 			error => this.alertService.showError(error));
 
 
-		this.loadOffers(true, 'Recent Offers');
+		this.loadOffers(true);
 	}
 
 	setPagination() {
@@ -114,7 +105,7 @@ export class OffersPage implements OnInit {
 		});
 	}
 
-	loadOffers(from_scratch?: boolean, filterName?: string) {
+	loadOffers(from_scratch?: boolean) {
 		if (this.hasNoMoreData || this.isLoading) {
 			return;
 		}
@@ -126,7 +117,7 @@ export class OffersPage implements OnInit {
 		this.offerService.list(this.page, this.filter).subscribe(
 			response => {
 				if(from_scratch) this.offers = [];
-				if(filterName) this.filterName = filterName;
+				if(!this.filterName) this.filterName = 'Recent Offers';
 				if (!response.length) {
 					this.hasNoMoreData = true;
 					this.noResults = true;
@@ -257,16 +248,18 @@ export class OffersPage implements OnInit {
 		}
 		this.page = 1; // reset
 		this.hasNoMoreData = false;
-		this.loadOffers(true, filterName);
+		this.filterName = filterName;
+		this.loadOffers(true);
 	}
-
 
 	clearFilters(myEvent){
-		// this.is_filtered = false;
-		this.keywords = '';
-		this.category = null;
-		this.member = null;
-		this.activateFilter();
+		this.is_filtered = false;
+		this.keywords = this.filter = this.filterName = '';
+		this.category = this.member = null;
+		this.page = 1; // reset
+		this.hasNoMoreData = false;
+		this.loadOffers(true);
 	}
+
 
 }

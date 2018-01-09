@@ -8,16 +8,24 @@
 
 	<ion-toolbar>
 		<ion-buttons left>
-			<button ion-button icon-only (click)="goToFilters()">
+			<button ion-button icon-only (click)="showCategories($event)">
 				<ion-icon name="book"></ion-icon>
+			</button>
+			<button ion-button icon-only (click)="searchUsers($event)">
+				<ion-icon name="person"></ion-icon>
 			</button>
 		</ion-buttons>
 		<ion-searchbar (search)="setFilter($event)" (keyup.enter)="setFilter($event)"></ion-searchbar>
+		<ion-buttons right>
+			<button ion-button icon-only (click)="clearFilters($event)" *ngIf="is_filtered">
+				<ion-icon name="close-circle"></ion-icon>
+			</button>
+		</ion-buttons>
 	</ion-toolbar>
 
 	<ion-list class="app-filters" *ngIf="filterName">
 		<ion-item>
-			{{ 'Needs found for' | translate }} {{ filterName }}
+			{{ filterName }}
 		</ion-item>
 	</ion-list>
 	<ion-list class="app-items">

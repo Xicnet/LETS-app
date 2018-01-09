@@ -183,8 +183,9 @@ export class HomePage implements OnInit {
 					page: OffersPage,
 					params: {
 						filter: `&user_id=${this.member.id}`,
-						filterName: this.member.name,
-						myActions: true
+						filterName: 'Offers by '+this.member.name,
+						myActions: true,
+						is_filtered: true
 					},
 				},
 				{
@@ -193,8 +194,9 @@ export class HomePage implements OnInit {
 					page: WantsPage,
 					params: {
 						filter: `&user_id=${this.member.id}`,
-						filterName: this.member.name,
-						myActions: true
+						filterName: 'Needs by '+this.member.name,
+						myActions: true,
+						is_filtered: true
 					}
 				},
 				]
