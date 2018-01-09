@@ -1177,7 +1177,7 @@ var AppSettings = /** @class */ (function () {
     });
     Object.defineProperty(AppSettings.prototype, "APP_NAME", {
         get: function () {
-            return 'LETS Community Exchange';
+            return 'Community Exchange';
         },
         enumerable: true,
         configurable: true
@@ -1188,7 +1188,7 @@ var AppSettings = /** @class */ (function () {
             if (opt)
                 return opt;
             else
-                return 'Your Local LETS';
+                return 'Your Local Community';
         },
         set: function (opt) {
             window.localStorage.setItem('sitename', opt);
@@ -3672,7 +3672,7 @@ var OffersPage = /** @class */ (function () {
                 }
             };
         }, function (error) { return _this.alertService.showError(error); });
-        this.loadOffers();
+        this.loadOffers(true, 'Recent Offers');
     };
     OffersPage.prototype.setPagination = function () {
         var _this = this;
@@ -3685,7 +3685,7 @@ var OffersPage = /** @class */ (function () {
             }
         });
     };
-    OffersPage.prototype.loadOffers = function () {
+    OffersPage.prototype.loadOffers = function (from_scratch, filterName) {
         var _this = this;
         if (this.hasNoMoreData || this.isLoading) {
             return;
@@ -3696,8 +3696,16 @@ var OffersPage = /** @class */ (function () {
         });
         this.loader.present();
         this.offerService.list(this.page, this.filter).subscribe(function (response) {
+            if (from_scratch)
+                _this.offers = [];
+            if (filterName)
+                _this.filterName = filterName;
             if (!response.length) {
                 _this.hasNoMoreData = true;
+                _this.noResults = true;
+            }
+            else {
+                _this.noResults = false;
             }
             _this.offers = _this.offers.concat(response);
             _this.page++;
@@ -3760,6 +3768,7 @@ var OffersPage = /** @class */ (function () {
             operation: 'Filter by'
         }, {
             cssClass: 'confirm-popover',
+            showBackdrop: true,
             enableBackdropDismiss: true
         });
         this.popover.present({
@@ -3787,27 +3796,27 @@ var OffersPage = /** @class */ (function () {
         this.activateFilter();
     };
     OffersPage.prototype.activateFilter = function () {
-        this.filter = this.filterName = '';
+        this.filter = '';
+        var filterName = 'Offers';
         this.is_filtered = false;
         if (this.keywords) {
             this.is_filtered = true;
-            this.filterName = " matching \"" + this.keywords + "\"";
+            filterName = filterName + (" of \"" + this.keywords + "\"");
             this.filter = "&fragment=" + this.keywords;
         }
         if (this.member) {
             this.is_filtered = true;
-            this.filterName = this.filterName + (" by " + this.member.name);
+            filterName = filterName + (" by " + this.member.name);
             this.filter = this.filter + ("&user_id=" + this.member.id);
         }
         if (this.category) {
             this.is_filtered = true;
-            this.filterName = this.filterName + (" in " + this.category.title);
+            filterName = filterName + (" in " + this.category.title);
             this.filter = this.filter + ("&category=" + this.category.id);
         }
         this.page = 1; // reset
         this.hasNoMoreData = false;
-        this.offers = [];
-        this.loadOffers();
+        this.loadOffers(true, filterName);
     };
     OffersPage.prototype.clearFilters = function (myEvent) {
         // this.is_filtered = false;
@@ -3818,7 +3827,7 @@ var OffersPage = /** @class */ (function () {
     };
     OffersPage = OffersPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-offers',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offers/offers.html"*/'<ion-header>\n	<ion-navbar>\n		<ion-title>{{ \'Offers\' | translate }}</ion-title>\n	</ion-navbar>\n</ion-header>\n<ion-content>\n\n\n	<ion-toolbar>\n		<ion-buttons left>\n			<button ion-button icon-only (click)="showCategories($event)">\n				<ion-icon name="book"></ion-icon>\n			</button>\n			<button ion-button icon-only (click)="searchUsers($event)">\n				<ion-icon name="person"></ion-icon>\n			</button>\n		</ion-buttons>\n		<ion-searchbar (search)="setFilter($event)" (keyup.enter)="setFilter($event)"></ion-searchbar>\n		<ion-buttons right>\n			<button ion-button icon-only (click)="clearFilters($event)" *ngIf="is_filtered">\n				<ion-icon name="close-circle"></ion-icon>\n			</button>\n		</ion-buttons>\n	</ion-toolbar>\n\n\n	<ion-list class="app-filters" *ngIf="filterName">\n		<ion-item>\n			{{ \'Offers\' | translate }} {{ filterName }}\n		</ion-item>\n	</ion-list>\n\n	<ion-list class="app-items">\n\n		<ion-item *ngFor="let offer of offers">\n			<ion-row>\n\n				<ion-col col-4 (click)="showDetails(offer.id)" *ngIf="offer.image">\n					<ion-thumbnail>\n						<img [src]="offer.image">\n					</ion-thumbnail>\n				</ion-col>\n\n				<ion-col col-10 (click)="showDetails(offer.id)" *ngIf="!offer.image">\n					<h6>{{ offer.title }}</h6>\n					<div class="description" [innerHTML]="offer.description"></div>\n				</ion-col>\n\n				<ion-col col-6 (click)="showDetails(offer.id)" *ngIf="offer.image">\n					<h6>{{ offer.title }}</h6>\n					<div class="description" [innerHTML]="offer.description"></div>\n				</ion-col>\n\n				<ion-col col-2 class="items-user" (click)="showMember(offer.user_id)">\n					<p>\n						{{ offer.user_id_ref.name }}\n					</p>\n					<ion-avatar *ngIf="offer.user_id_ref.portrait">\n						<img [src]="offer.user_id_ref.portrait">\n					</ion-avatar>\n				</ion-col>\n\n			</ion-row>\n		</ion-item>\n\n	</ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offers/offers.html"*/
+            selector: 'page-offers',template:/*ion-inline-start:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offers/offers.html"*/'<ion-header>\n	<ion-navbar>\n		<ion-title>{{ \'Offers\' | translate }}</ion-title>\n	</ion-navbar>\n</ion-header>\n<ion-content>\n\n\n	<ion-toolbar>\n		<ion-buttons left>\n			<button ion-button icon-only (click)="showCategories($event)">\n				<ion-icon name="book"></ion-icon>\n			</button>\n			<button ion-button icon-only (click)="searchUsers($event)">\n				<ion-icon name="person"></ion-icon>\n			</button>\n		</ion-buttons>\n		<ion-searchbar (search)="setFilter($event)" (keyup.enter)="setFilter($event)"></ion-searchbar>\n		<ion-buttons right>\n			<button ion-button icon-only (click)="clearFilters($event)" *ngIf="is_filtered">\n				<ion-icon name="close-circle"></ion-icon>\n			</button>\n		</ion-buttons>\n	</ion-toolbar>\n\n\n	<ion-list class="app-filters" *ngIf="filterName">\n		<ion-item>\n			{{ filterName }}\n		</ion-item>\n	</ion-list>\n\n	<ion-list class="app-items">\n\n		<ion-item *ngIf="noResults && (!offers || !offers.length || offers.length <1) ">No Results</ion-item>\n\n		<ion-item *ngFor="let offer of offers">\n			<ion-row>\n\n				<ion-col col-4 (click)="showDetails(offer.id)" *ngIf="offer.image">\n					<ion-thumbnail>\n						<img [src]="offer.image">\n					</ion-thumbnail>\n				</ion-col>\n\n				<ion-col col-10 (click)="showDetails(offer.id)" *ngIf="!offer.image">\n					<h6>{{ offer.title }}</h6>\n					<div class="description" [innerHTML]="offer.description"></div>\n				</ion-col>\n\n				<ion-col col-6 (click)="showDetails(offer.id)" *ngIf="offer.image">\n					<h6>{{ offer.title }}</h6>\n					<div class="description" [innerHTML]="offer.description"></div>\n				</ion-col>\n\n				<ion-col col-2 class="items-user" (click)="showMember(offer.user_id)">\n					<p>\n						{{ offer.user_id_ref.name }}\n					</p>\n					<ion-avatar *ngIf="offer.user_id_ref.portrait">\n						<img [src]="offer.user_id_ref.portrait">\n					</ion-avatar>\n				</ion-col>\n\n			</ion-row>\n		</ion-item>\n\n	</ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/me/Documents/CODE/LETS-app-mayel/src/pages/offers/offers.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],

@@ -26729,10 +26729,6 @@ button.delete {
   background: #FF0000;
 }
 
-.searchbar-md .searchbar-input {
-  line-height: inherit;
-}
-
 ion-footer ion-list.list {
   margin: 0;
 }
@@ -26777,7 +26773,6 @@ ion-footer ion-list.list ion-item.item .item-inner ion-label.label button {
 
 ion-list.list.app-filters {
   margin: 0;
-  margin-top: 15px;
   padding: 0 15px;
   background: #737A82;
 }
@@ -27052,6 +27047,40 @@ ion-card.card.app-item-details ion-col ion-item.item p {
 
 .popover-content .item-block {
   min-height: inherit;
+}
+
+ion-content .toolbar {
+  min-height: inherit;
+}
+
+ion-content .toolbar .bar-button {
+  font-size: 1rem;
+}
+
+ion-content .toolbar .searchbar-input {
+  font-size: 1.2rem;
+}
+
+ion-content .toolbar .searchbar-search-icon {
+  top: 8px;
+  left: 10px;
+}
+
+ion-content .toolbar .searchbar-clear-icon {
+  right: 10px;
+}
+
+ion-content .toolbar .searchbar-input {
+  padding: 6px 42px;
+}
+
+.searchbar-md .searchbar-input {
+  line-height: inherit;
+}
+
+ion-backdrop {
+  opacity: .7;
+  background-color: #296696;
 }
 
 ion-popover.confirm-popover .popover-content {
