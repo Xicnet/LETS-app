@@ -112,7 +112,7 @@ export class OffersPage implements OnInit {
 		});
 	}
 
-	loadOffers(from_scratch, filterName) {
+	loadOffers(from_scratch?: boolean, filterName?: string) {
 		if (this.hasNoMoreData || this.isLoading) {
 			return;
 		}

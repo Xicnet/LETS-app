@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="016" id="net.communityforge.lets" version="0.1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>LETS</name>
-    <description>Community Exchange</description>
-    <author email="support@communityforge.net" href="http://communityforge.net">Community Forge Team</author>
+<widget android-versionCode="017" id="net.communityforge.lets" version="0.1.7" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Community Exchange</name>
+    <description>Open source app to connect to community currencies worldwide</description>
+    <author email="support@communityforge.net" href="http://communityforge.net">Community Forge Team and Contributors</author>
     <content src="index.html" />
     <content original-src="index.html" />
     <access origin="*" />

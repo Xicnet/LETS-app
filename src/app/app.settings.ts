@@ -20,7 +20,7 @@ export class AppSettings {
 	}
 
 	public get APP_NAME(): any {
-		return 'LETS Community Exchange';
+		return 'Community Exchange';
 	}
 
 	public set COMMUNITY_NAME(opt) {
@@ -30,7 +30,7 @@ export class AppSettings {
 	public get COMMUNITY_NAME(): any {
 		var opt = window.localStorage.getItem('sitename');
 		if(opt) return opt;
-		else return 'Your Local LETS';
+		else return 'Your Local Community';
 	}
 
 	public set COMMUNITY_LOGO(opt) {
