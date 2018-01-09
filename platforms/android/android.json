@@ -10,15 +10,15 @@
           "/manifest": [
             {
               "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
-              "count": 84
+              "count": 85
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 84
+              "count": 85
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 84
+              "count": 85
             }
           ],
           "/*": [
