@@ -5297,7 +5297,7 @@ ion-alert input {
   border-top-width: 0;
   border-left-width: 0;
   border-style: solid;
-  border-color: #fff;
+  border-color: transparent;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
@@ -6472,19 +6472,19 @@ ion-footer {
 ion-app.ios {
   font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
   font-size: 1.4rem;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 ion-app.md {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   font-size: 1.4rem;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 ion-app.wp {
   font-family: "Segoe UI", "Noto Sans", sans-serif;
   font-size: 1.4rem;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 ion-backdrop {
@@ -9478,7 +9478,7 @@ ion-app [no-margin] .scroll-content {
 
 .content-ios {
   color: #000;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 .content-ios.outer-content {
@@ -9498,7 +9498,7 @@ ion-app [no-margin] .scroll-content {
   display: block;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: transparent;
   pointer-events: none;
 }
 
@@ -9691,7 +9691,7 @@ ion-app.ios [margin-horizontal] .scroll-content {
 
 .content-md {
   color: #000;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 .content-md hr {
@@ -9862,7 +9862,7 @@ ion-app.md [margin-horizontal] .scroll-content {
 
 .content-wp {
   color: #000;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 .content-wp hr {
@@ -16410,7 +16410,7 @@ ion-menu[type=overlay] .show-backdrop {
 }
 
 .ios .menu-inner {
-  background: #fff;
+  background: transparent;
 }
 
 .ios .menu-content-reveal {
@@ -16429,7 +16429,7 @@ ion-menu[type=overlay] .show-backdrop {
 }
 
 .md .menu-inner {
-  background: #fff;
+  background: transparent;
 }
 
 .md .menu-content-reveal {
@@ -17145,7 +17145,7 @@ ion-popover {
   min-height: 0;
   max-height: 90%;
   color: #000;
-  background: #fff;
+  background: transparent;
 }
 
 .popover-ios .popover-arrow {
@@ -17164,7 +17164,7 @@ ion-popover {
   z-index: 10;
   width: 14px;
   height: 14px;
-  background-color: #fff;
+  background-color: transparent;
   content: "";
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -17198,7 +17198,7 @@ ion-popover {
   min-height: 0;
   max-height: 90%;
   color: #000;
-  background: #fff;
+  background: transparent;
   -webkit-box-shadow: 0 3px 12px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 3px 12px 2px rgba(0, 0, 0, 0.3);
 }
@@ -17219,7 +17219,7 @@ ion-popover {
   max-height: 90%;
   border: 2px solid #ccc;
   color: #000;
-  background: #fff;
+  background: transparent;
 }
 
 .popover-wp .popover-viewport {
@@ -17894,7 +17894,7 @@ ion-range ion-icon {
 
 .range-md .range-knob-min.range-knob-min .range-knob {
   border: 2px solid #bdbdbd;
-  background: #fff;
+  background: transparent;
 }
 
 .range-md .range-knob-min.range-knob-min .range-pin,
@@ -17916,7 +17916,7 @@ ion-range ion-icon {
 
 .range-md-primary .range-md .range-knob-min.range-knob-min .range-knob {
   border: 2px solid #bdbdbd;
-  background: #fff;
+  background: transparent;
 }
 
 .range-md-primary .range-md .range-knob-min.range-knob-min .range-pin,
@@ -17934,7 +17934,7 @@ ion-range ion-icon {
 
 .range-md-secondary .range-md .range-knob-min.range-knob-min .range-knob {
   border: 2px solid #bdbdbd;
-  background: #fff;
+  background: transparent;
 }
 
 .range-md-secondary .range-md .range-knob-min.range-knob-min .range-pin,
@@ -17952,7 +17952,7 @@ ion-range ion-icon {
 
 .range-md-danger .range-md .range-knob-min.range-knob-min .range-knob {
   border: 2px solid #bdbdbd;
-  background: #fff;
+  background: transparent;
 }
 
 .range-md-danger .range-md .range-knob-min.range-knob-min .range-pin,
@@ -17970,7 +17970,7 @@ ion-range ion-icon {
 
 .range-md-light .range-md .range-knob-min.range-knob-min .range-knob {
   border: 2px solid #bdbdbd;
-  background: #fff;
+  background: transparent;
 }
 
 .range-md-light .range-md .range-knob-min.range-knob-min .range-pin,
@@ -17988,7 +17988,7 @@ ion-range ion-icon {
 
 .range-md-dark .range-md .range-knob-min.range-knob-min .range-knob {
   border: 2px solid #bdbdbd;
-  background: #fff;
+  background: transparent;
 }
 
 .range-md-dark .range-md .range-knob-min.range-knob-min .range-pin,
@@ -21608,7 +21608,7 @@ ion-toast {
   position: absolute;
   width: 20px;
   height: 20px;
-  background-color: #fff;
+  background-color: transparent;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   -webkit-transition-duration: 300ms;
@@ -26638,6 +26638,14 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
   background: #3e98e1;
   background: -webkit-gradient(linear, left top, left bottom, from(#3e98e1), to(#296696));
   background: linear-gradient(#3e98e1, #296696);
+}
+
+ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .app-root, ion-app.cameraView ion-nav {
+  background: transparent none !important;
+}
+
+ion-app.cameraView .home-nav {
+  display: none;
 }
 
 .ionic-desktop-container {
