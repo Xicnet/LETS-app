@@ -10,6 +10,7 @@ import { AuthService } from '../../services/AuthService';
 import { Member } from '../../domain/Member';
 import { AddOfferPage } from '../addOffer/addOffer';
 import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
+import { AppSettings } from '../../app/app.settings';
 
 @Component({
 	selector: 'page-offer-detail',
@@ -24,6 +25,8 @@ export class OfferDetailPage implements OnInit {
 	private currentMember: Member;
 	private currentUser: any;
 	private deleteOfferConfirmDialog: boolean;
+	QRData = null;
+  QRCode = null;
 
 	constructor(private params: NavParams,
 		private viewCtrl: ViewController,
@@ -32,7 +35,9 @@ export class OfferDetailPage implements OnInit {
 		private popoverCtrl: PopoverController,
 		private offerService: OfferService,
 		private authService: AuthService,
-		private alertService: AlertService) { }
+		private alertService: AlertService,
+		private settings: AppSettings,
+) { }
 
 	ngOnInit(): void {
 		this.viewCtrl.didEnter.subscribe(
@@ -66,6 +71,7 @@ export class OfferDetailPage implements OnInit {
 									}
 								}
 								this.offer = response;
+								this.QRData = this.settings.WEB_SITE_URL+'/node/'+this.offer.id+'?qr_action=offer&qr_id='+this.offer.id;
 								this.loader.dismiss();
 							},
 							error => {
@@ -168,5 +174,9 @@ export class OfferDetailPage implements OnInit {
 		});
 		this.popover.present();
 	}
+
+	createCode() {
+    this.QRCode = this.QRData;
+  }
 
 }

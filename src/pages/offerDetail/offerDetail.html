@@ -1,48 +1,53 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{ 'Offer Details' | translate }}</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{ 'Offer Details' | translate }}</ion-title>
+	</ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-card class="app-item-details" *ngIf="offer">
-    <h2 class="title">{{ offer.title }}</h2>
+	<ion-card class="app-item-details" *ngIf="offer">
+		<h2 class="title">{{ offer.title }}</h2>
 
-    <div class="image" [class.expanded]="imageExpanded" *ngIf="offer.image" (click)="expandImage()">
-      <img [src]="offer.image">
-    </div>
+		<div class="image" [class.expanded]="imageExpanded" *ngIf="offer.image" (click)="expandImage()">
+			<img [src]="offer.image">
+		</div>
 
-    <div class="description" [innerHTML]="offer.description"></div>
-    <ion-row>
-      <ion-col col-6 (click)="showMember(offer.user_id)">
-        <ion-item class="item-avatar">
-          <ion-avatar>
-            <img [src]="offer.user_id_ref.portrait || 'assets/images/default_user.jpg'">
-          </ion-avatar>
+		<div class="description" [innerHTML]="offer.description"></div>
+		<ion-row>
+			<ion-col col-6 (click)="showMember(offer.user_id)">
+				<ion-item class="item-avatar">
+					<ion-avatar>
+						<img [src]="offer.user_id_ref.portrait || 'assets/images/default_user.jpg'">
+					</ion-avatar>
 					<p>
 						{{ offer.user_id_ref.name }}
 					</p>
-        </ion-item>
-      </ion-col>
+				</ion-item>
+			</ion-col>
 
-      <ion-col col-6>
-        <ion-item>
-          <p *ngIf="offer.$category">{{ 'Category' | translate }}: <b>{{ offer.$category }}</b></p>
-          <p *ngIf="offer.changed">{{ 'Posted' | translate }}: <b>{{ offer.changed }}</b></p>
-          <p *ngIf="offer.expires">{{ 'Expires' | translate }}: <b>{{ offer.expires }}</b></p>
+			<ion-col col-6>
+				<ion-item>
+					<p *ngIf="offer.$category">{{ 'Category' | translate }}: <b>{{ offer.$category }}</b></p>
+					<p *ngIf="offer.changed">{{ 'Posted' | translate }}: <b>{{ offer.changed }}</b></p>
+					<p *ngIf="offer.expires">{{ 'Expires' | translate }}: <b>{{ offer.expires }}</b></p>
 
-          <ng-container *ngIf="currentUser == offer.user_id">
-            <button class="my-actions edit" ion-button (click)="editOffer(offer)">Edit</button>
-            <button class="my-actions delete" ion-button (click)="deleteOffer(offer.id)">Delete</button>
-          </ng-container>
+					<ng-container *ngIf="currentUser == offer.user_id">
+						<button class="my-actions edit" ion-button (click)="editOffer(offer)">Edit</button>
+						<button class="my-actions delete" ion-button (click)="deleteOffer(offer.id)">Delete</button>
+					</ng-container>
 
-          <ng-container *ngFor="let link of offer._links">
-            <button *ngIf="link.rel !='self'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
-          </ng-container>
+					<ng-container *ngFor="let link of offer._links">
+						<button *ngIf="link.rel !='self'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
+					</ng-container>
 
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-card>
+					<button ion-button full icon-left (click)="createCode()"><ion-icon name="barcode"></ion-icon>Show QR code</button>
+
+				</ion-item>
+			</ion-col>
+		</ion-row>
+
+		<ngx-qrcode [qrc-value]="QRCode"></ngx-qrcode>
+
+	</ion-card>
 </ion-content>
 <!-- <ion-footer>
   <ion-list>

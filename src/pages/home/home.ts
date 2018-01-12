@@ -12,10 +12,14 @@ import { TransactionsPage } from '../../pages/transactions/transactions';
 import { MembersPage } from '../../pages/members/members';
 import { MemberDetailPage } from '../../pages/memberDetail/memberDetail';
 import { ProfilePage } from '../../pages/userProfile/userProfile';
+import { OfferDetailPage } from '../offerDetail/offerDetail';
+
 import { MenuOptionPopover } from './menu-option';
 import { AppSettings } from '../../app/app.settings';
 import { ConfigService } from '../../services/ConfigService';
 import { AppVersion } from '@ionic-native/app-version';
+
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 // import { _ } from '@biesbjerg/ngx-translate-extract';
 
@@ -38,6 +42,7 @@ export class HomePage implements OnInit {
 	private menus: any;
 	private popover: Popover;
 	public version: any;
+	public QR_visible: boolean;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -47,17 +52,29 @@ export class HomePage implements OnInit {
 		private configService: ConfigService,
 		public platform: Platform,
 		public appVersion: AppVersion,
+		private qrScanner: QRScanner
 ) { }
 
 	ngOnInit(): void {
 
-		if (this.platform.is('cordova')) {
-			this.appVersion.getVersionNumber().then((version)=>{
-          // this.version = version;
-					this.settings.APP_VERSION = version;
-        }
-      )
-		}
+
+
+		this.platform.ready().then( ()=> {
+
+			if (this.platform.is('cordova')) {
+					this.appVersion.getVersionNumber().then((version)=>{
+	          // this.version = version;
+						this.settings.APP_VERSION = version;
+	        }
+	      )
+			}
+
+			this.platform.registerBackButtonAction( ()=> {
+        if(this.QR_visible) this.hideQR();
+				else this.platform.exitApp();
+      })
+
+    });​
 
 		this.configService.initAppConfig();
 
@@ -132,7 +149,11 @@ export class HomePage implements OnInit {
 						}
 					}
 				},
-
+				{
+					title: ('Scan a QR code'),
+					icon: 'barcode',
+					action: 'scanQR',
+				},
 			]
 		},
 		{
@@ -213,6 +234,8 @@ export class HomePage implements OnInit {
 			// 	this.popover.dismiss();
 			// }
 			// this.viewCtrl.dismiss();
+		} else if(menuEntry.action && menuEntry.action=='scanQR'){
+			this.scanQR();
 		}
 	}
 
@@ -232,7 +255,93 @@ export class HomePage implements OnInit {
 			response => this.navCtrl.setRoot(LoginPage));
 	}
 
-	goToFullSite() {
-		window.open(this.settings.WEB_SITE_URL, '_system', 'location=yes');
+	goToURL(URL) {
+		window.open(URL, '_system', 'location=yes');
 	}
+
+	goToFullSite() {
+		this.goToURL(this.settings.WEB_SITE_URL);
+	}
+
+	scanQR(){
+		this.qrScanner.prepare()
+		  .then((status: QRScannerStatus) => {
+
+		     if (status.authorized) {
+					 console.log("camera permission was granted");
+
+
+		       // start scanning
+		       let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+
+						 console.log('Scanned something', text);
+
+						 scanSub.unsubscribe(); // stop scanning
+		         this.qrScanner.hide(); // hide camera preview
+						 this.hideQR();
+
+						 if(text){
+							 let action = this.getURLParameterByName(text, "qr_action");
+							 let id = this.getURLParameterByName(text, "qr_id");
+							 console.log('QR result',action,id)
+
+							 if(action=='offer'){
+								 this.navCtrl.push(OfferDetailPage, {
+									 id: id
+								 });
+							 }
+							 // this.goToURL(text); // TEMP
+						 }
+
+
+		       });
+
+					 // TODO: Make the webview transparent so the video preview is visible behind it. Be sure to make any opaque HTML elements transparent here to avoid covering the video.
+
+		       // show camera preview
+		       // this.qrScanner.show();
+					 this.qrScanner.show().then(data => {
+						  console.log('success showing camera');
+
+							this.QR_visible = true;
+							(window.document.querySelector('ion-app') as HTMLElement).classList.add('cameraView');
+
+							let TIME_IN_MS = 10000;
+							let hideFooterTimeout = setTimeout( () => { // hide scanner if open too long
+							    // this.qrScanner.hide(); // hide camera preview
+									this.hideQR();
+							}, TIME_IN_MS);
+
+						}, err => {
+						  console.log('Error showing camera');
+
+							this.hideQR();
+
+						});
+
+		       // wait for user to scan something, then the observable callback will be called
+
+		     } else if (status.denied) {
+					 console.log("camera permission was permanently denied. you must use QRScanner.openSettings() method to guide the user to the settings page. then they can grant the permission from there");
+
+		     } else {
+					 console.log("permission was denied, but not permanently. You can ask for permission again at a later time");
+		     }
+		  })
+		.catch((e: any) => console.log('QR Error:', e));
+	}
+
+	hideQR(){ // hide QR camera preview
+		this.qrScanner.hide();
+		this.QR_visible = false;
+		(window.document.querySelector('ion-app') as HTMLElement).classList.remove('cameraView');
+	}
+
+	getURLParameterByName(url, name) {
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(url);
+	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+
 }

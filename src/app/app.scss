@@ -26,6 +26,7 @@ body{
 user-select: auto;
 }
 
+
 ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
 
     right: 0;  //.app-root by default is set to position:absolute; top:0; left:0;
@@ -38,6 +39,14 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
     background: -webkit-linear-gradient(#3e98e1, #296696);
     //W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari
     background: linear-gradient(#3e98e1, #296696);
+
+}
+
+ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .app-root, ion-app.cameraView ion-nav { // for QRscanner
+  background: transparent none !important;
+}
+ion-app.cameraView .home-nav{
+	display:none;
 }
 
 //This class will only be used for desktops browsers
