@@ -45,7 +45,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { AppVersion } from '@ionic-native/app-version';
 
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import { NgxQRCodeModule } from 'ngx-qrcode3';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -101,6 +104,7 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     JsonpModule,
     MomentModule,
 		HttpClientModule,
+		NgxQRCodeModule,
 		TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -150,6 +154,7 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
 		Keyboard,
     Camera,
 		AppVersion,
+		QRScanner,
     { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="018" id="net.communityforge.lets" version="0.1.8" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="019" id="net.communityforge.lets" version="0.1.9" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Community Exchange</name>
     <description>Open source app to connect to community currencies worldwide</description>
     <author email="support@communityforge.net" href="http://communityforge.net">Community Forge Team and Contributors</author>
@@ -36,7 +36,6 @@
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
         <preference name="loadUrlTimeoutValue" value="700000" />
         <config-file parent="/manifest" target="AndroidManifest.xml">
-            <uses-permission android:name="android.permission.CAMERA" />
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         </config-file>
@@ -79,6 +78,8 @@
     <plugin name="cordova-plugin-inappbrowser" spec="~2.0.1" />
     <plugin name="cordova-plugin-splashscreen" spec="~5.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="~2.4.1" />
+    <plugin name="cordova-plugin-qrscanner" spec="^2.5.0" />
+    <allow-navigation href="http://192.168.1.5:8100" />
     <engine name="browser" spec="5.0.1" />
     <engine name="android" spec="6.4.0" />
 </widget>
