@@ -71,6 +71,7 @@ export class HomePage implements OnInit {
 
 			this.platform.registerBackButtonAction( ()=> {
         if(this.QR_visible) this.hideQR();
+				else if(this.navCtrl.canGoBack()) this.viewCtrl.dismiss();
 				else this.platform.exitApp();
       })
 
