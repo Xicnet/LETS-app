@@ -11,6 +11,7 @@ import { Member } from '../../domain/Member';
 import { AddOfferPage } from '../addOffer/addOffer';
 import { ConfirmationBuilderComponent } from '../../components/confirmationBuilder/confirmationBuilder';
 import { AppSettings } from '../../app/app.settings';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 
 @Component({
 	selector: 'page-offer-detail',
@@ -37,6 +38,7 @@ export class OfferDetailPage implements OnInit {
 		private authService: AuthService,
 		private alertService: AlertService,
 		private settings: AppSettings,
+		private base64ToGallery: Base64ToGallery
 ) { }
 
 	ngOnInit(): void {
@@ -179,4 +181,10 @@ export class OfferDetailPage implements OnInit {
     this.QRCode = this.QRData;
   }
 
+	saveQR() {
+		if(this.QRData) this.base64ToGallery.base64ToGallery(this.QRData, { prefix: '_img' }).then(
+  res => this.alertService.showToast('Saved QR code to your photo gallery'),
+  err => this.alertService.showError('Error saving QR to your photo gallery ', err)
+);
+  }
 }

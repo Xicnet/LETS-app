@@ -47,6 +47,7 @@ import { AppVersion } from '@ionic-native/app-version';
 
 import { NgxQRCodeModule } from 'ngx-qrcode3';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -155,6 +156,7 @@ enableProdMode(); // workaround for error "Expression has changed after it was c
     Camera,
 		AppVersion,
 		QRScanner,
+		Base64ToGallery,
     { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
 export class AppModule { }
