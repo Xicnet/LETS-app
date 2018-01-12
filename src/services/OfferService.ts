@@ -43,7 +43,7 @@ export class OfferService {
 	}
 
 	custom(href): Observable<any> {
-		return this.httpBasicAuth.putWithAuth(`${this.settings.URL.config}/${href}`, {});
+		return this.httpBasicAuth.putWithAuth(`${this.settings.SERVER_URL}/${href}`, {});
 	}
 
 	patch(id, offer: Offer): Observable<Offer> {

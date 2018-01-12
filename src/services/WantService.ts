@@ -43,7 +43,7 @@ export class WantService {
 	}
 
 	custom(href): Observable<any> {
-		return this.httpBasicAuth.putWithAuth(`${this.settings.URL.config}/${href}`, {});
+		return this.httpBasicAuth.putWithAuth(`${this.settings.SERVER_URL}/${href}`, {});
 	}
 
 	patch(id, want: Want): Observable<Want> {
