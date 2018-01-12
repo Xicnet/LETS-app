@@ -1,35 +1,36 @@
 <ion-header>
-  <ion-navbar>
+	<ion-navbar>
 		<ion-title>{{ 'Transactions' | translate }}</ion-title>
-  </ion-navbar>
+	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div class="ui success message" *ngIf="success">
-    <i class="close icon"></i>
-    <div class="header">{{ 'Success!' | translate }}</div>
-    <p>{{ 'New transaction created' | translate }}.</p>
-  </div>
+	<div class="ui success message" *ngIf="success">
+		<i class="close icon"></i>
+		<div class="header">{{ 'Success!' | translate }}</div>
+		<p>{{ 'New transaction created' | translate }}.</p>
+	</div>
 
-  <ion-list class="app-items">
-    <ion-item *ngFor="let transaction of transactions">
+	<ion-list class="app-items">
+		<ion-item *ngFor="let transaction of transactions">
 
-      <h6>{{ transaction.description }}</h6>
-      <p class="description">
-        <span [innerHTML]="transaction.amount"></span> {{ 'from' | translate }} {{ transaction.payer_ref && transaction.payer_ref.name || transaction.payer }} {{ 'to' | translate }} {{ transaction.payee_ref && transaction.payee_ref.name || transaction.payee }}
-      </p>
+			<h6>{{ transaction.description }}</h6>
+			<p class="description">
+				<span [innerHTML]="transaction.amount"></span> {{ 'from' | translate }} {{ transaction.payer_ref && transaction.payer_ref.name || transaction.payer }} {{ 'to' | translate }} {{ transaction.payee_ref && transaction.payee_ref.name || transaction.payee
+				}}
+			</p>
 
-      <!-- <button ion-button (click)="showDetails(transaction.id)">View</button> -->
+			<!-- <button ion-button (click)="showDetails(transaction.id)">View</button> -->
 
-      <ng-container *ngFor="let link of transaction._links">
-        <button *ngIf="link.rel !='self' && link.rel !='view'" class="edit" ion-button  (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
-        <button *ngIf="link.rel =='self' || link.rel =='view'" class="view" ion-button  (click)="showDetails(transaction.id)">{{link.label || 'Details'}}</button>
-      </ng-container>
+			<ng-container *ngFor="let link of transaction._links">
+				<button *ngIf="link.rel !='self' && link.rel !='view'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label | translate}}</button>
+				<button *ngIf="link.rel =='self' || link.rel =='view'" class="view" ion-button (click)="showDetails(transaction.id)">{{(link.label | translate) || ('Details' | translate)}}</button>
+			</ng-container>
 
-    </ion-item>
-  </ion-list>
+		</ion-item>
+	</ion-list>
 
-  <!-- <button *ngIf="canPost" class="ui add-new button" (click)="addTransaction()">
+	<!-- <button *ngIf="canPost" class="ui add-new button" (click)="addTransaction()">
     <i class="plus icon"></i> New Transaction
   </button> -->
 

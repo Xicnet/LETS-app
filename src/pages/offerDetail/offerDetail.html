@@ -31,15 +31,15 @@
 					<p *ngIf="offer.expires">{{ 'Expires' | translate }}: <b>{{ offer.expires }}</b></p>
 
 					<ng-container *ngIf="currentUser == offer.user_id">
-						<button class="my-actions edit" ion-button (click)="editOffer(offer)">Edit</button>
-						<button class="my-actions delete" ion-button (click)="deleteOffer(offer.id)">Delete</button>
+						<button class="my-actions edit" ion-button (click)="editOffer(offer)">{{ 'Edit' | translate }}</button>
+						<button class="my-actions delete" ion-button (click)="deleteOffer(offer.id)">{{ 'Delete' | translate }}</button>
 					</ng-container>
 
 					<ng-container *ngFor="let link of offer._links">
-						<button *ngIf="link.rel !='self'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
+						<button *ngIf="link.rel !='self'" class="my-actions edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{ link.label | translate }}</button>
 					</ng-container>
 
-					<button ion-button full icon-left (click)="createCode()"><ion-icon name="barcode"></ion-icon>Show QR code</button>
+					<button ion-button full icon-left (click)="createCode()"><ion-icon name="barcode"></ion-icon> {{ 'Show QR code' | translate }}</button>
 
 				</ion-item>
 			</ion-col>

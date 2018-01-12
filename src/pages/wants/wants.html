@@ -15,7 +15,7 @@
 				<ion-icon name="person"></ion-icon>
 			</button>
 		</ion-buttons>
-		<ion-searchbar (search)="setFilter($event)" (keyup.enter)="setFilter($event)"></ion-searchbar>
+		<ion-searchbar (search)="setFilter($event)" (keyup.enter)="setFilter($event)" placeholder="{{ 'Search' | translate }}"></ion-searchbar>
 		<ion-buttons right>
 			<button ion-button icon-only (click)="clearFilters($event)" *ngIf="is_filtered">
 				<ion-icon name="close-circle"></ion-icon>
