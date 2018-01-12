@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { NavParams, ViewController, NavController, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
 import { OfferService } from '../../services/OfferService';
 import { AlertService } from '../../services/AlertService';
@@ -28,6 +28,7 @@ export class OfferDetailPage implements OnInit {
 	private deleteOfferConfirmDialog: boolean;
 	QRData = null;
   QRCode = null;
+	QRImg = null;
 
 	constructor(private params: NavParams,
 		private viewCtrl: ViewController,
@@ -38,6 +39,7 @@ export class OfferDetailPage implements OnInit {
 		private authService: AuthService,
 		private alertService: AlertService,
 		private settings: AppSettings,
+		public element: ElementRef,
 		private base64ToGallery: Base64ToGallery
 ) { }
 
@@ -182,9 +184,19 @@ export class OfferDetailPage implements OnInit {
   }
 
 	saveQR() {
-		if(this.QRData) this.base64ToGallery.base64ToGallery(this.QRData, { prefix: '_img' }).then(
-  res => this.alertService.showToast('Saved QR code to your photo gallery'),
-  err => this.alertService.showError('Error saving QR to your photo gallery ', err)
-);
+
+		if(this.QRCode){
+
+			let nodes = this.element.nativeElement.querySelectorAll('.qrcode img');
+			nodes.forEach(node => {
+				if(node.src) this.QRImg = node.src;
+
+				if(this.QRImg) this.base64ToGallery.base64ToGallery(this.QRImg, { prefix: 'QRcode' }).then(
+				res => this.alertService.showToast('Saved QR code to your photo gallery'),
+				err => this.alertService.showError('Error saving QR to your photo gallery ', err)
+				);
+			});
+
+		}
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { NavParams, NavController, ViewController, LoadingController, Loading, PopoverController, Popover } from 'ionic-angular';
 import { MemberService } from '../../services/MemberService';
 import { AlertService } from '../../services/AlertService';
@@ -7,6 +7,8 @@ import { ConfirmationBuilderComponent } from '../../components/confirmationBuild
 import { ContactMemberPage } from '../memberContact/memberContact';
 import { OffersPage } from '../../pages/offers/offers';
 import { WantsPage } from '../../pages/wants/wants';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
+import { AppSettings } from '../../app/app.settings';
 
 @Component({
 	selector: 'page-memberDetail',
@@ -17,6 +19,9 @@ export class MemberDetailPage implements OnInit {
 	private loader: Loading;
 	private popover: Popover;
 	private deleteOfferConfirmDialog: boolean;
+	QRData = null;
+  QRCode = null;
+	QRImg = null;
 
 	constructor(private params: NavParams,
 		private viewCtrl: ViewController,
@@ -24,7 +29,11 @@ export class MemberDetailPage implements OnInit {
 		public loadingCtrl: LoadingController,
 		private memberService: MemberService,
 		private popoverCtrl: PopoverController,
-		private alertService: AlertService) { }
+		private alertService: AlertService,
+		private settings: AppSettings,
+		public element: ElementRef,
+		private base64ToGallery: Base64ToGallery
+	) { }
 
 	ngOnInit(): void {
 		this.viewCtrl.didEnter.subscribe(
@@ -37,6 +46,7 @@ export class MemberDetailPage implements OnInit {
 					response => {
 						this.member = response;
 						this.loader.dismiss();
+						this.QRData = this.settings.WEB_SITE_URL+'/user/'+this.member.id+'?qr_action=member&qr_id='+this.member.id;
 					},
 					error => {
 						this.alertService.showError(error);
@@ -97,5 +107,25 @@ export class MemberDetailPage implements OnInit {
 		});
 	}
 
+	createCode() {
+    this.QRCode = this.QRData;
+  }
+
+	saveQR() {
+
+		if(this.QRCode){
+
+			let nodes = this.element.nativeElement.querySelectorAll('.qrcode img');
+			nodes.forEach(node => {
+				if(node.src) this.QRImg = node.src;
+
+				if(this.QRImg) this.base64ToGallery.base64ToGallery(this.QRImg, { prefix: 'QRcode' }).then(
+				res => this.alertService.showToast('Saved QR code to your photo gallery'),
+				err => this.alertService.showError('Error saving QR to your photo gallery ', err)
+				);
+			});
+
+		}
+  }
 
 }

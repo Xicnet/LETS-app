@@ -1,64 +1,73 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{ 'Member Details' | translate }}</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{ 'Member Details' | translate }}</ion-title>
+	</ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-card class="app-item-details" *ngIf="member">
+	<ion-card class="app-item-details" *ngIf="member">
 
-    <ion-item>
-      <ion-avatar item-start>
-        <img [src]="member.portrait || 'assets/images/default_user.jpg'">
-      </ion-avatar>
+		<ion-item>
+			<ion-avatar item-start>
+				<img [src]="member.portrait || 'assets/images/default_user.jpg'">
+			</ion-avatar>
 
-      <h2 class="title">{{ member.name }}</h2>
+			<h2 class="title">{{ member.name }}</h2>
 
-      <button class="view" ion-button (click)="contactMember()">{{ 'Message' | translate }}</button>
+			<button class="view" ion-button (click)="contactMember()">{{ 'Message' | translate }}</button>
 
-      <p class="subtitle" *ngIf="member.mail">
-        <a ion-button icon-start href="mailto:{{member.mail}}">
-          <ion-icon name="mail"></ion-icon>
-          {{ member.mail }}
-        </a>
-      </p>
+			<span class="subtitle" *ngIf="member.mail">
+				<a ion-button icon-start href="mailto:{{member.mail}}">
+					<ion-icon name="mail"></ion-icon>
+					{{ member.mail }}
+				</a>
+			</span>
 
-      <p class="subtitle" *ngIf="member.phone">
-        <a ion-button icon-start href="tel:{{member.phone}}">
-          <ion-icon name="call"></ion-icon>
-          {{ member.phone }}
-        </a>
-      </p>
+			<span class="subtitle" *ngIf="member.phone">
+				<a ion-button icon-start href="tel:{{member.phone}}">
+					<ion-icon name="call"></ion-icon>
+					{{ member.phone }}
+				</a>
+			</span>
 
-			<p>
-				<button class="view" ion-button (click)="memberOffers()">{{ 'Offers' | translate }}</button>
-				<button class="view" ion-button (click)="memberWants()">{{ 'Needs' | translate }}</button>
-			</p>
-
-
-      <ion-item class="balance" *ngIf="member.balance">
-  			<ion-avatar item-start>
-        	<ion-icon name="trending-up"></ion-icon>
-      	</ion-avatar>
-  			<p [innerHTML]="member && member.balance"></p>
-  		</ion-item>
+			<ion-item class="balance" *ngIf="member.balance">
+				<ion-avatar item-start>
+					<ion-icon name="trending-up"></ion-icon>
+				</ion-avatar>
+				<p [innerHTML]="member && member.balance"></p>
+			</ion-item>
 
 
-      <ng-container *ngFor="let link of member._links">
-        <button *ngIf="link.rel !='self'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
-      </ng-container>
 
-    </ion-item>
+		</ion-item>
 
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <p *ngIf="member.locality"><b>{{ 'Locality' | translate }}:</b> {{ member.locality }}</p>
-          <p *ngIf="member.street_address"><b>{{ 'Address' | translate }}:</b> {{ member.street_address }}</p>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <p class="description">{{ member.aboutme }}</p>
-  </ion-card>
+		<ion-row>
+			<ion-col>
+				<ion-item>
+					<button class="view" ion-button icon-left (click)="memberOffers()"><ion-icon name="images"></ion-icon> {{ 'Offers' | translate }}</button>
+					<button class="view" ion-button icon-left (click)="memberWants()"><ion-icon name="paper"></ion-icon> {{ 'Needs' | translate }}</button>
+
+					<ng-container *ngFor="let link of member._links">
+						<button *ngIf="link.rel !='self'" class="edit" ion-button (click)="customAction(link.label, link.href, link.confirm)">{{link.label}}</button>
+					</ng-container>
+
+					<button ion-button icon-left (click)="createCode()"><ion-icon name="barcode"></ion-icon> {{ 'Show QR code' | translate }}</button>
+
+				</ion-item>
+
+				<ion-item>
+					<ngx-qrcode [qrc-value]="QRCode" (click)="saveQR()"></ngx-qrcode>
+
+					<p *ngIf="member.locality"><b>{{ 'Locality' | translate }}:</b> {{ member.locality }}</p>
+					<p *ngIf="member.street_address"><b>{{ 'Address' | translate }}:</b> {{ member.street_address }}</p>
+
+					<p class="description">{{ member.aboutme }}</p>
+
+				</ion-item>
+			</ion-col>
+		</ion-row>
+
+
+	</ion-card>
 </ion-content>
 <!-- <ion-footer>
   <ion-list>

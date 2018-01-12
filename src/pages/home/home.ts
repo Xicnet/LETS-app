@@ -43,6 +43,7 @@ export class HomePage implements OnInit {
 	private popover: Popover;
 	public version: any;
 	public QR_visible: boolean;
+	public reset_back_button_action: any;
 
 	constructor(public viewCtrl: ViewController,
 		private navCtrl: NavController,
@@ -68,12 +69,6 @@ export class HomePage implements OnInit {
 	        }
 	      )
 			}
-
-			this.platform.registerBackButtonAction( ()=> {
-        if(this.QR_visible) this.hideQR();
-				else if(this.navCtrl.canGoBack()) this.viewCtrl.dismiss();
-				else this.platform.exitApp();
-      })
 
     });​
 
@@ -291,6 +286,11 @@ export class HomePage implements OnInit {
 									 id: id
 								 });
 							 }
+							 else if(action=='member'){
+								 this.navCtrl.push(MemberDetailPage, {
+									 id: id
+								 });
+							 }
 							 // this.goToURL(text); // TEMP
 						 }
 
@@ -312,6 +312,12 @@ export class HomePage implements OnInit {
 							    // this.qrScanner.hide(); // hide camera preview
 									this.hideQR();
 							}, TIME_IN_MS);
+
+							this.reset_back_button_action = this.platform.registerBackButtonAction( ()=> {
+								if(this.QR_visible) this.hideQR();
+								// else if(this.navCtrl.canGoBack()) this.viewCtrl.dismiss();
+								else this.platform.exitApp();
+							})
 
 						}, err => {
 						  console.log('Error showing camera');
@@ -335,6 +341,7 @@ export class HomePage implements OnInit {
 	hideQR(){ // hide QR camera preview
 		this.qrScanner.hide();
 		this.QR_visible = false;
+		this.reset_back_button_action();
 		(window.document.querySelector('ion-app') as HTMLElement).classList.remove('cameraView');
 	}
 
