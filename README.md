@@ -28,7 +28,9 @@ Community Forge distributes free software and open-source to manage complementar
 * TODO
 
 ### How to install:
-* TODO
+* Beta available: https://play.google.com/apps/testing/net.communityforge.lets
 
 ### Guidelines for contributing with code
-* TODO
+* You will need Cordova and Ionic. 
+* There are bash scripts to help you with testing and compilation.
+* TODO add more instructions.
