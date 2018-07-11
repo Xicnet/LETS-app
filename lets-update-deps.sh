@@ -1,9 +1,15 @@
 echo "\nUPDATE CLI:\n"
 npm update -g cordova
 npm update -g ionic
+npm i -D -E ionic@latest
 
 echo "\nCURRENT STATE:\n"
+npm outdated
+ionic cordova platform list
 ionic cordova platform save
+ionic cordova platform list
+
+ionic cordova plugin list
 ionic cordova plugin save
 ionic cordova plugin list
 
