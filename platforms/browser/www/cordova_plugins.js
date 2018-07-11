@@ -1,6 +1,19 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/cordova-base64-to-gallery/www/object.assign-polyfill.js",
+        "id": "cordova-base64-to-gallery.object.assign-polyfill",
+        "pluginId": "cordova-base64-to-gallery"
+    },
+    {
+        "file": "plugins/cordova-base64-to-gallery/www/base64ToGallery.js",
+        "id": "cordova-base64-to-gallery.base64ToGallery",
+        "pluginId": "cordova-base64-to-gallery",
+        "clobbers": [
+            "cordova.base64ToGallery"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
         "id": "cordova-plugin-app-version.AppVersionPlugin",
         "pluginId": "cordova-plugin-app-version",
@@ -96,6 +109,20 @@ module.exports = [
         "runs": true
     },
     {
+        "file": "plugins/cordova-plugin-qrscanner/www/www.min.js",
+        "id": "cordova-plugin-qrscanner.QRScanner",
+        "pluginId": "cordova-plugin-qrscanner",
+        "clobbers": [
+            "QRScanner"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-qrscanner/src/browser/plugin.min.js",
+        "id": "cordova-plugin-qrscanner.QRScannerProxy",
+        "pluginId": "cordova-plugin-qrscanner",
+        "runs": true
+    },
+    {
         "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
         "id": "cordova-plugin-splashscreen.SplashScreen",
         "pluginId": "cordova-plugin-splashscreen",
@@ -124,29 +151,6 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/ionic-plugin-keyboard/www/browser/keyboard.js",
-        "id": "ionic-plugin-keyboard.keyboard",
-        "pluginId": "ionic-plugin-keyboard",
-        "clobbers": [
-            "cordova.plugins.Keyboard"
-        ],
-        "runs": true
-    },
-    {
-        "file": "plugins/cordova-plugin-qrscanner/www/www.min.js",
-        "id": "cordova-plugin-qrscanner.QRScanner",
-        "pluginId": "cordova-plugin-qrscanner",
-        "clobbers": [
-            "QRScanner"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-qrscanner/src/browser/plugin.min.js",
-        "id": "cordova-plugin-qrscanner.QRScannerProxy",
-        "pluginId": "cordova-plugin-qrscanner",
-        "runs": true
-    },
-    {
         "file": "plugins/cordova-save-image-gallery/www/saveImageGallery.js",
         "id": "cordova-save-image-gallery.saveImageGallery",
         "pluginId": "cordova-save-image-gallery",
@@ -155,36 +159,32 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-base64-to-gallery/www/object.assign-polyfill.js",
-        "id": "cordova-base64-to-gallery.object.assign-polyfill",
-        "pluginId": "cordova-base64-to-gallery"
-    },
-    {
-        "file": "plugins/cordova-base64-to-gallery/www/base64ToGallery.js",
-        "id": "cordova-base64-to-gallery.base64ToGallery",
-        "pluginId": "cordova-base64-to-gallery",
+        "file": "plugins/ionic-plugin-keyboard/www/browser/keyboard.js",
+        "id": "ionic-plugin-keyboard.keyboard",
+        "pluginId": "ionic-plugin-keyboard",
         "clobbers": [
-            "cordova.base64ToGallery"
-        ]
+            "cordova.plugins.Keyboard"
+        ],
+        "runs": true
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-app-version": "0.1.9",
-    "cordova-plugin-camera": "4.0.1",
     "cordova-plugin-compat": "1.2.0",
+    "cordova-base64-to-gallery": "4.1.3",
+    "cordova-plugin-app-version": "0.1.9",
+    "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-console": "1.1.0",
-    "cordova-plugin-device": "2.0.1",
-    "cordova-plugin-globalization": "1.0.9",
-    "cordova-plugin-inappbrowser": "2.0.1",
-    "cordova-plugin-splashscreen": "5.0.1",
-    "cordova-plugin-statusbar": "2.4.1",
+    "cordova-plugin-device": "2.0.2",
+    "cordova-plugin-globalization": "1.11.0",
+    "cordova-plugin-inappbrowser": "3.0.0",
+    "cordova-plugin-qrscanner": "2.6.0",
+    "cordova-plugin-splashscreen": "5.0.2",
+    "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-whitelist": "1.3.3",
-    "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-qrscanner": "2.5.0",
     "cordova-save-image-gallery": "0.0.26",
-    "cordova-base64-to-gallery": "4.1.3"
+    "ionic-plugin-keyboard": "2.2.1"
 }
 // BOTTOM OF METADATA
 });
