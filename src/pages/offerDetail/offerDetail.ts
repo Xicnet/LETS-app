@@ -191,7 +191,7 @@ export class OfferDetailPage implements OnInit {
 			nodes.forEach(node => {
 				if(node.src) this.QRImg = node.src;
 
-				if(this.QRImg) this.base64ToGallery.base64ToGallery(this.QRImg, { prefix: 'QRcode' }).then(
+				if(this.QRImg) this.base64ToGallery.base64ToGallery(this.QRImg, { prefix: 'QRcode', mediaScanner:true }).then(
 				res => this.alertService.showToast('Saved QR code to your photo gallery'),
 				err => this.alertService.showError('Error saving QR to your photo gallery ', err)
 				);
