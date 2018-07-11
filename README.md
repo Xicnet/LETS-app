@@ -9,11 +9,13 @@ A simple app to connect to community currencies worldwide using the COMMEX API a
 ### Screenshots:
 * TODO
 
-### How to compile:
-* Use the various shell scripts located in the main directory
+### How to install:
+* Beta available: https://play.google.com/apps/testing/net.communityforge.lets
 
 ### Guidelines for contributing with code
-* TODO
+* You will need Cordova and Ionic. 
+* There are bash scripts to help you with testing and compilation.
+* TODO add more instructions.
 
 ### License
 AGPL 3.0+ 
@@ -27,4 +29,3 @@ This is part of a broader initiative, called Community Forge: a non-profit organ
 * increase economic resilience
 * promote local autonomy
 * reduce environmental impacts
-
