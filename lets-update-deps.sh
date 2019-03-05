@@ -1,14 +1,23 @@
+echo "\nMAKE SURE WE HAVE CLI:\n"
+
+sudo npm install -g cordova
+sudo npm install -g ionic
+
 echo "\nUPDATE CLI:\n"
-npm update -g cordova
-npm update -g ionic
+sudo npm update -g cordova
+sudo npm update -g ionic
+
 npm i -D -E ionic@latest
 
-echo "\nCURRENT STATE:\n"
+echo "\nCURRENT NPM STATE:\n"
 npm outdated
+
+echo "\nCURRENT CORDOVA PLATFORM STATE:\n"
 ionic cordova platform list
 ionic cordova platform save
 ionic cordova platform list
 
+echo "\nCURRENT CORDOVA PLUGIN STATE:\n"
 ionic cordova plugin list
 ionic cordova plugin save
 ionic cordova plugin list

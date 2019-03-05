@@ -190,7 +190,7 @@ export class OffersPage implements OnInit {
 	searchUsers(myEvent) {
 		this.popover = this.popoverCtrl.create(MembersPage, {
 			isPopover: true,
-			operation: 'Filter by'
+			operation: ('Filter by')
 		}, {
 				cssClass: 'confirm-popover',
 				showBackdrop: true,
@@ -229,21 +229,21 @@ export class OffersPage implements OnInit {
 
 	activateFilter() {
 		this.filter = '';
-		let filterName = 'Offers';
+		let filterName = ('Offers');
 		this.is_filtered = false;
 		if(this.keywords){
 			this.is_filtered = true;
-			filterName = filterName+` of "${this.keywords}"`;
+			filterName = filterName+' '+('of')+' '+`"${this.keywords}"`;
 			this.filter = `&fragment=${this.keywords}`;
 		}
 		if(this.member){
 			this.is_filtered = true;
-			filterName = filterName+` by ${this.member.name}`;
+			filterName = filterName+' '+('by')+' '+`${this.member.name}`;
 			this.filter = this.filter+`&user_id=${this.member.id}`;
 		}
 		if(this.category){
 			this.is_filtered = true;
-			filterName = filterName+` in ${this.category.title}`;
+			filterName = filterName+' '+('in')+' '+`${this.category.title}`;
 			this.filter = this.filter+`&category=${this.category.id}`;
 		}
 		this.page = 1; // reset
