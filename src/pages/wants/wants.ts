@@ -14,6 +14,7 @@ import * as $ from 'jquery';
 import { map } from 'lodash';
 import { MemberDetailPage } from '../../pages/memberDetail/memberDetail';
 import { MembersPage } from '../../pages/members/members';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
 	selector: 'page-wants',
@@ -48,6 +49,7 @@ export class WantsPage implements OnInit {
 		public loadingCtrl: LoadingController,
 		private popoverCtrl: PopoverController,
 		private wantService: WantService,
+    private translate: TranslateService,
 		private alertService: AlertService) { }
 
 	ngOnInit(): void {
@@ -114,7 +116,11 @@ export class WantsPage implements OnInit {
 		this.wantService.list(this.page, this.filter).subscribe(
 			response => {
 				if(from_scratch) this.wants = [];
-				if(!this.filterName) this.filterName = 'Recent Needs';
+          if(!this.filterName) {
+            this.translate.get('Recent Needs', {}).subscribe((res: string) => {
+            this.filterName = res;
+          });
+        }
 				if (!response.length) {
 					this.hasNoMoreData = true;
 				}
