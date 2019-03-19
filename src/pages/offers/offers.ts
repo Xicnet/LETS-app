@@ -14,6 +14,7 @@ import * as $ from 'jquery';
 import { map } from 'lodash';
 import { MemberDetailPage } from '../memberDetail/memberDetail';
 import { MembersPage } from '../../pages/members/members';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
 	selector: 'page-offers',
@@ -47,6 +48,7 @@ export class OffersPage implements OnInit {
 		public loadingCtrl: LoadingController,
 		public popoverCtrl: PopoverController,
 		private offerService: OfferService,
+    private translate: TranslateService,
 		private alertService: AlertService,
 ) { }
 
@@ -117,7 +119,11 @@ export class OffersPage implements OnInit {
 		this.offerService.list(this.page, this.filter).subscribe(
 			response => {
 				if(from_scratch) this.offers = [];
-				if(!this.filterName) this.filterName = 'Recent Offers';
+        if(!this.filterName) {
+          this.translate.get('Recent Offers', {}).subscribe((res: string) => {
+            this.filterName = res;
+          });
+        }
 				if (!response.length) {
 					this.hasNoMoreData = true;
 					this.noResults = true;
