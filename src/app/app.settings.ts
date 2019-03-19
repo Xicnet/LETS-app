@@ -67,6 +67,14 @@ export class AppSettings {
 		window.localStorage.setItem('in_english', opt);
 	}
 
+	public get DATE_FORMAT(): any {
+		return window.localStorage.getItem('dateFormat');
+	}
+
+	public set DATE_FORMAT(opt) {
+		window.localStorage.setItem('dateFormat', opt);
+	}
+
 	public get APP_ENGLISH(): any {
 		return window.localStorage.getItem('in_english');
 	}

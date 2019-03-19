@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { LoadingController, Loading } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-// import { AppSettings } from '../../app/app.settings';
+import { AppSettings } from '../../app/app.settings';
 import { HttpBasicAuth } from '../../services/HttpBasicAuth';
 import { AlertService } from '../../services/AlertService';
 import { map, forEach } from 'lodash';
@@ -23,7 +23,7 @@ export class FieldBuilderComponent implements OnInit {
 	private formValue: any = {};
 
 	constructor(public loadingCtrl: LoadingController,
-		// private settings: AppSettings,
+		private settings: AppSettings,
 		private httpBasicAuth: HttpBasicAuth,
 		private formBuilder: FormBuilder,
 		private alertService: AlertService,

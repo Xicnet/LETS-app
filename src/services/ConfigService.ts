@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Injectable()
 export class ConfigService {
 	appConfig = new ReplaySubject<Config>(1);
+  dateFormat: String;
 
 	constructor(private settings: AppSettings,
 		private httpBasicAuth: HttpBasicAuth,
@@ -72,6 +73,12 @@ export class ConfigService {
 		this.translate.use(lang);
 
 		console.log("localise: "+lang);
+
+    if(lang=='en') {
+      this.settings.DATE_FORMAT = "MMM DD, YYYY";
+    } else if(lang=='fr') {
+      this.settings.DATE_FORMAT = "DD/MMM/YYYY";
+    }
 
     // this.translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {
     //   this.config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
