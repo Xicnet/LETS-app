@@ -5,7 +5,7 @@
 	<ion-textarea *ngSwitchCase="'textarea'" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name" [attr.rows]="field.lines || 4"></ion-textarea>
 
 	<input *ngSwitchCase="'date'" type="hidden" [required]="field.required === true" [formControlName]="field.name">
-	<ion-datetime *ngSwitchCase="'date'" [required]="field.required === true" [min]="field.parsedMin" [max]="field.parsedMax" [formControlName]="'$date' + field.name" [displayFormat]="settings.DATE_FORMAT"></ion-datetime>
+	<ion-datetime *ngSwitchCase="'date'" [required]="field.required === true" [min]="field.parsedMin" [max]="field.parsedMax" [formControlName]="'$date' + field.name" [displayFormat]="settings.DATE_FORMAT" [monthNames]="monthNames" [monthShortNames]="monthShortNames"></ion-datetime>
 
 	<ion-select *ngSwitchCase="'select'" [placeholder]="field.$placeholder" [required]="field.required === true" [formControlName]="field.name" [multiple]="field.multiple" interface="popover">
     <ion-option [value]="option.name" *ngFor="let option of field.options | keys">{{ option }}</ion-option>

@@ -8,6 +8,19 @@ import { map, forEach } from 'lodash';
 import * as moment from 'moment';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
+const datei18n = {};
+datei18n['fr'] = {
+      monthNames: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'décembre' ],
+      monthShortNames: ['jan', 'fev', 'mar', 'avr', 'mai', 'jui', 'jui', 'aou', 'sep', 'oct', 'nov', 'dec' ],
+      dayNames:['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],
+}
+
+datei18n['en'] = {
+      monthNames: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'septembre', 'octobre', 'novembre', 'décembre' ],
+      monthShortNames: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec' ],
+      dayNames:['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],
+}
+
 @Component({
 	selector: 'field-builder-component',
 	templateUrl: 'fieldBuilder.html',
@@ -21,6 +34,8 @@ export class FieldBuilderComponent implements OnInit {
 	private loader: Loading;
 	private hasSelectedOption: boolean;
 	private formValue: any = {};
+  monthNames: {};
+  monthShortNames: {};
 
 	constructor(public loadingCtrl: LoadingController,
 		private settings: AppSettings,
@@ -31,12 +46,19 @@ export class FieldBuilderComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+    this.setDatei18n();
+
 		this.hasSelectedOption = false;
 		this.loader = this.loadingCtrl.create({
 			content: ('Please wait')+'...'
 		});
 		this.buildForm();
 	}
+
+  setDatei18n() {
+    this.monthNames = datei18n[this.settings.COMMUNITY_LANG].monthNames;
+    this.monthShortNames = datei18n[this.settings.COMMUNITY_LANG].monthShortNames;
+  }
 
 	buildForm() {
 		let formFields = {};
